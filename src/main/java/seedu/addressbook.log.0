@@ -1,0 +1,232 @@
+Sep 23, 2019 7:29:16 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Sep 23, 2019 7:29:16 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Sep 23, 2019 7:29:16 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file config.json not found
+Sep 23, 2019 7:29:17 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Sep 23, 2019 7:29:17 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file preferences.json not found
+Sep 23, 2019 7:29:17 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Sep 23, 2019 7:29:17 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\addressbook.json not found
+Sep 23, 2019 7:29:17 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample AddressBook
+Sep 23, 2019 7:29:17 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.6.0ea
+Sep 23, 2019 7:29:17 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Sep 23, 2019 7:30:34 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Sep 23, 2019 7:30:35 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Sep 23, 2019 7:30:35 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Sep 23, 2019 7:30:35 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Sep 23, 2019 7:30:35 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\addressbook.json not found
+Sep 23, 2019 7:30:35 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample AddressBook
+Sep 23, 2019 7:30:35 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.6.0ea
+Sep 23, 2019 7:30:35 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Sep 23, 2019 8:52:10 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Sep 23, 2019 8:52:11 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Sep 23, 2019 8:52:11 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Sep 23, 2019 8:52:11 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Sep 23, 2019 8:52:11 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\addressbook.json not found
+Sep 23, 2019 8:52:11 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample AddressBook
+Sep 23, 2019 8:52:11 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.6.0ea
+Sep 23, 2019 8:52:11 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Sep 23, 2019 8:52:12 PM seedu.address.ui.UiManager start
+SEVERE: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+java.lang.IllegalAccessError: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+	at com.sun.javafx.fxml.FXMLLoaderHelper.<clinit>(FXMLLoaderHelper.java:38)
+	at javafx.fxml.FXMLLoader.<clinit>(FXMLLoader.java:2056)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:20)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:51)
+	at seedu.address.ui.MainWindow.<init>(MainWindow.java:54)
+	at seedu.address.ui.UiManager.start(UiManager.java:41)
+	at seedu.address.MainApp.start(MainApp.java:171)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run$$$capture(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Sep 23, 2019 8:52:12 PM seedu.address.ui.UiManager showFatalErrorDialogAndShutdown
+SEVERE: Fatal error during initializing class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+java.lang.IllegalAccessError: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+	at com.sun.javafx.fxml.FXMLLoaderHelper.<clinit>(FXMLLoaderHelper.java:38)
+	at javafx.fxml.FXMLLoader.<clinit>(FXMLLoader.java:2056)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:20)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:51)
+	at seedu.address.ui.MainWindow.<init>(MainWindow.java:54)
+	at seedu.address.ui.UiManager.start(UiManager.java:41)
+	at seedu.address.MainApp.start(MainApp.java:171)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run$$$capture(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Sep 23, 2019 8:52:12 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping Address Book ] =============================
+Sep 23, 2019 8:54:48 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Sep 23, 2019 8:54:48 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Sep 23, 2019 8:54:49 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Sep 23, 2019 8:54:49 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Sep 23, 2019 8:54:49 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\addressbook.json not found
+Sep 23, 2019 8:54:49 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample AddressBook
+Sep 23, 2019 8:54:49 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.6.0ea
+Sep 23, 2019 8:54:49 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Sep 23, 2019 8:54:49 PM seedu.address.ui.UiManager start
+SEVERE: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x159f197) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x159f197
+java.lang.IllegalAccessError: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x159f197) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x159f197
+	at com.sun.javafx.fxml.FXMLLoaderHelper.<clinit>(FXMLLoaderHelper.java:38)
+	at javafx.fxml.FXMLLoader.<clinit>(FXMLLoader.java:2056)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:20)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:51)
+	at seedu.address.ui.MainWindow.<init>(MainWindow.java:54)
+	at seedu.address.ui.UiManager.start(UiManager.java:41)
+	at seedu.address.MainApp.start(MainApp.java:171)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run$$$capture(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Sep 23, 2019 8:54:49 PM seedu.address.ui.UiManager showFatalErrorDialogAndShutdown
+SEVERE: Fatal error during initializing class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x159f197) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x159f197class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x159f197) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x159f197
+java.lang.IllegalAccessError: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x159f197) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x159f197
+	at com.sun.javafx.fxml.FXMLLoaderHelper.<clinit>(FXMLLoaderHelper.java:38)
+	at javafx.fxml.FXMLLoader.<clinit>(FXMLLoader.java:2056)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:20)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:51)
+	at seedu.address.ui.MainWindow.<init>(MainWindow.java:54)
+	at seedu.address.ui.UiManager.start(UiManager.java:41)
+	at seedu.address.MainApp.start(MainApp.java:171)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run$$$capture(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Sep 23, 2019 8:54:49 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping Address Book ] =============================
+Sep 23, 2019 8:55:28 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Sep 23, 2019 8:55:28 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Sep 23, 2019 8:55:29 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Sep 23, 2019 8:55:29 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Sep 23, 2019 8:55:29 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\addressbook.json not found
+Sep 23, 2019 8:55:29 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample AddressBook
+Sep 23, 2019 8:55:29 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.6.0ea
+Sep 23, 2019 8:55:29 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
+Sep 23, 2019 8:55:29 PM seedu.address.ui.UiManager start
+SEVERE: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+java.lang.IllegalAccessError: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+	at com.sun.javafx.fxml.FXMLLoaderHelper.<clinit>(FXMLLoaderHelper.java:38)
+	at javafx.fxml.FXMLLoader.<clinit>(FXMLLoader.java:2056)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:20)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:51)
+	at seedu.address.ui.MainWindow.<init>(MainWindow.java:54)
+	at seedu.address.ui.UiManager.start(UiManager.java:41)
+	at seedu.address.MainApp.start(MainApp.java:171)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run$$$capture(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Sep 23, 2019 8:55:29 PM seedu.address.ui.UiManager showFatalErrorDialogAndShutdown
+SEVERE: Fatal error during initializing class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+java.lang.IllegalAccessError: class com.sun.javafx.fxml.FXMLLoaderHelper (in unnamed module @0x78aab498) cannot access class com.sun.javafx.util.Utils (in module javafx.graphics) because module javafx.graphics does not export com.sun.javafx.util to unnamed module @0x78aab498
+	at com.sun.javafx.fxml.FXMLLoaderHelper.<clinit>(FXMLLoaderHelper.java:38)
+	at javafx.fxml.FXMLLoader.<clinit>(FXMLLoader.java:2056)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:20)
+	at seedu.address.ui.UiPart.<init>(UiPart.java:51)
+	at seedu.address.ui.MainWindow.<init>(MainWindow.java:54)
+	at seedu.address.ui.UiManager.start(UiManager.java:41)
+	at seedu.address.MainApp.start(MainApp.java:171)
+	at javafx.graphics/com.sun.javafx.application.LauncherImpl.lambda$launchApplication1$9(LauncherImpl.java:846)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runAndWait$12(PlatformImpl.java:455)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$10(PlatformImpl.java:428)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at javafx.graphics/com.sun.javafx.application.PlatformImpl.lambda$runLater$11(PlatformImpl.java:427)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run$$$capture(InvokeLaterDispatcher.java:96)
+	at javafx.graphics/com.sun.glass.ui.InvokeLaterDispatcher$Future.run(InvokeLaterDispatcher.java)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+Sep 23, 2019 8:55:29 PM seedu.address.MainApp stop
+INFO: ============================ [ Stopping Address Book ] =============================
+Sep 23, 2019 8:55:46 PM seedu.address.MainApp init
+INFO: =============================[ Initializing AddressBook ]===========================
+Sep 23, 2019 8:55:46 PM seedu.address.MainApp initConfig
+INFO: Using config file : config.json
+Sep 23, 2019 8:55:47 PM seedu.address.MainApp initPrefs
+INFO: Using prefs file : preferences.json
+Sep 23, 2019 8:55:47 PM seedu.address.commons.core.LogsCenter init
+INFO: currentLogLevel: INFO
+Sep 23, 2019 8:55:47 PM seedu.address.commons.util.JsonUtil readJsonFile
+INFO: Json file data\addressbook.json not found
+Sep 23, 2019 8:55:47 PM seedu.address.MainApp initModelManager
+INFO: Data file not found. Will be starting with a sample AddressBook
+Sep 23, 2019 8:55:47 PM seedu.address.MainApp start
+INFO: Starting AddressBook V0.6.0ea
+Sep 23, 2019 8:55:47 PM seedu.address.ui.UiManager start
+INFO: Starting UI...
