@@ -18,7 +18,7 @@ public class RemarkTest {
         Remark remark = new Remark("Test remark");
         assertTrue(remark.equals(remark));
 
-        Remark diffRemark_false = new Remark("Test remark 2");
-        assertFalse(remark.equals(diffRemark_false));
+        Remark diffRemark = new Remark("Test remark 2");
+        assertFalse(remark.equals(diffRemark));
     }
 }
