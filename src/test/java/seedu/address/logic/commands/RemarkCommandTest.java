@@ -1,6 +1,5 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
@@ -119,7 +118,7 @@ public class RemarkCommandTest {
         assertTrue(standardCommand.equals(standardCommand));
 
         // same hashcode -> returns true
-        assertEquals(standardCommand.hashCode(), standardCommand.hashCode());
+        assertTrue(standardCommand.hashCode() == standardCommand.hashCode());
 
         // null -> returns false
         assertFalse(standardCommand.equals(null));
