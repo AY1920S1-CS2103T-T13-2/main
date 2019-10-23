@@ -27,8 +27,9 @@
 <li><a href="#notification-feature">3.3. Notification Feature</a></li>
 <li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
 <li><a href="#generate-pdf-feature">3.5. Generate PDF feature</a></li>
-<li><a href="#logging">3.6. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.7. Configuration</a></li>
+<li><a href="#unique-identification-numbers">3.6. Unique Identification Numbers</a></li>
+<li><a href="#logging">3.7. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -748,14 +749,131 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.6. Logging</a></h3>
+<h3 id="unique-identification-numbers"><a class="link" href="#unique-identification-numbers">3.6. Unique Identification Numbers</a></h3>
+<div class="paragraph">
+<p>In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>.
+Each <code>IdentificationNumber</code> is automatically generated within the application, based on the next sequential ID number available.
+The generation of unique <code>IdentificationNumbers</code> allows the user to identify different entities solely based on their <code>IdentificationNumber</code>, without relying on attributes such
+as <code>name</code> which may be duplicated within the system.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.6.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>.</p>
+</div>
+<div class="sect4">
+<h5 id="determing-the-next-free-number"><a class="link" href="#determing-the-next-free-number">Determing the next free number</a></h5>
+<div class="paragraph">
+<p><code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.<br>
+In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the worker it is assigned to.
+This keeps track of the numbers currently assigned to all the workers, and allows the next free <code>Integer</code> to be assigned to a newly added worker.<br></p>
+</div>
+<div class="paragraph">
+<p>The code block below demonstrates how the next free number is determined.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    private static Integer putWorker(Worker worker) {
+        Set&lt;Integer&gt; keys = uniqueWorkerMap.keySet();
+        int numOfKeys = keys.size();
+        for (int id = 1; id &lt;= numOfKeys; id++) {
+            if (uniqueWorkerMap.get(id) == null) {
+                uniqueWorkerMap.put(id, worker);
+                return id;
+            }
+        }
+        int newId = numOfKeys + 1;
+        uniqueWorkerMap.put(newId, worker);
+        return newId;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above <code>putWorker</code> method, the set of <code>Keys</code> representing the existing ID numbers are generated and iterated through.
+This sequential iteration checks for any number that is not assigned to any worker due to the deletion of the latter, which removes the mapping of the ID number to the deleted worker.
+If there is an existing gap in the sequential iteration of numbers, this number is assigned to the newly added worker.
+If there is no gap available, the next highest number is assigned to the worker.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect: Tracking of numbers and determination of next free number</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Three counters that track the total number of each entity in the system.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Does not cater for deletion of entity as deletion creates a gap.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2 (current choice): A <code>HashMap</code> keeping track of the ID numbers and their respective assigned entity.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Caters for deletion of entities as the <code>Keys</code> can be iterated through to check for any gaps introduced during deletion.
+This also allows the assigned (mapped) entity to be accessible through the <code>HashMap</code> via the <code>IdentificationNumber#getMapping()</code> method.</p>
+</li>
+<li>
+<p>Cons: Harder to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code"><a class="link" href="#the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code">The steps below detail the generation of a unique <code>IdentificationNumber</code>:</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>add -w /name Zach &#8230;&#8203;</code> to add a new worker to Mortago.</p>
+</li>
+<li>
+<p><code>AddCommandParser</code> parses the given input and calls the <code>Worker</code> constructor.</p>
+</li>
+<li>
+<p>In the constructor, the worker&#8217;s <code>IdentificationNumber</code> is created using <code>IdentificationNumber#generateNewWorkerId()</code>.</p>
+</li>
+<li>
+<p>Consequently, <code>generateNewWorkerId()</code> creates a new <code>IdentificationNumber</code>, where the number is determined after the execution of <code>addEntity()</code> in <code>UniqueIdentificationNumberMaps</code>.</p>
+</li>
+<li>
+<p><code>addEntity()</code> subsequently calls <code>putWorker()</code>, which inserts the worker into the worker <code>HashMap</code> and returns a number ID that is not currently assigned to a worker.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the sequence diagram of the aforementioned steps.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
+</div>
+<div class="title">Figure 11. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.7, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -786,7 +904,7 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.7. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
@@ -1628,4 +1746,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:29:35 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:55:58 UTC</div></div></div></bodyId></html>
