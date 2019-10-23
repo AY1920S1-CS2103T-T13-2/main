@@ -23,26 +23,7 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#proposed-undo-redo-feature">3.1. [Proposed] Undo/Redo feature</a></li>
-<li><a href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></li>
-<li><a href="#generate-pdf-feature">3.3. Generate PDF feature</a></li>
-<li><a href="#logging">3.4. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.5. Configuration</a></li>
-</ul>
-</li>
-<li><a href="#documentation">4. Documentation</a></li>
-<li><a href="#testing">5. Testing</a></li>
-<li><a href="#dev-ops">6. Dev Ops</a></li>
-<li><a href="#product-scope">Appendix A: Product Scope</a></li>
-<li><a href="#user-stories">Appendix B: User Stories</a></li>
-<li><a href="#use-cases">Appendix C: Use Cases</a></li>
-<li><a href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></li>
-<li><a href="#glossary">Appendix E: Glossary</a></li>
-<li><a href="#product-survey">Appendix F: Product Survey</a></li>
-<li><a href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a>
-<ul class="sectlevel2">
-<li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
-<li><a href="#deleting-a-person">G.2. Deleting a person</a></li>
-<li><a href="#saving-data">G.3. Saving data</a></li>
+<li><a href="#proposed-notification-feature">3.2. [Proposed] Notification Feature</a></li>
 </ul>
 </li>
 </ul>
@@ -545,15 +526,132 @@ If the <code>currentStatePointer</code> is at index <code>addressBookStateList.s
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.2. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-notification-feature"><a class="link" href="#proposed-notification-feature">3.2. [Proposed] Notification Feature</a></h3>
+<div class="paragraph">
+<p>A notification is a message that Mortago will display when the status of a body is automatically updated.
+If the next-of-kin of a body has not been uncontactable for 24 hours, Mortago will prompt the user to contact
+the police for a more thorough investigation and change the status of the body from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="current-implementation"><a class="link" href="#current-implementation">3.2.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>Given below is the execution process of the <code>NotificationCommand</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>add -b /name John &#8230;&#8203;</code> to add a new body to Mortago.</p>
+</li>
+<li>
+<p>The add command also created a new new <code>Notif</code> using this body as the parameter.</p>
+</li>
+<li>
+<p>The add command instantiates a new`NotifCommand` with <code>Notif</code>, <code>period</code>, <code>unit</code> as parameters.
+<code>period</code> is a static final integer initialized for 10 seconds and <code>unit</code> is static final TimeUnit set at TimeUnit.SECONDS.</p>
+</li>
+<li>
+<p><code>NotifCommand</code> creates a new static <code>ScheduledExecutorService</code> which is scheduled to update the <code>BodyStatus</code> to
+<code>CONTACT_POLICE</code> if there is no change in its status for the specified <code>period</code> using the <code>UpdateCommand</code>.</p>
+</li>
+<li>
+<p>After the <code>BodyStatus</code> is updated, a <code>NotifWindow</code> will be shown to alert the user of the automatic update in
+<code>BodyStatus</code>.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/NotifCommandSequenceDiagram.png" alt="NotifCommandSequenceDiagram">
+</div>
+<div class="title">Figure 9. Notification Command Sequence Diagram</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ChangeUiFnSequenceDiagram.png" alt="ChangeUiFnSequenceDiagram">
+</div>
+<div class="title">Figure 10. ChangeUI function Sequence Diagram</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-to-delay-change-in-bodystatus"><a class="link" href="#aspect-how-to-delay-change-in-bodystatus">Aspect: How to delay change in BodyStatus</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use <code>ScheduledExecutorService</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Does not depend on thread synchronization and avoids the need to deal with threads directly.</p>
+</li>
+<li>
+<p>Cons: May cause memory leaks if cache is not cleared.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use <code>Thread.sleep</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Straightforward way to delay a thread.</p>
+</li>
+<li>
+<p>Cons: May quickly run into OutOfMemory error.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="aspect-how-to-reflect-change-in-bodystatus-on-ui"><a class="link" href="#aspect-how-to-reflect-change-in-bodystatus-on-ui">3.2.3. Aspect: How to reflect change in BodyStatus on UI</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use <code>UpdateCommand</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Increases `NotifCommand&#8217;s dependency.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>**Alternative 2: Directly make changes to the model.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Does not increase dependency .</p>
+</li>
+<li>
+<p>Cons: Cause a lot of repetition of code.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>=== [Proposed] Data Encryption</p>
+</div>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
+<div class="paragraph">
+<p>=== Generate PDF feature
+==== Implementation</p>
 </div>
-<div class="sect2">
-<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">3.3. Generate PDF feature</a></h3>
-<div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generate PDF feature is facilitated by <code>ReportGenerator</code>.
 It extends <code>Mortago</code> with the ability to create a report, supported by iText external library.
@@ -600,11 +698,12 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 <img src="images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram">
 </div>
 </div>
+<div class="paragraph">
+<p>==== Design Considerations</p>
 </div>
-<div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
-<div class="sect4">
-<h5 id="aspect-how-generate-report-executes"><a class="link" href="#aspect-how-generate-report-executes">Aspect: How generate report executes</a></h5>
+<div class="paragraph">
+<p>===== Aspect: How generate report executes</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -635,9 +734,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>===== Aspect: How report is formatted</p>
 </div>
-<div class="sect4">
-<h5 id="aspect-how-report-is-formatted"><a class="link" href="#aspect-how-report-is-formatted">Aspect: How report is formatted</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -668,18 +767,16 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>=== Logging</p>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.4. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.5, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">[Implementation-Configuration]</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -708,42 +805,33 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </li>
 </ul>
 </div>
+<div id="Implementation-Configuration" class="paragraph">
+<p>=== Configuration</p>
 </div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.5. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
+<div class="paragraph">
+<p>== Documentation</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Testing</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Dev Ops</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
 </div>
+<div class="paragraph">
+<p>== Product Scope</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="product-scope"><a class="link" href="#product-scope">Appendix A: Product Scope</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Target user profile</strong>:</p>
 </div>
@@ -769,11 +857,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 <div class="paragraph">
 <p><strong>Value proposition</strong>: Mortago replaces and improves upon the traditional whiteboard system. It provides a convenient dashboard for the mortuary manager to keep track of all bodies and fridges, outstanding tasks, and alerts. Mortago unites the different aspects of a mortuary and allows the mortuary management to be more accurate in managing tasks, calculate the availability of space, and generates reports automatically.</p>
 </div>
+<div class="paragraph">
+<p>== User Stories</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="user-stories"><a class="link" href="#user-stories">Appendix B: User Stories</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Priorities: High (must have) - <code>* * *</code>, Medium (nice to have) - <code>* *</code>, Low (unlikely to have) - <code>*</code></p>
 </div>
@@ -966,11 +1052,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
+<div class="paragraph">
+<p>== Use Cases</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="use-cases"><a class="link" href="#use-cases">Appendix C: Use Cases</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>(For all use cases below, the <strong>System</strong> is the <code>AddressBook</code> and the <strong>Actor</strong> is the <code>user</code>, unless specified otherwise)</p>
 </div>
@@ -1358,11 +1442,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
+<div class="paragraph">
+<p>== Non Functional Requirements</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="non-functional-requirements"><a class="link" href="#non-functional-requirements">Appendix D: Non Functional Requirements</a></h2>
-<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1379,11 +1461,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 <div class="paragraph">
 <p><em>{More to be added}</em></p>
 </div>
+<div class="paragraph">
+<p>== Glossary</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="glossary"><a class="link" href="#glossary">Appendix E: Glossary</a></h2>
-<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1"><a id="mainstream-os"></a> Mainstream OS</dt>
@@ -1404,11 +1484,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </dd>
 </dl>
 </div>
+<div class="paragraph">
+<p>== Product Survey</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="product-survey"><a class="link" href="#product-survey">Appendix F: Product Survey</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p><strong>Product Name</strong></p>
 </div>
@@ -1441,11 +1519,9 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>== Instructions for Manual Testing</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="instructions-for-manual-testing"><a class="link" href="#instructions-for-manual-testing">Appendix G: Instructions for Manual Testing</a></h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>Given below are instructions to test the app manually.</p>
 </div>
@@ -1461,8 +1537,9 @@ These instructions only provide a starting point for testers to work on; testers
 </tr>
 </table>
 </div>
-<div class="sect2">
-<h3 id="launch-and-shutdown"><a class="link" href="#launch-and-shutdown">G.1. Launch and Shutdown</a></h3>
+<div class="paragraph">
+<p>=== Launch and Shutdown</p>
+</div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1498,9 +1575,9 @@ Expected: The most recent window size and location is retained.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
+<div class="paragraph">
+<p>=== Deleting a person</p>
 </div>
-<div class="sect2">
-<h3 id="deleting-a-person"><a class="link" href="#deleting-a-person">G.2. Deleting a person</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1530,9 +1607,9 @@ Expected: Similar to previous.</p>
 <div class="paragraph">
 <p><em>{ more test cases &#8230;&#8203; }</em></p>
 </div>
+<div class="paragraph">
+<p>=== Saving data</p>
 </div>
-<div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1552,4 +1629,7 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 13:17:56 UTC</div></div></div></bodyId></html>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 13:32:14 UTC</div></div></div></bodyId></html>
