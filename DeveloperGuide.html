@@ -795,6 +795,37 @@ If there is an existing gap in the sequential iteration of numbers, this number 
 If there is no gap available, the next highest number is assigned to the worker.</p>
 </div>
 </div>
+<div class="sect4">
+<h5 id="the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code"><a class="link" href="#the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code">The steps below detail the generation of a unique <code>IdentificationNumber</code>:</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>add -w /name Zach &#8230;&#8203;</code> to add a new worker to Mortago.</p>
+</li>
+<li>
+<p><code>AddCommandParser</code> parses the given input and calls the <code>Worker</code> constructor.</p>
+</li>
+<li>
+<p>In the constructor, the worker&#8217;s <code>IdentificationNumber</code> is created using <code>IdentificationNumber#generateNewWorkerId()</code>.</p>
+</li>
+<li>
+<p>Consequently, <code>generateNewWorkerId()</code> creates a new <code>IdentificationNumber</code>, where the number is determined after the execution of <code>addEntity()</code> in <code>UniqueIdentificationNumberMaps</code>.</p>
+</li>
+<li>
+<p><code>addEntity()</code> subsequently calls <code>putWorker()</code>, which inserts the worker into the worker <code>HashMap</code> and returns a number ID that is not currently assigned to a worker.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the sequence diagram of the aforementioned steps.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
+</div>
+<div class="title">Figure 11. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
@@ -831,37 +862,6 @@ This also allows the assigned (mapped) entity to be accessible through the <code
 </div>
 </li>
 </ul>
-</div>
-<div class="sect4">
-<h5 id="the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code"><a class="link" href="#the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code">The steps below detail the generation of a unique <code>IdentificationNumber</code>:</a></h5>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes <code>add -w /name Zach &#8230;&#8203;</code> to add a new worker to Mortago.</p>
-</li>
-<li>
-<p><code>AddCommandParser</code> parses the given input and calls the <code>Worker</code> constructor.</p>
-</li>
-<li>
-<p>In the constructor, the worker&#8217;s <code>IdentificationNumber</code> is created using <code>IdentificationNumber#generateNewWorkerId()</code>.</p>
-</li>
-<li>
-<p>Consequently, <code>generateNewWorkerId()</code> creates a new <code>IdentificationNumber</code>, where the number is determined after the execution of <code>addEntity()</code> in <code>UniqueIdentificationNumberMaps</code>.</p>
-</li>
-<li>
-<p><code>addEntity()</code> subsequently calls <code>putWorker()</code>, which inserts the worker into the worker <code>HashMap</code> and returns a number ID that is not currently assigned to a worker.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>The figure below illustrates the sequence diagram of the aforementioned steps.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
-</div>
-<div class="title">Figure 11. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
-</div>
 </div>
 </div>
 </div>
@@ -1746,4 +1746,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:55:58 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:58:35 UTC</div></div></div></bodyId></html>
