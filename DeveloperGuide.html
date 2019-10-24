@@ -22,14 +22,15 @@
 </li>
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#undo-redo-feature">3.1. Undo/Redo feature</a></li>
-<li><a href="#proposed-statistics-feature">3.2. [Proposed] Statistics feature</a></li>
+<li><a href="#unique-identification-number">3.1. Unique Identification Number</a></li>
+<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
 <li><a href="#notification-feature">3.3. Notification Feature</a></li>
-<li><a href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></li>
-<li><a href="#generate-pdf-feature">3.5. Generate PDF feature</a></li>
-<li><a href="#unique-identification-numbers">3.6. Unique Identification Numbers</a></li>
-<li><a href="#logging">3.7. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.8. Configuration</a></li>
+<li><a href="#generate-pdf-feature">3.4. Generate PDF feature</a></li>
+<li><a href="#logging">3.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
+<li><a href="#user-interface-and-dashboard-enhancement">3.7. User Interface and Dashboard Enhancement</a></li>
+<li><a href="#proposed-statistics-feature">3.8. [Proposed] Statistics feature</a></li>
+<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
 </ul>
 </li>
 <li><a href="#documentation">4. Documentation</a></li>
@@ -334,9 +335,167 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.1. Undo/Redo feature</a></h3>
+<h3 id="unique-identification-number"><a class="link" href="#unique-identification-number">3.1. Unique Identification Number</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>.</p>
+</li>
+<li>
+<p><code>IdentificationNumbers</code> in Mortago consist of two parts: the <code>String typeOfEntity</code> referring to whether it is a worker, body or fridge, and <code>Integer idNum</code> referring to its unique ID number.</p>
+</li>
+<li>
+<p>Each <code>IdentificationNumber</code> is automatically generated within the application, based on the next sequential ID number available.</p>
+</li>
+<li>
+<p>The generation of unique <code>IdentificationNumbers</code> allows the user to identify different entities solely based on their <code>IdentificationNumber</code>, without relying on attributes such
+as <code>name</code> which may have similar duplications within the system.</p>
+</li>
+</ul>
+</div>
 <div class="sect3">
 <h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<div class="paragraph">
+<p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>.
+The class diagram below illustrates the relation between <code>IdentificationNumber</code> and <code>UniqueIdentificationNumberMaps</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UniqueIdentificationNumberClassDiagram.png" alt="UniqueIdentificationNumberClassDiagram">
+</div>
+<div class="title">Figure 9. Unique <code>IdentificationNumber</code> Class Diagram</div>
+</div>
+<div class="sect4">
+<h5 id="determining-the-next-free-number"><a class="link" href="#determining-the-next-free-number">Determining the next free number</a></h5>
+<div class="paragraph">
+<p>Note that in the diagram above, <code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.
+In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the entity it is assigned to.
+This keeps track of the numbers currently assigned to all entities and allows the next free <code>Integer</code> to be assigned to a newly added entity.<br></p>
+</div>
+<div class="paragraph">
+<p>The code snippet below demonstrates how the next free number is determined.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    private static Integer putWorker(Worker worker) {
+        Set&lt;Integer&gt; keys = uniqueWorkerMap.keySet();
+        int numOfKeys = keys.size();
+        for (int id = 1; id &lt;= numOfKeys; id++) {
+            if (uniqueWorkerMap.get(id) == null) {
+                uniqueWorkerMap.put(id, worker);
+                return id;
+            }
+        }
+        int newId = numOfKeys + 1;
+        uniqueWorkerMap.put(newId, worker);
+        return newId;
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above <code>putWorker</code> method, the set of <code>keys</code> representing the existing ID numbers are generated and iterated through, based on the size of the <code>keySet</code>.
+This sequential iteration checks for any number that is not assigned to any worker due to the deletion of the latter, which removes the mapping of the ID number to the deleted worker.
+If there is an existing gap in the sequential iteration of numbers, this number is assigned to the newly added worker.
+If there is no gap available, the next highest number is assigned to the worker.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker"><a class="link" href="#execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker">Execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</a></h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The user executes <code>add -w /name Zach &#8230;&#8203;</code> to add a new worker to Mortago.</p>
+</li>
+<li>
+<p><code>AddCommandParser</code> parses the given input and calls the <code>Worker</code> constructor.</p>
+</li>
+<li>
+<p>In the constructor, the worker&#8217;s <code>IdentificationNumber</code> is created using <code>IdentificationNumber::generateNewWorkerId()</code>.</p>
+</li>
+<li>
+<p>Consequently, <code>generateNewWorkerId()</code> creates a new <code>IdentificationNumber</code>, where the number is determined after the execution of <code>UniqueIdentificationNumberMaps::addEntity()</code>.</p>
+</li>
+<li>
+<p><code>UniqueIdentificationNumberMaps::addEntity()</code> subsequently calls <code>UniqueIdentificationNumberMaps::putWorker()</code>, which inserts the worker into the worker <code>HashMap</code> and returns an ID number that is currently not assigned to a worker.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The figure below illustrates the sequence diagram of the aforementioned steps.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
+</div>
+<div class="title">Figure 10. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
+</div>
+<div class="paragraph">
+<p>Note that the execution sequence is similar for the addition and generation of unique <code>IdentificationNumber</code> for fridges and bodies.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p><strong>Aspect: Tracking of numbers and determination of next free number</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Alternative 1: Three counters that track the total number of each entity in the system.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Easy to implement.</p>
+</li>
+<li>
+<p>Cons: Does not cater for deletion of entity as deletion creates a gap.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Alternative 2 (current choice): A <code>HashMap</code> keeping track of the ID numbers and their respective assigned entity.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Aside from tracking a unique <code>keySet</code> of ID numbers, <code>HashMap</code> caters for deletion of entities as the <code>keySet</code> can be iterated through to check for any gaps introduced during deletion.
+This also allows the assigned (mapped) entity to be accessible through the <code>HashMap</code> via the <code>IdentificationNumber#getMapping()</code> method.</p>
+</li>
+<li>
+<p>Cons: Harder to implement, especially for unit testing since a unique <code>IdentificationNumber</code> cannot be duplicated usually.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 2 is chosen due to the comprehensive benefits of utilizing <code>HashMap</code> in terms of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tracking of unique keys</p>
+</li>
+<li>
+<p>Catering for deletion of ID numbers and filling of the gap</p>
+</li>
+<li>
+<p>Increasing the ease of accessibility of mapped entities</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The difficulty in testing can be circumvented by executing <code>UniqueIdentificationNumberMaps::clearAllEntries()</code>
+before each test to reset the <code>HashMaps</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The core of undo/redo is placed in the undo/redo history of <code>ModelManager</code>. Its mechanism uses the Command design pattern,
 allowing each individual command to be undone/redone without knowing the specific command type.</p>
@@ -426,7 +585,7 @@ If a command fails to execute correctly, it will not call <code>Model#addExecute
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -496,15 +655,6 @@ If a command fails to execute correctly, it will not call <code>Model#addExecute
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-statistics-feature"><a class="link" href="#proposed-statistics-feature">3.2. [Proposed] Statistics feature</a></h3>
-<div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.2.1. Proposed Implementation</a></h4>
-<div class="paragraph">
-<p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="notification-feature"><a class="link" href="#notification-feature">3.3. Notification Feature</a></h3>
 <div class="paragraph">
 <p>A notification is a message that Mortago will display when the status of a body is automatically updated.
@@ -542,17 +692,17 @@ the police for a more thorough investigation and change the status of the body f
 <div class="content">
 <img src="images/NotifCommandSequenceDiagram.png" alt="NotifCommandSequenceDiagram">
 </div>
-<div class="title">Figure 9. Notification Command Sequence Diagram</div>
+<div class="title">Figure 11. Notification Command Sequence Diagram</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ChangeUiFnSequenceDiagram.png" alt="ChangeUiFnSequenceDiagram">
 </div>
-<div class="title">Figure 10. ChangeUI function Sequence Diagram</div>
+<div class="title">Figure 12. ChangeUI function Sequence Diagram</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-delay-change-in-bodystatus"><a class="link" href="#aspect-how-to-delay-change-in-bodystatus">Aspect: How to delay change in BodyStatus</a></h5>
 <div class="ulist">
@@ -622,15 +772,9 @@ the police for a more thorough investigation and change the status of the body f
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.4. [Proposed] Data Encryption</a></h3>
-<div class="paragraph">
-<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">3.5. Generate PDF feature</a></h3>
+<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">3.4. Generate PDF feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.5.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">3.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generate PDF feature is facilitated by <code>ReportGenerator</code>.
 It extends <code>Mortago</code> with the ability to create a report, supported by iText external library.
@@ -679,7 +823,7 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.5.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-generate-report-executes"><a class="link" href="#aspect-how-generate-report-executes">Aspect: How generate report executes</a></h5>
 <div class="ulist">
@@ -749,131 +893,14 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect2">
-<h3 id="unique-identification-numbers"><a class="link" href="#unique-identification-numbers">3.6. Unique Identification Numbers</a></h3>
-<div class="paragraph">
-<p>In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>.
-Each <code>IdentificationNumber</code> is automatically generated within the application, based on the next sequential ID number available.
-The generation of unique <code>IdentificationNumbers</code> allows the user to identify different entities solely based on their <code>IdentificationNumber</code>, without relying on attributes such
-as <code>name</code> which may be duplicated within the system.</p>
-</div>
-<div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.6.1. Implementation</a></h4>
-<div class="paragraph">
-<p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>.</p>
-</div>
-<div class="sect4">
-<h5 id="determing-the-next-free-number"><a class="link" href="#determing-the-next-free-number">Determing the next free number</a></h5>
-<div class="paragraph">
-<p><code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.<br>
-In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the worker it is assigned to.
-This keeps track of the numbers currently assigned to all the workers, and allows the next free <code>Integer</code> to be assigned to a newly added worker.<br></p>
-</div>
-<div class="paragraph">
-<p>The code block below demonstrates how the next free number is determined.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    private static Integer putWorker(Worker worker) {
-        Set&lt;Integer&gt; keys = uniqueWorkerMap.keySet();
-        int numOfKeys = keys.size();
-        for (int id = 1; id &lt;= numOfKeys; id++) {
-            if (uniqueWorkerMap.get(id) == null) {
-                uniqueWorkerMap.put(id, worker);
-                return id;
-            }
-        }
-        int newId = numOfKeys + 1;
-        uniqueWorkerMap.put(newId, worker);
-        return newId;
-    }</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>In the above <code>putWorker</code> method, the set of <code>Keys</code> representing the existing ID numbers are generated and iterated through.
-This sequential iteration checks for any number that is not assigned to any worker due to the deletion of the latter, which removes the mapping of the ID number to the deleted worker.
-If there is an existing gap in the sequential iteration of numbers, this number is assigned to the newly added worker.
-If there is no gap available, the next highest number is assigned to the worker.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code"><a class="link" href="#the-steps-below-detail-the-generation-of-a-unique-code-identificationnumber-code">The steps below detail the generation of a unique <code>IdentificationNumber</code>:</a></h5>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes <code>add -w /name Zach &#8230;&#8203;</code> to add a new worker to Mortago.</p>
-</li>
-<li>
-<p><code>AddCommandParser</code> parses the given input and calls the <code>Worker</code> constructor.</p>
-</li>
-<li>
-<p>In the constructor, the worker&#8217;s <code>IdentificationNumber</code> is created using <code>IdentificationNumber#generateNewWorkerId()</code>.</p>
-</li>
-<li>
-<p>Consequently, <code>generateNewWorkerId()</code> creates a new <code>IdentificationNumber</code>, where the number is determined after the execution of <code>addEntity()</code> in <code>UniqueIdentificationNumberMaps</code>.</p>
-</li>
-<li>
-<p><code>addEntity()</code> subsequently calls <code>putWorker()</code>, which inserts the worker into the worker <code>HashMap</code> and returns a number ID that is not currently assigned to a worker.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>The figure below illustrates the sequence diagram of the aforementioned steps.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
-</div>
-<div class="title">Figure 11. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.6.2. Design Considerations</a></h4>
-<div class="paragraph">
-<p><strong>Aspect: Tracking of numbers and determination of next free number</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Alternative 1: Three counters that track the total number of each entity in the system.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Easy to implement.</p>
-</li>
-<li>
-<p>Cons: Does not cater for deletion of entity as deletion creates a gap.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Alternative 2 (current choice): A <code>HashMap</code> keeping track of the ID numbers and their respective assigned entity.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Caters for deletion of entities as the <code>Keys</code> can be iterated through to check for any gaps introduced during deletion.
-This also allows the assigned (mapped) entity to be accessible through the <code>HashMap</code> via the <code>IdentificationNumber#getMapping()</code> method.</p>
-</li>
-<li>
-<p>Cons: Harder to implement.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.7. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.8, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -904,9 +931,120 @@ This also allows the assigned (mapped) entity to be accessible through the <code
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.8. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="user-interface-and-dashboard-enhancement"><a class="link" href="#user-interface-and-dashboard-enhancement">3.7. User Interface and Dashboard Enhancement</a></h3>
+<div class="paragraph">
+<p>The dashboard of Mortago plays a key part in presenting a sleek, organised, and concise overview to the entities in the system.
+Thus, designing an aesthetic and functional dashboard is a crucial aspect for Mortago.</p>
+</div>
+<div class="sect3">
+<h4 id="surface-design-and-coloring"><a class="link" href="#surface-design-and-coloring">3.7.1. Surface Design and Coloring</a></h4>
+<div class="paragraph">
+<p>Mortago draws upon the guidelines specified in <a href="https://material.io/design/color/dark-theme.html#">Material.io</a> to design a dark theme
+that enhances visual ergonomics via the minimization of eye strain due to the bright luminance emitted by screens.</p>
+</div>
+<div class="paragraph">
+<p><strong>Visual Contrast Between Surfaces and Text</strong></p>
+</div>
+<div class="paragraph">
+<p>With reference to  Web Content Accessibility Guidelines’ (WCAG), the guidelines recommend that the contrast level
+between dark surfaces and white text to be at least 15:8:1 to ensure visual accessibility.
+Thus, the following color values are set within Mortago:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect of Mortago</th>
+<th class="tableblock halign-left valign-top">Color</th>
+<th class="tableblock halign-left valign-top">Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Background</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">derive(#121212, 25%)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/Background%20Color.png" alt="Background Color">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Surface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">#121212</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/Surface%20Color.png" alt="Surface Color">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">#FF7597</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/Primary%20Color.png" alt="Primary Color">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The background color uses the <code>derive</code> function in <code>JavaFX</code>, which computes a color that is brighter or darker than the original,
+based on the brightness offset supplied. Here, notice that the background color is brighter than the surface color, as opposed to what Material.io dictates.
+This is because bulk of the screen space in the Mortago is taken up by surfaces to optimize the amount of information available to the user,
+hence by giving surfaces a darker brightness, this improves <strong>overall</strong> accessibility and visual ergonomics.
+In addition, this achieves elevation between surfaces and the background, which is aided by drop shadows by surfaces as well.</p>
+</div>
+<div class="paragraph">
+<p>The primary color is desaturated to reach a WCAG&#8217;s AA standard of minimally 4:5:1.
+This facilitates a mild yet impressionable visual aspect to Mortago while minimizing eye strain, as saturated colors can cause optical vibrations against the dark surface and exacerbate eye strain.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="replacing-windows-title-bar"><a class="link" href="#replacing-windows-title-bar">3.7.2. Replacing Windows Title Bar</a></h4>
+<div class="paragraph">
+<p>In spirit with producing a sleek design, the standard Windows platform title bar was removed. This exposes the user interface to become one that is self-contained, while providing extra space at the top.</p>
+</div>
+<div class="paragraph">
+<p>The following code snippet was placed in <code>MainApp#start()</code> to achieve this.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>primaryStage.initStyle(StageStyle.TRANSPARENT);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this has to be done before the stage is shown. Otherwise, the application will close automatically upon running.</p>
+</div>
+<div class="paragraph">
+<p>However, with this removal, the default Windows functions such as the default OS close button will be inevitably removed as well. Hence, these buttons will have to be rebaked into the application.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-statistics-feature"><a class="link" href="#proposed-statistics-feature">3.8. [Proposed] Statistics feature</a></h3>
+<div class="sect3">
+<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.8.1. Proposed Implementation</a></h4>
+<div class="paragraph">
+<p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
+<div class="paragraph">
+<p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
 </div>
 </div>
@@ -1746,4 +1884,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-23 15:58:35 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 04:38:41 UTC</div></div></div></bodyId></html>
