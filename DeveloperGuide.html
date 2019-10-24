@@ -23,13 +23,13 @@
 <li><a href="#implementation">3. Implementation</a>
 <ul class="sectlevel2">
 <li><a href="#unique-identification-number">3.1. Unique Identification Number</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo Feature</a></li>
+<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
 <li><a href="#notification-feature">3.3. Notification Feature</a></li>
 <li><a href="#generate-pdf-feature">3.4. Generate PDF Feature</a></li>
 <li><a href="#logging">3.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
 <li><a href="#user-interface-and-dashboard-enhancement">3.7. User Interface and Dashboard Enhancement</a></li>
-<li><a href="#proposed-statistics-feature">3.8. [Proposed] Statistics Feature</a></li>
+<li><a href="#statistics-feature">3.8. Statistics feature</a></li>
 <li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
 </ul>
 </li>
@@ -178,7 +178,7 @@ The following class plays an important role at the architecture level:</p>
 <p><strong>API</strong> : <a href="https://github.com/AY1920S1-CS2103T-T13-2/tree/master/src/main/java/seedu/address/ui/Ui.java"><code>Ui.java</code></a></p>
 </div>
 <div class="paragraph">
-<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>PersonListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
+<p>The UI consists of a <code>MainWindow</code> that is made up of parts e.g.<code>CommandBox</code>, <code>ResultDisplay</code>, <code>BodyListPanel</code>, <code>WorkerListPanel</code>, <code>FridgeListPanel</code>, <code>StatusBarFooter</code> etc. All these, including the <code>MainWindow</code>, inherit from the abstract <code>UiPart</code> class.</p>
 </div>
 <div class="paragraph">
 <p>The <code>UI</code> component uses JavaFx UI framework. The layout of these UI parts are defined in matching <code>.fxml</code> files that are in the <code>src/main/resources/view</code> folder. For example, the layout of the <a href="https://github.com/AY1920S1-CS2103T-T13-2/tree/master/src/main/java/seedu/address/ui/MainWindow.java"><code>MainWindow</code></a> is specified in <a href="https://github.com/AY1920S1-CS2103T-T13-2/tree/master/src/main/resources/view/MainWindow.fxml"><code>MainWindow.fxml</code></a></p>
@@ -218,7 +218,7 @@ The following class plays an important role at the architecture level:</p>
 <p>This results in a <code>Command</code> object which is executed by the <code>LogicManager</code>.</p>
 </li>
 <li>
-<p>The command execution can affect the <code>Model</code> (e.g. adding a person).</p>
+<p>The command execution can affect the <code>Model</code> (e.g. adding a body).</p>
 </li>
 <li>
 <p>The result of the command execution is encapsulated as a <code>CommandResult</code> object which is passed back to the <code>Ui</code>.</p>
@@ -273,26 +273,12 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <p>stores the Address Book data.</p>
 </li>
 <li>
-<p>exposes an unmodifiable <code>ObservableList&lt;Person&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
+<p>exposes an unmodifiable <code>ObservableList&lt;Body&gt;</code> that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.</p>
 </li>
 <li>
 <p>does not depend on any of the other three components.</p>
 </li>
 </ul>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book</code>, which <code>Person</code> can reference. This would allow <code>Address Book</code> to only require one <code>Tag</code> object per unique <code>Tag</code>, instead of each <code>Person</code> needing their own <code>Tag</code> object. An example of how such a model may look like is given below.<br>
-<br>
-<span class="image"><img src="images/BetterModelClassDiagram.png" alt="BetterModelClassDiagram"></span>
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
@@ -315,7 +301,7 @@ As a more OOP model, we can store a <code>Tag</code> list in <code>Address Book<
 <p>can save <code>UserPref</code> objects in json format and read it back.</p>
 </li>
 <li>
-<p>can save the Address Book data in json format and read it back.</p>
+<p>can save Mortago data in json format and read it back.</p>
 </li>
 </ul>
 </div>
@@ -493,12 +479,22 @@ before each test to reset the <code>HashMaps</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo Feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<div class="paragraph">
+<p>The undo/redo feature allows the user to undo a previous command that they have made, or redo a command they have undone.</p>
+</div>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The core of undo/redo is placed in the undo/redo history of <code>ModelManager</code>. Its mechanism uses the Command design pattern,
-allowing each individual command to be undone/redone without knowing the specific command type.</p>
+allowing each individual command to be undone/redone without knowing the specific command type.
+Classes related to undo/redo and their relationships are shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoClassDiagram.png" alt="UndoClassDiagram">
+</div>
+<div class="title">Figure 11. Class Diagram Showing Classes Used by Undo/Redo</div>
 </div>
 <div class="paragraph">
 <p>Firstly, there are two instances of <code>CommandHistory</code>, stored internally as <code>commandHistory</code> and <code>undoHistory</code> in <code>ModelManager</code>.
@@ -530,7 +526,7 @@ The former instance stores previously executed commands while the latter stores 
 </div>
 <div class="paragraph">
 <p>Next, the <code>UndoableCommand</code> stored in the <code>Model</code> is actually a normal <code>Command</code> that changes program state.
-The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.</p>
+The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.</p>
 </div>
 <div class="paragraph">
 <p>A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.
@@ -539,10 +535,40 @@ When an <code>UndoableCommand</code> is executed or undone, it is added to the <
 Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.</p>
 </div>
 <div class="paragraph">
-<p>To defend against improper undoing or redoing, <code>UndoableCommand</code> contains an inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to <code>UNDOABLE</code>, <code>REDOABLE</code>, and <code>PRE_EXECUTION</code>.
-Before a command is undone or redone, the command&#8217;s state is checked for validity.
+<p>To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
+Additionally, <code>UndoableCommand</code> contains a small inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to any value in the enumeration.
+The values are as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    /**
+    * Enumerates through the possible states of an UndoableCommand.
+    */
+    public enum UndoableCommandState {
+        UNDOABLE, REDOABLE, PRE_EXECUTION
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before a command is undone or redone, the command&#8217;s state is checked for validity. An example is shown below in the <code>redo()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    /**
+     * Re-executes an UndoableCommand if it had been previously undone.
+     */
+    public CommandResult redo(Model model) throws CommandException {
+        if (getCommandState() != UndoableCommandState.REDOABLE) {
+            return new CommandResult(MESSAGE_NOT_UNDONE_BEFORE);
+        }
+        return execute(model);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As shown in the code snippet, when an <code>UndoableCommand</code> is redone, the method first checks that its state was set to <code>UNDOABLE</code>.
 These states are only changed when a <code>Command#execute(Model model)</code> or <code>UndoableCommand#undo(Model model)</code> has successfully executed.
-Thus, this lowers the likelihood of bugs in undo/redo.</p>
+Therefore, it is unlikely that an <code>UndoableCommand</code> will be unwittingly undone or redone in error.</p>
 </div>
 <div class="paragraph">
 <p>Lastly, undo/redo is initiated when user input creates an <code>UndoCommand</code> or <code>RedoCommand</code>. When either of them are executed, they respectively get the last
@@ -552,40 +578,34 @@ If it is successful, undo/redo is succesful. Otherwise, an error message is show
 <div class="paragraph">
 <p>This is the mechanism of undo/redo, from start to end. Below is an example of a usage scenario that illustrates how undo/redo works.</p>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-If a command fails to execute correctly, it will not call <code>Model#addExecutedCommand()</code> or <code>Model#addUndoneCommand()</code>, thus preventing the command from being undone or redone.
-</td>
-</tr>
-</table>
-</div>
 <div class="paragraph">
 <p>The sequence diagram below shows how an undo command works to undo a <code>ClearCommand</code>:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/UndoSequenceDiagram.png" alt="UndoSequenceDiagram">
+<img src="images/UndoClearSequenceDiagram.png" alt="UndoClearSequenceDiagram">
 </div>
-</div>
-<div class="paragraph">
-<p>After this is done, if a <code>redo</code> command was executed, the <code>ClearCommand</code> would simply be executed again.</p>
+<div class="title">Figure 12. Sequence Diagram Showing a ClearCommand Being Undone</div>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a new command:</p>
+<p>If a <code>redo</code> command was executed afterwards, the <code>ClearCommand</code> would simply be executed again.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows what happens when a user executes a new <code>UndoableCommand</code>. In this case, it is the <code>ClearCommand</code> being undone. The control flow is similar for other <code>UndoableCommands</code>; they only differ in the execution of <code>undo()</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CommitActivityDiagram.png" alt="CommitActivityDiagram">
+<img src="images/CommandProcessActivityDiagram.png" alt="CommandProcessActivityDiagram">
 </div>
+<div class="title">Figure 13. Activity Diagram Showing the Execution Control Flow of a Command</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>When designing the undo/redo feature, scalability and speed were the key considerations. After analysing the pros and cons of
+each option, it was decided that using the Command design pattern was the best option.</p>
+</div>
 <div class="sect4">
 <h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
 <div class="ulist">
@@ -595,23 +615,63 @@ If a command fails to execute correctly, it will not call <code>Model#addExecute
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Will use less memory (e.g. for <code>delete</code>, just save the person being deleted).</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Better scalability. Will use less memory (e.g. for <code>add</code>, only the added entity needs to be saved).</p>
 </li>
 <li>
-<p>Cons: We must ensure that the implementation of each individual command are correct.</p>
+<p>Faster for big programs.</p>
+</li>
+<li>
+<p>Elegant.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Saves the entire program state.</p>
+<p>Cons:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Must implement custom undo functions for each command.</p>
 </li>
 <li>
-<p>Cons: May have performance issues in terms of memory usage.</p>
+<p>More difficult to implement and maintain.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Saves the whole program state.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement and maintain.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Likely to use a lot of memory.</p>
+</li>
+<li>
+<p>Slower for big programs.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -620,31 +680,68 @@ If a command fails to execute correctly, it will not call <code>Model#addExecute
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-data-structure-to-support-the-undo-redo-commands"><a class="link" href="#aspect-data-structure-to-support-the-undo-redo-commands">Aspect: Data structure to support the undo/redo commands</a></h5>
+<h5 id="aspect-storing-executed-undone-commands"><a class="link" href="#aspect-storing-executed-undone-commands">Aspect: Storing executed/undone commands</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a list to store the history of address book states.</p>
+<p><strong>Alternative 1 (current choice):</strong> Store <code>UndoableCommand</code>(s) only.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy for new Computer Science student undergraduates to understand, who are likely to be the new incoming developers of our project.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Logic can be reused for both executed and undone commands.</p>
 </li>
 <li>
-<p>Cons: Logic is duplicated twice. For example, when a new command is executed, we must remember to update both <code>HistoryManager</code> and <code>VersionedAddressBook</code>.</p>
+<p>Easy to implement.</p>
+</li>
+<li>
+<p>Uses less space.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Use <code>HistoryManager</code> for undo/redo</p>
+<p>Cons:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: We do not need to maintain a separate list, and just reuse what is already in the codebase.</p>
+<p>Loses some information about <code>Commands</code> that were previously executed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Cons: Requires dealing with commands that have already been undone: We must remember to skip these commands. Violates Single Responsibility Principle and Separation of Concerns as <code>HistoryManager</code> now needs to do two different things.</p>
+<p><strong>Alternative 2:</strong> Store all <code>Commands</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No loss of information.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Harder to implement. Requires differentiating between commands that have been undone and executed commands.</p>
+</li>
+<li>
+<p>Needs extra space to store non-<code>UndoableCommand</code>(s) even though they are useless for undo/redo.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -692,13 +789,13 @@ the police for a more thorough investigation and change the status of the body f
 <div class="content">
 <img src="images/NotifCommandSequenceDiagram.png" alt="NotifCommandSequenceDiagram">
 </div>
-<div class="title">Figure 11. Notification Command Sequence Diagram</div>
+<div class="title">Figure 14. Notification Command Sequence Diagram</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ChangeUiFnSequenceDiagram.png" alt="ChangeUiFnSequenceDiagram">
 </div>
-<div class="title">Figure 12. ChangeUI function Sequence Diagram</div>
+<div class="title">Figure 15. ChangeUI function Sequence Diagram</div>
 </div>
 </div>
 <div class="sect3">
@@ -1012,9 +1109,12 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect3">
-<h4 id="replacing-windows-title-bar"><a class="link" href="#replacing-windows-title-bar">3.7.2. Replacing Windows Title Bar</a></h4>
+<h4 id="replacing-window-s-title-bar"><a class="link" href="#replacing-window-s-title-bar">3.7.2. Replacing Window&#8217;s Title Bar</a></h4>
 <div class="paragraph">
 <p>In spirit with producing a sleek design, the standard Windows platform title bar was removed. This exposes the user interface to become one that is self-contained, while providing extra space at the top.</p>
+</div>
+<div class="paragraph">
+<p><strong>Removing Window&#8217;s Title Bar</strong></p>
 </div>
 <div class="paragraph">
 <p>The following code snippet was placed in <code>MainApp#start()</code> to achieve this.</p>
@@ -1028,16 +1128,210 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <p>Note that this has to be done before the stage is shown. Otherwise, the application will close automatically upon running.</p>
 </div>
 <div class="paragraph">
-<p>However, with this removal, the default Windows functions such as the default OS close button will be inevitably removed as well. Hence, these buttons will have to be rebaked into the application.</p>
+<p>However, with this removal, the default Windows functions such as the default OS close button will be inevitably removed as well. Hence, these buttons will have to be rebuilt into the application.</p>
+</div>
+<div class="paragraph">
+<p><strong>Rebuilding Window Functions</strong></p>
+</div>
+<div class="paragraph">
+<p>The following image illustrates the minimise, maximise and exit buttons rebuilt into the menu bar.</p>
+</div>
+<div class="paragraph">
+<p>(insert photo)</p>
+</div>
+<div class="paragraph">
+<p>Each button was assigned its respective handler method, based on different events.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Exit Button</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The method for exiting the application has already been implemented in <code>handleExit()</code>. Thus, setting the handler for the exit button to this method within the <code>MainWindow.fxml</code> file is sufficient.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minimise Button</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minimisation of the application is implemented such that when the user clicks on the  minimise button (<code>onMouseClicked</code> event), the following code is called which minimises the window.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>primaryStage.setIconified(true)</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Maximise Button</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maximisation is implemented similarly to minimization. When the maximise button is clicked <strong>initially</strong>, it triggers a mouse click event, which is handled by the following code snippet.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>maximiseButton.setOnMouseClicked(click -&gt; {
+            primaryStage.setMaximized(true);
+            maximiseButton.setId("restoreButton");
+        });</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>However, when the button is clicked for the second time, the window is restored to its pre-maximised size. In order to implement this, a handler for the <code>onMousePressed</code> event has to be set, as seen in the following code snippet.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>maximiseButton.setOnMousePressed(click -&gt; {
+            primaryStage.setMaximized(false);
+            maximiseButton.setId("maximisevButton");
+        });</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, the last functionality to rebuilt is the resizability of the Window. This implementation is adapted from a <a href="https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage">post</a> in StackOverFlow. Briefly,  <code>ResizableWindow::enableResizableWindow()</code> allows the Windows to be resizable by implementing a helper class <code>ResizeListener</code>. The helper class listens to mouse events and tracks the mouse&#8217;s movements to pinpoint the coordinates of the mouse. This determines the change in size of the Window, which will then be resized accordingly.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-statistics-feature"><a class="link" href="#proposed-statistics-feature">3.8. [Proposed] Statistics Feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.8. Statistics feature</a></h3>
 <div class="sect3">
-<h4 id="proposed-implementation"><a class="link" href="#proposed-implementation">3.8.1. Proposed Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched.</p>
+</div>
+<div class="paragraph">
+<p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LineChartPanel#initialiseTreeMap()</code>&#8201;&#8212;&#8201;Initialises a tree map that contains the dates as the keys and the number of bodies admitted as the frequency.</p>
+</li>
+<li>
+<p><code>LineChartPanel#initialiseLineChart()</code>&#8201;&#8212;&#8201;Creates a Line Chart with Xaxis and Yaxis.</p>
+</li>
+<li>
+<p><code>LineChartPanel#updateSeries()</code>&#8201;&#8212;&#8201;Adds data to the series of the line chart based on what is in the tree map.</p>
+</li>
+<li>
+<p><code>LineChartPanel#updateUponChanged()</code>&#8201;&#8212;&#8201;If a body is added or removed, the tree map is changed accordingly depending on the date of admission of the body, and the series is updated again.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram shows how a user adding a new body enables the line chart to update dynamically:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, the sequence diagram below shoes how a user deleting a body enables the line chart to update dynamically:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartDeleteBodySequenceDiagram.png" alt="LineChartDeleteBodySequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.8.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-data-is-stored-and-updated"><a class="link" href="#aspect-how-data-is-stored-and-updated">Aspect: How data is stored and updated</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use a tree map to keep track of bodies and initialise the last 10 days.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy and ensures only the last 10 days is visible.</p>
+</li>
+<li>
+<p>Cons: Series is regenerated for the whole 10 days whenever there is a change. As can be seen from the activity diagram below, the series gets reintialised regardless of whether it will affect a change in the appearance of the line chart.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 2:</strong> Store all data in a separate storage class.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation allows user to see beyond 10 days.</p>
+</li>
+<li>
+<p>Cons: Implementation requires a lot of storage which may not be tapped on most of the time.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-line-chart-appears-to-end-user"><a class="link" href="#aspect-how-line-chart-appears-to-end-user">Aspect: How line chart appears to end user</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Only the last 10 days is visible.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy and simple.</p>
+</li>
+<li>
+<p>Cons: The statistics is limited in meaning if only the last 10 days is known.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Users have the option to toggle between the last week, month, or year.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The statistics will have more meaning.</p>
+</li>
+<li>
+<p>Cons: Implementation is difficult.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1892,4 +2186,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 12:46:18 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 16:29:35 UTC</div></div></div></bodyId></html>

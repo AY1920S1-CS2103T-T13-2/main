@@ -41,6 +41,7 @@
 <li><a href="#view-archived-entries-code-archives-code-code-coming-in-v2-0-code">3.3.2. View archived entries: <code>archives</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#give-and-view-feedback-code-feedback-code">3.3.3. Give and view feedback: <code>feedback</code></a></li>
 <li><a href="#assign-tasks-to-worker-code-assign-code">3.3.4. Assign tasks to worker: <code>assign</code></a></li>
+<li><a href="#view-admission-statistics">3.3.5. View admission statistics</a></li>
 </ul>
 </li>
 <li><a href="#document-generation">3.4. Document Generation</a>
@@ -117,7 +118,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 <p><strong><code>workers</code></strong> : switches to the workers tab</p>
 </li>
 <li>
-<p><strong><code>add -w</code></strong><code>/firstName John /lastName Doe /dob 17-05-1980</code> :
+<p><strong><code>add -w</code></strong><code>/name John Doe /dob 17-05-1980</code> :
 adds a worker named John Doe (with his date of birth) to the management system.</p>
 </li>
 <li>
@@ -611,7 +612,7 @@ and her new designation.</p>
 <div class="sect3">
 <h4 id="locating-entries-by-name-code-find-code"><a class="link" href="#locating-entries-by-name-code-find-code">3.1.3. Locating entries by name: <code>find</code></a></h4>
 <div class="paragraph">
-<p>Finds persons whose names contain any of the given keywords.<br></p>
+<p>Finds bodies or workers whose names contain any of the given keywords.<br></p>
 </div>
 <div class="paragraph">
 <p>Below are some important information regarding this command:</p>
@@ -640,7 +641,7 @@ and her new designation.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Format: <code>find (keyword)&#8230;&#8203;</code></p>
+<p>Format: <code>find (flag) (keyword)&#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -648,12 +649,12 @@ and her new designation.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>find John</code><br>
-Returns <code>john</code> and <code>John Doe</code></p>
+<p><code>find -b John</code><br>
+Returns any bodies having names <code>John</code></p>
 </li>
 <li>
-<p><code>find Betsy Tim John</code><br>
-Returns any person having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+<p><code>find -w Betsy Tim John</code><br>
+Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
 </li>
 </ul>
 </div>
@@ -1104,6 +1105,16 @@ Display of all feedback entered</p>
 <div class="paragraph">
 <p>Example:</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="view-admission-statistics"><a class="link" href="#view-admission-statistics">3.3.5. View admission statistics</a></h4>
+<div class="paragraph">
+<p>View a line-chart of the number of bodies admitted to the morgue over the past 10 days.</p>
+</div>
+<div class="paragraph">
+<p>The line-chart is on the main page of the application and is automatically updated when a body is added or deleted.
+No user command is needed to display it.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1462,4 +1473,4 @@ Format: <code>help -flag</code></p>
 <p><strong>Operating system (OS)</strong> :the low-level software that supports a computer&#8217;s basic functions, such as scheduling tasks and controlling peripherals</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 12:46:18 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 16:29:35 UTC</div></div></div></bodyId></html>
