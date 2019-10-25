@@ -9,33 +9,34 @@
 <div id="toc" class="toc">
 <div id="toctitle"></div>
 <ul class="sectlevel1">
-<li><a href="#setting-up">1. Setting up</a></li>
-<li><a href="#design">2. Design</a>
+<li><a href="#introduction">1. Introduction</a></li>
+<li><a href="#setting-up">2. Setting up</a></li>
+<li><a href="#design">3. Design</a>
 <ul class="sectlevel2">
-<li><a href="#Design-Architecture">2.1. Architecture</a></li>
-<li><a href="#Design-Ui">2.2. UI Component</a></li>
-<li><a href="#Design-Logic">2.3. Logic Component</a></li>
-<li><a href="#Design-Model">2.4. Model Component</a></li>
-<li><a href="#Design-Storage">2.5. Storage Component</a></li>
-<li><a href="#Design-Commons">2.6. Common Classes</a></li>
+<li><a href="#Design-Architecture">3.1. Architecture</a></li>
+<li><a href="#Design-Ui">3.2. UI Component</a></li>
+<li><a href="#Design-Logic">3.3. Logic Component</a></li>
+<li><a href="#Design-Model">3.4. Model Component</a></li>
+<li><a href="#Design-Storage">3.5. Storage Component</a></li>
+<li><a href="#Design-Commons">3.6. Common Classes</a></li>
 </ul>
 </li>
-<li><a href="#implementation">3. Implementation</a>
+<li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#unique-identification-number">3.1. Unique Identification Number</a></li>
-<li><a href="#undo-redo-feature">3.2. Undo/Redo feature</a></li>
-<li><a href="#notification-feature">3.3. Notification Feature</a></li>
-<li><a href="#generate-pdf-feature">3.4. Generate PDF Feature</a></li>
-<li><a href="#logging">3.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">3.6. Configuration</a></li>
-<li><a href="#user-interface-and-dashboard-enhancement">3.7. User Interface and Dashboard Enhancement</a></li>
-<li><a href="#statistics-feature">3.8. Statistics feature</a></li>
-<li><a href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></li>
+<li><a href="#unique-identification-number">4.1. Unique Identification Number</a></li>
+<li><a href="#undo-redo-feature">4.2. Undo/Redo feature</a></li>
+<li><a href="#notification-feature">4.3. Notification Feature</a></li>
+<li><a href="#generate-pdf-feature">4.4. Generate PDF Feature</a></li>
+<li><a href="#logging">4.5. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.6. Configuration</a></li>
+<li><a href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a></li>
+<li><a href="#statistics-feature">4.8. Statistics feature</a></li>
+<li><a href="#proposed-data-encryption">4.9. [Proposed] Data Encryption</a></li>
 </ul>
 </li>
-<li><a href="#documentation">4. Documentation</a></li>
-<li><a href="#testing">5. Testing</a></li>
-<li><a href="#dev-ops">6. Dev Ops</a></li>
+<li><a href="#documentation">5. Documentation</a></li>
+<li><a href="#testing">6. Testing</a></li>
+<li><a href="#dev-ops">7. Dev Ops</a></li>
 <li><a href="#product-scope">Appendix A: Product Scope</a></li>
 <li><a href="#user-stories">Appendix B: User Stories</a></li>
 <li><a href="#use-cases">Appendix C: Use Cases</a></li>
@@ -53,7 +54,18 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up"><a class="link" href="#setting-up">1. Setting up</a></h2>
+<h2 id="introduction"><a class="link" href="#introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Mortago is a mortuary management system for hospitals. This developer guide serves as a documentation of the interactions with Mortago. As a developer, you will be able to gain a better understanding of how Mortago works.</p>
+</div>
+<div class="paragraph">
+<p>This developer guide is organised in a top-down approach, starting with Architecture Design. You may jump to any section by clicking on the heading in the contents page.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up"><a class="link" href="#setting-up">2. Setting up</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="SettingUp.html">here</a>.</p>
@@ -61,10 +73,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="design"><a class="link" href="#design">2. Design</a></h2>
+<h2 id="design"><a class="link" href="#design">3. Design</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">2.1. Architecture</a></h3>
+<h3 id="Design-Architecture"><a class="link" href="#Design-Architecture">3.1. Architecture</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ArchitectureDiagram.png" alt="ArchitectureDiagram">
@@ -167,7 +179,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Ui"><a class="link" href="#Design-Ui">2.2. UI Component</a></h3>
+<h3 id="Design-Ui"><a class="link" href="#Design-Ui">3.2. UI Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/UiClassDiagram.png" alt="UiClassDiagram">
@@ -198,7 +210,7 @@ The following class plays an important role at the architecture level:</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Logic"><a class="link" href="#Design-Logic">2.3. Logic Component</a></h3>
+<h3 id="Design-Logic"><a class="link" href="#Design-Logic">3.3. Logic Component</a></h3>
 <div id="fig-LogicClassDiagram" class="imageblock">
 <div class="content">
 <img src="images/LogicClassDiagram.png" alt="LogicClassDiagram">
@@ -251,7 +263,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Model"><a class="link" href="#Design-Model">2.4. Model Component</a></h3>
+<h3 id="Design-Model"><a class="link" href="#Design-Model">3.4. Model Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/ModelClassDiagram.png" alt="ModelClassDiagram">
@@ -282,7 +294,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Storage"><a class="link" href="#Design-Storage">2.5. Storage Component</a></h3>
+<h3 id="Design-Storage"><a class="link" href="#Design-Storage">3.5. Storage Component</a></h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/StorageClassDiagram.png" alt="StorageClassDiagram">
@@ -307,7 +319,7 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect2">
-<h3 id="Design-Commons"><a class="link" href="#Design-Commons">2.6. Common Classes</a></h3>
+<h3 id="Design-Commons"><a class="link" href="#Design-Commons">3.6. Common Classes</a></h3>
 <div class="paragraph">
 <p>Classes used by multiple components are in the <code>seedu.addressbook.commons</code> package.</p>
 </div>
@@ -315,13 +327,13 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation"><a class="link" href="#implementation">3. Implementation</a></h2>
+<h2 id="implementation"><a class="link" href="#implementation">4. Implementation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This section describes some noteworthy details on how certain features are implemented.</p>
 </div>
 <div class="sect2">
-<h3 id="unique-identification-number"><a class="link" href="#unique-identification-number">3.1. Unique Identification Number</a></h3>
+<h3 id="unique-identification-number"><a class="link" href="#unique-identification-number">4.1. Unique Identification Number</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -340,7 +352,7 @@ as <code>name</code> which may have similar duplications within the system.</p>
 </ul>
 </div>
 <div class="sect3">
-<h4 id="implementation-2"><a class="link" href="#implementation-2">3.1.1. Implementation</a></h4>
+<h4 id="implementation-2"><a class="link" href="#implementation-2">4.1.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>.
 The class diagram below illustrates the relation between <code>IdentificationNumber</code> and <code>UniqueIdentificationNumberMaps</code>.</p>
@@ -421,7 +433,7 @@ If there is no gap available, the next highest number is assigned to the worker.
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">3.1.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p><strong>Aspect: Tracking of numbers and determination of next free number</strong></p>
 </div>
@@ -479,12 +491,12 @@ before each test to reset the <code>HashMaps</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">3.2. Undo/Redo feature</a></h3>
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.2. Undo/Redo feature</a></h3>
 <div class="paragraph">
 <p>The undo/redo feature allows the user to undo a previous command that they have made, or redo a command they have undone.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">3.2.1. Implementation</a></h4>
+<h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The core of undo/redo is placed in the undo/redo history of <code>ModelManager</code>. Its mechanism uses the Command design pattern,
 allowing each individual command to be undone/redone without knowing the specific command type.
@@ -601,7 +613,7 @@ If it is successful, undo/redo is succesful. Otherwise, an error message is show
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">3.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When designing the undo/redo feature, scalability and speed were the key considerations. After analysing the pros and cons of
 each option, it was decided that using the Command design pattern was the best option.</p>
@@ -752,14 +764,14 @@ each option, it was decided that using the Command design pattern was the best o
 </div>
 </div>
 <div class="sect2">
-<h3 id="notification-feature"><a class="link" href="#notification-feature">3.3. Notification Feature</a></h3>
+<h3 id="notification-feature"><a class="link" href="#notification-feature">4.3. Notification Feature</a></h3>
 <div class="paragraph">
 <p>A notification is a message that Mortago will display when the status of a body is automatically updated.
 If the next-of-kin of a body has not been uncontactable for 24 hours, Mortago will prompt the user to contact
 the police for a more thorough investigation and change the status of the body from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">3.3.1. Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>Given below is the execution process of the <code>NotificationCommand</code>:</p>
 </div>
@@ -799,7 +811,7 @@ the police for a more thorough investigation and change the status of the body f
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">3.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-delay-change-in-bodystatus"><a class="link" href="#aspect-how-to-delay-change-in-bodystatus">Aspect: How to delay change in BodyStatus</a></h5>
 <div class="ulist">
@@ -835,7 +847,7 @@ the police for a more thorough investigation and change the status of the body f
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-how-to-reflect-change-in-bodystatus-on-ui"><a class="link" href="#aspect-how-to-reflect-change-in-bodystatus-on-ui">3.3.3. Aspect: How to reflect change in BodyStatus on UI</a></h4>
+<h4 id="aspect-how-to-reflect-change-in-bodystatus-on-ui"><a class="link" href="#aspect-how-to-reflect-change-in-bodystatus-on-ui">4.3.3. Aspect: How to reflect change in BodyStatus on UI</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -869,9 +881,9 @@ the police for a more thorough investigation and change the status of the body f
 </div>
 </div>
 <div class="sect2">
-<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">3.4. Generate PDF Feature</a></h3>
+<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">4.4. Generate PDF Feature</a></h3>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">3.4.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generate PDF feature is facilitated by <code>ReportGenerator</code>.
 It extends <code>Mortago</code> with the ability to create a report, supported by iText external library.
@@ -920,7 +932,7 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">3.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-generate-report-executes"><a class="link" href="#aspect-how-generate-report-executes">Aspect: How generate report executes</a></h5>
 <div class="ulist">
@@ -990,14 +1002,14 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">3.5. Logging</a></h3>
+<h3 id="logging"><a class="link" href="#logging">4.5. Logging</a></h3>
 <div class="paragraph">
 <p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 3.6, &#8220;Configuration&#8221;</a>)</p>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.6, &#8220;Configuration&#8221;</a>)</p>
 </li>
 <li>
 <p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
@@ -1028,19 +1040,19 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </div>
 <div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">3.6. Configuration</a></h3>
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.6. Configuration</a></h3>
 <div class="paragraph">
 <p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="user-interface-and-dashboard-enhancement"><a class="link" href="#user-interface-and-dashboard-enhancement">3.7. User Interface and Dashboard Enhancement</a></h3>
+<h3 id="user-interface-and-dashboard-enhancement"><a class="link" href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a></h3>
 <div class="paragraph">
 <p>The dashboard of Mortago plays a key part in presenting a sleek, organised, and concise overview to the entities in the system.
 Thus, designing an aesthetic and functional dashboard is a crucial aspect for Mortago.</p>
 </div>
 <div class="sect3">
-<h4 id="surface-design-and-coloring"><a class="link" href="#surface-design-and-coloring">3.7.1. Surface Design and Coloring</a></h4>
+<h4 id="surface-design-and-coloring"><a class="link" href="#surface-design-and-coloring">4.7.1. Surface Design and Coloring</a></h4>
 <div class="paragraph">
 <p>Mortago draws upon the guidelines specified in <a href="https://material.io/design/color/dark-theme.html#">Material.io</a> to design a dark theme
 that enhances visual ergonomics via the minimization of eye strain due to the bright luminance emitted by screens.</p>
@@ -1109,7 +1121,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect3">
-<h4 id="replacing-window-s-title-bar"><a class="link" href="#replacing-window-s-title-bar">3.7.2. Replacing Window&#8217;s Title Bar</a></h4>
+<h4 id="replacing-window-s-title-bar"><a class="link" href="#replacing-window-s-title-bar">4.7.2. Replacing Window&#8217;s Title Bar</a></h4>
 <div class="paragraph">
 <p>In spirit with producing a sleek design, the standard Windows platform title bar was removed. This exposes the user interface to become one that is self-contained, while providing extra space at the top.</p>
 </div>
@@ -1214,9 +1226,9 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">3.8. Statistics feature</a></h3>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">4.8. Statistics feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">3.8.1. Current Implementation</a></h4>
+<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched.</p>
 </div>
@@ -1257,7 +1269,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">3.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-data-is-stored-and-updated"><a class="link" href="#aspect-how-data-is-stored-and-updated">Aspect: How data is stored and updated</a></h5>
 <div class="ulist">
@@ -1336,7 +1348,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">3.9. [Proposed] Data Encryption</a></h3>
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.9. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
@@ -1344,7 +1356,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect1">
-<h2 id="documentation"><a class="link" href="#documentation">4. Documentation</a></h2>
+<h2 id="documentation"><a class="link" href="#documentation">5. Documentation</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Documentation.html">here</a>.</p>
@@ -1352,7 +1364,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect1">
-<h2 id="testing"><a class="link" href="#testing">5. Testing</a></h2>
+<h2 id="testing"><a class="link" href="#testing">6. Testing</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="Testing.html">here</a>.</p>
@@ -1360,7 +1372,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect1">
-<h2 id="dev-ops"><a class="link" href="#dev-ops">6. Dev Ops</a></h2>
+<h2 id="dev-ops"><a class="link" href="#dev-ops">7. Dev Ops</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Refer to the guide <a href="DevOps.html">here</a>.</p>
@@ -2186,4 +2198,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-24 16:29:35 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 02:48:02 UTC</div></div></div></bodyId></html>
