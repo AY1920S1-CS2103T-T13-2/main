@@ -467,7 +467,7 @@ All entries will be sorted and grouped according to their statuses.
 * `sort /order id asc` +
 All entries will be sorted according to their id number in ascending order.
 
-==== Filter body entries: `filter`
+==== Filter all entries: `filter`
 This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.
 
 All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <<Section 3.1.1>> for the different fields available to be filtered.
