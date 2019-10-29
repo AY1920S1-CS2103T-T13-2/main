@@ -485,7 +485,58 @@ Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="document-generation"><a class="link" href="#document-generation">Document Generation</a></h3>
+<div class="sect3">
+<h4 id="generate-report-for-a-specific-body-code-genreport-code"><a class="link" href="#generate-report-for-a-specific-body-code-genreport-code">Generate report for a specific body: <code>genReport</code></a></h4>
+<div class="paragraph">
+<p>Generate an individual report in a PDF filename <code>Report &lt;body_ID&gt;.pdf</code> located in <code>Mortago</code> file.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>genReport bodyId</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>genReport B123</code><br>
+Outputs the report PDF for body ID B00000123</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-reports-for-all-bodies-code-genreports-code"><a class="link" href="#generate-reports-for-all-bodies-code-genreports-code">Generate reports for all bodies: <code>genReports</code></a></h4>
+<div class="paragraph">
+<p>Generate all individual reports in a PDF filename <code>Report (ALL BODIES).pdf</code> located in <code>Mortago</code> file.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>genReports</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-summary-report-for-all-bodies-code-genreportsummary-code"><a class="link" href="#generate-summary-report-for-all-bodies-code-genreportsummary-code">Generate summary report for all bodies: <code>genReportSummary</code></a></h4>
+<div class="paragraph">
+<p>Generate a tabular report overview containing key information for all bodies in a PDF filename <code>Report Summary.pdf</code> located in <code>Mortago</code> file.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>genReportSummary</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="administrative"><a class="link" href="#administrative">Administrative</a></h3>
+<div class="sect3">
+<h4 id="view-admission-statistics"><a class="link" href="#view-admission-statistics">View admission statistics</a></h4>
+<div class="paragraph">
+<p>View a line-chart of the number of bodies admitted to the morgue over the past 10 days.</p>
+</div>
+<div class="paragraph">
+<p>The line-chart is on the main page of the application and is automatically updated when a body is added or deleted.
+No user command is needed to display it.</p>
+</div>
+</div>
 <div class="sect3">
 <h4 id="archive-entries-code-archive-code-code-coming-in-v2-0-code"><a class="link" href="#archive-entries-code-archive-code-code-coming-in-v2-0-code">Archive entries: <code>archive</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
@@ -545,13 +596,13 @@ Display of all archived worker entries, in order of archive date</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="give-and-view-feedback-code-feedback-code"><a class="link" href="#give-and-view-feedback-code-feedback-code">Give and view feedback: <code>feedback</code></a></h4>
+<h4 id="give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code"><a class="link" href="#give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code">Give and view feedback: <code>feedback</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Give workers feedback (for the manager’s own reference), and can display a history of all feedback entered.</p>
 </div>
 <div class="paragraph">
 <p>Format:
-<code>feedback /id staffID /details details</code>
+<code>feedback /workerId workerId /details details</code>
 <code>feedback</code></p>
 </div>
 <div class="paragraph">
@@ -571,45 +622,12 @@ Display of all feedback entered</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="assign-tasks-to-worker-code-assign-code"><a class="link" href="#assign-tasks-to-worker-code-assign-code">Assign tasks to worker: <code>assign</code></a></h4>
+<h4 id="assign-tasks-to-worker-code-assign-code-code-coming-in-v2-0-code"><a class="link" href="#assign-tasks-to-worker-code-assign-code-code-coming-in-v2-0-code">Assign tasks to worker: <code>assign</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Assign a body and task to a worker.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>assign /bodyId bodyId /staffId workerId /task taskDescription</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-admission-statistics"><a class="link" href="#view-admission-statistics">View admission statistics</a></h4>
-<div class="paragraph">
-<p>View a line-chart of the number of bodies admitted to the morgue over the past 10 days.</p>
-</div>
-<div class="paragraph">
-<p>The line-chart is on the main page of the application and is automatically updated when a body is added or deleted.
-No user command is needed to display it.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>assign /bodyId 2 /staffId 1 /task send blood sample to lab for analysis</code><br>
-Assigns worker with staff ID W00001 to body with ID B00000002 with a task description.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="document-generation"><a class="link" href="#document-generation">Document Generation</a></h3>
-<div class="sect3">
-<h4 id="generate-report-on-the-deceased-code-genreport-code"><a class="link" href="#generate-report-on-the-deceased-code-genreport-code">Generate report on the deceased: <code>genReport</code></a></h4>
-<div class="paragraph">
-<p>Generate an individual report from the app automatically</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>genReport bodyID</code></p>
+<p>Format: <code>assign /bodyId bodyId /workerId workerId /task taskDescription</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -617,50 +635,17 @@ Assigns worker with staff ID W00001 to body with ID B00000002 with a task descri
 <div class="ulist">
 <ul>
 <li>
-<p><code>genReport B123</code><br>
-Outputs the report PDF for body ID B00000123</p>
+<p><code>assign /bodyId 2 /workerId 1 /task send blood sample to lab for analysis</code><br>
+Assigns worker with worker ID W00001 to body with ID B00000002 with a task description.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-past-individual-reports-code-report-code"><a class="link" href="#view-past-individual-reports-code-report-code">View past individual reports: <code>report</code></a></h4>
-<div class="paragraph">
-<p>Receive details of a past individual report.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>report bodyID</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>report B1</code><br>
-Outputs the past report of body ID B00000001</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-past-reports-code-reports-code"><a class="link" href="#view-past-reports-code-reports-code">View past reports: <code>reports</code></a></h4>
-<div class="paragraph">
-<p>Receive a list of past reports.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>reports</code></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>reports</code><br>
-Outputs the list of past reports</p>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="help"><a class="link" href="#help">Help</a></h3>
 <div class="sect3">
-<h4 id="view-all-commands-code-help-code"><a class="link" href="#view-all-commands-code-help-code">View all commands: <code>help</code></a></h4>
+<h4 id="view-all-commands-code-help-code-code-coming-in-v2-0-code"><a class="link" href="#view-all-commands-code-help-code-code-coming-in-v2-0-code">View all commands: <code>help</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>View a summary of all available commands and their flags. Use the <code>-v</code> flag to view the detailed description of all commands and their flags.</p>
 </div>
@@ -837,6 +822,39 @@ Format: <code>redo</code></p>
 <p><strong>Exit</strong>: <code>exit</code></p>
 </li>
 <li>
+<p><strong>Generate report</strong> : <code>genReport</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Generate an individual report in a PDF.<br>
+Format: <code>genReport bodyId</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Generate all reports</strong> : <code>genReports</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Generate all individual reports in a PDF.<br>
+Format: <code>genReports</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Generate summary report</strong> : <code>genReportSummary</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Generate an overview for all reports in a PDF.<br>
+Format: <code>genReportSummary</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><strong>Archive entries</strong> : <code>archive</code> <code>[coming in v2.0]</code></p>
 <div class="ulist">
 <ul>
@@ -859,69 +877,36 @@ Format: <code>archives -flag</code></p>
 </div>
 </li>
 <li>
-<p><strong>Give and view feedback</strong> : <code>feedback</code></p>
+<p><strong>Give and view feedback</strong> : <code>feedback</code> <code>[coming in v2.0]</code></p>
 </li>
 <li>
 <p>Give workers feedback and displays a history of all feedback entered.
-Format: <code>feedback /id staffID /notes notes</code>, feedback`</p>
+Format: <code>feedback /workerId workerId /notes notes</code>, feedback`</p>
 </li>
 <li>
-<p><strong>Assign tasks</strong> : <code>assign</code></p>
+<p><strong>Assign tasks</strong> : <code>assign</code> <code>[coming in v2.0]</code></p>
 <div class="ulist">
 <ul>
 <li>
 <p>Assign a body and task to a worker.
-Format: <code>assign /bodyId bodyId /staffId workerId /task taskDescription</code></p>
+Format: <code>assign /bodyId bodyId /workerId workerId /task taskDescription</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Generate report</strong> : <code>genReport</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Generate an individual report from the app automatically
-Format: <code>genReport bodyID</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>View a select report</strong> : <code>report</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Receive details of a past individual report.
-Format: <code>report bodyID</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>View past reports</strong> : <code>reports</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Receive a list of past reports.
-Format: <code>reports</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Help summary</strong>: <code>help</code></p>
+<p><strong>Help summary</strong>: <code>help</code> <code>[coming in v2.0]</code></p>
 <div class="ulist">
 <ul>
 <li>
 <p>Get information about the commands
-Format: <code>help -flag</code></p>
+Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Help for specific command</strong> : <code>help command</code></p>
+<p><strong>Help for specific command</strong> : <code>help command</code> <code>[coming in v2.0]</code></p>
 </li>
 <li>
 <p><strong>Help hotlines</strong> : <code>hotlines</code> <code>[coming in v2.0]</code></p>
@@ -937,16 +922,25 @@ Format: <code>help -flag</code></p>
 <p><strong>Attribute</strong> : In Mortago, an attribute is the property of a body, fridge or worker.<br></p>
 </div>
 <div class="paragraph">
-<p><strong>Body/bodies</strong> : a corpse<br></p>
+<p><strong>Body</strong> : a corpse<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Worker</strong> : an employee working in the mortuary<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Fridge</strong> : a refrigerator used to store a body in the mortuary<br></p>
 </div>
 <div class="paragraph">
 <p><strong>Command Line Interface (CLI)</strong> : a text-based user interface (UI) used to view and manage computer files<br></p>
 </div>
 <div class="paragraph">
-<p><strong>Graphical User Interface (GUI)</strong> : an interface through which a user interacts with electronic devices such as computers, hand-held devices and other appliances. This interface uses icons, menus and other visual indicator (graphics) representations to display information and related user controls, unlike text-based interfaces, where data and commands are in text</p>
+<p><strong>Graphical User Interface (GUI)</strong> : an interface through which a user interacts with electronic devices such as computers, hand-held devices and other appliances. This interface uses icons, menus and other visual indicator (graphics) representations to display information and related user controls, unlike text-based interfaces, where data and commands are in text<br></p>
 </div>
 <div class="paragraph">
-<p><strong>Operating system (OS)</strong> :the low-level software that supports a computer&#8217;s basic functions, such as scheduling tasks and controlling peripherals</p>
+<p><strong>Operating System (OS)</strong> :the low-level software that supports a computer&#8217;s basic functions, such as scheduling tasks and controlling peripherals<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Portable Document Format (PDF)</strong> : a file format for capturing and sending electronic documents in exactly the intended format</p>
 </div>
 </div>
 </div>
@@ -1252,4 +1246,4 @@ each option, it was decided that using the Command design pattern was the best o
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-25 17:26:27 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 07:56:00 UTC</div></div></div></bodyId></html>
