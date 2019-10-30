@@ -1101,8 +1101,10 @@ The <code>UndoableCommand</code> class is an abstract class that extends the abs
 Commands that don&#8217;t change the user-visible program state, like <code>find</code>, can still inherit directly from <code>Command</code>.</p>
 </div>
 <div class="paragraph">
-<p>Here is where the Command pattern comes in. A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.
-<code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
+<p>Here is where the Command pattern comes in. A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.</p>
+</div>
+<div class="paragraph">
+<p><code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
 </div>
 </div>
 <div class="sect4">
@@ -1358,4 +1360,4 @@ After the analysis described below, the Command pattern was thought to be the be
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:48:23 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:55:54 UTC</div></div></div></bodyId></html>
