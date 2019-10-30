@@ -373,7 +373,7 @@ All entries will be sorted according to their id number in ascending order.</p>
 <p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>filter -flag /attributeName attributeValue &#8230;&#8203;</code></p>
+<p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
 </div>
 <div class="paragraph">
 <p>Example:
@@ -740,7 +740,7 @@ Lists emergency help hotlines.</p>
 <ul>
 <li>
 <p>Add a new worker, body, or fridge with the
-<code>add -flag (/attributeName attributeValue)</code></p>
+<code>add -FLAG [/attributeName attributeValue&#8230;&#8203;]</code></p>
 </li>
 </ul>
 </div>
@@ -756,7 +756,7 @@ Lists emergency help hotlines.</p>
 </div>
 </li>
 <li>
-<p><strong>Find</strong> : <code>find (keyword)&#8230;&#8203;</code><br></p>
+<p><strong>Find</strong> : <code>find [keyword&#8230;&#8203;]</code><br></p>
 <div class="ulist">
 <ul>
 <li>
@@ -772,7 +772,7 @@ Format: <code>find keyword</code></p>
 <ul>
 <li>
 <p>Delete a body, worker or fridge entry, indicated by its id number.<br>
-Format: <code>delete -flag id</code></p>
+Format: <code>delete -FLAG id</code></p>
 </li>
 </ul>
 </div>
@@ -781,7 +781,7 @@ Format: <code>delete -flag id</code></p>
 <p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
-<p><strong>View</strong> : <code>view -flag /id id</code></p>
+<p><strong>View</strong> : <code>view -FLAG /id id</code></p>
 </li>
 <li>
 <p><strong>List</strong> : <code>list -flag</code></p>
@@ -823,7 +823,7 @@ Format: <code>sort /order order (/idOrder idOrder)</code></p>
 <ul>
 <li>
 <p>Filter all entries according to the given keyword in any of an entry’s field.<br>
-Format: <code>filter (/field keyword)&#8230;&#8203;</code></p>
+Format: <code>filter [/attribute attributeValue&#8230;&#8203;]</code></p>
 </li>
 </ul>
 </div>
@@ -976,6 +976,56 @@ Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 </div>
 <div class="paragraph">
 <p><strong>Portable Document Format (PDF)</strong> : a file format for capturing and sending electronic documents in exactly the intended format</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="appendix"><a class="link" href="#appendix">Appendix</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="copy-a-file-s-absolute-path-into-the-clipboard"><a class="link" href="#copy-a-file-s-absolute-path-into-the-clipboard">Copy a file&#8217;s absolute path into the clipboard</a></h3>
+<div class="paragraph">
+<p><a id="Copy-File-Path"></a></p>
+</div>
+<div class="paragraph">
+<p>The following steps will guide you to copy the absolute path of a file into the clipboard.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>For <strong>Windows</strong> User:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the image file you wish to upload.</p>
+</li>
+<li>
+<p>While holding down <kbd>Shift</kbd>, right-click on the image file.</p>
+</li>
+<li>
+<p>In the menu that appears, click <code>Copy as path</code>. The absolute path of the file will be copied into your clipboard.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>For <strong>Mac</strong> User:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the image file you wish to upload.</p>
+</li>
+<li>
+<p>Right-click on the image file, then hold down the <kbd>Option</kbd> button.</p>
+</li>
+<li>
+<p>In the menu that appears, click <code>Copy &lt;file name&gt; as Pathname</code>. The absolute path of the file will be copied into your clipboard.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1308,4 +1358,4 @@ After the analysis described below, the Command pattern was thought to be the be
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:46:16 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:48:23 UTC</div></div></div></bodyId></html>
