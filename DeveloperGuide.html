@@ -23,14 +23,45 @@
 </li>
 <li><a href="#implementation">4. Implementation</a>
 <ul class="sectlevel2">
-<li><a href="#unique-identification-number">4.1. Unique Identification Number</a></li>
-<li><a href="#undo-redo-feature">4.2. Undo/Redo feature</a></li>
-<li><a href="#notification-feature">4.3. Notification Feature</a></li>
-<li><a href="#generate-pdf-feature">4.4. Generate PDF Feature</a></li>
+<li><a href="#unique-identification-number">4.1. Unique Identification Number</a>
+<ul class="sectlevel3">
+<li><a href="#implementation-2">4.1.1. Implementation</a></li>
+<li><a href="#design-considerations">4.1.2. Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#undo-redo-feature">4.2. Undo/Redo feature</a>
+<ul class="sectlevel3">
+<li><a href="#implementation-3">4.2.1. Implementation</a></li>
+<li><a href="#design-considerations-2">4.2.2. Design considerations</a></li>
+</ul>
+</li>
+<li><a href="#notification-feature">4.3. Notification Feature</a>
+<ul class="sectlevel3">
+<li><a href="#current-implementation">4.3.1. Current Implementation</a></li>
+<li><a href="#design-considerations-3">4.3.2. Design Considerations</a></li>
+<li><a href="#aspect-how-to-reflect-change-in-bodystatus-on-ui">4.3.3. Aspect: How to reflect change in BodyStatus on UI</a></li>
+</ul>
+</li>
+<li><a href="#generate-pdf-feature">4.4. Generate PDF Feature</a>
+<ul class="sectlevel3">
+<li><a href="#implementation-4">4.4.1. Implementation</a></li>
+<li><a href="#design-considerations-4">4.4.2. Design Considerations</a></li>
+</ul>
+</li>
 <li><a href="#logging">4.5. Logging</a></li>
 <li><a href="#Implementation-Configuration">4.6. Configuration</a></li>
-<li><a href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a></li>
-<li><a href="#statistics-feature">4.8. Statistics feature</a></li>
+<li><a href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a>
+<ul class="sectlevel3">
+<li><a href="#surface-design-and-coloring">4.7.1. Surface Design and Coloring</a></li>
+<li><a href="#replacing-window-s-title-bar">4.7.2. Replacing Window&#8217;s Title Bar</a></li>
+</ul>
+</li>
+<li><a href="#statistics-feature">4.8. Statistics feature</a>
+<ul class="sectlevel3">
+<li><a href="#current-implementation-2">4.8.1. Current Implementation</a></li>
+<li><a href="#design-considerations-5">4.8.2. Design Considerations</a></li>
+</ul>
+</li>
 <li><a href="#proposed-data-encryption">4.9. [Proposed] Data Encryption</a></li>
 </ul>
 </li>
@@ -334,11 +365,11 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 </div>
 <div class="sect2">
 <h3 id="unique-identification-number"><a class="link" href="#unique-identification-number">4.1. Unique Identification Number</a></h3>
+<div class="paragraph">
+<p>In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>.</p>
+</div>
 <div class="ulist">
 <ul>
-<li>
-<p>In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>.</p>
-</li>
 <li>
 <p><code>IdentificationNumbers</code> in Mortago consist of two parts: the <code>String typeOfEntity</code> referring to whether it is a worker, body or fridge, and <code>Integer idNum</code> referring to its unique ID number.</p>
 </li>
@@ -364,7 +395,7 @@ The class diagram below illustrates the relation between <code>IdentificationNum
 <div class="title">Figure 9. Unique <code>IdentificationNumber</code> Class Diagram</div>
 </div>
 <div class="sect4">
-<h5 id="determining-the-next-free-number"><a class="link" href="#determining-the-next-free-number">Determining the next free number</a></h5>
+<h5 id="the-first-consideration-to-examine-is-determining-the-next-free-number"><a class="link" href="#the-first-consideration-to-examine-is-determining-the-next-free-number">The first consideration to examine is determining the next free number.</a></h5>
 <div class="paragraph">
 <p>Note that in the diagram above, <code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.
 In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the entity it is assigned to.
@@ -392,13 +423,13 @@ This keeps track of the numbers currently assigned to all entities and allows th
 </div>
 <div class="paragraph">
 <p>In the above <code>putWorker</code> method, the set of <code>keys</code> representing the existing ID numbers are generated and iterated through, based on the size of the <code>keySet</code>.
-This sequential iteration checks for any number that is not assigned to any worker due to the deletion of the latter, which removes the mapping of the ID number to the deleted worker.
+This sequential iteration checks for any number that is not assigned to any worker (i.e. gap) due to a prior deletion of its assigned worker, which removes the mapping of the ID number to the deleted worker.
 If there is an existing gap in the sequential iteration of numbers, this number is assigned to the newly added worker.
 If there is no gap available, the next highest number is assigned to the worker.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker"><a class="link" href="#execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker">Execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</a></h5>
+<h5 id="hence-this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker"><a class="link" href="#hence-this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker">Hence, this leads us to forumulate the execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</a></h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -428,26 +459,44 @@ If there is no gap available, the next highest number is assigned to the worker.
 <div class="title">Figure 10. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
 </div>
 <div class="paragraph">
-<p>Note that the execution sequence is similar for the addition and generation of unique <code>IdentificationNumber</code> for fridges and bodies.</p>
+<p>Note that the execution sequence is similar for the generation of unique <code>IdentificationNumber</code> for fridges and bodies.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
 <div class="paragraph">
+<p>When designing this feature, it is important to keep in mind the scalability of the application.
+When the data set becomes large, the ID number can become arbitrarily large if gaps in the middle are not filled.</p>
+</div>
+<div class="paragraph">
 <p><strong>Aspect: Tracking of numbers and determination of next free number</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Alternative 1: Three counters that track the total number of each entity in the system.</p>
+<p>Alternative 1: Three counters that track the total number of each entity in the system and assigns the next highest number to the added entity.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
-<p>Cons: Does not cater for deletion of entity as deletion creates a gap.</p>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Does not cater for deletion of entity as deletion creates a gap which will be left unfilled.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -457,11 +506,30 @@ If there is no gap available, the next highest number is assigned to the worker.
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Aside from tracking a unique <code>keySet</code> of ID numbers, <code>HashMap</code> caters for deletion of entities as the <code>keySet</code> can be iterated through to check for any gaps introduced during deletion.
-This also allows the assigned (mapped) entity to be accessible through the <code>HashMap</code> via the <code>IdentificationNumber#getMapping()</code> method.</p>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>HashMap</code> allows its <code>keySet</code> to contain unique ID numbers.</p>
 </li>
 <li>
-<p>Cons: Harder to implement, especially for unit testing since a unique <code>IdentificationNumber</code> cannot be duplicated usually.</p>
+<p><code>HashMap</code> caters for deletion of entities as the <code>keySet</code> can be iterated through to check for any gaps introduced during deletion.</p>
+</li>
+<li>
+<p><code>HashMap</code> also allows the assigned (mapped) entity to be made accessible via the O(1) <code>HashMap#get()</code> method.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Harder to implement, especially for unit testing since a unique <code>IdentificationNumber</code> cannot be duplicated usually.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -486,7 +554,7 @@ This also allows the assigned (mapped) entity to be accessible through the <code
 </div>
 <div class="paragraph">
 <p>The difficulty in testing can be circumvented by executing <code>UniqueIdentificationNumberMaps::clearAllEntries()</code>
-before each test to reset the <code>HashMaps</code>.</p>
+before each unit test to reset the <code>HashMaps</code>. This resets the <code>HashMaps</code> and allows the newly added entities to start with the first ID number, simulating a fresh launch of the application.</p>
 </div>
 </div>
 </div>
@@ -1335,7 +1403,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="ulist">
 <ul>
 <li>
-<p>Minimisation of the application is implemented such that when the user clicks on the  minimise button (<code>onMouseClicked</code> event), the following code is called which minimises the window.</p>
+<p>Minimisation of the application is implemented such that when the user clicks on the  minimise button, it triggers an <code>onMouseClicked</code> event that calls the following code.</p>
 </li>
 </ul>
 </div>
@@ -2358,4 +2426,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 09:21:35 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 15:30:54 UTC</div></div></div></bodyId></html>

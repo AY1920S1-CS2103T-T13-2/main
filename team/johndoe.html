@@ -139,8 +139,10 @@
 <div class="sect3">
 <h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">Deleting a person : <code>delete</code></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its id number.<br>
-Format: <code>delete -flag  id</code></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>delete -FLAG  id</code></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -151,37 +153,17 @@ Format: <code>delete -flag  id</code></p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>When you delete a body, its associated notifications will also be deleted.</p>
-</div>
-<div class="paragraph">
-<p>If a fridge is occupied by a body, you cannot delete it.</p>
-</div>
-<div class="paragraph">
-<p>You only need to specify the number portion of the ID, without leading zeroes. Mortago will automatically convert it
-in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> for a body, worker or fridge entry respectively.</p>
+<p>When you delete a body, its associated notifications will also be deleted. If a fridge is occupied by a body, you cannot delete it.</p>
 </div></div></td>
 </tr>
 </tbody>
 </table>
-<div class="sidebarblock">
-<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the body, worker or fridge entry with t
-he specified identification number.</p>
-</li>
-<li>
-<p>The identification number is automatically generated when an entity is created and is in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> for a
-body, worker or fridge entry respectively.
-X represents any digit.</p>
-</li>
-<li>
-<p>You only need to specify the number portion of the ID, without leading zeroes.</p>
+<p>Deletes the body, worker or fridge entry with the specified identification number.</p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 <div class="paragraph">
 <p>Examples:</p>
@@ -205,49 +187,12 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-an-entry-code-view-code"><a class="link" href="#view-an-entry-code-view-code">View an entry: <code>view</code></a></h4>
-<div class="paragraph">
-<p>View a single entry of a body, worker, fridge.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>view -flag /id id</code></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Flags</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usage</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-b</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View the body with the given ID.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-w</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View the worker with the given ID.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">-f</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">View the fridge with the given ID.</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Example: <code>view -b /id 91</code><br>
-View a body with the ID B00000091.</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="list-all-entries-code-list-code"><a class="link" href="#list-all-entries-code-list-code">List all entries: <code>list</code></a></h4>
 <div class="paragraph">
 <p>List all entries of bodies, workers, or fridges.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>list -flag</code></p>
+<p>Format: <code>list -FLAG</code></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -278,20 +223,23 @@ View a body with the ID B00000091.</p>
 Lists all bodies currently in Mortago.</p>
 </div>
 </div>
+<div class="sect3">
+<h4 id="selecting-a-body-code-select-code"><a class="link" href="#selecting-a-body-code-select-code">Selecting a body: <code>select</code></a></h4>
+<div class="paragraph">
+<p>You can select a body and view its full details by entering a select command.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>select id</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>select 1</code><br>
+View a body with the ID B00000001.</p>
+</div>
+</div>
 <div class="sect2">
 <h3 id="general"><a class="link" href="#general">General</a></h3>
 <div class="sect3">
-<h4 id="display-dashboard-code-dashboard-code"><a class="link" href="#display-dashboard-code-dashboard-code">Display dashboard: <code>dashboard</code></a></h4>
-<div class="paragraph">
-<p>Brings up the dashboard to the front of the application.<br>
-The dashboard provides a compact view of all bodies, workers and fridges, as well as several important statistics that may be useful to you.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>dashboard</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="view-notifs-panel-code-notifs-code"><a class="link" href="#view-notifs-panel-code-notifs-code">View notifs panel: <code>notifs</code></a></h4>
+<h4 id="view-notifs-panel-code-shownotifs-code"><a class="link" href="#view-notifs-panel-code-shownotifs-code">View notifs panel: <code>showNotifs</code></a></h4>
 <div class="paragraph">
 <p>View all notifications.</p>
 </div>
@@ -305,7 +253,7 @@ A pop-up window to remind you to contact the police will be shown so that they c
 <p>Once you change the <code>bodyStatus</code>, the <code>notif</code> will be be deleted.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>notifs</code></p>
+<p>Format: <code>showNotifs</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -580,10 +528,10 @@ The line chart will display statistics for the year specified. In this case is i
 <div class="ulist">
 <ul>
 <li>
-<p><code>archive -flag /id id</code></p>
+<p><code>archive -FLAG /id id</code></p>
 </li>
 <li>
-<p><code>archive -flag /status status</code></p>
+<p><code>archive -FLAG /status status</code></p>
 </li>
 </ul>
 </div>
@@ -609,7 +557,7 @@ Archives all entries of workers who are inactive</p>
 <p>Display all archived entries.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>archives -flag</code></p>
+<p>Format: <code>archives -FLAG</code></p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -682,7 +630,7 @@ Assigns worker with worker ID W00001 to body with ID B00000002 with a task descr
 <p>View a summary of all available commands and their flags. Use the <code>-v</code> flag to view the detailed description of all commands and their flags.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>help -flag</code></p>
+<p>Format: <code>help -FLAG</code></p>
 </div>
 <div class="paragraph">
 <p>Example: <code>help -v</code><br>
@@ -750,7 +698,7 @@ Lists emergency help hotlines.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Update the status of each worker, body, or fridge with the <code>update -flag (/attributeName attributeValue)</code></p>
+<p>Update the status of each worker, body, or fridge with the <code>update -FLAG (/attributeName attributeValue)</code></p>
 </li>
 </ul>
 </div>
@@ -781,27 +729,17 @@ Format: <code>delete -FLAG id</code></p>
 <p><strong>Clear</strong> : <code>clear</code></p>
 </li>
 <li>
-<p><strong>View</strong> : <code>view -FLAG /id id</code></p>
+<p><strong>Select</strong> : <code>select id</code></p>
 </li>
 <li>
-<p><strong>List</strong> : <code>list -flag</code></p>
+<p><strong>List</strong> : <code>list -FLAG</code></p>
 </li>
 <li>
-<p><strong>View dashboard</strong> : <code>dashboard</code></p>
+<p><strong>View notifs</strong> : <code>showNotifs</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>Brings the dashboard to the front of the app.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>View notifs</strong> : <code>notifs</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>View all notifs brought up by the app.</p>
+<p>View all notifications brought up by the app.</p>
 </li>
 </ul>
 </div>
@@ -892,7 +830,7 @@ Format: <code>genReportSummary</code></p>
 <ul>
 <li>
 <p>Archive old or irrelevant entries.
-Format: <code>archive -flag /id id</code>, <code>archive -flag /status status</code></p>
+Format: <code>archive -FLAG /id id</code>, <code>archive -FLAG /status status</code></p>
 </li>
 </ul>
 </div>
@@ -903,7 +841,7 @@ Format: <code>archive -flag /id id</code>, <code>archive -flag /status status</c
 <ul>
 <li>
 <p>Display all archived entries.
-Format: <code>archives -flag</code></p>
+Format: <code>archives -FLAG</code></p>
 </li>
 </ul>
 </div>
@@ -932,7 +870,7 @@ Format: <code>assign /bodyId bodyId /workerId workerId /task taskDescription</co
 <ul>
 <li>
 <p>Get information about the commands
-Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
+Format: <code>help -FLAG</code> <code>[coming in v2.0]</code></p>
 </li>
 </ul>
 </div>
@@ -1360,4 +1298,4 @@ After the analysis described below, the Command pattern was thought to be the be
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 09:21:35 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 15:30:54 UTC</div></div></div></bodyId></html>
