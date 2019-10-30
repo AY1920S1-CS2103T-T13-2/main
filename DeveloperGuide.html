@@ -1230,7 +1230,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="sect3">
 <h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched.</p>
+<p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
 </div>
 <div class="paragraph">
 <p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order:</p>
@@ -1252,19 +1252,15 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </ul>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how a user adding a new body enables the line chart to update dynamically:</p>
+<p>The above operations are invoked through a wrapper function <code>LineChartPanel#makeLineChart()</code> which is invoked when the user calls <code>LineChartPanel#getLineChart()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected.
+The following sequence diagram shows hows <code>LineChartPanel</code> interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
-</div>
-</div>
-<div class="paragraph">
-<p>Similarly, the sequence diagram below shoes how a user deleting a body enables the line chart to update dynamically:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartDeleteBodySequenceDiagram.png" alt="LineChartDeleteBodySequenceDiagram">
 </div>
 </div>
 </div>
@@ -2198,4 +2194,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:24:16 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:24:54 UTC</div></div></div></bodyId></html>
