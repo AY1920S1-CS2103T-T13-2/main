@@ -27,7 +27,7 @@
 <li><a href="#general">3.2. General</a>
 <ul class="sectlevel3">
 <li><a href="#display-dashboard-code-dashboard-code">3.2.1. Display dashboard: <code>dashboard</code></a></li>
-<li><a href="#view-alerts-panel-code-alerts-code">3.2.2. View alerts panel: <code>alerts</code></a></li>
+<li><a href="#view-notifs-panel-code-notifs-code">3.2.2. View notifs panel: <code>notifs</code></a></li>
 <li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.3. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#filter-body-entries-code-filter-code-code-coming-in-v2-0-code">3.2.4. Filter body entries: <code>filter</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#undoing-a-command-code-undo-code">3.2.5. Undoing a command: <code>undo</code></a></li>
@@ -74,7 +74,9 @@ to work with a Command Line Interface (CLI)</strong> while still having the bene
 </div>
 <div class="paragraph">
 <p>Mortago provides a <strong>convenient dashboard</strong> for the mortuary manager to keep track of all bodies and fridges, outstanding
-tasks, and alerts. It replaces and improves upon the traditional whiteboard system. Mortago allows the mortuary management to be more accurate in managing tasks, calculating the availability of space, viewing archives and generating reports automatically.</p>
+tasks, and notifs. It replaces and improves upon the traditional whiteboard system. Mortago allows the mortuary
+management
+to be more accurate in managing tasks, calculating the availability of space, viewing archives and generating reports automatically.</p>
 </div>
 <div class="paragraph">
 <p>Interested? Refer to <a href="#Quick-Start">Section 2, &#8220;Quick Start&#8221;</a> below to get started. Enjoy!</p>
@@ -414,6 +416,18 @@ This table details how you can craft your add command to add an entry in Mortago
 (/fridgeId fridgeId)</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> with this id exists!
+</td>
+</tr>
+</table>
+</div>
 <hr></div></td>
 </tr>
 <tr>
@@ -430,7 +444,7 @@ This table details how you can craft your add command to add an entry in Mortago
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Default status: Unoccupied
+Default status: <code>UNOCCUPIED</code>
 </td>
 </tr>
 </table>
@@ -503,13 +517,47 @@ Default status: Unoccupied
 <div class="sect3">
 <h4 id="update"><a class="link" href="#update">3.1.2. Updating an entity: <code>update</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to update the attributes of an entity.
+<p>This command allows you to update the attributes of a <code>body</code> or <code>worker</code>.
 You have to indicate the entity type you want to update with a flag, as described in <a href="#Features">Section 3, &#8220;Features&#8221;</a>.
 You can specify one or more attributes to change, but at least one valid attribute must be provided.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>update -flag /id id (/attributeName attributeValue &#8230;&#8203;)</code></p>
 </div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>When the <code>fridgeId</code> of a <code>body</code> is updated, changes to the fridges will be made as follows:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Previous fridge&#8217;s status is set to <code>UNOCCUPIED</code> and is no longer assigned this <code>body</code>.</p>
+</li>
+<li>
+<p>New fridge&#8217;s status is set to <code>OCCUPIED</code> and is assigned this <code>body</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>When you update the <code>CONTACT_POLICE</code> status of a <code>body</code>, the associated <code>notif</code> will be automatically deleted.</p>
+</li>
+<li>
+<p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>notif</code> pop-up will be shown after 10 seconds.</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>There are some attributes that you can update once the entity is created. For this command,
 the list of valid attributes and their command prefixes can be found below:</p>
@@ -545,6 +593,18 @@ Organs For Donation (/organsForDonation)
 Fridge ID (/fridgeId)</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When you change the <code>fridgeId</code>, make sure a <code>fridge</code> with this id exists.
+</td>
+</tr>
+</table>
+</div>
 <hr></div></td>
 </tr>
 <tr>
@@ -560,27 +620,6 @@ Employment Status (/status)</code></pre>
 </div>
 </div>
 <hr></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fridge</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Fridge Status (/status)
-Body ID (/id)</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Make sure your dates are in the format DD/MM/YYYY!
-</td>
-</tr>
-</table>
-</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -615,11 +654,17 @@ and her new designation.</p>
 <p>Finds bodies or workers whose names contain any of the given keywords.<br></p>
 </div>
 <div class="paragraph">
-<p>Below are some important information regarding this command:</p>
+<p>Format: <code>find (flag) (keyword)&#8230;&#8203;</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
 <p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
@@ -637,12 +682,10 @@ and her new designation.</p>
 <p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>Format: <code>find (flag) (keyword)&#8230;&#8203;</code></p>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>Examples:</p>
 </div>
@@ -662,38 +705,37 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <div class="sect3">
 <h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">3.1.4. Deleting a person : <code>delete</code></a></h4>
 <div class="paragraph">
-<p>Delete a body, worker or fridge entry, indicated by its id number.<br>
+<p>You can delete a body, worker or fridge entry, using its id number.<br>
 Format: <code>delete -flag  id</code></p>
 </div>
-<div class="sidebarblock">
-<div class="content">
-<div class="ulist">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
 <ul>
 <li>
-<p>Deletes the body, worker or fridge entry with the specified identification number.</p>
+<p>When you delete a body, its associated notifications will also be deleted.</p>
 </li>
 <li>
-<p>The identification number is automatically generated when an entity is created and is in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> for a
-body, worker or fridge entry respectively.
-X represents any digit.</p>
+<p>If a fridge is occupied by a body, you cannot delete it.</p>
 </li>
 <li>
-<p>You only need to specify the number portion of the ID, without leading zeroes.</p>
+<p>You only need to specify the number portion of the ID, without leading zeroes. Mortago will automatically convert it
+in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> for a body, worker or fridge entry respectively.</p>
 </li>
 </ul>
-</div>
-</div>
-</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>delete -w 1</code><br>
+<p>Example: <code>delete -w 1</code><br>
 The worker with the identification number <code>W00001</code> will be deleted.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect3">
@@ -791,26 +833,21 @@ The dashboard provides a compact view of all bodies, workers and fridges, as wel
 </div>
 </div>
 <div class="sect3">
-<h4 id="view-alerts-panel-code-alerts-code"><a class="link" href="#view-alerts-panel-code-alerts-code">3.2.2. View alerts panel: <code>alerts</code></a></h4>
+<h4 id="view-notifs-panel-code-notifs-code"><a class="link" href="#view-notifs-panel-code-notifs-code">3.2.2. View notifs panel: <code>notifs</code></a></h4>
 <div class="paragraph">
-<p>View all alerts. Alerts are automatically generated by Mortago.
-Alerts are made when one of the following happens:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Next of kin could not be contacted within 24 hours from the time of arrival of the body.</p>
-</li>
-<li>
-<p>The body is not claimed on the specified date of collection as specified by next of kin.</p>
-</li>
-</ul>
+<p>View all notifications.</p>
 </div>
 <div class="paragraph">
-<p>Once the mortuary manager takes the relevant action, the alert will be automatically removed.</p>
+<p>A <code>notif</code> is automatically created when you could not contact the next of kin within 24 hours from the time
+of arrival of the body. For the purpose of testing, this period is set to 10 seconds instead of 24 hours.
+The <code>bodyStatus</code> will be automatically changed to <code>CONTACT_POLICE</code> if it is <code>ARRVIED</code> after the 10 second period.
+A pop-up window to remind you to contact the police will be shown so that they can search for the body&#8217;s next of kin.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>alerts</code></p>
+<p>Once you change the <code>bodyStatus</code>, the <code>notif</code> will be be deleted.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>notifs</code></p>
 </div>
 </div>
 <div class="sect3">
@@ -928,7 +965,7 @@ You can <code>undo</code> a <code>clear</code> command, but note that you cannot
 </td>
 <td class="content">
 Other events that occur due to a command will also be undone if the command is undone. For example, if an <code>add</code> command
-automatically generates an <code>alert</code>, the <code>alert</code> will be removed if <code>add</code> was undone.
+automatically generates an <code>notif</code>, the <code>notif</code> will be removed if <code>add</code> was undone.
 </td>
 </tr>
 </table>
@@ -1289,11 +1326,11 @@ Format: <code>delete -flag id</code></p>
 </div>
 </li>
 <li>
-<p><strong>View alerts</strong> : <code>alerts</code></p>
+<p><strong>View notifs</strong> : <code>notifs</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>View all alerts brought up by the app.</p>
+<p>View all notifs brought up by the app.</p>
 </li>
 </ul>
 </div>
@@ -1467,4 +1504,4 @@ Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 <p><strong>Portable Document Format (PDF)</strong> : a file format for capturing and sending electronic documents in exactly the intended format</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-29 07:56:00 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:09:48 UTC</div></div></div></bodyId></html>
