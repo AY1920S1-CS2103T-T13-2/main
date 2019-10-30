@@ -493,14 +493,16 @@ before each test to reset the <code>HashMaps</code>.</p>
 <div class="sect2">
 <h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.2. Undo/Redo feature</a></h3>
 <div class="paragraph">
-<p>The undo/redo feature allows the user to undo a previous command that they have made, or redo a command they have undone.</p>
+<p>The undo/redo feature allows you to undo a command that you have made or redo a command you have undone.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The core of undo/redo is placed in the undo/redo history of <code>ModelManager</code>. Its mechanism uses the Command design pattern,
-allowing each individual command to be undone/redone without knowing the specific command type.
-Classes related to undo/redo and their relationships are shown below.</p>
+<p>You can find the core of undo/redo in the undo/redo history of <code>ModelManager</code>.
+The history stores <code>UndoableCommands</code>, and an <code>UndoCommand</code> or <code>RedoCommand</code> will <code>undo()</code> or <code>redo()</code> commands in the history.
+The design of <code>UndoableCommand</code> uses the Command pattern, a common design pattern often used in software engineering.
+It allows each individual command to be undone/redone at a high-level without needing the specific command type to be known.
+Classes related to undo/redo and their relationships are shown in Figure 11.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -508,13 +510,15 @@ Classes related to undo/redo and their relationships are shown below.</p>
 </div>
 <div class="title">Figure 11. Class Diagram Showing Classes Used by Undo/Redo</div>
 </div>
+<div class="sect4">
+<h5 id="storing-executed-and-undone-commands"><a class="link" href="#storing-executed-and-undone-commands">Storing executed and undone commands</a></h5>
 <div class="paragraph">
-<p>Firstly, there are two instances of <code>CommandHistory</code>, stored internally as <code>commandHistory</code> and <code>undoHistory</code> in <code>ModelManager</code>.
-The former instance stores previously executed commands while the latter stores previously undone commands.
-<code>CommandHistory</code> wraps a <code>Deque&lt;UndoableCommand&gt;</code>. Its functions imposes a <code>MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
+<p>To start off, you will find two instances of <code>CommandHistory</code> in <code>ModelManager</code>. They are  stored internally as <code>commandHistory</code> and <code>undoHistory</code>.
+<code>commandHistory</code> stores previously executed commands while <code>undoHistory</code> stores previously undone commands.
+<code>CommandHistory</code> wraps a <code>Deque&lt;UndoableCommand&gt;</code>. Its methods imposes a <code>MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
 </div>
 <div class="paragraph">
-<p>In <code>ModelManager</code>, four key operations regarding <code>CommandHistory</code> are implemented:</p>
+<p>In <code>ModelManager</code>, four key operations to access and modify <code>CommandHistory</code> are implemented:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -536,18 +540,25 @@ The former instance stores previously executed commands while the latter stores 
 <p>In the <code>Model</code> interface implemented by <code>ModelManager</code>, these four operations are respectively exposed as
 <code>Model#addExecutedCommand(UndoableCommand command)</code>, <code>Model#getExecutedCommand()</code>, <code>Model#addUndoneCommand(UndoableCommand command)</code>, and <code>Model#getUndoneCommand()</code>.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="command-pattern"><a class="link" href="#command-pattern">Command pattern</a></h5>
 <div class="paragraph">
 <p>Next, the <code>UndoableCommand</code> stored in the <code>Model</code> is actually a normal <code>Command</code> that changes program state.
-The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.</p>
+The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.
+Commands that don&#8217;t change the user-visible program state, like <code>find</code>, can still inherit directly from <code>Command</code>.</p>
 </div>
 <div class="paragraph">
-<p>A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.
-<code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.
-When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of ModelManager` respectively.
-Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.</p>
+<p>Here is where the Command pattern comes in. A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.
+<code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="defensive-programming"><a class="link" href="#defensive-programming">Defensive programming</a></h5>
 <div class="paragraph">
-<p>To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
+<p>When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of ModelManager` respectively.
+Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.
+To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
 Additionally, <code>UndoableCommand</code> contains a small inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to any value in the enumeration.
 The values are as shown below.</p>
 </div>
@@ -588,7 +599,8 @@ executed or undone command from the <code>CommandHistory</code> in <code>ModelMa
 If it is successful, undo/redo is succesful. Otherwise, an error message is shown.</p>
 </div>
 <div class="paragraph">
-<p>This is the mechanism of undo/redo, from start to end. Below is an example of a usage scenario that illustrates how undo/redo works.</p>
+<p>This is the mechanism of undo/redo, from start to end.
+Below is an example of a usage scenario to help you visualise how undo/redo works.</p>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows how an undo command works to undo a <code>ClearCommand</code>:</p>
@@ -612,14 +624,16 @@ If it is successful, undo/redo is succesful. Otherwise, an error message is show
 <div class="title">Figure 13. Activity Diagram Showing the Execution Control Flow of a Command</div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design considerations</a></h4>
 <div class="paragraph">
-<p>When designing the undo/redo feature, scalability and speed were the key considerations. After analysing the pros and cons of
-each option, it was decided that using the Command design pattern was the best option.</p>
+<p>When designing the undo/redo feature, scalability and speed were the key considerations.
+There was also an extra layer of difficulty as Mortago has automated commands that are both time-based and user-triggered.
+After the analysis described below, the Command pattern was thought to be the best solution.</p>
 </div>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="aspect-designing-the-mechanism"><a class="link" href="#aspect-designing-the-mechanism">Aspect: Designing the mechanism</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -687,6 +701,19 @@ each option, it was decided that using the Command design pattern was the best o
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-handling-automated-commands"><a class="link" href="#aspect-handling-automated-commands">Aspect: Handling automated commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>** Alternative 1 : Allow automated commands to be undone</p>
+</li>
+<li>
+<p>** Alterative 2 : Do not undo the automated command</p>
 </li>
 </ul>
 </div>
@@ -2194,4 +2221,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:24:54 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:46:16 UTC</div></div></div></bodyId></html>

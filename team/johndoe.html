@@ -163,9 +163,38 @@ in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> f
 </tr>
 </tbody>
 </table>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the body, worker or fridge entry with t
+he specified identification number.</p>
+</li>
+<li>
+<p>The identification number is automatically generated when an entity is created and is in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> for a
+body, worker or fridge entry respectively.
+X represents any digit.</p>
+</li>
+<li>
+<p>You only need to specify the number portion of the ID, without leading zeroes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
-<p>Example: <code>delete -w 1</code><br>
-The worker with the identification number <code>W00001</code> will be deleted.</p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete -w 1</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The worker with the identification number <code>W00001</code> will be deleted.</p>
 </div>
 </div>
 <div class="sect3">
@@ -336,20 +365,28 @@ All entries will be sorted according to their id number in ascending order.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-body-entries-code-filter-code-code-coming-in-v2-0-code"><a class="link" href="#filter-body-entries-code-filter-code-code-coming-in-v2-0-code">Filter body entries: <code>filter</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">Filter all entries: <code>filter</code></a></h4>
 <div class="paragraph">
-<p>Filter all entries according to the given keyword in any of an entry’s attribute. All entries with matching keyword will be displayed. Keyword is case-insensitive.</p>
+<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
 </div>
 <div class="paragraph">
-<p>All attributes of a body entry can be filtered. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
+<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>filter (/attributeName attributeValue)&#8230;&#8203;</code></p>
+<p>Format: <code>filter -flag /attributeName attributeValue &#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Example:
-<code>filter /cod Car Accident</code>
-All body entries with car accident as the cause of death will be displayed.</p>
+* <code>filter -w /sex female</code><br>
+All female worker entries will be displayed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter -b /cod Car Accident /sex male</code><br>
+All body entries with car accident as the cause of death and those that are male will be displayed.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -361,44 +398,27 @@ The commands are undone starting from the most recent to the least recent.</p>
 <div class="paragraph">
 <p>Format: <code>undo</code> or <code>u</code></p>
 </div>
-<div class="admonitionblock tip">
-<table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Only commands that change Mortago&#8217;s data can be undone. For example, <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> can be undone while
-<code>list</code> or <code>find</code> cannot be undone.
-</td>
-</tr>
-</table>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Only commands that change Mortago&#8217;s data can be undone. For example, <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> can be undone while
+<code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Other events that occur due to a command will also be undone if the command is undone. For example, if an <code>add</code> command
-automatically generates an <code>notif</code>, the <code>notif</code> will be removed if <code>add</code> was undone.
-</td>
+<div class="paragraph">
+<p>Automated commands can be undone after they are executed as well.</p>
+</div></div></td>
 </tr>
+</tbody>
 </table>
-</div>
 <div class="paragraph">
 <p>Example:<br>
 Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
@@ -415,7 +435,7 @@ Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mo
 <p>Press <code>Enter</code> to execute the command.</p>
 </li>
 <li>
-<p>Notice that the result box displays "Undid deleting this entity: &lt;Text&gt;" and John Doe is now back in the list of bodies.</p>
+<p>Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now back in the list of bodies.</p>
 </li>
 </ol>
 </div>
@@ -461,7 +481,7 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <p>Press <code>Enter</code> to execute the command.</p>
 </li>
 <li>
-<p>Notice that the result box displays "Deleted this entity: &lt;Text&gt;" and John Doe is now absent from the list of bodies.</p>
+<p>Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent from the list of bodies.</p>
 </li>
 </ol>
 </div>
@@ -518,13 +538,35 @@ Outputs the report PDF for body ID B00000123</p>
 <div class="sect2">
 <h3 id="administrative"><a class="link" href="#administrative">Administrative</a></h3>
 <div class="sect3">
-<h4 id="view-admission-statistics"><a class="link" href="#view-admission-statistics">View admission statistics</a></h4>
+<h4 id="view-admission-statistics-code-stats-code"><a class="link" href="#view-admission-statistics-code-stats-code">View admission statistics: <code>stats</code></a></h4>
 <div class="paragraph">
-<p>View a line-chart of the number of bodies admitted to the morgue over the past 10 days.</p>
+<p>This command allows you to view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year.</p>
 </div>
 <div class="paragraph">
-<p>The line-chart is on the main page of the application and is automatically updated when a body is added or deleted.
-No user command is needed to display it.</p>
+<p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days and is automatically updated when a body is added or deleted. You can change the time frame with the commands.</p>
+</div>
+<div class="paragraph">
+<p>The following is the correct format for typing in stats commands, with example usage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display the last 10 days: <code>stats</code><br>
+The line chart will display statistics over the last 10 days.</p>
+</li>
+<li>
+<p>To display a specific week: <code>stats /week 12/10/2019</code><br>
+The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019.</p>
+</li>
+<li>
+<p>To display a specific month: <code>stats /month 5/2019</code><br>
+The line chart will display statistics or the month specified. In this case, it is May 2019.</p>
+</li>
+<li>
+<p>To display a specific year: <code>stats /year 2019</code><br>
+The line chart will display statistics for the year specified. In this case is it 2019.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -912,6 +954,9 @@ Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 <p><strong>Attribute</strong> : In Mortago, an attribute is the property of a body, fridge or worker.<br></p>
 </div>
 <div class="paragraph">
+<p><strong>Automated Command</strong> : In Mortago, an automated command is a command that is not explicitly inputted by the user.</p>
+</div>
+<div class="paragraph">
 <p><strong>Body</strong> : a corpse<br></p>
 </div>
 <div class="paragraph">
@@ -950,14 +995,16 @@ Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 <div class="sect2">
 <h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
 <div class="paragraph">
-<p>The undo/redo feature allows the user to undo a previous command that they have made, or redo a command they have undone.</p>
+<p>The undo/redo feature allows you to undo a command that you have made or redo a command you have undone.</p>
 </div>
 <div class="sect3">
 <h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
 <div class="paragraph">
-<p>The core of undo/redo is placed in the undo/redo history of <code>ModelManager</code>. Its mechanism uses the Command design pattern,
-allowing each individual command to be undone/redone without knowing the specific command type.
-Classes related to undo/redo and their relationships are shown below.</p>
+<p>You can find the core of undo/redo in the undo/redo history of <code>ModelManager</code>.
+The history stores <code>UndoableCommands</code>, and an <code>UndoCommand</code> or <code>RedoCommand</code> will <code>undo()</code> or <code>redo()</code> commands in the history.
+The design of <code>UndoableCommand</code> uses the Command pattern, a common design pattern often used in software engineering.
+It allows each individual command to be undone/redone at a high-level without needing the specific command type to be known.
+Classes related to undo/redo and their relationships are shown in Figure 11.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -965,13 +1012,15 @@ Classes related to undo/redo and their relationships are shown below.</p>
 </div>
 <div class="title">Figure 1. Class Diagram Showing Classes Used by Undo/Redo</div>
 </div>
+<div class="sect4">
+<h5 id="storing-executed-and-undone-commands"><a class="link" href="#storing-executed-and-undone-commands">Storing executed and undone commands</a></h5>
 <div class="paragraph">
-<p>Firstly, there are two instances of <code>CommandHistory</code>, stored internally as <code>commandHistory</code> and <code>undoHistory</code> in <code>ModelManager</code>.
-The former instance stores previously executed commands while the latter stores previously undone commands.
-<code>CommandHistory</code> wraps a <code>Deque&lt;UndoableCommand&gt;</code>. Its functions imposes a <code>MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
+<p>To start off, you will find two instances of <code>CommandHistory</code> in <code>ModelManager</code>. They are  stored internally as <code>commandHistory</code> and <code>undoHistory</code>.
+<code>commandHistory</code> stores previously executed commands while <code>undoHistory</code> stores previously undone commands.
+<code>CommandHistory</code> wraps a <code>Deque&lt;UndoableCommand&gt;</code>. Its methods imposes a <code>MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
 </div>
 <div class="paragraph">
-<p>In <code>ModelManager</code>, four key operations regarding <code>CommandHistory</code> are implemented:</p>
+<p>In <code>ModelManager</code>, four key operations to access and modify <code>CommandHistory</code> are implemented:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -993,18 +1042,25 @@ The former instance stores previously executed commands while the latter stores 
 <p>In the <code>Model</code> interface implemented by <code>ModelManager</code>, these four operations are respectively exposed as
 <code>Model#addExecutedCommand(UndoableCommand command)</code>, <code>Model#getExecutedCommand()</code>, <code>Model#addUndoneCommand(UndoableCommand command)</code>, and <code>Model#getUndoneCommand()</code>.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="command-pattern"><a class="link" href="#command-pattern">Command pattern</a></h5>
 <div class="paragraph">
 <p>Next, the <code>UndoableCommand</code> stored in the <code>Model</code> is actually a normal <code>Command</code> that changes program state.
-The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.</p>
+The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.
+Commands that don&#8217;t change the user-visible program state, like <code>find</code>, can still inherit directly from <code>Command</code>.</p>
 </div>
 <div class="paragraph">
-<p>A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.
-<code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.
-When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of ModelManager` respectively.
-Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.</p>
+<p>Here is where the Command pattern comes in. A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.
+<code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
 </div>
+</div>
+<div class="sect4">
+<h5 id="defensive-programming"><a class="link" href="#defensive-programming">Defensive programming</a></h5>
 <div class="paragraph">
-<p>To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
+<p>When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of ModelManager` respectively.
+Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.
+To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
 Additionally, <code>UndoableCommand</code> contains a small inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to any value in the enumeration.
 The values are as shown below.</p>
 </div>
@@ -1045,7 +1101,8 @@ executed or undone command from the <code>CommandHistory</code> in <code>ModelMa
 If it is successful, undo/redo is succesful. Otherwise, an error message is shown.</p>
 </div>
 <div class="paragraph">
-<p>This is the mechanism of undo/redo, from start to end. Below is an example of a usage scenario that illustrates how undo/redo works.</p>
+<p>This is the mechanism of undo/redo, from start to end.
+Below is an example of a usage scenario to help you visualise how undo/redo works.</p>
 </div>
 <div class="paragraph">
 <p>The sequence diagram below shows how an undo command works to undo a <code>ClearCommand</code>:</p>
@@ -1069,14 +1126,16 @@ If it is successful, undo/redo is succesful. Otherwise, an error message is show
 <div class="title">Figure 3. Activity Diagram Showing the Execution Control Flow of a Command</div>
 </div>
 </div>
+</div>
 <div class="sect3">
-<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
 <div class="paragraph">
-<p>When designing the undo/redo feature, scalability and speed were the key considerations. After analysing the pros and cons of
-each option, it was decided that using the Command design pattern was the best option.</p>
+<p>When designing the undo/redo feature, scalability and speed were the key considerations.
+There was also an extra layer of difficulty as Mortago has automated commands that are both time-based and user-triggered.
+After the analysis described below, the Command pattern was thought to be the best solution.</p>
 </div>
 <div class="sect4">
-<h5 id="aspect-how-undo-redo-executes"><a class="link" href="#aspect-how-undo-redo-executes">Aspect: How undo &amp; redo executes</a></h5>
+<h5 id="aspect-designing-the-mechanism"><a class="link" href="#aspect-designing-the-mechanism">Aspect: Designing the mechanism</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1144,6 +1203,19 @@ each option, it was decided that using the Command design pattern was the best o
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-handling-automated-commands"><a class="link" href="#aspect-handling-automated-commands">Aspect: Handling automated commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>** Alternative 1 : Allow automated commands to be undone</p>
+</li>
+<li>
+<p>** Alterative 2 : Do not undo the automated command</p>
 </li>
 </ul>
 </div>
@@ -1236,4 +1308,4 @@ each option, it was decided that using the Command design pattern was the best o
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:24:54 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:46:16 UTC</div></div></div></bodyId></html>

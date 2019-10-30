@@ -29,7 +29,7 @@
 <li><a href="#display-dashboard-code-dashboard-code">3.2.1. Display dashboard: <code>dashboard</code></a></li>
 <li><a href="#view-notifs-panel-code-notifs-code">3.2.2. View notifs panel: <code>notifs</code></a></li>
 <li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.3. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#filter-body-entries-code-filter-code-code-coming-in-v2-0-code">3.2.4. Filter body entries: <code>filter</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#filter-all-entries-code-filter-code">3.2.4. Filter all entries: <code>filter</code></a></li>
 <li><a href="#undoing-a-command-code-undo-code">3.2.5. Undoing a command: <code>undo</code></a></li>
 <li><a href="#redoing-a-command-code-redo-code">3.2.6. Redoing a command: <code>redo</code></a></li>
 <li><a href="#exiting-the-program-code-exit-code">3.2.7. Exiting the program : <code>exit</code></a></li>
@@ -44,7 +44,7 @@
 </li>
 <li><a href="#administrative">3.4. Administrative</a>
 <ul class="sectlevel3">
-<li><a href="#view-admission-statistics">3.4.1. View admission statistics</a></li>
+<li><a href="#view-admission-statistics-code-stats-code">3.4.1. View admission statistics: <code>stats</code></a></li>
 <li><a href="#archive-entries-code-archive-code-code-coming-in-v2-0-code">3.4.2. Archive entries: <code>archive</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#view-archived-entries-code-archives-code-code-coming-in-v2-0-code">3.4.3. View archived entries: <code>archives</code> <code>[coming in v2.0]</code></a></li>
 <li><a href="#give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code">3.4.4. Give and view feedback: <code>feedback</code> <code>[coming in v2.0]</code></a></li>
@@ -124,7 +124,7 @@ e.g. typing <strong><code>help</code></strong> and pressing <kbd>Enter</kbd> wil
 adds a worker named John Doe (with his date of birth) to the management system.</p>
 </li>
 <li>
-<p><strong><code>delete -w</code></strong><code>2</code> : deletes the worker with worker ID W000002</p>
+<p><strong><code>delete -w</code></strong><code>2</code> : deletes the worker with worker ID W00002</p>
 </li>
 <li>
 <p><strong><code>exit</code></strong> : exits the app</p>
@@ -517,9 +517,25 @@ Default status: <code>UNOCCUPIED</code>
 <div class="sect3">
 <h4 id="update"><a class="link" href="#update">3.1.2. Updating an entity: <code>update</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to update the attributes of a <code>body</code> or <code>worker</code>.
-You have to indicate the entity type you want to update with a flag, as described in <a href="#Features">Section 3, &#8220;Features&#8221;</a>.
-You can specify one or more attributes to change, but at least one valid attribute must be provided.</p>
+<p>This command allows you to update the attributes of a body or worker.</p>
+</div>
+<div class="paragraph">
+<p>You have to indicate the entity type you want to update with a flag, as described in <a href="#Features">Section 3, &#8220;Features&#8221;</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>-f</code> is not a valid flag for this command. Fridges will be automatically updated when bodies are assigned or removed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can specify one or more attributes to change, but at least one valid attribute must be provided.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>update -flag /id id (/attributeName attributeValue &#8230;&#8203;)</code></p>
@@ -570,25 +586,38 @@ the list of valid attributes and their command prefixes can be found below:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Body</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="predefined-type">Name</span> (/name)
-Sex (/sex)
-NRIC (/nric)
-<span class="predefined-type">Date</span> of Birth (/dob)
-<span class="predefined-type">Date</span> of Death (/dod)
-<span class="predefined-type">Date</span> of Admission (/doa)
-Status (/status)
-Religion (/religion)
-<span class="predefined-type">Name</span> of Next-of-Kin (/nameNOK)
-Relationship (/relationship)
-Phone <span class="predefined-type">Number</span> of Next-of-Kin (/phoneNOK)
-Cause of Death (/cod)
-Details (/details)
-Organs For Donation (/organsForDonation)
-Fridge ID (/fridgeId)</code></pre>
-</div>
-</div>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name <code>/name</code><br>
+Sex <code>/sex</code><br>
+NRIC <code>/nric</code><br>
+Date of Birth <code>/dob</code><br>
+Date of Death <code>/dod</code><br>
+Date of Admission <code>/doa</code><br>
+Status <code>/status</code><br>
+Religion <code>/religion</code><br>
+Name of Next-of-Kin <code>/nameNOK</code><br>
+Relationship <code>/relationship</code><br>
+Phone Number of Next-of-Kin <code>/phoneNOK</code><br>
+Cause of Death <code>/cod</code><br>
+Details <code>/details</code><br>
+Organs For Donation <code>/organsForDonation</code><br>
+Fridge ID <code>/fridgeId</code><br></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Worker</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Phone Number <code>/phoneNo</code><br>
+Sex <code>/sex</code><br>
+Date of Birth <code>/dob</code><br>
+Date Joined <code>/dateJoined</code><br>
+Designation <code>/designation</code><br>
+Employment Status <code>/status</code><br>
+Photo <code>/photo</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -596,36 +625,18 @@ Fridge ID (/fridgeId)</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-When you change the <code>fridgeId</code>, make sure a <code>fridge</code> with this id exists.
+Make sure you key in dates in the format DD/MM/YYYY.
 </td>
 </tr>
 </table>
 </div>
-<hr></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Worker</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Phone <span class="predefined-type">Number</span> (/phoneNo)
-Sex (/sex)
-<span class="predefined-type">Date</span> of Birth (/dob)
-<span class="predefined-type">Date</span> Joined (/dateJoined)
-Designation (/designation)
-Employment Status (/status)</code></pre>
-</div>
-</div>
-<hr></div></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
 <p>Example:<br>
 Imagine that someone (Jane Doe) just got promoted! You have to change her designation in Mortago.</p>
 </div>
 <div class="paragraph">
 <p>Instead of typing out all the irrelevant attributes a Worker has, you just have to input her ID number
-and her new designation.</p>
+and her new designation. You see that her ID number is W00001.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -639,7 +650,7 @@ and her new designation.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update -w /id 1 /designation Senior Autopsy Technician</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Status of worker 1 changed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Designation of Jane Doe changed to Senior Autopsy Technician.</p></td>
 </tr>
 </tbody>
 </table>
@@ -721,9 +732,38 @@ in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> f
 </tr>
 </tbody>
 </table>
+<div class="sidebarblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Deletes the body, worker or fridge entry with t
+he specified identification number.</p>
+</li>
+<li>
+<p>The identification number is automatically generated when an entity is created and is in the format <code>BXXXXXXXX</code>, <code>WXXXXX</code>, or <code>FXX</code> for a
+body, worker or fridge entry respectively.
+X represents any digit.</p>
+</li>
+<li>
+<p>You only need to specify the number portion of the ID, without leading zeroes.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 <div class="paragraph">
-<p>Example: <code>delete -w 1</code><br>
-The worker with the identification number <code>W00001</code> will be deleted.</p>
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>delete -w 1</code><br></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The worker with the identification number <code>W00001</code> will be deleted.</p>
 </div>
 </div>
 <div class="sect3">
@@ -895,20 +935,28 @@ All entries will be sorted according to their id number in ascending order.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-body-entries-code-filter-code-code-coming-in-v2-0-code"><a class="link" href="#filter-body-entries-code-filter-code-code-coming-in-v2-0-code">3.2.4. Filter body entries: <code>filter</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">3.2.4. Filter all entries: <code>filter</code></a></h4>
 <div class="paragraph">
-<p>Filter all entries according to the given keyword in any of an entry’s attribute. All entries with matching keyword will be displayed. Keyword is case-insensitive.</p>
+<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
 </div>
 <div class="paragraph">
-<p>All attributes of a body entry can be filtered. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
+<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>filter (/attributeName attributeValue)&#8230;&#8203;</code></p>
+<p>Format: <code>filter -flag /attributeName attributeValue &#8230;&#8203;</code></p>
 </div>
 <div class="paragraph">
 <p>Example:
-<code>filter /cod Car Accident</code>
-All body entries with car accident as the cause of death will be displayed.</p>
+* <code>filter -w /sex female</code><br>
+All female worker entries will be displayed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter -b /cod Car Accident /sex male</code><br>
+All body entries with car accident as the cause of death and those that are male will be displayed.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -920,44 +968,27 @@ The commands are undone starting from the most recent to the least recent.</p>
 <div class="paragraph">
 <p>Format: <code>undo</code> or <code>u</code></p>
 </div>
-<div class="admonitionblock tip">
-<table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Only commands that change Mortago&#8217;s data can be undone. For example, <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> can be undone while
-<code>list</code> or <code>find</code> cannot be undone.
-</td>
-</tr>
-</table>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Only commands that change Mortago&#8217;s data can be undone. For example, <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> can be undone while
+<code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Other events that occur due to a command will also be undone if the command is undone. For example, if an <code>add</code> command
-automatically generates an <code>notif</code>, the <code>notif</code> will be removed if <code>add</code> was undone.
-</td>
+<div class="paragraph">
+<p>Automated commands can be undone after they are executed as well.</p>
+</div></div></td>
 </tr>
+</tbody>
 </table>
-</div>
 <div class="paragraph">
 <p>Example:<br>
 Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
@@ -974,7 +1005,7 @@ Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mo
 <p>Press <code>Enter</code> to execute the command.</p>
 </li>
 <li>
-<p>Notice that the result box displays "Undid deleting this entity: &lt;Text&gt;" and John Doe is now back in the list of bodies.</p>
+<p>Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now back in the list of bodies.</p>
 </li>
 </ol>
 </div>
@@ -1020,7 +1051,7 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <p>Press <code>Enter</code> to execute the command.</p>
 </li>
 <li>
-<p>Notice that the result box displays "Deleted this entity: &lt;Text&gt;" and John Doe is now absent from the list of bodies.</p>
+<p>Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent from the list of bodies.</p>
 </li>
 </ol>
 </div>
@@ -1077,13 +1108,35 @@ Outputs the report PDF for body ID B00000123</p>
 <div class="sect2">
 <h3 id="administrative"><a class="link" href="#administrative">3.4. Administrative</a></h3>
 <div class="sect3">
-<h4 id="view-admission-statistics"><a class="link" href="#view-admission-statistics">3.4.1. View admission statistics</a></h4>
+<h4 id="view-admission-statistics-code-stats-code"><a class="link" href="#view-admission-statistics-code-stats-code">3.4.1. View admission statistics: <code>stats</code></a></h4>
 <div class="paragraph">
-<p>View a line-chart of the number of bodies admitted to the morgue over the past 10 days.</p>
+<p>This command allows you to view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year.</p>
 </div>
 <div class="paragraph">
-<p>The line-chart is on the main page of the application and is automatically updated when a body is added or deleted.
-No user command is needed to display it.</p>
+<p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days and is automatically updated when a body is added or deleted. You can change the time frame with the commands.</p>
+</div>
+<div class="paragraph">
+<p>The following is the correct format for typing in stats commands, with example usage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display the last 10 days: <code>stats</code><br>
+The line chart will display statistics over the last 10 days.</p>
+</li>
+<li>
+<p>To display a specific week: <code>stats /week 12/10/2019</code><br>
+The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019.</p>
+</li>
+<li>
+<p>To display a specific month: <code>stats /month 5/2019</code><br>
+The line chart will display statistics or the month specified. In this case, it is May 2019.</p>
+</li>
+<li>
+<p>To display a specific year: <code>stats /year 2019</code><br>
+The line chart will display statistics for the year specified. In this case is it 2019.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -1471,6 +1524,9 @@ Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 <p><strong>Attribute</strong> : In Mortago, an attribute is the property of a body, fridge or worker.<br></p>
 </div>
 <div class="paragraph">
+<p><strong>Automated Command</strong> : In Mortago, an automated command is a command that is not explicitly inputted by the user.</p>
+</div>
+<div class="paragraph">
 <p><strong>Body</strong> : a corpse<br></p>
 </div>
 <div class="paragraph">
@@ -1492,4 +1548,4 @@ Format: <code>help -flag</code> <code>[coming in v2.0]</code></p>
 <p><strong>Portable Document Format (PDF)</strong> : a file format for capturing and sending electronic documents in exactly the intended format</p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:24:54 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:46:16 UTC</div></div></div></bodyId></html>
