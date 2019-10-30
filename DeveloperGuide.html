@@ -1025,7 +1025,7 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 </div>
 </li>
 <li>
-<p>**Alternative 2: Directly make changes to the model.</p>
+<p><strong>Alternative 2:</strong> Directly make changes to the model.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1047,7 +1047,7 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 <h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generate PDF feature is facilitated by <code>ReportGenerator</code>.
-It extends <code>Mortago</code> with the ability to create a report, supported by iText external library.
+It extends <code>Mortago</code> with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
@@ -1056,7 +1056,10 @@ Additionally, it implements the following operations:</p>
 <p><code>ReportGenerator#generate(body)</code>&#8201;&#8212;&#8201;Creates report in a PDF file for the specific body.</p>
 </li>
 <li>
-<p><code>ReportGenerator#generateAll()</code>&#8201;&#8212;&#8201;Creates report in a PDF file for all bodies registered in Mortago.</p>
+<p><code>ReportGenerator#generateAll()</code>&#8201;&#8212;&#8201;Creates reports in a PDF file for all bodies registered in Mortago.</p>
+</li>
+<li>
+<p><code>ReportGenerator#generateSummary()</code>&#8201;&#8212;&#8201;Creates a tabular summary report in a PDF file for all bodies registered in Mortago.</p>
 </li>
 </ul>
 </div>
@@ -2355,4 +2358,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 06:55:54 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-10-30 07:03:33 UTC</div></div></div></bodyId></html>
