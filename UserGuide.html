@@ -135,7 +135,7 @@ The following are examples of some commands you can try:</p>
 <p><strong><code>list -b</code></strong> : lists all bodies</p>
 </li>
 <li>
-<p><strong><code>add -w</code></strong><code>/name John Doe /sex male /dateJoined 12-12-2012</code> :
+<p><strong><code>add -w</code></strong><code>/name John Doe /sex male /dateJoined 12/12/2019</code> :
 adds a worker named John Doe to the management system.</p>
 </li>
 <li>
@@ -545,7 +545,7 @@ Default status: <code>UNOCCUPIED</code>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-<code>-f</code> is not a valid flag for this command. Fridges will be automatically updated when bodies are assigned or removed.
+<code>-f</code> is not a valid flag for this command. Fridges are automatically updated when bodies are assigned or removed.
 </td>
 </tr>
 </table>
@@ -565,23 +565,23 @@ Default status: <code>UNOCCUPIED</code>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>When the <code>fridgeId</code> of a <code>body</code> is updated, changes to the fridges will be made as follows:</p>
+<p>When you update the <code>fridgeId</code> of a <code>Body</code>, changes to the fridges will be made as follows:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Previous fridge&#8217;s status is set to <code>UNOCCUPIED</code> and is no longer assigned this <code>body</code>.</p>
+<p>Previous fridge&#8217;s status is set to <code>UNOCCUPIED</code> and is no longer assigned this <code>Body</code>.</p>
 </li>
 <li>
-<p>New fridge&#8217;s status is set to <code>OCCUPIED</code> and is assigned this <code>body</code>.</p>
+<p>New fridge&#8217;s status is set to <code>OCCUPIED</code> and is assigned this <code>Body</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>When you update the <code>CONTACT_POLICE</code> status of a <code>body</code>, the associated <code>notif</code> will be automatically deleted.</p>
+<p>When you update the status of a <code>Body</code> to <code>CONTACT_POLICE</code>, the <code>Notif</code> associated with the <code>Body</code> will be automatically deleted.</p>
 </div>
 <div class="paragraph">
-<p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>notif</code> pop-up will be shown after 10 seconds.</p>
+<p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>Notif</code> pop-up will be shown after 10 seconds.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -949,14 +949,15 @@ The commands are undone starting from the most recent to the least recent.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Only commands that change Mortago&#8217;s data can be undone. For example, <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> can be undone while
-<code>list</code> or <code>find</code> cannot be undone.</p>
+<p>Only commands that change Mortago&#8217;s data can be undone. The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
+Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
 <p>You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.</p>
 </div>
 <div class="paragraph">
-<p>Automated commands can be undone after they are executed as well.</p>
+<p>Automated commands like changes caused by a <code>Notif</code> can be undone and redone. For example, the automatic
+status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone.</p>
 </div></div></td>
 </tr>
 </tbody>
@@ -985,9 +986,9 @@ Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mo
 <div class="sect3">
 <h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">3.2.5. Redoing a command: <code>redo</code></a></h4>
 <div class="paragraph">
-<p>This command redoes the effects of the last command you undid. (See <a href="#undoing-a-command-code-undo-code">Section 3.2.4, &#8220;Undoing a command: <code>undo</code>&#8221;</a> for how <code>undo</code> can be used.)
+<p>This command redoes the effects of the last command you undid.
 You can redo up to 10 of your most recent undone commands.
-Only commands that change Mortago&#8217;s data can be redone. For example, <code>add</code>, <code>update</code>, and <code>delete</code> can be redone, but <code>list</code> cannot be redone.</p>
+All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Section 3.2.4, &#8220;Undoing a command: <code>undo</code>&#8221;</a> for how <code>undo</code> can be used.)</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>redo</code> or <code>r</code></p>
@@ -1588,4 +1589,4 @@ Format: <code>help -FLAG</code> <code>[coming in v2.0]</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 06:12:31 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 16:12:24 UTC</div></div></div></bodyId></html>
