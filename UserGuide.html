@@ -392,7 +392,7 @@ This table details how you can craft your add command to add an entity in Mortag
 /dateJoined dateJoined<br>
 (/designation designation)<br>
 (/employmentStatus employmentStatus)<br>
-(/phoneNo phoneNumber)<br>
+(/phone phoneNumber)<br>
 (/dob dateOfBirth)<br>
 (/photo pathToPhoto)</p>
 </div>
@@ -488,51 +488,42 @@ Default status: <code>UNOCCUPIED</code>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Expected Output</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">add -w
-/name Mary
-/phoneNo <span class="integer">87654321</span>
-/sex female
-/dateJoined <span class="integer">18</span>/<span class="integer">08</span>/<span class="integer">2019</span>
-/designation Autopsy Technician</code></pre>
-</div>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>add -w
+ /name Mary
+ /phone 87654321
+ /sex female
+ /dateJoined 18/08/2019
+ /designation Autopsy Technician</code></p>
 </div>
 <hr></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Worker added</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">add -b
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>add -b
 /name John Doe
 /sex male
-/dob <span class="integer">12</span>/<span class="integer">12</span>/<span class="integer">1984</span>
-/dod <span class="integer">12</span>/<span class="integer">08</span>/<span class="integer">2019</span> <span class="integer">2358</span>
-/doa <span class="integer">13</span>/<span class="integer">08</span>/<span class="integer">2019</span> <span class="octal">0200</span>
-/status contactedNOK
+/dob 12/12/1984
+/dod 12/08/2019 2358
+/doa 13/08/2019 0200
+/status claimed
 /nric S8456372C
 /religion Catholic
-/nameNOK Jack Smith
+/NOKname Jack Smith
 /relationship Husband
-/phoneNOK <span class="integer">83462756</span>
+/NOKphone 83462756
 /cod Car Accident
 /details Heavy bleeding and head injury
-/organsForDonation NIL
-/fridgeId <span class="integer">2</span></code></pre>
-</div>
+/organsForDonation NIL</code></p>
 </div>
 <hr></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Body added</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><div><div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>add -f</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>&#160;<br></p>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>add -f</code>
+&#160;<br></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Fridge added</p></td>
 </tr>
@@ -632,7 +623,7 @@ Fridge ID <code>/fridgeId</code><br></p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Worker</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Phone Number <code>/phoneNo</code><br>
+<p>Phone Number <code>/phone</code><br>
 Sex <code>/sex</code><br>
 Date of Birth <code>/dob</code><br>
 Date Joined <code>/dateJoined</code><br>
@@ -1597,4 +1588,4 @@ Format: <code>help -FLAG</code> <code>[coming in v2.0]</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-02 08:48:10 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-05 06:12:31 UTC</div></div></div></bodyId></html>
