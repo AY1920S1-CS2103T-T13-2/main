@@ -78,7 +78,8 @@
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">G.1. Launch and Shutdown</a></li>
 <li><a href="#deleting-a-body">G.2. Deleting a Body</a></li>
-<li><a href="#saving-data">G.3. Saving Data</a></li>
+<li><a href="#generating-a-report">G.3. Generating a Report</a></li>
+<li><a href="#saving-data">G.4. Saving Data</a></li>
 </ul>
 </li>
 </ul>
@@ -1111,33 +1112,39 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 </div>
 <div class="sect2">
 <h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">4.4. Generate PDF Feature</a></h3>
+<div class="paragraph">
+<p>This feature allows manager to automatically generate different kinds of reports with three commands: <code>genReport</code>, <code>genReports</code> and <code>genReportSummary</code>.</p>
+</div>
 <div class="sect3">
 <h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The generate PDF feature is facilitated by <code>ReportGenerator</code>.
-It extends <code>Mortago</code> with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
+<p>The generate PDF feature is facilitated by <code><span class="subheader">ReportGenerator</span></code> class.
+It extends Mortago with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ReportGenerator#generate(body)</code>&#8201;&#8212;&#8201;Creates report in a PDF file for the specific body.</p>
+<p><code><span class="subheader">ReportGenerator#generate(body, sign)</span></code>&#8201;&#8212;&#8201;Creates report containing sign name of manager in a PDF file for the specific body.</p>
 </li>
 <li>
-<p><code>ReportGenerator#generateAll()</code>&#8201;&#8212;&#8201;Creates reports in a PDF file for all bodies registered in Mortago.</p>
+<p><code><span class="subheader">ReportGenerator#generateAll(sign)</span></code>&#8201;&#8212;&#8201;Creates reports containing sign name of manager in a PDF file for all bodies registered in Mortago.</p>
 </li>
 <li>
-<p><code>ReportGenerator#generateSummary()</code>&#8201;&#8212;&#8201;Creates a tabular summary report in a PDF file for all bodies registered in Mortago.</p>
+<p><code><span class="subheader">ReportGenerator#generateSummary(sign)</span></code>&#8201;&#8212;&#8201;Creates a tabular summary report containing sign name of manager  in a PDF file for all bodies registered in Mortago.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The following sequence diagram shows how the execute operation works:</p>
+<p>The following sequence diagram (Figure 4.4.1.a) shows how the generate operation works:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/GenReportSequenceDiagram.png" alt="GenReportSequenceDiagram">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 4.4.1.a. Sequence diagram when <code>genReport 1 John Doe</code> is executed by manager.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1146,21 +1153,49 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The lifeline for <code>GenReportCommandParser</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The lifeline for <code><span class="subheader">GenReportCommandParser</span></code> and <code><span class="subheader">ReportGenerator</span></code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>genReport &lt;BODY_ID&gt; /name NAME</code> command calls <code>ReportGenerator#execute()</code>, which creates the document.</p>
+<p>The <code>genReport &lt;BODY_ID&gt; (sign)</code> command calls <code><span class="subheader">ReportGenerator#generate(body, sign)</span></code>, which creates the document.</p>
 </div>
 <div class="paragraph">
-<p>The following activity diagram summarizes what happens when a user executes a <code>genReport &lt;BODY_ID&gt; /name NAME</code> command:</p>
+<p>The following activity diagram (Figure 4.4.1.b) summarizes what happens when manager executes a <code>genReport &lt;BODY_ID&gt; (sign)</code> command:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram">
 </div>
+</div>
+<div class="paragraph">
+<p>Figure 4.4.1.b. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</p>
+</div>
+<div class="paragraph">
+<p>The following code snippet from <code><span class="subheader">GenReportCommand.java</span></code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if (bodyToGenReport == null) {
+    throw new CommandException(MESSAGE_INVALID_ENTITY_DISPLAYED_INDEX);
+}
+boolean generated = reportGenerator.generate(bodyToGenReport, sign);
+if (!generated) {
+    throw new CommandException(MESSAGE_REPORT_NOT_GENERATED);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following class diagram (Figure 4.4.1.c) models the relationships and dependencies among classes in this feature:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/ReportGeneratorClassDiagram.png" alt="ReportGeneratorClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.4.1.c. Class diagram for generate PDF feature.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1170,7 +1205,7 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Creates a PDF file.</p>
+<p><strong>Alternative 1 (current choice):</strong> Create a PDF file.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1183,11 +1218,11 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Creates a Word Document file.</p>
+<p><strong>Alternative 2:</strong> Create a Word Document file.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Implementation allows user to edit the contents of the report.</p>
+<p>Pros: Implementation allows manager to edit the contents of the report.</p>
 </li>
 <li>
 <p>Cons: Implementation defeats the purpose of being automated.</p>
@@ -1197,17 +1232,56 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because this will prevent manager from making accidental changes to the report when report is formatted in PDF.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-what-library-to-utilise-for-generating-pdf-in-java"><a class="link" href="#aspect-what-library-to-utilise-for-generating-pdf-in-java">Aspect: What library to utilise for generating PDF in Java</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use iText to implement this feature.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is simple because using iText would allow an API-driven approach.</p>
+</li>
+<li>
+<p>Cons: Implementation is unable to use the latest version (iText 7) because it is not compatible, only version 5.5.13 is compatible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use Apache PDFBox to implement this feature.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy because PDFBox is widely used and help is more accessible.</p>
+</li>
+<li>
+<p>Cons: Implementation is limited because PDFBox can only create simple PDFs based on text files, supports few of the features iText does.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because this implementation does not require the enhancements provided by iText 7 but still requires more advanced library to create tables in a PDF document.</p>
+</div>
 </div>
 <div class="sect4">
 <h5 id="aspect-how-report-is-formatted"><a class="link" href="#aspect-how-report-is-formatted">Aspect: How report is formatted</a></h5>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Uses tables to organise related details in the report.</p>
+<p><strong>Alternative 1 (current choice):</strong> Use tables to organise related details in the report.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Implementation allows report to be organised, increases readability for user.</p>
+<p>Pros: Implementation allows report to be organised, increases readability for manager.</p>
 </li>
 <li>
 <p>Cons: Implementation is tedious.</p>
@@ -1216,19 +1290,22 @@ The lifeline for <code>GenReportCommandParser</code> should end at the destroy m
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Lists all attributes in the report without any formatting.</p>
+<p><strong>Alternative 2:</strong> List all attributes in the report without any formatting.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Implementation is easy.</p>
 </li>
 <li>
-<p>Cons: Implementation decreases readability for user.</p>
+<p>Cons: Implementation decreases readability for manager.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because manager will be able to save time and reduce work-related stress when manager is able to view an organised report.</p>
 </div>
 </div>
 </div>
@@ -1829,9 +1906,6 @@ The following sequence diagram shows hows <code>LineChartPanel</code> interacts 
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2221,9 +2295,6 @@ The following sequence diagram shows hows <code>LineChartPanel</code> interacts 
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2241,9 +2312,6 @@ The following sequence diagram shows hows <code>LineChartPanel</code> interacts 
 <p>A mortuary manager with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.</p>
 </li>
 </ol>
-</div>
-<div class="paragraph">
-<p><em>{More to be added}</em></p>
 </div>
 </div>
 </div>
@@ -2369,16 +2437,14 @@ Expected: The most recent window size and location is retained.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
-</div>
 </div>
 <div class="sect2">
 <h3 id="deleting-a-body"><a class="link" href="#deleting-a-body">G.2. Deleting a Body</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Deleting a body while all bodies are listed</p>
+<p>Deleting a body while all bodies are listed
+_</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -2393,7 +2459,7 @@ Expected: Body with body ID number 1 is deleted from the list. Details of the de
 Expected: No body is deleted. Error details shown in the status message. Status bar remains the same.</p>
 </li>
 <li>
-<p>Other incorrect delete commands to try: <code>delete -b</code>, <code>delete -b x</code> (where x is larger than the list size) <em>{give more}</em><br>
+<p>Other incorrect delete commands to try: <code>delete -b</code>, <code>delete -b x</code> (where x is larger than the list size)<br>
 Expected: Similar to previous.</p>
 </li>
 </ol>
@@ -2401,12 +2467,42 @@ Expected: Similar to previous.</p>
 </li>
 </ol>
 </div>
-<div class="paragraph">
-<p><em>{ more test cases &#8230;&#8203; }</em></p>
+</div>
+<div class="sect2">
+<h3 id="generating-a-report"><a class="link" href="#generating-a-report">G.3. Generating a Report</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generating a report for a specific body while all bodies are listed</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all bodies using the <code>list -b</code> command. At least one body in the list. Ensure all existing PDF reports are closed.</p>
+</li>
+<li>
+<p>Test case: <code>genReport 1 John Doe</code><br>
+Expected: Generate report success message shown in the status message. Report for body ID number 1 is generated in the folder containing the jar file. Details of the body shown in the report. Signature of John Doe shown in the report.</p>
+</li>
+<li>
+<p>Test case: <code>genReport 1</code><br>
+Expected: Generate report success message shown in the status message. Report for body ID number 1 is generated in the folder containing the jar file. Details of the body shown in the report. No signature shown in the report.</p>
+</li>
+<li>
+<p>Test case: <code>genReport 0</code><br>
+Expected: No report is generated. Error details shown in the status message. Status bar remains the same.</p>
+</li>
+<li>
+<p>Other incorrect generate report commands to try: <code>genReport</code>, <code>genReport x</code> (where x is larger than the list size)<br>
+Expected: Similar to previous.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">G.3. Saving Data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">G.4. Saving Data</a></h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2426,4 +2522,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 08:10:29 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 08:13:21 UTC</div></div></div></bodyId></html>

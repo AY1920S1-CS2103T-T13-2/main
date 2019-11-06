@@ -1,0 +1,494 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Bernice Chio Hui Yin - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><bodyId class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Mortago</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-T13-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Bernice Chio Hui Yin - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-mortago"><a class="link" href="#project-mortago">PROJECT: MORTAGO</a></h2>
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="1-introduction"><a class="link" href="#1-introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document serves to note down my contributions to Mortago, our team’s product for our Software Engineering project.</p>
+</div>
+<div class="paragraph">
+<p>Our team consists of five Year 2 Computer Science undergraduates including myself taking CS2103T Software Engineering module. We were tasked with enhancing a basic Command Line Interface (CLI) desktop address book application for our three-month project. We chose to morph it into a mortuary management system called Mortago.</p>
+</div>
+<div class="paragraph">
+<p>Mortago is a desktop application used for managing mortuaries efficiently. It is primarily used for keeping records of entries into the mortuary.</p>
+</div>
+<div class="paragraph">
+<p>Mortago provides a <strong>convenient dashboard</strong> for the mortuary manager to keep track of all bodies and fridges, outstanding
+tasks, and notifications. It replaces and improves upon the traditional whiteboard system. Mortago allows the mortuary
+management to be more accurate in managing tasks, calculating the availability of space, viewing archives and generating PDF reports automatically.</p>
+</div>
+<div class="paragraph">
+<p>The user keys in commands using a CLI, and views the command results on a Graphical User Interface (GUI) created with JavaFX. Mortago was built upon a given base code provided by the SE-EDU team. It is written in Java, and has about 20kLoC.</p>
+</div>
+<div class="paragraph">
+<p>My role was to design and write the codes for the generate PDF reports feature. The following sections illustrate these enhancements in more detail, as well as the relevant documentation I have added to the user and developer guides in relation to these enhancements.</p>
+</div>
+<div class="paragraph">
+<p>Note the following symbols and formatting used in this document:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>genReports</code>:  A grey highlight (also known as a mark-up) indicates that this is a command that can be inputted into the command line and executed by the application.</p>
+</li>
+<li>
+<p><code><span class="subheader">GenReportCommand.java</span></code>: Maroon text with grey highlight indicates a component, class or object in the architecture of the application.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2-summary-of-contributions"><a class="link" href="#2-summary-of-contributions">2. Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section provides the overall view of my contributions to Mortago. All my pull requests (PRs) can be found <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pulls?q=is%3Apr+assignee%3Abernicechio+is%3Aclosed">here</a>.</p>
+</div>
+<div class="paragraph">
+<p><strong>2.1. Major Enhancements</strong></p>
+</div>
+<div class="paragraph">
+<p>I have contributed 3 supportive enhancements for Mortago’s main feature Generate PDF. Generate PDF automatically generates reports with the specified command.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>2.1.1. Major enhancement 1:</strong> added the ability to create a PDF document which contains reports for all bodies in the mortuary</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does:</strong> This enhancement allows the manager to automatically generate all full reports for all bodies in a PDF document.</p>
+</li>
+<li>
+<p><strong>Justification:</strong> This enhancement provides convenience for the manager to generate reports for all bodies using a single command.</p>
+</li>
+<li>
+<p><strong>Highlights:</strong> This enhancement standardises the format of every report in the document for consistency and prints timestamp when the report is generated. The manager&#8217;s signature can also be added to every report automatically. The implementation required a good understanding of the iText Library.</p>
+</li>
+<li>
+<p><strong>Credits:</strong> The <a href="https://github.com/itext/itext7">iText Library</a> is heavily used in this feature to facilitate generating a PDF file in Java.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>2.1.2. Major enhancement 2:</strong> added the ability to create a PDF document which serves as the report for a specific body</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does:</strong> This enhancement allows the manager to automatically generate a single full report containing details of a specific body in a PDF document.</p>
+</li>
+<li>
+<p><strong>Justification:</strong> In the event that the details of a specific body has been updated, this enhancement provides flexibility for the manager to generate an updated report for the specific body.</p>
+</li>
+<li>
+<p><strong>Highlights:</strong> This enhancement utilises tables to organise the details of the specific body to improve readability for a comprehensive report and prints timestamp when the report is generated. The implementation required a good understanding of the iText Library.</p>
+</li>
+<li>
+<p><strong>Credits:</strong> The <a href="https://github.com/itext/itext7">iText Library</a> is heavily used in this feature to facilitate generating a PDF file in Java.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>2.1.3. Major enhancement 3:</strong> added the ability to create a PDF document which contains a tabular view for all bodies in the mortuary</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>What it does:</strong> This enhancement allows the manager to have a brief overview of all the bodies in a PDF document.</p>
+</li>
+<li>
+<p><strong>Justification:</strong> This enhancement highlights key information of each body to the manager so that the manager need not go through every full body report.</p>
+</li>
+<li>
+<p><strong>Highlights:</strong> This enhancement organises the crucial information for every body in a table and includes statistics such as the total number of bodies in the mortuary. The implementation required a good understanding of the iText Library.</p>
+</li>
+<li>
+<p><strong>Credits:</strong> The <a href="https://github.com/itext/itext7">iText Library</a> is heavily used in this feature to facilitate generating a PDF file in Java.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>2.2. Minor enhancement</strong>: morphed <code>list</code> command to allow the manager to list all bodies, workers and fridges in the application.</p>
+</div>
+<div class="paragraph">
+<p><strong>2.3. Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;groupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=bernicechio&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">via RepoSense</a>]</p>
+</div>
+<div class="paragraph">
+<p><strong>2.4. Other contributions</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management: Remove non-existing developers photos from <code>docs/images</code> folder (Pull request <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/130">#130</a>)</p>
+</li>
+<li>
+<p>Documentation</p>
+<div class="ulist">
+<ul>
+<li>
+<p>updated Section 3.3 Document Generation in the User Guide (Pull request <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/219">#219</a>)</p>
+</li>
+<li>
+<p>made cosmetic tweaks to existing contents of the Developer Guide (Commits: <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/commit/02abc4c16450c0f627eb0401e210a4e82e883dc6">1</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/commit/8a189ab2262d3e28a64f05fbc4f7f09fca6f6bca">2</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/commit/c22ec137fdfa00f9530a22d4b319910c0158e338">3</a>)</p>
+</li>
+<li>
+<p>updated existing diagrams and color scheme for diagrams of the Developer Guide (Pull request <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/137">#137</a>)</p>
+</li>
+<li>
+<p>updated Section 4.4 Generate PDF feature in the Developer Guide (Pull request )</p>
+</li>
+<li>
+<p>updated Appendix B User Stories in the Developer Guide (Commit <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/commit/96c7bdd079d527cfa6e1fbdec7cfe630bafe84c4">1</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community</p>
+<div class="ulist">
+<ul>
+<li>
+<p>reviewed PRs: <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/9">#9</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/31">#31</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/47">#47</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/63">#63</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/102">#102</a></p>
+</li>
+<li>
+<p>contributed to forum discussions (Issue: <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/89">#89</a>)</p>
+</li>
+<li>
+<p>reported bugs and suggestions for other teams (Examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools: Integrated a third party library (iText) to the project (Pull request <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/77/files">#77</a>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>{start of extract}</em></p>
+</div>
+<div class="sect2">
+<h3 id="document-generation"><a class="link" href="#document-generation">Document Generation</a></h3>
+<div class="paragraph">
+<p>This section showcases three commands you can use to generate different kinds of reports.</p>
+</div>
+<div class="sect3">
+<h4 id="generate-report-for-a-specific-body-code-genreport-code"><a class="link" href="#generate-report-for-a-specific-body-code-genreport-code">Generate report for a specific body: <code>genReport</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to generate an individual report in a PDF filename <code><span class="subheader">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/reportlocation.png" alt="reportlocation" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p>You can also add your signature name to the report by following the command format below.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>genReport bodyId (yourSignatureName)</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>genReport 123 John Doe</code><br>
+Outputs the report PDF for body ID B00000123 in the folder containing the jar file. The report contains signature of John Doe.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-reports-for-all-bodies-code-genreports-code"><a class="link" href="#generate-reports-for-all-bodies-code-genreports-code">Generate reports for all bodies: <code>genReports</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to generate all individual reports in a PDF filename <code><span class="subheader">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file.</p>
+</div>
+<div class="paragraph">
+<p>You can also add your signature name to the report by following the command format below.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>genReports (yourSignatureName)</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>genReports John Doe</code><br>
+Outputs the PDF containing reports for all bodies in the folder containing the jar file. The report contains signature of John Doe.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-summary-report-for-all-bodies-code-genreportsummary-code"><a class="link" href="#generate-summary-report-for-all-bodies-code-genreportsummary-code">Generate summary report for all bodies: <code>genReportSummary</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to generate a tabular report overview containing key information for all bodies in a PDF filename <code><span class="subheader">Report Summary.pdf</span></code> located in the folder containing the jar file.</p>
+</div>
+<div class="paragraph">
+<p>You can also add your signature name to the report by following the command format below.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>genReportSummary (yourSignatureName)</code></p>
+</div>
+<div class="paragraph">
+<p><em>{end of extract}</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><em>{start of extract}</em></p>
+</div>
+<div class="sect2">
+<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">Generate PDF Feature</a></h3>
+<div class="paragraph">
+<p>This feature allows manager to automatically generate different kinds of reports with three commands: <code>genReport</code>, <code>genReports</code> and <code>genReportSummary</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>The generate PDF feature is facilitated by <code><span class="subheader">ReportGenerator</span></code> class.
+It extends Mortago with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
+Additionally, it implements the following operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code><span class="subheader">ReportGenerator#generate(body, sign)</span></code>&#8201;&#8212;&#8201;Creates report containing sign name of manager in a PDF file for the specific body.</p>
+</li>
+<li>
+<p><code><span class="subheader">ReportGenerator#generateAll(sign)</span></code>&#8201;&#8212;&#8201;Creates reports containing sign name of manager in a PDF file for all bodies registered in Mortago.</p>
+</li>
+<li>
+<p><code><span class="subheader">ReportGenerator#generateSummary(sign)</span></code>&#8201;&#8212;&#8201;Creates a tabular summary report containing sign name of manager  in a PDF file for all bodies registered in Mortago.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following sequence diagram (Figure 4.4.1.a) shows how the generate operation works:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/GenReportSequenceDiagram.png" alt="GenReportSequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.4.1.a. Sequence diagram when <code>genReport 1 John Doe</code> is executed by manager.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The lifeline for <code><span class="subheader">GenReportCommandParser</span></code> and <code><span class="subheader">ReportGenerator</span></code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>genReport &lt;BODY_ID&gt; (sign)</code> command calls <code><span class="subheader">ReportGenerator#generate(body, sign)</span></code>, which creates the document.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram (Figure 4.4.1.b) summarizes what happens when manager executes a <code>genReport &lt;BODY_ID&gt; (sign)</code> command:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.4.1.b. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</p>
+</div>
+<div class="paragraph">
+<p>The following code snippet from <code><span class="subheader">GenReportCommand.java</span></code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>if (bodyToGenReport == null) {
+    throw new CommandException(MESSAGE_INVALID_ENTITY_DISPLAYED_INDEX);
+}
+boolean generated = reportGenerator.generate(bodyToGenReport, sign);
+if (!generated) {
+    throw new CommandException(MESSAGE_REPORT_NOT_GENERATED);
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following class diagram (Figure 4.4.1.c) models the relationships and dependencies among classes in this feature:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/ReportGeneratorClassDiagram.png" alt="ReportGeneratorClassDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>Figure 4.4.1.c. Class diagram for generate PDF feature.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-generate-report-executes"><a class="link" href="#aspect-how-generate-report-executes">Aspect: How generate report executes</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Create a PDF file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy.</p>
+</li>
+<li>
+<p>Cons: Implementation must ensure that each individual body attribute is correct.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Create a Word Document file.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation allows manager to edit the contents of the report.</p>
+</li>
+<li>
+<p>Cons: Implementation defeats the purpose of being automated.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because this will prevent manager from making accidental changes to the report when report is formatted in PDF.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-what-library-to-utilise-for-generating-pdf-in-java"><a class="link" href="#aspect-what-library-to-utilise-for-generating-pdf-in-java">Aspect: What library to utilise for generating PDF in Java</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use iText to implement this feature.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is simple because using iText would allow an API-driven approach.</p>
+</li>
+<li>
+<p>Cons: Implementation is unable to use the latest version (iText 7) because it is not compatible, only version 5.5.13 is compatible.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Use Apache PDFBox to implement this feature.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy because PDFBox is widely used and help is more accessible.</p>
+</li>
+<li>
+<p>Cons: Implementation is limited because PDFBox can only create simple PDFs based on text files, supports few of the features iText does.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because this implementation does not require the enhancements provided by iText 7 but still requires more advanced library to create tables in a PDF document.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-report-is-formatted"><a class="link" href="#aspect-how-report-is-formatted">Aspect: How report is formatted</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Use tables to organise related details in the report.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation allows report to be organised, increases readability for manager.</p>
+</li>
+<li>
+<p>Cons: Implementation is tedious.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> List all attributes in the report without any formatting.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy.</p>
+</li>
+<li>
+<p>Cons: Implementation decreases readability for manager.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because manager will be able to save time and reduce work-related stress when manager is able to view an organised report.</p>
+</div>
+<div class="paragraph">
+<p><em>{end of extract}</em></p>
+</div>
+<hr>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 08:13:21 UTC</div></div></div></bodyId></html>
