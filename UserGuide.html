@@ -32,11 +32,11 @@
 <li><a href="#general">3.2. General</a>
 <ul class="sectlevel3">
 <li><a href="#view-notifs-panel-code-shownotifs-code">3.2.1. View notifs panel: <code>showNotifs</code></a></li>
-<li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.2. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
-<li><a href="#filter-all-entries-code-filter-code">3.2.3. Filter all entries: <code>filter</code></a></li>
-<li><a href="#undoing-a-command-code-undo-code">3.2.4. Undoing a command: <code>undo</code></a></li>
-<li><a href="#redoing-a-command-code-redo-code">3.2.5. Redoing a command: <code>redo</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.2.6. Exiting the program : <code>exit</code></a></li>
+<li><a href="#filter-all-entries-code-filter-code">3.2.2. Filter all entries: <code>filter</code></a></li>
+<li><a href="#undoing-a-command-code-undo-code">3.2.3. Undoing a command: <code>undo</code></a></li>
+<li><a href="#redoing-a-command-code-redo-code">3.2.4. Redoing a command: <code>redo</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.2.5. Exiting the program : <code>exit</code></a></li>
+<li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.6. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#document-generation">3.3. Document Generation</a>
@@ -57,7 +57,7 @@
 </li>
 <li><a href="#help">3.5. Help</a>
 <ul class="sectlevel3">
-<li><a href="#view-all-commands-code-help-code-code-coming-in-v2-0-code">3.5.1. View all commands: <code>help</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#view-all-commands-code-help-code">3.5.1. View all commands: <code>help</code></a></li>
 <li><a href="#view-help-hotlines-code-hotlines-code-code-coming-in-v2-0-code">3.5.2. View help hotlines: <code>hotlines</code> <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
@@ -851,7 +851,137 @@ If you change the <code>bodyStatus</code> to <code>ARRIVED</code>, the associate
 </div>
 </div>
 <div class="sect3">
-<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.2. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">3.2.2. Filter all entries: <code>filter</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
+</div>
+<div class="paragraph">
+<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
+</div>
+<div class="paragraph">
+<p>Example:
+* <code>filter -w /sex female</code><br>
+All female worker entries will be displayed.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter -b /cod Car Accident /sex male</code><br>
+All body entries with car accident as the cause of death and those that are male will be displayed.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">3.2.3. Undoing a command: <code>undo</code></a></h4>
+<div class="paragraph">
+<p>This command undoes the effects of the last command you executed. You can undo up to 10 of your most recent commands.
+The commands are undone starting from the most recent to the least recent.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>undo</code> or <code>u</code></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Only commands that change Mortago&#8217;s data can be undone. The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
+Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
+</div>
+<div class="paragraph">
+<p>You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.</p>
+</div>
+<div class="paragraph">
+<p>Automated commands like changes caused by a <code>Notif</code> can be undone and redone. For example, the automatic
+status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
+</div>
+<div class="paragraph">
+<p>To undo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type <code>undo</code> or <code>u</code> into the command box.</p>
+</li>
+<li>
+<p>Press <code>Enter</code> to execute the command.</p>
+</li>
+<li>
+<p>Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now back in the list of bodies.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">3.2.4. Redoing a command: <code>redo</code></a></h4>
+<div class="paragraph">
+<p>This command redoes the effects of the last command you undid.
+You can redo up to 10 of your most recent undone commands.
+All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Section 3.2.3, &#8220;Undoing a command: <code>undo</code>&#8221;</a> for how <code>undo</code> can be used.)</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>redo</code> or <code>r</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A command can only be redone if it has been undone before.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting John Doe. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
+</div>
+<div class="paragraph">
+<p>Instead of manually deleting John Doe again, simply <code>redo</code> the command.</p>
+</div>
+<div class="paragraph">
+<p>To redo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type <code>redo</code> or <code>r</code> into the command box.</p>
+</li>
+<li>
+<p>Press <code>Enter</code> to execute the command.</p>
+</li>
+<li>
+<p>Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent from the list of bodies.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.2.5. Exiting the program : <code>exit</code></a></h4>
+<div class="paragraph">
+<p>Exits the program.<br>
+Format: <code>exit</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.6. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Sort all displayed entries according to a given order. Only body and worker entries can be sorted.
 Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
@@ -904,136 +1034,6 @@ All entries will be sorted and grouped according to their statuses.</p>
 All entries will be sorted according to their id number in ascending order.</p>
 </li>
 </ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">3.2.3. Filter all entries: <code>filter</code></a></h4>
-<div class="paragraph">
-<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
-</div>
-<div class="paragraph">
-<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
-</div>
-<div class="paragraph">
-<p>Example:
-* <code>filter -w /sex female</code><br>
-All female worker entries will be displayed.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>filter -b /cod Car Accident /sex male</code><br>
-All body entries with car accident as the cause of death and those that are male will be displayed.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">3.2.4. Undoing a command: <code>undo</code></a></h4>
-<div class="paragraph">
-<p>This command undoes the effects of the last command you executed. You can undo up to 10 of your most recent commands.
-The commands are undone starting from the most recent to the least recent.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>undo</code> or <code>u</code></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Only commands that change Mortago&#8217;s data can be undone. The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
-Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
-</div>
-<div class="paragraph">
-<p>You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.</p>
-</div>
-<div class="paragraph">
-<p>Automated commands like changes caused by a <code>Notif</code> can be undone and redone. For example, the automatic
-status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Example:<br>
-Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
-</div>
-<div class="paragraph">
-<p>To undo:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Type <code>undo</code> or <code>u</code> into the command box.</p>
-</li>
-<li>
-<p>Press <code>Enter</code> to execute the command.</p>
-</li>
-<li>
-<p>Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now back in the list of bodies.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">3.2.5. Redoing a command: <code>redo</code></a></h4>
-<div class="paragraph">
-<p>This command redoes the effects of the last command you undid.
-You can redo up to 10 of your most recent undone commands.
-All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Section 3.2.4, &#8220;Undoing a command: <code>undo</code>&#8221;</a> for how <code>undo</code> can be used.)</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>redo</code> or <code>r</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A command can only be redone if it has been undone before.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Example:<br>
-Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting John Doe. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
-</div>
-<div class="paragraph">
-<p>Instead of manually deleting John Doe again, simply <code>redo</code> the command.</p>
-</div>
-<div class="paragraph">
-<p>To redo:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Type <code>redo</code> or <code>r</code> into the command box.</p>
-</li>
-<li>
-<p>Press <code>Enter</code> to execute the command.</p>
-</li>
-<li>
-<p>Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent from the list of bodies.</p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.2.6. Exiting the program : <code>exit</code></a></h4>
-<div class="paragraph">
-<p>Exits the program.<br>
-Format: <code>exit</code></p>
 </div>
 </div>
 </div>
@@ -1248,27 +1248,16 @@ Assigns worker with worker ID W00001 to body with ID B00000002 with a task descr
 <div class="sect2">
 <h3 id="help"><a class="link" href="#help">3.5. Help</a></h3>
 <div class="sect3">
-<h4 id="view-all-commands-code-help-code-code-coming-in-v2-0-code"><a class="link" href="#view-all-commands-code-help-code-code-coming-in-v2-0-code">3.5.1. View all commands: <code>help</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="view-all-commands-code-help-code"><a class="link" href="#view-all-commands-code-help-code">3.5.1. View all commands: <code>help</code></a></h4>
 <div class="paragraph">
 <p>View a summary of all available commands and their flags. Use the <code>-v</code> flag to view the detailed description of all commands and their flags.</p>
 </div>
 <div class="paragraph">
-<p>Format: <code>help -FLAG</code></p>
+<p>Format: <code>help</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>help -v</code><br>
+<p>Example: <code>help</code><br>
 Shows a link to the User Guide.</p>
-</div>
-<div class="paragraph">
-<p>3.5.b. Get information about a command: <code>help command</code>
-View the detailed description of the specified command and its flags, if any.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>help command</code></p>
-</div>
-<div class="paragraph">
-<p>Example: <code>help undo</code><br>
-Shows undo command description.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1488,18 +1477,15 @@ Format: <code>assign /bodyId bodyId /workerId workerId /task taskDescription</co
 </div>
 </li>
 <li>
-<p><strong>Help summary</strong>: <code>help</code> <code>[coming in v2.0]</code></p>
+<p><strong>Help summary</strong>: <code>help</code></p>
 <div class="ulist">
 <ul>
 <li>
 <p>Get information about the commands
-Format: <code>help -FLAG</code> <code>[coming in v2.0]</code></p>
+Format: <code>help</code></p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Help for specific command</strong> : <code>help command</code> <code>[coming in v2.0]</code></p>
 </li>
 <li>
 <p><strong>Help hotlines</strong> : <code>hotlines</code> <code>[coming in v2.0]</code></p>
@@ -1589,4 +1575,4 @@ Format: <code>help -FLAG</code> <code>[coming in v2.0]</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 08:39:20 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 08:50:57 UTC</div></div></div></bodyId></html>
