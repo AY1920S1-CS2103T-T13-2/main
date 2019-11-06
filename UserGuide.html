@@ -556,15 +556,7 @@ Default status: <code>UNOCCUPIED</code>
 <div class="paragraph">
 <p>Format: <code>update -FLAG /id id [/attributeName attributeValue &#8230;&#8203;]</code></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<div class="paragraph">
 <p>When you update the <code>fridgeId</code> of a <code>Body</code>, changes to the fridges will be made as follows:</p>
 </div>
 <div class="ulist">
@@ -582,10 +574,7 @@ Default status: <code>UNOCCUPIED</code>
 </div>
 <div class="paragraph">
 <p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>Notif</code> pop-up will be shown after 10 seconds.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="paragraph">
 <p>There are some attributes that you can update once the entity is created. For this command,
 the list of valid attributes and their command prefixes can be found below:</p>
@@ -679,16 +668,8 @@ and her new designation. You see that her ID number is W00001.</p>
 <div class="paragraph">
 <p>Format: <code>find (flag) (keyword)&#8230;&#8203;</code></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
+<div class="ulist TIP">
+<ul class="TIP">
 <li>
 <p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
 </li>
@@ -705,10 +686,7 @@ and her new designation. You see that her ID number is W00001.</p>
 <p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="paragraph">
 <p>Format: <code>find -FLAG [keyword&#8230;&#8203;]</code></p>
 </div>
@@ -736,20 +714,18 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
+<div class="admonitionblock tip">
+<table>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>When you delete a body, its associated notifications will also be deleted. If a fridge is occupied by a body, you cannot delete it.</p>
-</div></div></td>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When you delete a body, its associated notifications will also be deleted. If a fridge is occupied by a body, you cannot delete it.
+</td>
 </tr>
-</tbody>
 </table>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -884,15 +860,7 @@ The commands are undone starting from the most recent to the least recent.</p>
 <div class="paragraph">
 <p>Format: <code>undo</code> or <code>u</code></p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<div class="paragraph">
 <p>Only commands that change Mortago&#8217;s data can be undone. The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
 Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
@@ -902,10 +870,7 @@ Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 <div class="paragraph">
 <p>Automated commands like changes caused by a <code>Notif</code> can be undone and redone. For example, the automatic
 status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="paragraph">
 <p>Example:<br>
 Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
@@ -1041,6 +1006,18 @@ All entries will be sorted according to their id number in ascending order.</p>
 <h3 id="document-generation"><a class="link" href="#document-generation">3.3. Document Generation</a></h3>
 <div class="paragraph">
 <p>This section showcases three commands you can use to generate different kinds of reports.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You must ensure that all existing reports are closed before executing any report generation commands to allow updating the same PDF document.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect3">
 <h4 id="generate-report-for-a-specific-body-code-genreport-code"><a class="link" href="#generate-report-for-a-specific-body-code-genreport-code">3.3.1. Generate report for a specific body: <code>genReport</code></a></h4>
@@ -1575,4 +1552,4 @@ Format: <code>help</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 08:56:51 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 11:48:07 UTC</div></div></div></bodyId></html>
