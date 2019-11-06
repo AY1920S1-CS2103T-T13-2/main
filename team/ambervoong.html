@@ -1,0 +1,711 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Voong Yu Xuan - Project Portfolio</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><bodyId class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Mortago</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-T13-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Voong Yu Xuan - Project Portfolio</h1></div><div id="content"><div class="sect1">
+<h2 id="project-mortago"><a class="link" href="#project-mortago">PROJECT: Mortago</a></h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="overview"><a class="link" href="#overview">Overview</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This project portfolio showcases the contributions I have made to the software project, Mortago.</p>
+</div>
+<div class="paragraph">
+<p>Purpose
+Team
+As a team of 5 software engineering students
+Project</p>
+</div>
+<div class="paragraph">
+<p>Description of what it can do,</p>
+</div>
+<div class="paragraph">
+<p>Mortago is a mortuary management application for Singaporean mortuaries.
+It was our brainchild for the software engineering project in CS2103T.</p>
+</div>
+<div class="paragraph">
+<p>The project requires that we use base code from AddressBook Level 3 (AB3).
+The user interacts with Mortago using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about [10 kLoC].</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of contributions</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo commands</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: allows the user to undo all previous commands one at a time.
+Previously undone commands can be reversed by using the redo command.</p>
+</li>
+<li>
+<p>Justification: This feature improves the product significantly because a user can
+make mistakes and needs a convenient way of undoing them. Undo and redo are utility functions that many users have come to expect.</p>
+</li>
+<li>
+<p>Highlights: This feature affects existing commands and has to support future commands.
+It required a careful analysis of design choices. Among the different alternatives, the chosen design is more difficult to implement but provides much better scalability.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Undo/redo implemented through saving state was given as an example of a feature deserving an 'A' grade in the module.</p>
+</li>
+<li>
+<p>The current implementation requires an individual command to have undo/redo functionality, which is more challenging to implement than the example given by the module.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: morphed the <code>edit</code> command in AB3 to an <code>update</code> command.</p>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: added the <code>Body</code> class, a foundational class in Mortago.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Code contributed:</strong> [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=falsegroupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=ambervoong&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">via Reposense</a>]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Project management:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maintained the issue tracker on GitHub</p>
+</li>
+<li>
+<p>Managed release <code>v1.2</code> on GitHub. <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/88">#88</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Enhancements to existing features: [to add more]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote additional tests for existing features to increase coverage from []% to []% (Pull requests <a href="https://github.com">#00</a>, <a href="https://github.com">#00</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Wrote the UG and DG for the <code>undo</code> and <code>update</code> features.</p>
+</li>
+<li>
+<p>Updated all parts of the User Guide that are not feature-specific. <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/22">#22</a></p>
+</li>
+<li>
+<p>Added tags to the User Guide for all features. <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/70">#70</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#00</a></p>
+</li>
+<li>
+<p>Contributed to forum discussions (examples:  <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/88">88</a>, <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/135">135</a>)</p>
+</li>
+<li>
+<p>Reported bugs and suggestions for other teams in the class (examples: <a href="https://github.com/AY1920S1-CS2103T-T11-3/main/pull/114">114 (AddMin+)</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Tools:</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the User Guide. They showcase my ability to write documentation targeting end-users.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
+<div class="paragraph">
+<p>This command undoes the effects of the last command you executed. You can undo up to 10 of your most recent commands.
+The commands are undone starting from the most recent to the least recent.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>undo</code> or <code>u</code></p>
+</div>
+<div class="paragraph">
+<p>Only commands that change Mortago&#8217;s data can be undone. The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
+Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
+</div>
+<div class="paragraph">
+<p>You can <code>undo</code> a <code>clear</code> command, but note that you cannot redo any past undone commands after that.</p>
+</div>
+<div class="paragraph">
+<p>Automated commands like changes caused by a <code>Notif</code> can be undone and redone. For example, the automatic
+status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone.</p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
+</div>
+<div class="paragraph">
+<p>To undo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type <code>undo</code> or <code>u</code> into the command box.</p>
+</li>
+<li>
+<p>Press <code>Enter</code> to execute the command.</p>
+</li>
+<li>
+<p>Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now back in the list of bodies.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">Redoing a command: <code>redo</code></a></h4>
+<div class="paragraph">
+<p>This command redoes the effects of the last command you undid.
+You can redo up to 10 of your most recent undone commands.
+All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a> for how <code>undo</code> can be used.)</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>redo</code> or <code>r</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A command can only be redone if it has been undone before.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting John Doe. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
+</div>
+<div class="paragraph">
+<p>Instead of manually deleting John Doe again, simply <code>redo</code> the command.</p>
+</div>
+<div class="paragraph">
+<p>To redo:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Type <code>redo</code> or <code>r</code> into the command box.</p>
+</li>
+<li>
+<p>Press <code>Enter</code> to execute the command.</p>
+</li>
+<li>
+<p>Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent from the list of bodies.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="update"><a class="link" href="#update">Updating an entity: <code>update</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to update the attributes of a body or worker.</p>
+</div>
+<div class="paragraph">
+<p>You have to indicate the entity type you want to update with a flag, as described in <a href="#Features">[Features]</a>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>-f</code> is not a valid flag for this command. Fridges are automatically updated when bodies are assigned or removed.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can specify one or more attributes to change, but at least one valid attribute must be provided.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>update -FLAG /id id [/attributeName attributeValue &#8230;&#8203;]</code></p>
+</div>
+<div class="paragraph">
+<p>When you update the <code>fridgeId</code> of a <code>Body</code>, changes to the fridges will be made as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Previous fridge&#8217;s status is set to <code>UNOCCUPIED</code> and is no longer assigned this <code>Body</code>.</p>
+</li>
+<li>
+<p>New fridge&#8217;s status is set to <code>OCCUPIED</code> and is assigned this <code>Body</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>When you update the status of a <code>Body</code> to <code>CONTACT_POLICE</code>, the <code>Notif</code> associated with the <code>Body</code> will be automatically deleted.</p>
+</div>
+<div class="paragraph">
+<p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>Notif</code> pop-up will be shown after 10 seconds.</p>
+</div>
+<div class="paragraph">
+<p>There are some attributes that you can update once the entity is created. For this command,
+the list of valid attributes and their command prefixes can be found below:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Attribute</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Body</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Name <code>/name</code><br>
+Sex <code>/sex</code><br>
+NRIC <code>/nric</code><br>
+Date of Birth <code>/dob</code><br>
+Date of Death <code>/dod</code><br>
+Date of Admission <code>/doa</code><br>
+Status <code>/status</code><br>
+Religion <code>/religion</code><br>
+Name of Next-of-Kin <code>/NOKname</code><br>
+Relationship <code>/relationship</code><br>
+Phone Number of Next-of-Kin <code>/NOKphone</code><br>
+Cause of Death <code>/cod</code><br>
+Details <code>/details</code><br>
+Organs For Donation <code>/organsForDonation</code><br>
+Fridge ID <code>/fridgeId</code><br></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Worker</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Phone Number <code>/phone</code><br>
+Sex <code>/sex</code><br>
+Date of Birth <code>/dob</code><br>
+Date Joined <code>/dateJoined</code><br>
+Designation <code>/designation</code><br>
+Employment Status <code>/status</code><br>
+Photo <code>/photo</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Make sure you key in dates in the format DD/MM/YYYY.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that someone (Jane Doe) just got promoted! You have to change her designation in Mortago.</p>
+</div>
+<div class="paragraph">
+<p>Instead of typing out all the irrelevant attributes a Worker has, you just have to input her ID number
+and her new designation. You see that her ID number is W00001.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expected Output</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update -w /id 1 /designation Senior Autopsy Technician</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Designation of Jane Doe changed to Senior Autopsy Technician.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>Given below are sections I contributed to the Developer Guide. They showcase my ability to write technical documentation and the technical depth of my contributions to the project.</em></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
+<div class="paragraph">
+<p>The undo/redo feature allows you to undo a command that you have made or redo a command you have undone.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
+<div class="paragraph">
+<p>You can find the core of undo/redo in the undo/redo history of <code>ModelManager</code>.
+The history stores <code>UndoableCommands</code>, and an <code>UndoCommand</code> or <code>RedoCommand</code> will <code>undo()</code> or <code>redo()</code> commands in the history.
+The design of <code>UndoableCommand</code> uses the Command pattern, a common design pattern often used in software engineering.
+It allows each individual command to be undone/redone at a high-level without needing the specific command type to be known.
+Classes related to undo/redo and their relationships are shown in Figure 11.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoClassDiagram.png" alt="UndoClassDiagram">
+</div>
+<div class="title">Figure 1. Class Diagram Showing Classes Used by Undo/Redo</div>
+</div>
+<div class="sect4">
+<h5 id="storing-executed-and-undone-commands"><a class="link" href="#storing-executed-and-undone-commands">Storing executed and undone commands</a></h5>
+<div class="paragraph">
+<p>To start off, you will find two instances of <code>CommandHistory</code> in <code>ModelManager</code>. They are  stored internally as <code>commandHistory</code> and <code>undoHistory</code>.
+<code>commandHistory</code> stores previously executed commands while <code>undoHistory</code> stores previously undone commands.
+<code>CommandHistory</code> wraps a <code>Deque&lt;UndoableCommand&gt;</code>. Its methods imposes a <code>MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
+</div>
+<div class="paragraph">
+<p>In <code>ModelManager</code>, four key operations to access and modify <code>CommandHistory</code> are implemented:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ModelManager#addExecutedCommand(UndoableCommand command)</code>&#8201;&#8212;&#8201;Adds a command that was executed to the start of <code>commandHistory</code>.</p>
+</li>
+<li>
+<p><code>ModelManager#getExecutedCommand()</code>&#8201;&#8212;&#8201;Removes the last command that was executed and added to <code>commandHistory</code> and returns it.</p>
+</li>
+<li>
+<p><code>ModelManager#addUndoneCommand(UndoableCommand command)</code>&#8201;&#8212;&#8201;Adds a command that was undone to the start of <code>undoHistory</code>.</p>
+</li>
+<li>
+<p><code>ModelManager#getUndoneCommand()</code>&#8201;&#8212;&#8201;Removes the last command that was undone and added to <code>undoHistory</code> and returns it.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the <code>Model</code> interface implemented by <code>ModelManager</code>, these four operations are respectively exposed as
+<code>Model#addExecutedCommand(UndoableCommand command)</code>, <code>Model#getExecutedCommand()</code>, <code>Model#addUndoneCommand(UndoableCommand command)</code>, and <code>Model#getUndoneCommand()</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="command-pattern"><a class="link" href="#command-pattern">Command pattern</a></h5>
+<div class="paragraph">
+<p>Next, the <code>UndoableCommand</code> stored in the <code>Model</code> is actually a normal <code>Command</code> that changes program state.
+The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.
+Commands that don&#8217;t change the user-visible program state, like <code>find</code>, can still inherit directly from <code>Command</code>.</p>
+</div>
+<div class="paragraph">
+<p>Here is where the Command pattern comes in. A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.</p>
+</div>
+<div class="paragraph">
+<p><code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="defensive-programming"><a class="link" href="#defensive-programming">Defensive programming</a></h5>
+<div class="paragraph">
+<p>When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of ModelManager` respectively.
+Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.
+To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
+Additionally, <code>UndoableCommand</code> contains a small inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to any value in the enumeration.
+The values are as shown below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    /**
+    * Enumerates through the possible states of an UndoableCommand.
+    */
+    public enum UndoableCommandState {
+        UNDOABLE, REDOABLE, PRE_EXECUTION
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Before a command is undone or redone, the command&#8217;s state is checked for validity. An example is shown below in the <code>redo()</code> method.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>    /**
+     * Re-executes an UndoableCommand if it had been previously undone.
+     */
+    public CommandResult redo(Model model) throws CommandException {
+        if (getCommandState() != UndoableCommandState.REDOABLE) {
+            return new CommandResult(MESSAGE_NOT_UNDONE_BEFORE);
+        }
+        return execute(model);
+    }</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As shown in the code snippet, when an <code>UndoableCommand</code> is redone, the method first checks that its state was set to <code>UNDOABLE</code>.
+These states are only changed when a <code>Command#execute(Model model)</code> or <code>UndoableCommand#undo(Model model)</code> has successfully executed.
+Therefore, it is unlikely that an <code>UndoableCommand</code> will be unwittingly undone or redone in error.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, undo/redo is initiated when user input creates an <code>UndoCommand</code> or <code>RedoCommand</code>. When either of them are executed, they respectively get the last
+executed or undone command from the <code>CommandHistory</code> in <code>ModelManager</code>. As the retrieved command is an instance of <code>UndoableCommand</code>, an attempt will be made to execute <code>UndoableCommand#undo(Model model)</code> or <code>UndoableComman#redo(Model model)</code>.
+If it is successful, undo/redo is succesful. Otherwise, an error message is shown.</p>
+</div>
+<div class="paragraph">
+<p>This is the mechanism of undo/redo, from start to end.
+Below is an example of a usage scenario to help you visualise how undo/redo works.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows how an undo command works to undo a <code>ClearCommand</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoClearSequenceDiagram.png" alt="UndoClearSequenceDiagram">
+</div>
+<div class="title">Figure 2. Sequence Diagram Showing a ClearCommand Being Undone</div>
+</div>
+<div class="paragraph">
+<p>If a <code>redo</code> command was executed afterwards, the <code>ClearCommand</code> would simply be executed again.</p>
+</div>
+<div class="paragraph">
+<p>The following activity diagram shows what happens when a user executes a new <code>UndoableCommand</code>. In this case, it is the <code>ClearCommand</code> being undone. The control flow is similar for other <code>UndoableCommands</code>; they only differ in the execution of <code>undo()</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/CommandProcessActivityDiagram.png" alt="CommandProcessActivityDiagram">
+</div>
+<div class="title">Figure 3. Activity Diagram Showing the Execution Control Flow of a Command</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design considerations</a></h4>
+<div class="paragraph">
+<p>When designing the undo/redo feature, scalability and speed were the key considerations.
+There was also an extra layer of difficulty as Mortago has automated commands that are both time-based and user-triggered.
+After the analysis described below, the Command pattern was thought to be the best solution.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-designing-the-mechanism"><a class="link" href="#aspect-designing-the-mechanism">Aspect: Designing the mechanism</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Individual command knows how to undo/redo by itself.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Better scalability. Will use less memory (e.g. for <code>add</code>, only the added entity needs to be saved).</p>
+</li>
+<li>
+<p>Faster for big programs.</p>
+</li>
+<li>
+<p>Elegant.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Must implement custom undo functions for each command.</p>
+</li>
+<li>
+<p>More difficult to implement and maintain.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Saves the whole program state.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easy to implement and maintain.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Likely to use a lot of memory.</p>
+</li>
+<li>
+<p>Slower for big programs.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-handling-automated-commands"><a class="link" href="#aspect-handling-automated-commands">Aspect: Handling automated commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p>** Alternative 1 : Allow automated commands to be undone</p>
+</li>
+<li>
+<p>** Alterative 2 : Do not undo the automated command</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-storing-executed-undone-commands"><a class="link" href="#aspect-storing-executed-undone-commands">Aspect: Storing executed/undone commands</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Store <code>UndoableCommand</code>(s) only.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Logic can be reused for both executed and undone commands.</p>
+</li>
+<li>
+<p>Easy to implement.</p>
+</li>
+<li>
+<p>Uses less space.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Loses some information about <code>Commands</code> that were previously executed.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Store all <code>Commands</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>No loss of information.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Harder to implement. Requires differentiating between commands that have been undone and executed commands.</p>
+</li>
+<li>
+<p>Needs extra space to store non-<code>UndoableCommand</code>(s) even though they are useless for undo/redo.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="project-isextreme"><a class="link" href="#project-isextreme">PROJECT: Isextreme</a></h2>
+<div class="sectionbody">
+<hr>
+<div class="paragraph">
+<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-06 15:36:34 UTC</div></div></div></bodyId></html>
