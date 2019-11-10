@@ -1564,7 +1564,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
 </div>
 <div class="paragraph">
-<p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order:</p>
+<p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order as described below:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1586,12 +1586,19 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <p>The above operations are invoked through a wrapper function <code>LineChartPanel#makeLineChart()</code> which is invoked when the user calls <code>LineChartPanel#getLineChart()</code>.</p>
 </div>
 <div class="paragraph">
-<p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected.
-The following sequence diagram shows hows <code>LineChartPanel</code> interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
+<p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
 </div>
 </div>
 </div>
@@ -1599,22 +1606,18 @@ The following sequence diagram shows hows <code>LineChartPanel</code> interacts 
 <h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-data-is-stored-and-updated"><a class="link" href="#aspect-how-data-is-stored-and-updated">Aspect: How data is stored and updated</a></h5>
+<div class="paragraph">
+<p>The line chart needs data to refer to. Below are two alternatives for how to access the data and update the line chart:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use a tree map to keep track of bodies and initialise the last 10 days.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Pros: Implementation is easy and ensures only the last 10 days is visible.</p>
-</li>
-<li>
-<p>Cons: Series is regenerated for the whole 10 days whenever there is a change. As can be seen from the activity diagram below, the series gets reintialised regardless of whether it will affect a change in the appearance of the line chart.</p>
+<p><strong>Alternative 1 (current choice):</strong> Data is not stored. Use a tree map to keep track of bodies and initialise the treemap depending on the given time frame.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
+<div class="paragraph">
+<p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1624,40 +1627,49 @@ The following sequence diagram shows hows <code>LineChartPanel</code> interacts 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 2:</strong> Store all data in a separate storage class.</p>
+<p>Pros: Implementation is easy.</p>
+</li>
+<li>
+<p>Cons: Series is regenerated whenever there is a change in time frame. As can be seen from the activity diagram below, the series gets reintialised regardless of whether it will affect a change in the appearance of the line chart.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Implementation allows user to see beyond 10 days.</p>
+<p><strong>Alternative 2:</strong> Store all data in a separate storage class.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Pros: No need to reinitialise the treemap everytime a <code>stats</code> command is called.</p>
 </li>
 <li>
 <p>Cons: Implementation requires a lot of storage which may not be tapped on most of the time.</p>
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
 </div>
 <div class="sect4">
-<h5 id="aspect-how-line-chart-appears-to-end-user"><a class="link" href="#aspect-how-line-chart-appears-to-end-user">Aspect: How line chart appears to end user</a></h5>
+<h5 id="aspect-the-time-frame-of-the-line-chart"><a class="link" href="#aspect-the-time-frame-of-the-line-chart">Aspect: The time frame of the line chart</a></h5>
+<div class="paragraph">
+<p>Currently the line chart supports four types of time frames as aforementioned. Below are two alternatives to which users are limited by the time frames:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Only the last 10 days is visible.</p>
+<p><strong>Alternative 1 (current choice):</strong> Users can toggle between four types of time frames.</p>
 <div class="ulist">
 <ul>
 <li>
 <p>Pros: Implementation is easy and simple.</p>
 </li>
 <li>
-<p>Cons: The statistics is limited in meaning if only the last 10 days is known.</p>
+<p>Cons: The statistics is limited in meaning if it cannot be compared between other time frames.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Users have the option to toggle between the last week, month, or year.</p>
+<p><strong>Alternative 2:</strong> Users can print a summary of statistics over a specified period.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -2547,4 +2559,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:27:38 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:25:54 UTC</div></div></div></bodyId></html>

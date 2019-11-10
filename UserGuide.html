@@ -32,11 +32,12 @@
 <li><a href="#general">3.2. General</a>
 <ul class="sectlevel3">
 <li><a href="#view-notifs-panel-code-shownotifs-code">3.2.1. View notifs panel: <code>showNotifs</code></a></li>
-<li><a href="#filter-all-entries-code-filter-code">3.2.2. Filter all entries: <code>filter</code></a></li>
-<li><a href="#undoing-a-command-code-undo-code">3.2.3. Undoing a command: <code>undo</code></a></li>
-<li><a href="#redoing-a-command-code-redo-code">3.2.4. Redoing a command: <code>redo</code></a></li>
-<li><a href="#exiting-the-program-code-exit-code">3.2.5. Exiting the program : <code>exit</code></a></li>
-<li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.6. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.2. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
+<li><a href="#filter-all-entries-code-filter-code">3.2.3. Filter all entries: <code>filter</code></a></li>
+<li><a href="#undoing-a-command-code-undo-code">3.2.4. Undoing a command: <code>undo</code></a></li>
+<li><a href="#redoing-a-command-code-redo-code">3.2.5. Redoing a command: <code>redo</code></a></li>
+<li><a href="#exiting-the-program-code-exit-code">3.2.6. Exiting the program : <code>exit</code></a></li>
+<li><a href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2">3.2.7. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></li>
 </ul>
 </li>
 <li><a href="#document-generation">3.3. Document Generation</a>
@@ -831,7 +832,63 @@ If you change the <code>bodyStatus</code> to <code>ARRIVED</code>, the associate
 </div>
 </div>
 <div class="sect3">
-<h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">3.2.2. Filter all entries: <code>filter</code></a></h4>
+<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.2. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Sort all displayed entries according to a given order. Only body and worker entries can be sorted.
+Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
+Types of ordering can be found below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code>: entries are sorted by alphabetical order of their names</p>
+</li>
+<li>
+<p><code>id</code>: entries are sorted by their id number, in descending order (newest entry appear first)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>id asc</code>: entries are sorted in ascending order of id number</p>
+</li>
+<li>
+<p><code>id desc</code>: entries are sorted in descending order of id number</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If neither 'asc' or 'desc' qualifiers are supplied, the ordering is by default descending.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>status</code>: entries are sorted by their statuses in this order:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Format: <code>sort /order order</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort /order status</code><br>
+All entries will be sorted and grouped according to their statuses.</p>
+</li>
+<li>
+<p><code>sort /order id asc</code><br>
+All entries will be sorted according to their id number in ascending order.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">3.2.3. Filter all entries: <code>filter</code></a></h4>
 <div class="paragraph">
 <p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
 </div>
@@ -842,12 +899,14 @@ If you change the <code>bodyStatus</code> to <code>ARRIVED</code>, the associate
 <p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
 </div>
 <div class="paragraph">
-<p>Example:
-* <code>filter -w /sex female</code><br>
-All female worker entries will be displayed.</p>
+<p>Example:</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><code>filter -w /sex female</code><br>
+All female worker entries will be displayed.</p>
+</li>
 <li>
 <p><code>filter -b /cod Car Accident /sex male</code><br>
 All body entries with car accident as the cause of death and those that are male will be displayed.</p>
@@ -856,7 +915,7 @@ All body entries with car accident as the cause of death and those that are male
 </div>
 </div>
 <div class="sect3">
-<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">3.2.3. Undoing a command: <code>undo</code></a></h4>
+<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">3.2.4. Undoing a command: <code>undo</code></a></h4>
 <div class="paragraph">
 <p>This command undoes the effects of the last command you executed. You can undo up to 10 of your most recent commands.
 The commands are undone starting from the most recent to the least recent.</p>
@@ -898,11 +957,11 @@ Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mo
 </div>
 </div>
 <div class="sect3">
-<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">3.2.4. Redoing a command: <code>redo</code></a></h4>
+<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">3.2.5. Redoing a command: <code>redo</code></a></h4>
 <div class="paragraph">
 <p>This command redoes the effects of the last command you undid.
 You can redo up to 10 of your most recent undone commands.
-All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Section 3.2.3, &#8220;Undoing a command: <code>undo</code>&#8221;</a> for how <code>undo</code> can be used.)</p>
+All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Section 3.2.4, &#8220;Undoing a command: <code>undo</code>&#8221;</a> for how <code>undo</code> can be used.)</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>redo</code> or <code>r</code></p>
@@ -944,14 +1003,14 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 </div>
 </div>
 <div class="sect3">
-<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.2.5. Exiting the program : <code>exit</code></a></h4>
+<h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">3.2.6. Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
 <p>Exits the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">3.2.6. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
+<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2">3.2.7. Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
 <p>Sort all displayed entries according to a given order. Only body and worker entries can be sorted.
 Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
@@ -1096,30 +1155,62 @@ Outputs the PDF containing reports for all bodies in the folder containing the j
 <p>This command allows you to view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year.</p>
 </div>
 <div class="paragraph">
-<p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days and is automatically updated when a body is added or deleted. You can change the time frame with the commands.</p>
+<p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised and updated automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days. You can change the time frame with the <code>stats</code> command.</p>
 </div>
 <div class="paragraph">
-<p>The following is the correct format for typing in stats commands, with example usage:</p>
+<p>The following are the correct formats for typing in stats commands, with example usage:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To display the last 10 days: <code>stats</code><br>
-The line chart will display statistics over the last 10 days.</p>
-</li>
-<li>
-<p>To display a specific week: <code>stats /week 12/10/2019</code><br>
-The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019.</p>
-</li>
-<li>
-<p>To display a specific month: <code>stats /month 5/2019</code><br>
-The line chart will display statistics or the month specified. In this case, it is May 2019.</p>
-</li>
-<li>
-<p>To display a specific year: <code>stats /year 2019</code><br>
-The line chart will display statistics for the year specified. In this case is it 2019.</p>
+The line chart will display statistics over the last 10 days. The line chart will appear as below:</p>
 </li>
 </ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/statsTenDays.png" alt="statsTenDays" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display a specific week: <code>stats /week 25/10/2019</code><br>
+The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/statsWeek.png" alt="statsWeek" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display a specific month: <code>stats /month 5/2019</code><br>
+The line chart will display statistics or the month specified. In this case, it is May 2019. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/statsMonth.png" alt="statsMonth" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display a specific year: <code>stats /year 2019</code><br>
+The line chart will display statistics for the year specified. In this case is it 2019. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/statsYear.png" alt="statsYear" width="790">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -1557,4 +1648,4 @@ Format: <code>help</code></p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-09 14:27:38 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:25:54 UTC</div></div></div></bodyId></html>

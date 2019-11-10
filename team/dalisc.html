@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]--><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Asciidoctor 1.5.6.1"><title>Chan Dalis - Project Portfolio for Mortago v1.4</title><link rel="stylesheet" href="../stylesheets/gh-pages.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><bodyId class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Mortago</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-T13-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Chan Dalis - Project Portfolio for Mortago v1.4</h1></div><div id="content"><div id="preamble">
+<div class="sectionbody">
+<hr>
+</div>
+</div>
+<div class="sect1">
+<h2 id="1-introduction"><a class="link" href="#1-introduction">1. Introduction</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="1-1-about-the-project"><a class="link" href="#1-1-about-the-project">1.1. About the Project</a></h3>
+<div class="paragraph">
+<p>Mortago, a desktop application, is a comprehensive mortuary management system. It is a student project from the National University of Singapore (NUS). Mortago is a portmanteau of two Latin words: "mortem" (death) and "curago" (to manage). As its name suggests, Mortago aims to streamline mortuary processes such as updating statuses, keeping track of unclaimed bodies, and generating reports for hospital mortuary managers. The user interacts with MORTAGO using a command line interface (CLI), and it displays a dashboard (Figure 1) that shows bodies, workers and fridges entries.</p>
+</div>
+<div class="paragraph">
+<p>The interface is responsive to suit different screen sizes. However, due to its detailed interface, it is recommended for larger screen sizes such as desktop monitors. Mortago has a graphical user interface (GUI) created with JavaFX. It is written in Java, and maintains a local storage.</p>
+</div>
+<div class="paragraph">
+<p>The image below shows where the users can type the commands and where the details are displayed:</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/Ui.png" alt="Ui" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>Figure 1: Mortago&#8217;s dashboard.</em></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="1-2-about-the-team"><a class="link" href="#1-2-about-the-team">1.2. About the Team</a></h3>
+<div class="paragraph">
+<p>This project was undertaken by a team of five Year 2 computer science undergraduates, including myself, as part of the NUS module CS2103T Software Engineering. For most of us, it was our first time being part of a small-scale software development team. We were tasked to build the application under the contraints that it must be CLI and targets a small user base.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="1-3-about-my-role"><a class="link" href="#1-3-about-my-role">1.3. About My Role</a></h3>
+<div class="paragraph">
+<p>My role was to design the <code>stats</code>, <code>filter</code>, and <code>find</code> features. The following section elaborates on my work in greater detail. Other than engineering these features, I also contributed to the project documentation (user and developer guides). I will be including excerpts of these contributions in the next section.</p>
+</div>
+<div class="paragraph">
+<p>Before we move there, I would like to highlight the symbols and text formatting that will be used in this document, which are as follows:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>This symbol indicates important information.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>stats</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A grey highlight indicates that this is a command that can be inputted into the command line and executed by the application. Three earlier examples can be seen in this section.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="2-summary-of-contributions"><a class="link" href="#2-summary-of-contributions">2. Summary of Contributions</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows a summary of my coding, documentation, and other helpful contributions to the
+team project.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Major enhancement 1</strong>: I added the line chart display which shows admissions statistics.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The line chart displays the number of bodies admitted to the mortuary daily over the last ten days. This is the default view. With the <code>stats</code> command, users can toggle between a ten-day, weekly, monthly, or yearly display. Furthermore, any particular week, month, or year can be specified.</p>
+</li>
+<li>
+<p>Justification: It is important for users to know how many bodies are admitted daily as well as the trends for admission. As managers of the mortuary, they can make staffing decisions on various times of the year depending on the trends.</p>
+</li>
+<li>
+<p>Highlights: This feature can be further enhanced by adding more data to the display, for example, another line for bodies claimed daily which can show the average lag time between admission and claim dates.</p>
+</li>
+<li>
+<p>Credits: Support for rendering the line chart was provided by JavaFX.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Major enhancement 1</strong>: I added the ability to filter entries.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The <code>filter</code> command allows users to filter body or worker entries by any attributes,</p>
+</li>
+<li>
+<p>Justification: This is a necessary feature for a system that intends to manage a lot of data. Sometimes, mortuary managers just need to view entries of a specific kind. They can filter entries by sex, status, cause of death, etc.</p>
+</li>
+<li>
+<p>Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Minor enhancement</strong>: I added the ability to find workers or bodies by their name.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Justification: Although the previous command can serve the same purpose, the <code>find</code> command is useful for when the user has a specific entry in mind that they want to view as it is a shorter and more efficient command.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Code contributed</strong>: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=chan%20dalis&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=false&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=dalisc&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D&amp;groupSelect=groupByRepos">via RepoSense</a>]</p>
+</li>
+<li>
+<p><strong>Other contributions</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Enhancements to existing features: I wrote additional tests for existing features to increase coverage from <em>% to </em>%. (Pull request: <a href="https://github.com">#36</a>)</p>
+</li>
+<li>
+<p>Documentation: I made cosmetic tweaks to existing contents of the User Guide to make it more reader-friendly.(Pull request: <a href="https://github.com">#36</a>)</p>
+</li>
+<li>
+<p>Community:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>I reviewed PRs, offering non-trivial review comments. (Exampless: <a href="https://github.com">#36</a>)</p>
+</li>
+<li>
+<p>I reported bugs and suggestions for other teams in the class (Examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We wrote a User Guide targeted at the users of Mortago. The User Guide containts instructions on how to use the various commands of the application. The following is an excerpt from our Mortago User Guide, showing additions that I have
+made for the <code>stats</code>, <code>fitler</code>, and <code>find</code> features.</p>
+</div>
+<div class="paragraph">
+<p><em>{start of extract 1: stats command}</em></p>
+</div>
+<div class="sect3">
+<h4 id="3-4-1-view-admission-statistics-code-stats-code"><a class="link" href="#3-4-1-view-admission-statistics-code-stats-code">3.4.1. View admission statistics: <code>stats</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year.</p>
+</div>
+<div class="paragraph">
+<p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised and updated automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days. You can change the time frame with the <code>stats</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The following are the correct formats for typing in stats commands, with example usage:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display the last 10 days: <code>stats</code><br>
+The line chart will display statistics over the last 10 days. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/statsTenDays.png" alt="statsTenDays" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display a specific week: <code>stats /week 25/10/2019</code><br>
+The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/statsWeek.png" alt="statsWeek" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display a specific month: <code>stats /month 5/2019</code><br>
+The line chart will display statistics or the month specified. In this case, it is May 2019. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/statsMonth.png" alt="statsMonth" width="790">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To display a specific year: <code>stats /year 2019</code><br>
+The line chart will display statistics for the year specified. In this case is it 2019. The line chart will appear as below:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/statsYear.png" alt="statsYear" width="790">
+</div>
+</div>
+<div class="paragraph">
+<p><em>{end of extract 1}</em></p>
+</div>
+<div class="paragraph">
+<p><em>{start of extract 2: filter command}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="3-2-3-filter-all-entries-code-filter-code"><a class="link" href="#3-2-3-filter-all-entries-code-filter-code">3.2.3. Filter all entries: <code>filter</code></a></h4>
+<div class="paragraph">
+<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
+</div>
+<div class="paragraph">
+<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter -w /sex female</code><br>
+All female worker entries will be displayed.</p>
+</li>
+<li>
+<p><code>filter -b /cod Car Accident /sex male</code><br>
+All body entries with car accident as the cause of death and those that are male will be displayed.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>{end of extract 2}</em></p>
+</div>
+<div class="paragraph">
+<p><em>{start of extract 3: find command}</em></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="3-1-3-locating-entries-by-name-code-find-code"><a class="link" href="#3-1-3-locating-entries-by-name-code-find-code">3.1.3. Locating entries by name: <code>find</code></a></h4>
+<div class="paragraph">
+<p>Finds bodies or workers whose names contain any of the given keywords.<br></p>
+</div>
+<div class="paragraph">
+<p>Format: <code>find (flag) (keyword)&#8230;&#8203;</code></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+</li>
+<li>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+</li>
+<li>
+<p>Only the name is searched.</p>
+</li>
+<li>
+<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+</li>
+<li>
+<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Format: <code>find -FLAG [keyword&#8230;&#8203;]</code></p>
+</div>
+<div class="paragraph">
+<p>Examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>find -b John</code><br>
+Returns any bodies having names <code>John</code></p>
+</li>
+<li>
+<p><code>find -w Betsy Tim John</code><br>
+Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>John</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>{end of extract 3}</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In addition to a User Guide, we wrote a Developer Guide targeted at developers who are interested in contributing to the project. The Developer Guide showcases my ability to write technical documentation and the technical depth of my contributions to the project.Given below is my contribution to the Developer Guide:</p>
+</div>
+<div class="paragraph">
+<p><em>{start of extract: implementation of stats command}</em></p>
+</div>
+<div class="sect2">
+<h3 id="4-8-statistics-feature"><a class="link" href="#4-8-statistics-feature">4.8. Statistics feature</a></h3>
+<div class="sect3">
+<h4 id="4-8-1-current-implementation"><a class="link" href="#4-8-1-current-implementation">4.8.1. Current Implementation</a></h4>
+<div class="paragraph">
+<p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
+</div>
+<div class="paragraph">
+<p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LineChartPanel#initialiseTreeMap()</code>&#8201;&#8212;&#8201;Initialises a tree map that contains the dates as the keys and the number of bodies admitted as the frequency.</p>
+</li>
+<li>
+<p><code>LineChartPanel#initialiseLineChart()</code>&#8201;&#8212;&#8201;Creates a Line Chart with Xaxis and Yaxis.</p>
+</li>
+<li>
+<p><code>LineChartPanel#updateSeries()</code>&#8201;&#8212;&#8201;Adds data to the series of the line chart based on what is in the tree map.</p>
+</li>
+<li>
+<p><code>LineChartPanel#updateUponChanged()</code>&#8201;&#8212;&#8201;If a body is added or removed, the tree map is changed accordingly depending on the date of admission of the body, and the series is updated again.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The above operations are invoked through a wrapper function <code>LineChartPanel#makeLineChart()</code> which is invoked when the user calls <code>LineChartPanel#getLineChart()</code>.</p>
+</div>
+<div class="paragraph">
+<p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
+</div>
+</div>
+<div class="paragraph">
+<p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="4-8-2-design-considerations"><a class="link" href="#4-8-2-design-considerations">4.8.2. Design Considerations</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-data-is-stored-and-updated"><a class="link" href="#aspect-how-data-is-stored-and-updated">Aspect: How data is stored and updated</a></h5>
+<div class="paragraph">
+<p>The line chart needs data to refer to. Below are two alternatives for how to access the data and update the line chart:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Data is not stored. Use a tree map to keep track of bodies and initialise the treemap depending on the given time frame.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy.</p>
+</li>
+<li>
+<p>Cons: Series is regenerated whenever there is a change in time frame. As can be seen from the activity diagram below, the series gets reintialised regardless of whether it will affect a change in the appearance of the line chart.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 2:</strong> Store all data in a separate storage class.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Pros: No need to reinitialise the treemap everytime a <code>stats</code> command is called.</p>
+</li>
+<li>
+<p>Cons: Implementation requires a lot of storage which may not be tapped on most of the time.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-the-time-frame-of-the-line-chart"><a class="link" href="#aspect-the-time-frame-of-the-line-chart">Aspect: The time frame of the line chart</a></h5>
+<div class="paragraph">
+<p>Currently the line chart supports four types of time frames as aforementioned. Below are two alternatives to which users are limited by the time frames:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice):</strong> Users can toggle between four types of time frames.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Implementation is easy and simple.</p>
+</li>
+<li>
+<p>Cons: The statistics is limited in meaning if it cannot be compared between other time frames.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2:</strong> Users can print a summary of statistics over a specified period.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: The statistics will have more meaning.</p>
+</li>
+<li>
+<p>Cons: Implementation is difficult.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><em>{end of extract}</em></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:25:55 UTC</div></div></div></bodyId></html>
