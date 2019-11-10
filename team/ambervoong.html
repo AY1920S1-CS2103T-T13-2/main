@@ -284,7 +284,7 @@ useful pictorial guides, and tips for the user.</p>
 <p>Format: <code>update -FLAG /id id [/attributeName attributeValue &#8230;&#8203;]</code></p>
 </div>
 <div class="paragraph">
-<p>When you update the <code>fridgeId</code> of a <code>Body</code>, changes to the fridges will be made as follows:</p>
+<p>When you update the <code>fridgeId</code> of a <code>Body</code>, changes to the fridges are made as follows:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -297,10 +297,15 @@ useful pictorial guides, and tips for the user.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>When you update the status of a <code>Body</code> to <code>CONTACT_POLICE</code>, the <code>Notif</code> associated with the <code>Body</code> will be automatically deleted.</p>
+<p>When you update the status of a <code>Body</code> to <code>CONTACT_POLICE</code>, the <code>Notif</code> associated with the <code>Body</code> is automatically
+deleted.</p>
 </div>
 <div class="paragraph">
-<p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>Notif</code> pop-up will be shown after 10 seconds.</p>
+<p>When you update <code>bodyStatus</code> to <code>ARRIVED</code>, a <code>Notif</code> pop-up is be shown after 10 seconds.</p>
+</div>
+<div class="paragraph">
+<p>When a <code>Body</code> is assigned a <code>Fridge</code> and you update its status to <code>CLAIMED</code> or <code>DONATED</code>, it is removed from the
+ <code>Fridge</code> and its status is set to <code>UNOCCUPIED</code>.</p>
 </div>
 <div class="paragraph">
 <p>There are some attributes that you can update once the entity is created. For this command,
@@ -376,10 +381,16 @@ and her new designation.</p>
 </div>
 <div class="paragraph">
 <p>To update Jane Doe&#8217;s designation:<br>
-1. Locate her identification number on the dashboard. You see on the dashboard that her ID number is W00001.<br>
-2. Type <code>update -w /id 1 /designation Manager</code> into the command box, and press <code>Enter</code> to execute it.<br>
-3. The result box will indicate that the <code>delete</code> command has been undone.<br>
-4. You will also see  on the dashboard that Jane Doe&#8217;s designation has been updated.</p>
+1) Locate her identification number on the dashboard. You see on the dashboard that her ID number is W00001.<br></p>
+</div>
+<div class="paragraph">
+<p>2) Type <code>update -w /id 1 /designation Manager</code> into the command box, and press <code>Enter</code> to execute it.<br></p>
+</div>
+<div class="paragraph">
+<p>3) The result box indicates that the <code>delete</code> command has been undone.<br></p>
+</div>
+<div class="paragraph">
+<p>4) You can also see  on the dashboard that Jane Doe&#8217;s designation has been updated.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -418,7 +429,7 @@ Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 <p>Commands caused by automated commands, such as an <code>UpdateCommand</code> caused by <code>Notif</code> can be undone and redone.
 For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
 the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
-undoing the deletion will not restore the <code>NotifCommand</code>.</p>
+undoing the deletion does not restore the <code>NotifCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
@@ -908,4 +919,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:17:50 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:31:00 UTC</div></div></div></bodyId></html>

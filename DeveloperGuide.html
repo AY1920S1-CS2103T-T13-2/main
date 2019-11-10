@@ -39,7 +39,6 @@
 <ul class="sectlevel3">
 <li><a href="#implementation-4">4.3.1. Implementation</a></li>
 <li><a href="#design-considerations-3">4.3.2. Design Considerations</a></li>
-<li><a href="#aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized">4.3.3. Aspect: How the behaviour of <code>NotifCommand</code> differs when the app is initialized</a></li>
 </ul>
 </li>
 <li><a href="#generate-pdf-feature">4.4. Generate PDF Feature</a>
@@ -934,7 +933,7 @@ program state at any time. When undoing or redoing, it was essential that data i
 <h3 id="notification-feature"><a class="link" href="#notification-feature">4.3. Notification Feature</a></h3>
 <div class="paragraph">
 <p>This feature in Mortago reminds a mortuary manager to contact the police when the next-of-kin of a body
-has been not been contactable for a given period of time from the point of admission of the <code>Body</code>. He / She then needs
+has not been contactable for a given period of time from the point of admission of the <code>Body</code>. He / She then needs
 to
 contact
 the police
@@ -963,7 +962,7 @@ AddCommand.java.
 <div class="sect3">
 <h4 id="implementation-4"><a class="link" href="#implementation-4">4.3.1. Implementation</a></h4>
 <div class="paragraph">
-<p>This command is supported by the model component <code>Notif</code> and logic component <code>NotifCommand</code>.</p>
+<p>This command is supported by the model component <code>Notif</code> and the logic component <code>NotifCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p>In <code>Notif</code> command, the following are the key private variables:</p>
@@ -1076,7 +1075,7 @@ following happens:</p>
 <p>All the <code>Notif</code> (s) are fetched from the storage.</p>
 </li>
 <li>
-<p>For each <code>Notif</code>, the difference of the  current system time and <code>notifCreationTime</code> is calculated.</p>
+<p>For each <code>Notif</code>, the difference of the  current <a href="#System-Time">system time</a> and <code>notifCreationTime</code> is calculated.</p>
 </li>
 <li>
 <p>If the difference is more than the <code>period</code>, then the status of the associated <code>Body</code> is
@@ -1113,7 +1112,7 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 <p>If the status of the <code>Body</code> is changed before the 10 second window.</p>
 </li>
 <li>
-<p>If the <code>Body</code> is deleted before the time period.</p>
+<p>If the <code>Body</code> is deleted before the specified <code>period</code>.</p>
 </li>
 <li>
 <p>If the difference between <code>notifCreationTime</code> and system time is more than <code>period</code> when the app is initialized.</p>
@@ -1149,8 +1148,8 @@ UI.</p>
 </div>
 <div class="paragraph">
 <p>Moreover, all these operations are wrapped inside a try-catch block. Either the <code>NullPointerException</code> or
-<code>DuplicateNotifException</code> are directly thrown in the form of <code>CommandException</code> or they are logged in <code>Logger</code>. A
-code snippet of <code>NotifCommand</code> to illustrate this is show below:</p>
+<code>DuplicateNotifException</code> is directly thrown in the form of <code>CommandException</code> or it is logged in <code>Logger</code>. A
+code snippet of <code>NotifCommand</code> to illustrate this is show below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1178,7 +1177,7 @@ Platform.runLater(() -&gt; {
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design Considerations</a></h4>
 <div class="sect4">
-<h5 id="aspect-how-to-delay-change-in-bodystatus"><a class="link" href="#aspect-how-to-delay-change-in-bodystatus">Aspect: How to delay change in BodyStatus</a></h5>
+<h5 id="aspect-how-to-delay-change-in-status-of-the-code-body-code"><a class="link" href="#aspect-how-to-delay-change-in-status-of-the-code-body-code">Aspect: How to delay change in status of the <code>Body</code></a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1214,9 +1213,8 @@ Platform.runLater(() -&gt; {
 to manually deal with threads.</p>
 </div>
 </div>
-</div>
-<div class="sect3">
-<h4 id="aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized"><a class="link" href="#aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized">4.3.3. Aspect: How the behaviour of <code>NotifCommand</code> differs when the app is initialized</a></h4>
+<div class="sect4">
+<h5 id="aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized"><a class="link" href="#aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized">Aspect: How the behaviour of <code>NotifCommand</code> differs when the app is initialized</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -1234,7 +1232,8 @@ to manually deal with threads.</p>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Show pop-up on app initialization for <code>Notif</code> s in storage for which the difference between system
+<p><strong>Alternative 2:</strong> Show pop-up on app initialization for <code>Notif</code> (s) in storage for which the difference between
+system
 time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 <div class="ulist">
 <ul>
@@ -1252,6 +1251,7 @@ time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 <div class="paragraph">
 <p>Alternative 1 is the current choice because we want the app to be responsive and scalable in the long term. The
 notification bell is placed beside the command box to prevent instances of user forgetting to contact the police.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1861,7 +1861,10 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Value proposition</strong>: Mortago replaces and improves upon the traditional whiteboard system. It provides a convenient dashboard for the mortuary manager to keep track of all bodies and fridges, outstanding tasks, and alerts. Mortago unites the different aspects of a mortuary and allows the mortuary management to be more accurate in managing tasks, calculate the availability of space, and generates reports automatically.</p>
+<p><strong>Value proposition</strong>: Mortago replaces and improves upon the traditional whiteboard system. It provides a convenient
+dashboard for the mortuary manager to keep track of all bodies and fridges, outstanding tasks, and notifications.
+Mortago unites
+the different aspects of a mortuary and allows the mortuary management to be more accurate in managing tasks, calculate the availability of space, and generates reports automatically.</p>
 </div>
 </div>
 </div>
@@ -1975,7 +1978,8 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mortuary manager</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">be alerted to bodies unclaimed after 24hours</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">know when to start the administrative process for donation to medical research</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">know when to start the administrative process
+of contacting the police</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>* *</code></p></td>
@@ -2321,10 +2325,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </li>
 </ul>
 </div>
-<h3 id="use-case-alert-for-unclaimed-bodies" class="discrete">Use case: Alert for unclaimed bodies.</h3>
-<div class="paragraph">
-<p><strong>Precondition</strong>: Mortuary manager closes all existing report PDFs.</p>
-</div>
+<h3 id="use-case-notification-for-unclaimed-bodies" class="discrete">Use case: Notification for unclaimed bodies.</h3>
 <div class="paragraph">
 <p><strong>MSS</strong></p>
 </div>
@@ -2334,10 +2335,11 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <p>Mortuary manager wants to be reminded of the next line of action if next of kin cannot be contacted within 24 hours.</p>
 </li>
 <li>
-<p>Mortago maintains a record of all the alerts about unidentified and unclaimed bodies until their status is changed.</p>
+<p>Mortago maintains a record of all the notifications about bodies until their status is
+changed.</p>
 </li>
 <li>
-<p>Mortago shows pop-up alerts after 24 hours from the point of arrival of the body in the mortuary.</p>
+<p>Mortago shows pop-up notification after 24 hours from the point of arrival of the body in the mortuary.</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2350,7 +2352,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="ulist none">
 <ul class="none">
 <li>
-<p>1a. There are no alerts</p>
+<p>1a. There are no notifications</p>
 <div class="paragraph">
 <p>Use case ends.</p>
 </div>
@@ -2490,10 +2492,10 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <dd>
 <p>A fridge used to store a body in the mortuary</p>
 </dd>
-</dl>
-</div>
-<div id="notif" class="dlist">
-<dl>
+<dt class="hdlist1"><a id="notif"></a> Notif</dt>
+<dd>
+<p>A notification to remind the mortuary manager of the bodies for which police needs to be contacted.</p>
+</dd>
 <dt class="hdlist1"><a id="command-line-interface"></a> Command-Line-Interface (CLI)</dt>
 <dd>
 <p>A text-based user interface (UI) used to view and manage computer files</p>
@@ -2501,6 +2503,10 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <dt class="hdlist1"><a id="graphical-user-interface"></a> Graphical User Interface (GUI)</dt>
 <dd>
 <p>An interface through which a user interacts with electronic devices such as computers, hand-held devices and other appliances. This interface uses icons, menus and other visual indicator (graphics) representations to display information and related user controls, unlike text-based interfaces, where data and commands are in text</p>
+</dd>
+<dt class="hdlist1"><a id="system-time"></a> System-Time</dt>
+<dd>
+<p>A computer&#8217;s current time and date</p>
 </dd>
 </dl>
 </div>
@@ -2680,4 +2686,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:17:50 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:31:00 UTC</div></div></div></bodyId></html>

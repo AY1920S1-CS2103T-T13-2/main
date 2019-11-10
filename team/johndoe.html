@@ -139,7 +139,8 @@
 <div class="sect3">
 <h4 id="deleting-an-entry-code-delete-code-br"><a class="link" href="#deleting-an-entry-code-delete-code-br">Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the given format below..<br></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the
+given format below.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
@@ -154,11 +155,11 @@ you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to o
 <div class="ulist">
 <ul>
 <li>
-<p>Mortago will automatically delete its associated <code>Notifs</code>. You can learn more
-about <code>Notifs</code> in <a href="#add">Section 3.2.1</a>.</p>
+<p>Mortago automatically deletes its associated <code>Notifs</code>. You can learn more
+about <code>Notifs</code> in <a href="#showNotifs">Section 3.2.1</a>.</p>
 </li>
 <li>
-<p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago will automatically set the status of the <code>Fridge</code> to
+<p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago automatically sets the status of the <code>Fridge</code> to
 <code>UNOCCUPIED</code>.</p>
 </li>
 </ul>
@@ -180,15 +181,15 @@ ID number is W00003.</p>
 <div class="paragraph">
 <p>1) Type <code>delete -w 3</code> and press <code>ENTER</code> to execute it.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/delete-command/DeleteStep1.png" alt="DeleteStep1">
 </div>
 </div>
 <div class="paragraph">
-<p>2) The result box will display the message as shown below.</p>
+<p>2) The result box displays the message as shown below.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/delete-command/DeleteStep2.png" alt="DeleteStep2">
 </div>
@@ -196,9 +197,9 @@ ID number is W00003.</p>
 <div class="paragraph">
 <p>3) And you can check that Jim Kerr is no longer in the list of workers.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
-<img src="../images/delete-command/DeleteStep3.png" alt="DeleteStep3">
+<img src="../images/delete-command/DeleteStep3.png" alt="DeleteStep3" width="500">
 </div>
 </div>
 </div>
@@ -245,36 +246,24 @@ Format: <code>clear</code></p>
 <p>Example: <code>list -b</code><br>
 After filtering specific bodies, you may now want to view the full list of bodies:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>1. Mortago shows filtered list of bodies.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>1) Mortago shows filtered list of bodies.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/list1.png" alt="list1">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>2. Type <code>list -b</code> in the Command Line Interface (CLI).</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>2) Type <code>list -b</code> in the Command Line Interface (CLI).</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="../images/list2.png" alt="list2">
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>3. Mortago shows unfiltered list of bodies.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>3) Mortago shows unfiltered list of bodies.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -300,9 +289,9 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <div class="sect2">
 <h3 id="general"><a class="link" href="#general">General</a></h3>
 <div class="sect3">
-<h4 id="view-notifs-panel-code-shownotifs-code-br"><a class="link" href="#view-notifs-panel-code-shownotifs-code-br">View notifs panel: <code>showNotifs</code><br></a></h4>
+<h4 id="showNotifs"><a class="link" href="#showNotifs">View notifs panel: <code>showNotifs</code><br></a></h4>
 <div class="paragraph">
-<p>This command allows you to view all <code>Notif</code>.</p>
+<p>This command allows you to view all <code>Notif</code>(s).</p>
 </div>
 <div class="paragraph">
 <p>A <code>Notif</code> is a notification associated with a <code>Body</code>. In Singapore, if the next-of-kin is not contactable for more
@@ -317,14 +306,15 @@ automatically
 changes its status to <code>CONTACT_POLICE</code> if its status is still <code>ARRIVED</code> after 10 seconds. It then shows a pop-up
 to
 remind you to
-contact the police. It creates a <code>Notif</code> for this <code>Body</code> and you can view all <code>Notif</code> by either clicking on the
+contact the police. It creates a <code>Notif</code> for this <code>Body</code> and you can view all <code>Notif</code>(s) by either clicking on the
 notification bell or typing the <code>showNotif</code> command.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>showNotifs</code></p>
 </div>
 <div class="paragraph">
-<p>Once you change the status of the <code>Body</code> from <code>CONTACT_POLICE</code> to any other possible status (!!!add in the section!!!),
+<p>Once you change the status of the <code>Body</code> from <code>CONTACT_POLICE</code> to any other possible status as described in
+<a href="#bodyStatus">Section 8.1</a>,
 its associated <code>Notif</code> is deleted.</p>
 </div>
 <div class="paragraph">
@@ -340,7 +330,7 @@ its associated <code>Notif</code> is deleted.</p>
 <p>1) Type the <code>add</code> command as specified in the example in <a href="#add">Section 3.1.1</a>. Currently the status of this <code>Body</code>
 is <code>ARRIVED</code></p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/notif-command/Notif1.png" alt="Notif1">
 </div>
@@ -351,7 +341,7 @@ you a
 pop-up
 notification.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/notif-command/Notif2.png" alt="Notif2">
 </div>
@@ -359,40 +349,28 @@ notification.</p>
 <div class="paragraph">
 <p>3) Type <code>showNotif</code> and press <code>ENTER</code> to execute it.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/notif-command/Notif3.png" alt="Notif3">
 </div>
 </div>
 <div class="paragraph">
 <p>4) The notification bell opens up a panel and lists all the bodies for which you need to contact the police. You
-can see John Doe&#8217;s ID number B00000011 is in the list.</p>
+can see John Doe&#8217;s ID number B00000020 is in the list.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/notif-command/Notif4.png" alt="Notif4">
 </div>
 </div>
 <div class="paragraph">
-<p>5) Suppose you have contacted the police, change the status of John Doe using the command <code>update -b /id 11 /status
+<p>5) Suppose you have contacted the police, change the status of John Doe using the command <code>update -b /id 20 /status
 pending police report</code>. John Doe&#8217;s ID is no longer listed in the notifs panel.</p>
 </div>
-<div class="imageblock" style="text-align: center">
+<div class="imageblock">
 <div class="content">
 <img src="../images/notif-command/Notif5.png" alt="Notif5">
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you delete a <code>Body</code> and add it back before the 10 second period,
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect3">
@@ -401,10 +379,12 @@ If you delete a <code>Body</code> and add it back before the 10 second period,
 <p>You can filter all entries according to the given keywords in any of an entry’s attributes by entering a filter command with the given format below.</p>
 </div>
 <div class="paragraph">
-<p>All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
+<p>All entries with matching keywords are displayed. Keyword is case-insensitive.</p>
 </div>
 <div class="paragraph">
-<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
+<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries
+displayed must fulfill all attributes. Please refer to <a href="#add">Section 3.1.1</a> for the different fields available to be
+filtered.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
@@ -416,11 +396,11 @@ If you delete a <code>Body</code> and add it back before the 10 second period,
 <ul>
 <li>
 <p><code>filter -w /sex female</code><br>
-All female worker entries will be displayed.</p>
+All female worker entries are displayed.</p>
 </li>
 <li>
 <p><code>filter -b /cod Car Accident /sex male</code><br>
-All body entries with car accident as the cause of death and those that are male will be displayed.</p>
+All body entries with car accident as the cause of death and those that are male are displayed.</p>
 </li>
 </ul>
 </div>
@@ -443,7 +423,7 @@ Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 <p>Commands caused by automated commands, such as an <code>UpdateCommand</code> caused by <code>Notif</code> can be undone and redone.
 For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
 the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
-undoing the deletion will not restore the <code>NotifCommand</code>.</p>
+undoing the deletion does not restore the <code>NotifCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
@@ -590,11 +570,11 @@ Types of ordering can be found below:</p>
 <ul>
 <li>
 <p><code>sort /order status</code><br>
-All entries will be sorted and grouped according to their statuses.</p>
+All entries are sorted and grouped according to their statuses.</p>
 </li>
 <li>
 <p><code>sort /order id asc</code><br>
-All entries will be sorted according to their id number in ascending order.</p>
+All entries are sorted according to their id number in ascending order.</p>
 </li>
 </ul>
 </div>
@@ -757,7 +737,7 @@ Outputs the PDF report summary for all bodies in the folder containing the jar f
 <ul>
 <li>
 <p>To display the last 10 days: <code>stats</code><br>
-The line chart will display statistics over the last 10 days. The line chart will appear as below:</p>
+The line chart displays statistics over the last 10 days. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
@@ -770,7 +750,8 @@ The line chart will display statistics over the last 10 days. The line chart wil
 <ul>
 <li>
 <p>To display a specific week: <code>stats /week 25/10/2019</code><br>
-The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019. The line chart will appear as below:</p>
+The line chart displays statistics for the week which contains the specified day. In this case, it is the date
+12/10/2019. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
@@ -783,7 +764,8 @@ The line chart will display statistics for the week which contains the specified
 <ul>
 <li>
 <p>To display a specific month: <code>stats /month 5/2019</code><br>
-The line chart will display statistics or the month specified. In this case, it is May 2019. The line chart will appear as below:</p>
+The line chart displays statistics or the month specified. In this case, it is May 2019. The line chart appears
+as below:</p>
 </li>
 </ul>
 </div>
@@ -796,7 +778,7 @@ The line chart will display statistics or the month specified. In this case, it 
 <ul>
 <li>
 <p>To display a specific year: <code>stats /year 2019</code><br>
-The line chart will display statistics for the year specified. In this case is it 2019. The line chart will appear as below:</p>
+The line chart displays statistics for the year specified. In this case is it 2019. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
@@ -914,8 +896,7 @@ Assigns worker with worker ID W00001 to body with ID B00000002 with a task descr
 <div class="sect3">
 <h4 id="view-all-commands-code-help-code"><a class="link" href="#view-all-commands-code-help-code">View all commands: <code>help</code></a></h4>
 <div class="paragraph">
-<p>You can view a summary of all available commands and their flags by entering a help command with the given format below.
-Use the <code>-v</code> flag to view the detailed description of all commands and their flags.</p>
+<p>You can view a summary of all available commands and their flags by entering a help command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
@@ -975,7 +956,7 @@ Lists emergency help hotlines.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Update the status of each worker, body, or fridge with the <code>update -FLAG (/attributeName attributeValue)</code></p>
+<p>Update the status of each worker, or body with the <code>update -FLAG (/attributeName attributeValue)</code></p>
 </li>
 </ul>
 </div>
@@ -1187,7 +1168,8 @@ Format: <code>help</code></p>
 <p><strong>Graphical User Interface (GUI)</strong> : an interface through which a user interacts with electronic devices such as computers, hand-held devices and other appliances. This interface uses icons, menus and other visual indicator (graphics) representations to display information and related user controls, unlike text-based interfaces, where data and commands are in text<br></p>
 </div>
 <div class="paragraph">
-<p><strong>Operating System (OS)</strong> :the low-level software that supports a computer&#8217;s basic functions, such as scheduling tasks and controlling peripherals<br></p>
+<p><strong>Operating System (OS)</strong> : the low-level software that supports a computer&#8217;s basic functions, such as scheduling tasks
+and controlling peripherals<br></p>
 </div>
 <div class="paragraph">
 <p><strong>Portable Document Format (PDF)</strong> : a file format for capturing and sending electronic documents in exactly the intended format</p>
@@ -1198,7 +1180,7 @@ Format: <code>help</code></p>
 <h2 id="appendix"><a class="link" href="#appendix">Appendix</a></h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="valid-values-for-various-code-attributes-code"><a class="link" href="#valid-values-for-various-code-attributes-code">Valid values for various <code>ATTRIBUTES</code></a></h3>
+<h3 id="bodyStatus"><a class="link" href="#bodyStatus">Valid values for various <code>ATTRIBUTES</code></a></h3>
 <div class="paragraph">
 <p><a id="Valid-Values"></a></p>
 </div>
@@ -1302,7 +1284,7 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 <p><a id="Copy-File-Path"></a></p>
 </div>
 <div class="paragraph">
-<p>The following steps will guide you to copy the absolute path of a file into the clipboard.</p>
+<p>The following steps guide you to copy the absolute path of a file into the clipboard.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1317,7 +1299,7 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 <p>While holding down <kbd>Shift</kbd>, right-click on the image file.</p>
 </li>
 <li>
-<p>In the menu that appears, click <code>Copy as path</code>. The absolute path of the file will be copied into your clipboard.</p>
+<p>In the menu that appears, click <code>Copy as path</code>. The absolute path of the file is copied into your clipboard.</p>
 </li>
 </ol>
 </div>
@@ -1333,7 +1315,8 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 <p>Right-click on the image file, then hold down the <kbd>Option</kbd> button.</p>
 </li>
 <li>
-<p>In the menu that appears, click <code>Copy &lt;file name&gt; as Pathname</code>. The absolute path of the file will be copied into your clipboard.</p>
+<p>In the menu that appears, click <code>Copy &lt;file name&gt; as Pathname</code>. The absolute path of the file is copied into your
+clipboard.</p>
 </li>
 </ol>
 </div>
@@ -1743,4 +1726,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:17:50 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:31:00 UTC</div></div></div></bodyId></html>
