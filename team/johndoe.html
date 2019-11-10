@@ -139,7 +139,7 @@
 <div class="sect3">
 <h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">Deleting a person : <code>delete</code></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its Identification Number.<br></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the given format below..<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
@@ -180,14 +180,14 @@ When you delete a body, its associated notifications will also be deleted. If a 
 <div class="sect3">
 <h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
-<p>You can clear all entries from Mortago.<br>
+<p>You can clear all entries from Mortago by entering a clear command given below.
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="list-all-entries-code-list-code"><a class="link" href="#list-all-entries-code-list-code">List all entries: <code>list</code></a></h4>
 <div class="paragraph">
-<p>You can list all entries of bodies, workers, or fridges.</p>
+<p>You can list all entries of bodies, workers, or fridges by entering a list command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>list -FLAG</code></p>
@@ -241,7 +241,7 @@ Lists all bodies currently in Mortago.</p>
 <div class="sect3">
 <h4 id="view-notifs-panel-code-shownotifs-code"><a class="link" href="#view-notifs-panel-code-shownotifs-code">View notifs panel: <code>showNotifs</code></a></h4>
 <div class="paragraph">
-<p>You can view all notifications.</p>
+<p>You can view all notifications by entering a showNotifs command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>A <code>notif</code> is automatically created when you could not contact the next of kin within 24 hours from the time
@@ -260,9 +260,13 @@ If you change the <code>bodyStatus</code> to <code>ARRIVED</code>, the associate
 <div class="sect3">
 <h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Sort all displayed entries according to a given order. Only body and worker entries can be sorted.
-Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
-Types of ordering can be found below:</p>
+<p>You can sort all displayed entries according to a given order by entering a sort command with the given format below.</p>
+</div>
+<div class="paragraph">
+<p>Only body and worker entries can be sorted.</p>
+</div>
+<div class="paragraph">
+<p>The following describes the types of ordering that can be executed:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -316,7 +320,10 @@ All entries will be sorted according to their id number in ascending order.</p>
 <div class="sect3">
 <h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">Filter all entries: <code>filter</code></a></h4>
 <div class="paragraph">
-<p>You can filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
+<p>You can filter all entries according to the given keywords in any of an entry’s attributes by entering a filter command with the given format below.</p>
+</div>
+<div class="paragraph">
+<p>All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
 </div>
 <div class="paragraph">
 <p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
@@ -343,7 +350,8 @@ All body entries with car accident as the cause of death and those that are male
 <div class="sect3">
 <h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
 <div class="paragraph">
-<p>This command undoes the effects of the last command you executed. You can undo up to 10 most recent commands.
+<p>This command undoes the effects of the last command you executed.
+You can undo up to 10 most recent commands.
 The commands are undone starting from the most recent to the least recent.</p>
 </div>
 <div class="paragraph">
@@ -432,64 +440,8 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <div class="sect3">
 <h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
-<p>You can exit the program.<br>
+<p>You can exit the program by entering an exit command given below.<br>
 Format: <code>exit</code></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2">Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
-<div class="paragraph">
-<p>You can sort all displayed entries according to a given order. Only body and worker entries can be sorted.
-Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
-Types of ordering can be found below:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>name</code>: entries are sorted by alphabetical order of their names</p>
-</li>
-<li>
-<p><code>id</code>: entries are sorted by their id number, in descending order (newest entry appear first)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>id asc</code>: entries are sorted in ascending order of id number</p>
-</li>
-<li>
-<p><code>id desc</code>: entries are sorted in descending order of id number</p>
-<div class="ulist">
-<ul>
-<li>
-<p>If neither 'asc' or 'desc' qualifiers are supplied, the ordering is by default descending.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>status</code>: entries are sorted by their statuses in this order:</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Format: <code>sort /order order</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>sort /order status</code><br>
-All entries will be sorted and grouped according to their statuses.</p>
-</li>
-<li>
-<p><code>sort /order id asc</code><br>
-All entries will be sorted according to their id number in ascending order.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -513,7 +465,7 @@ You must ensure that all existing reports are closed before executing any report
 <div class="sect3">
 <h4 id="generate-report-for-a-specific-body-code-genreport-code"><a class="link" href="#generate-report-for-a-specific-body-code-genreport-code">Generate report for a specific body: <code>genReport</code></a></h4>
 <div class="paragraph">
-<p>You can generate an individual report in a PDF filename <code><span class="subheader">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file.</p>
+<p>You can generate an individual report in a PDF filename <code><span class="subheader">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file by entering a genReport command with the given format below.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -557,7 +509,7 @@ Outputs the PDF report for body ID B00000123 in the folder containing the jar fi
 <div class="sect3">
 <h4 id="generate-reports-for-all-bodies-code-genreports-code"><a class="link" href="#generate-reports-for-all-bodies-code-genreports-code">Generate reports for all bodies: <code>genReports</code></a></h4>
 <div class="paragraph">
-<p>You can generate all individual reports in a PDF filename <code><span class="subheader">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file.</p>
+<p>You can generate all individual reports in a PDF filename <code><span class="subheader">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file by entering a genReports command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
@@ -596,7 +548,7 @@ Outputs the PDF containing reports for all bodies in the folder containing the j
 <div class="sect3">
 <h4 id="generate-summary-report-for-all-bodies-code-genreportsummary-code"><a class="link" href="#generate-summary-report-for-all-bodies-code-genreportsummary-code">Generate summary report for all bodies: <code>genReportSummary</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to generate a tabular report overview containing key information for all bodies in a PDF filename <code><span class="subheader">Report Summary.pdf</span></code> located in the folder containing the jar file.</p>
+<p>You can generate a tabular report overview containing key information for all bodies in a PDF filename <code><span class="subheader">Report Summary.pdf</span></code> located in the folder containing the jar file by entering a genReportSummary command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
@@ -638,7 +590,7 @@ Outputs the PDF report summary for all bodies in the folder containing the jar f
 <div class="sect3">
 <h4 id="view-admission-statistics-code-stats-code"><a class="link" href="#view-admission-statistics-code-stats-code">View admission statistics: <code>stats</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year.</p>
+<p>You can view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year by entering a stats command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised and updated automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days. You can change the time frame with the <code>stats</code> command.</p>
@@ -702,7 +654,8 @@ The line chart will display statistics for the year specified. In this case is i
 <div class="sect3">
 <h4 id="archive-entries-code-archive-code-code-coming-in-v2-0-code"><a class="link" href="#archive-entries-code-archive-code-code-coming-in-v2-0-code">Archive entries: <code>archive</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to archive old or irrelevant entries. One entry can be archived at a time, or all entries of a certain specification can be archived at once.</p>
+<p>You can archive old or irrelevant entries by entering an archive command with the given format below.
+One entry can be archived at a time, or all entries of a certain specification can be archived at once.</p>
 </div>
 <div class="paragraph">
 <p>Format:</p>
@@ -736,7 +689,7 @@ Archives all entries of workers who are inactive</p>
 <div class="sect3">
 <h4 id="view-archived-entries-code-archives-code-code-coming-in-v2-0-code"><a class="link" href="#view-archived-entries-code-archives-code-code-coming-in-v2-0-code">View archived entries: <code>archives</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to display all archived entries.</p>
+<p>You can display all archived entries by entering an archives command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>archives -FLAG</code></p>
@@ -760,7 +713,7 @@ Displays all archived worker entries, in order of archive date.</p>
 <div class="sect3">
 <h4 id="give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code"><a class="link" href="#give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code">Give and view feedback: <code>feedback</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to give workers feedback (for the manager’s own reference), and can display a history of all feedback entered.</p>
+<p>You can give workers feedback and display a history of all feedback entered by entering a feedback command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>Format:</p>
@@ -768,10 +721,10 @@ Displays all archived worker entries, in order of archive date.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>feedback /workerId workerId /details details</code><br></p>
+<p><code>feedback /workerId workerId /details details</code> to assign feedback</p>
 </li>
 <li>
-<p><code>feedback</code></p>
+<p><code>feedback</code> to display all feedback entered</p>
 </li>
 </ul>
 </div>
@@ -784,17 +737,13 @@ Displays all archived worker entries, in order of archive date.</p>
 <p><code>feedback /id 10 /details very meticulous</code><br>
 Note down feedback for worker with ID W10010 with custom details</p>
 </li>
-<li>
-<p><code>feedback</code><br>
-Display of all feedback entered</p>
-</li>
 </ul>
 </div>
 </div>
 <div class="sect3">
 <h4 id="assign-tasks-to-worker-code-assign-code-code-coming-in-v2-0-code"><a class="link" href="#assign-tasks-to-worker-code-assign-code-code-coming-in-v2-0-code">Assign tasks to worker: <code>assign</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Assign a body and task to a worker.</p>
+<p>You can assign a body and task to a worker by entering an assign command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>assign /bodyId bodyId /workerId workerId /task taskDescription</code></p>
@@ -817,7 +766,8 @@ Assigns worker with worker ID W00001 to body with ID B00000002 with a task descr
 <div class="sect3">
 <h4 id="view-all-commands-code-help-code"><a class="link" href="#view-all-commands-code-help-code">View all commands: <code>help</code></a></h4>
 <div class="paragraph">
-<p>View a summary of all available commands and their flags. Use the <code>-v</code> flag to view the detailed description of all commands and their flags.</p>
+<p>You can view a summary of all available commands and their flags by entering a help command with the given format below.
+Use the <code>-v</code> flag to view the detailed description of all commands and their flags.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>help</code></p>
@@ -830,7 +780,7 @@ Shows a link to the User Guide.</p>
 <div class="sect3">
 <h4 id="view-help-hotlines-code-hotlines-code-code-coming-in-v2-0-code"><a class="link" href="#view-help-hotlines-code-hotlines-code-code-coming-in-v2-0-code">View help hotlines: <code>hotlines</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>View emergency help hotlines.</p>
+<p>You can view emergency help hotlines by entering a hotlines command given below.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>hotlines</code></p>
@@ -940,7 +890,7 @@ Format: <code>sort /order order (/idOrder idOrder)</code></p>
 <ul>
 <li>
 <p>Filter all entries according to the given keyword in any of an entry’s field.<br>
-Format: <code>filter [/attribute attributeValue&#8230;&#8203;]</code></p>
+Format: <code>filter -FLAG [/attribute attributeValue&#8230;&#8203;]</code></p>
 </li>
 </ul>
 </div>
@@ -1647,4 +1597,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:37:17 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:42:33 UTC</div></div></div></bodyId></html>

@@ -148,11 +148,16 @@
 <div class="paragraph">
 <p><em>{start of extract 1}</em>: Command Specifications</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p><strong>Command Specification</strong></p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="Command-Specifications"><a class="link" href="#Command-Specifications">Command Specifications</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before diving into the features that Mortago has for you, you will need to know several key information on how to use Mortago. The following sections will elaborate on these key information, such as the general format for commands in Mortago.</p>
+</div>
+<div class="sect2">
+<h3 id="command-format"><a class="link" href="#command-format">Command Format</a></h3>
 <div class="paragraph">
 <p>Most commands in Mortago follow the general format: <code>COMMAND_WORD -FLAG ATTRIBUTES</code></p>
 </div>
@@ -192,13 +197,13 @@
 </div>
 </li>
 <li>
-<p><code>ATTRIBUTES</code> specifies the information about an entity that you need to supply for the command to execute.</p>
+<p><code>ATTRIBUTES</code> specifies the information about an entity that you need to supply for the command to be executed successfully. The following section will elaborate more on what <code>ATTRIBUTES</code> are in Mortago.</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p><strong>Attributes</strong></p>
 </div>
+<div class="sect2">
+<h3 id="attributes"><a class="link" href="#attributes">Attributes</a></h3>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -231,50 +236,36 @@ What are <code>ATTRIBUTES</code>?
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>Here are some information that you will need in order to interpret the various command formats in this User Guide.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
+<p>You will find that <code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
 <div class="ulist">
 <ul>
 <li>
 <p>You should always provide the <code>/attributeName</code>, exactly as it is stated in the User Guide, before specifying the details of the <code>attributeValue</code> that the entity has.</p>
 </li>
 <li>
-<p>For example, date of births in Mortago are represented using <code>/dob dateOfBirth</code>. Therefore, the <code>/attributeName</code> is <code>/dob</code> and <code>attributeValue</code> is <code>dateOfBirth</code>. If you wish to specify an entity born on "12/12/2000", you should key it as <code>/dob 12/12/2000</code>.</p>
+<p>For example, date of births in Mortago are represented using <code>/dob dateOfBirth</code>. Therefore, the <code>/attributeName</code> is <code>/dob</code> and <code>attributeValue</code> is <code>dateOfBirth</code>. If you wish to specify an entity born on 12 December 2000, you should key it as <code>/dob 12/12/2000</code>.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><code>ATTRIBUTES</code> must be entered in successively in a single-line command. Mortago will not prompt you to key in any mandatory <code>ATTRIBUTES</code> that you may have missed out.</p>
+<p>You may find that some <code>ATTRIBUTES</code> can only accept specific values, or that these values must follow certain format. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for these <code>ATTRIBUTES</code>.</p>
 </li>
 <li>
-<p><code>ATTRIBUTES</code> in parentheses are optional.</p>
+<p>You must enter <code>ATTRIBUTES</code> successively in a single-line command. Mortago will not prompt you to key in any mandatory <code>ATTRIBUTES</code> that you may have missed out.</p>
+</li>
+<li>
+<p>You may provide <code>ATTRIBUTES</code> specified in a command in any order.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>e.g. The following 2 commands are valid for the add command, with the abridged format: <code>add -b /name name (/religion religion /status status)</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add -b /religion Buddhism</code></p>
-</li>
-<li>
-<p><code>add -b /religion Buddhism /status arrived</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>ATTRIBUTES</code> specified in a command can be given in any order.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>e.g. The following 2 commands are valid for the add command, with the abridged format: <code>add -b (/religion religion /status status)</code>.</p>
+<p>For example, the following 2 commands are valid for the add command, with the abridged format: <code>add -b (/religion religion /status status)</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -290,7 +281,30 @@ What are <code>ATTRIBUTES</code>?
 </div>
 </li>
 <li>
-<p><code>ATTRIBUTES</code> that are tagged with <code>&#8230;&#8203;</code> and in square parentheses must be supplied with at least one <code>ATTRIBUTE</code>.</p>
+<p>You are not required to provide <code>ATTRIBUTES</code> contained in parentheses.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For example, the following 3 commands are valid for the add command, with the abridged format: <code>add -b /name name /sex sex /doa dateOfAdmission (/religion religion) (/status status)</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add -b /name John /sex Male /doa 12/12/2011</code></p>
+</li>
+<li>
+<p><code>add -b /name John /sex Male /doa 12/12/2011 /religion Buddhism</code></p>
+</li>
+<li>
+<p><code>add -b /name John /sex Male /doa 12/12/2011 /religion Buddhism /status arrived</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>You must provide <strong>at least one</strong> <code>ATTRIBUTE</code> when <code>ATTRIBUTES</code> are tagged with <code>&#8230;&#8203;</code> and contained in square parentheses (<code>[]</code>).</p>
 <div class="ulist">
 <ul>
 <li>
@@ -309,13 +323,13 @@ What are <code>ATTRIBUTES</code>?
 </ul>
 </div>
 </li>
-<li>
-<p><code>ATTRIBUTES</code> can be restricted to certain values only. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for various <code>ATTRIBUTES</code>.</p>
-</li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="identification-number"><a class="link" href="#identification-number">Identification Number</a></h3>
 <div class="paragraph">
-<p><strong>Identification Number</strong></p>
+<p>This section describes what Identification Numbers are in Mortago. This information is key in order for you to use Mortago effectively.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -346,18 +360,18 @@ What are <code>ATTRIBUTES</code>?
 </li>
 </ul>
 </div>
-</div>
-</div>
+<hr>
 <div class="paragraph">
 <p><em>{end of extract 1}</em></p>
 </div>
 <div class="paragraph">
 <p><em>{start of extract 2}</em>: Add Command</p>
 </div>
+<hr>
 <div class="sect3">
 <h4 id="add"><a class="link" href="#add">Add an entity: <code>add</code></a></h4>
 <div class="paragraph">
-<p>You can add a body, worker or fridge by entering an add command that follows the format given below.</p>
+<p>You can add a body, worker or fridge by entering an add command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p><strong>Format</strong>:<br>
@@ -499,11 +513,13 @@ Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> wit
 </tr>
 </tbody>
 </table>
+<hr>
 <div class="paragraph">
 <p><em>{end of extract 2}</em></p>
 </div>
 <div class="paragraph">
 <p><em>{start of extract 3}</em>: Appendix</p>
+</div>
 </div>
 </div>
 </div>
@@ -654,6 +670,7 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 </li>
 </ul>
 </div>
+<hr>
 <div class="paragraph">
 <p><em>{end of extract 3}</em></p>
 </div>
@@ -860,4 +877,4 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:37:17 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:42:33 UTC</div></div></div></bodyId></html>
