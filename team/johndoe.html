@@ -180,14 +180,14 @@ When you delete a body, its associated notifications will also be deleted. If a 
 <div class="sect3">
 <h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">Clearing all entries : <code>clear</code></a></h4>
 <div class="paragraph">
-<p>Clears all entries from Mortago.<br>
+<p>You can clear all entries from Mortago.<br>
 Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="list-all-entries-code-list-code"><a class="link" href="#list-all-entries-code-list-code">List all entries: <code>list</code></a></h4>
 <div class="paragraph">
-<p>List all entries of bodies, workers, or fridges.</p>
+<p>You can list all entries of bodies, workers, or fridges.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>list -FLAG</code></p>
@@ -239,7 +239,7 @@ View a body with the ID B00000001.</p>
 <div class="sect3">
 <h4 id="view-notifs-panel-code-shownotifs-code"><a class="link" href="#view-notifs-panel-code-shownotifs-code">View notifs panel: <code>showNotifs</code></a></h4>
 <div class="paragraph">
-<p>View all notifications.</p>
+<p>You can view all notifications.</p>
 </div>
 <div class="paragraph">
 <p>A <code>notif</code> is automatically created when you could not contact the next of kin within 24 hours from the time
@@ -314,7 +314,7 @@ All entries will be sorted according to their id number in ascending order.</p>
 <div class="sect3">
 <h4 id="filter-all-entries-code-filter-code"><a class="link" href="#filter-all-entries-code-filter-code">Filter all entries: <code>filter</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
+<p>You can filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
 </div>
 <div class="paragraph">
 <p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
@@ -429,14 +429,14 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <div class="sect3">
 <h4 id="exiting-the-program-code-exit-code"><a class="link" href="#exiting-the-program-code-exit-code">Exiting the program : <code>exit</code></a></h4>
 <div class="paragraph">
-<p>Exits the program.<br>
+<p>You can exit the program.<br>
 Format: <code>exit</code></p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code-2">Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Sort all displayed entries according to a given order. Only body and worker entries can be sorted.
+<p>You can sort all displayed entries according to a given order. Only body and worker entries can be sorted.
 Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
 Types of ordering can be found below:</p>
 </div>
@@ -510,7 +510,7 @@ You must ensure that all existing reports are closed before executing any report
 <div class="sect3">
 <h4 id="generate-report-for-a-specific-body-code-genreport-code"><a class="link" href="#generate-report-for-a-specific-body-code-genreport-code">Generate report for a specific body: <code>genReport</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to generate an individual report in a PDF filename <code><span class="subheader">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file.</p>
+<p>You can generate an individual report in a PDF filename <code><span class="subheader">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -519,6 +519,18 @@ You must ensure that all existing reports are closed before executing any report
 </div>
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Your signature should not contain numbers and must be less than 40 characters.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Format: <code>genReport bodyId (yourSignatureName)</code></p>
@@ -530,7 +542,11 @@ You must ensure that all existing reports are closed before executing any report
 <ul>
 <li>
 <p><code>genReport 123 John Doe</code><br>
-Outputs the report PDF for body ID B00000123 in the folder containing the jar file. The report contains signature of John Doe.</p>
+Outputs the PDF report for body ID B00000123 in the folder containing the jar file. The report contains signature of John Doe.</p>
+</li>
+<li>
+<p><code>genReport 123</code><br>
+Outputs the PDF report for body ID B00000123 in the folder containing the jar file. The report does not contain any signature.</p>
 </li>
 </ul>
 </div>
@@ -538,10 +554,22 @@ Outputs the report PDF for body ID B00000123 in the folder containing the jar fi
 <div class="sect3">
 <h4 id="generate-reports-for-all-bodies-code-genreports-code"><a class="link" href="#generate-reports-for-all-bodies-code-genreports-code">Generate reports for all bodies: <code>genReports</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to generate all individual reports in a PDF filename <code><span class="subheader">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file.</p>
+<p>You can generate all individual reports in a PDF filename <code><span class="subheader">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file.</p>
 </div>
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Your signature should not contain numbers and must be less than 40 characters.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Format: <code>genReports (yourSignatureName)</code></p>
@@ -553,7 +581,11 @@ Outputs the report PDF for body ID B00000123 in the folder containing the jar fi
 <ul>
 <li>
 <p><code>genReports John Doe</code><br>
-Outputs the PDF containing reports for all bodies in the folder containing the jar file. The report contains signature of John Doe.</p>
+Outputs the PDF containing reports for all bodies in the folder containing the jar file. The reports contain signature of John Doe.</p>
+</li>
+<li>
+<p><code>genReports</code><br>
+Outputs the PDF containing reports for all bodies in the folder containing the jar file. The reports do not contain any signature.</p>
 </li>
 </ul>
 </div>
@@ -566,8 +598,35 @@ Outputs the PDF containing reports for all bodies in the folder containing the j
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
 </div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Your signature should not contain numbers and must be less than 40 characters.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Format: <code>genReportSummary (yourSignatureName)</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>genReportSummary John Doe</code><br>
+Outputs the PDF report summary for all bodies in the folder containing the jar file. The report contains signature of John Doe.</p>
+</li>
+<li>
+<p><code>genReportSummary</code><br>
+Outputs the PDF report summary for all bodies in the folder containing the jar file. The report does not contain any signature.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -640,7 +699,7 @@ The line chart will display statistics for the year specified. In this case is i
 <div class="sect3">
 <h4 id="archive-entries-code-archive-code-code-coming-in-v2-0-code"><a class="link" href="#archive-entries-code-archive-code-code-coming-in-v2-0-code">Archive entries: <code>archive</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Archive old or irrelevant entries. One entry can be archived at a time, or all entries of a certain specification can be archived at once.</p>
+<p>This command allows you to archive old or irrelevant entries. One entry can be archived at a time, or all entries of a certain specification can be archived at once.</p>
 </div>
 <div class="paragraph">
 <p>Format:</p>
@@ -674,7 +733,7 @@ Archives all entries of workers who are inactive</p>
 <div class="sect3">
 <h4 id="view-archived-entries-code-archives-code-code-coming-in-v2-0-code"><a class="link" href="#view-archived-entries-code-archives-code-code-coming-in-v2-0-code">View archived entries: <code>archives</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Display all archived entries.</p>
+<p>This command allows you to display all archived entries.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>archives -FLAG</code></p>
@@ -686,11 +745,11 @@ Archives all entries of workers who are inactive</p>
 <ul>
 <li>
 <p><code>archives -b</code><br>
-Display of all archived body entries, in order of archive date</p>
+Displays all archived body entries, in order of archive date.</p>
 </li>
 <li>
 <p><code>archives -w</code><br>
-Display of all archived worker entries, in order of archive date</p>
+Displays all archived worker entries, in order of archive date.</p>
 </li>
 </ul>
 </div>
@@ -698,12 +757,20 @@ Display of all archived worker entries, in order of archive date</p>
 <div class="sect3">
 <h4 id="give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code"><a class="link" href="#give-and-view-feedback-code-feedback-code-code-coming-in-v2-0-code">Give and view feedback: <code>feedback</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>Give workers feedback (for the manager’s own reference), and can display a history of all feedback entered.</p>
+<p>This command allows you to give workers feedback (for the manager’s own reference), and can display a history of all feedback entered.</p>
 </div>
 <div class="paragraph">
-<p>Format:
-<code>feedback /workerId workerId /details details</code>
-<code>feedback</code></p>
+<p>Format:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>feedback /workerId workerId /details details</code><br></p>
+</li>
+<li>
+<p><code>feedback</code></p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Example:</p>
@@ -1478,4 +1545,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:40:23 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:39:51 UTC</div></div></div></bodyId></html>
