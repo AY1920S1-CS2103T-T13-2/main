@@ -238,6 +238,10 @@ entities contain many fields. I also had to deal with storing entities that cont
 <div class="sect1">
 <h2 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>These sections of the User Guide teach the user how to use the undo, redo, and update commands. It contains relevant examples,
+useful pictorial guides, and tips for the user.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -248,14 +252,119 @@ entities contain many fields. I also had to deal with storing entities that cont
 </tr>
 </tbody>
 </table>
-<div class="sect2">
-<h3 id="user-commands"><a class="link" href="#user-commands">User Commands</a></h3>
-<div class="paragraph">
-<p>These sections of the User Guide teach the user how to use the undo, redo, and update commands. It contains relevant examples,
-useful pictorial guides, and tips for the user.</p>
-</div>
 <div class="paragraph">
 <p><em>{start of extract}</em></p>
+</div>
+<div class="sect3">
+<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
+<div class="paragraph">
+<p>You can undo the effects of the last command you executed with <code>undo</code>.
+This command lets you undo up to 10 most recent commands, one at a time.
+The commands are undone starting from the most recent to the least recent.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>undo</code> or <code>u</code></p>
+</div>
+<div class="paragraph">
+<p>The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
+Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
+</div>
+<div class="paragraph">
+<p>Commands caused by automated commands, such as an <code>UpdateCommand</code> caused by <code>Notif</code> can be undone and redone.
+For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
+the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
+undoing the deletion does not restore the <code>NotifCommand</code>.</p>
+</div>
+<div class="paragraph">
+<p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that you wanted to delete a <code>Body</code> with ID 10 from Mortago. However, your finger slips and you type <code>20</code> instead
+of <code>10</code>!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Undo2.png" alt="Undo2">
+</div>
+</div>
+<div class="paragraph">
+<p>You don&#8217;t realise and execute the command. When you look at the dashboard, you realise you have deleted body 20.
+Even worse, you have no recollection of body 20&#8217;s name or information.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoBodyDeleted.png" alt="UndoBodyDeleted">
+</div>
+</div>
+<div class="paragraph">
+<p>You can easily reverse that mistake with the <code>undo</code> command instead of adding body 20 all over again!</p>
+</div>
+<div class="paragraph">
+<p>To undo:</p>
+</div>
+<div class="paragraph">
+<p>1) Type <code>undo</code> or <code>u</code> into the command box.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Undo4.png" alt="Undo4">
+</div>
+</div>
+<div class="paragraph">
+<p>2) Press <code>Enter</code> to execute the command.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Undo5.png" alt="Undo5">
+</div>
+</div>
+<div class="paragraph">
+<p>3) Notice that the result box shows text telling you what was undone, and body 20 is back in the list of bodies.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">Redoing a command: <code>redo</code></a></h4>
+<div class="paragraph">
+<p>You can redo the effects of the last command you executed with <code>redo</code>.
+This command lets you redo up to 10 most recent undone commands, one at a time.
+All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a> for how <code>undo</code> can be used.)</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>redo</code> or <code>r</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A command can only be redone if it has been undone before.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Example:<br>
+Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting body 20. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
+</div>
+<div class="paragraph">
+<p>Instead of deleting body 20 again, simply <code>redo</code> the command.</p>
+</div>
+<div class="paragraph">
+<p>To redo:</p>
+</div>
+<div class="paragraph">
+<p>1) Type <code>redo</code> or <code>r</code> into the command box.</p>
+</div>
+<div class="paragraph">
+<p>2) Press <code>Enter</code> to execute the command.</p>
+</div>
+<div class="paragraph">
+<p>3) Notice that the result box shows text telling you what was executed when redoing, and body 20 is now absent
+from the list of bodies.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="update"><a class="link" href="#update">Updating an entity: <code>update</code></a></h4>
@@ -410,120 +519,8 @@ and her new designation.</p>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect3">
-<h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
-<div class="paragraph">
-<p>You can undo the effects of the last command you executed with <code>undo</code>.
-This command lets you undo up to 10 most recent commands, one at a time.
-The commands are undone starting from the most recent to the least recent.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>undo</code> or <code>u</code></p>
-</div>
-<div class="paragraph">
-<p>The <code>add</code>, <code>update</code>, <code>clear</code>, and <code>delete</code> commands can be undone.
-Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
-</div>
-<div class="paragraph">
-<p>Commands caused by automated commands, such as an <code>UpdateCommand</code> caused by <code>Notif</code> can be undone and redone.
-For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
-the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
-undoing the deletion does not restore the <code>NotifCommand</code>.</p>
-</div>
-<div class="paragraph">
-<p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
-</div>
-<div class="paragraph">
-<p>Example:<br>
-Imagine that you wanted to delete a <code>Body</code> with ID 10 from Mortago. However, your finger slips and you type <code>20</code> instead
-of <code>10</code>!</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Undo2.png" alt="Undo2">
-</div>
-</div>
-<div class="paragraph">
-<p>You don&#8217;t realise and execute the command. When you look at the dashboard, you realise you have deleted body 20.
-Even worse, you have no recollection of body 20&#8217;s name or information.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoBodyDeleted.png" alt="UndoBodyDeleted">
-</div>
-</div>
-<div class="paragraph">
-<p>You can easily reverse that mistake with the <code>undo</code> command instead of adding body 20 all over again!</p>
-</div>
-<div class="paragraph">
-<p>To undo:</p>
-</div>
-<div class="paragraph">
-<p>1) Type <code>undo</code> or <code>u</code> into the command box.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Undo4.png" alt="Undo4">
-</div>
-</div>
-<div class="paragraph">
-<p>2) Press <code>Enter</code> to execute the command.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/Undo5.png" alt="Undo5">
-</div>
-</div>
-<div class="paragraph">
-<p>3) Notice that the result box shows text telling you what was undone, and body 20 is back in the list of bodies.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">Redoing a command: <code>redo</code></a></h4>
-<div class="paragraph">
-<p>You can redo the effects of the last command you executed with <code>redo</code>.
-This command lets you redo up to 10 most recent undone commands, one at a time.
-All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a> for how <code>undo</code> can be used.)</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>redo</code> or <code>r</code></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-A command can only be redone if it has been undone before.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Example:<br>
-Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting body 20. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
-</div>
-<div class="paragraph">
-<p>Instead of deleting body 20 again, simply <code>redo</code> the command.</p>
-</div>
-<div class="paragraph">
-<p>To redo:</p>
-</div>
-<div class="paragraph">
-<p>1) Type <code>redo</code> or <code>r</code> into the command box.</p>
-</div>
-<div class="paragraph">
-<p>2) Press <code>Enter</code> to execute the command.</p>
-</div>
-<div class="paragraph">
-<p>3) Notice that the result box shows text telling you what was executed when redoing, and body 20 is now absent
-from the list of bodies.</p>
-</div>
 <div class="paragraph">
 <p><em>{end of extract}</em></p>
-</div>
 </div>
 </div>
 </div>
@@ -531,6 +528,9 @@ from the list of bodies.</p>
 <div class="sect1">
 <h2 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>These sections of the Developer Guide explains to a developer how the undo/redo feature works, its architecture, and important considerations made during its design.</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 100%;">
@@ -919,4 +919,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:31:00 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:45:02 UTC</div></div></div></bodyId></html>
