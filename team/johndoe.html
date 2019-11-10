@@ -185,9 +185,9 @@ Format: <code>clear</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="list-all-entries-code-list-code"><a class="link" href="#list-all-entries-code-list-code">List all entries: <code>list</code></a></h4>
+<h4 id="list-all-entries-code-list-code"><a class="link" href="#list-all-entries-code-list-code">List all entries : <code>list</code></a></h4>
 <div class="paragraph">
-<p>You can list all entries of bodies, workers, or fridges by entering a list command with the given format below.</p>
+<p>You can list all entries of bodies, workers, or fridges.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>list -FLAG</code></p>
@@ -218,7 +218,43 @@ Format: <code>clear</code></p>
 </table>
 <div class="paragraph">
 <p>Example: <code>list -b</code><br>
-Lists all bodies currently in Mortago.</p>
+After filtering specific bodies, you may now want to view the full list of bodies:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>1. Mortago shows filtered list of bodies.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/list1.png" alt="list1">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>2. Type <code>list -b</code> in the Command Line Interface (CLI).</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/list2.png" alt="list2">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>3. Mortago shows unfiltered list of bodies.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/list3.png" alt="list3">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -465,7 +501,7 @@ You must ensure that all existing reports are closed before executing any report
 <div class="sect3">
 <h4 id="generate-report-for-a-specific-body-code-genreport-code"><a class="link" href="#generate-report-for-a-specific-body-code-genreport-code">Generate report for a specific body: <code>genReport</code></a></h4>
 <div class="paragraph">
-<p>You can generate an individual report in a PDF filename <code><span class="subheader">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file by entering a genReport command with the given format below.</p>
+<p>You can generate an individual report in a PDF filename <code><span class="red">Report &lt;body_ID&gt;.pdf</span></code> located in the folder containing the jar file as shown in the screenshot below:</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -482,7 +518,7 @@ You must ensure that all existing reports are closed before executing any report
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Your signature should not contain numbers and must be less than 40 characters.
+Your signature should only contain alphabets and whitespaces and must be less than 40 characters.
 </td>
 </tr>
 </table>
@@ -496,12 +532,12 @@ Your signature should not contain numbers and must be less than 40 characters.
 <div class="ulist">
 <ul>
 <li>
-<p><code>genReport 123 John Doe</code><br>
-Outputs the PDF report for body ID B00000123 in the folder containing the jar file. The report contains signature of John Doe.</p>
+<p><code>genReport 1 John Doe</code><br>
+Outputs the PDF report for body ID B00000001 in the folder containing the jar file. The report contains signature of John Doe.</p>
 </li>
 <li>
-<p><code>genReport 123</code><br>
-Outputs the PDF report for body ID B00000123 in the folder containing the jar file. The report does not contain any signature.</p>
+<p><code>genReport 1</code><br>
+Outputs the PDF report for body ID B00000001 in the folder containing the jar file. The report does not contain any signature.</p>
 </li>
 </ul>
 </div>
@@ -509,7 +545,7 @@ Outputs the PDF report for body ID B00000123 in the folder containing the jar fi
 <div class="sect3">
 <h4 id="generate-reports-for-all-bodies-code-genreports-code"><a class="link" href="#generate-reports-for-all-bodies-code-genreports-code">Generate reports for all bodies: <code>genReports</code></a></h4>
 <div class="paragraph">
-<p>You can generate all individual reports in a PDF filename <code><span class="subheader">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file by entering a genReports command with the given format below.</p>
+<p>You can generate all individual reports in a PDF filename <code><span class="red">Report (ALL BODIES).pdf</span></code> located in the folder containing the jar file.</p>
 </div>
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
@@ -521,7 +557,7 @@ Outputs the PDF report for body ID B00000123 in the folder containing the jar fi
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Your signature should not contain numbers and must be less than 40 characters.
+Your signature should only contain alphabets and whitespaces and must be less than 40 characters.
 </td>
 </tr>
 </table>
@@ -548,7 +584,7 @@ Outputs the PDF containing reports for all bodies in the folder containing the j
 <div class="sect3">
 <h4 id="generate-summary-report-for-all-bodies-code-genreportsummary-code"><a class="link" href="#generate-summary-report-for-all-bodies-code-genreportsummary-code">Generate summary report for all bodies: <code>genReportSummary</code></a></h4>
 <div class="paragraph">
-<p>You can generate a tabular report overview containing key information for all bodies in a PDF filename <code><span class="subheader">Report Summary.pdf</span></code> located in the folder containing the jar file by entering a genReportSummary command with the given format below.</p>
+<p>You can generate a tabular report overview containing key information for all bodies in a PDF filename <code><span class="red">Report Summary.pdf</span></code> located in the folder containing the jar file.</p>
 </div>
 <div class="paragraph">
 <p>You can also add your signature name to the report by following the command format below.</p>
@@ -560,7 +596,7 @@ Outputs the PDF containing reports for all bodies in the folder containing the j
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Your signature should not contain numbers and must be less than 40 characters.
+Your signature should only contain alphabets and whitespaces and must be less than 40 characters.
 </td>
 </tr>
 </table>
@@ -735,7 +771,7 @@ Displays all archived worker entries, in order of archive date.</p>
 <ul>
 <li>
 <p><code>feedback /id 10 /details very meticulous</code><br>
-Note down feedback for worker with ID W10010 with custom details</p>
+Notes down feedback for worker with ID W10010 with custom details</p>
 </li>
 </ul>
 </div>
@@ -749,15 +785,8 @@ Note down feedback for worker with ID W10010 with custom details</p>
 <p>Format: <code>assign /bodyId bodyId /workerId workerId /task taskDescription</code></p>
 </div>
 <div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>assign /bodyId 2 /workerId 1 /task send blood sample to lab for analysis</code><br>
+<p>Example: <code>assign /bodyId 2 /workerId 1 /task send blood sample to lab for analysis</code><br>
 Assigns worker with worker ID W00001 to body with ID B00000002 with a task description.</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
@@ -1597,4 +1626,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:42:33 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 12:53:14 UTC</div></div></div></bodyId></html>

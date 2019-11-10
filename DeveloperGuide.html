@@ -1221,13 +1221,13 @@ Additionally, it implements the following operations:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code><span class="subheader">ReportGenerator#generate(body, sign)</span></code>&#8201;&#8212;&#8201;Creates report containing sign name of manager in a PDF file for the specific body.</p>
+<p><code><span class="red">ReportGenerator#generate(body, sign)</span></code>&#8201;&#8212;&#8201;Creates report containing sign name of manager in a PDF file for the specific body.</p>
 </li>
 <li>
-<p><code><span class="subheader">ReportGenerator#generateAll(sign)</span></code>&#8201;&#8212;&#8201;Creates reports containing sign name of manager in a PDF file for all bodies registered in Mortago.</p>
+<p><code><span class="red">ReportGenerator#generateAll(sign)</span></code>&#8201;&#8212;&#8201;Creates reports containing sign name of manager in a PDF file for all bodies registered in Mortago.</p>
 </li>
 <li>
-<p><code><span class="subheader">ReportGenerator#generateSummary(sign)</span></code>&#8201;&#8212;&#8201;Creates a tabular summary report containing sign name of manager  in a PDF file for all bodies registered in Mortago.</p>
+<p><code><span class="red">ReportGenerator#generateSummary(sign)</span></code>&#8201;&#8212;&#8201;Creates a tabular summary report containing sign name of manager  in a PDF file for all bodies registered in Mortago.</p>
 </li>
 </ul>
 </div>
@@ -1247,13 +1247,13 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The lifeline for <code><span class="subheader">GenReportCommandParser</span></code> and <code><span class="subheader">ReportGenerator</span></code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The lifeline for <code><span class="red">GenReportCommandParser</span></code> and <code><span class="red">ReportGenerator</span></code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>genReport &lt;BODY_ID&gt; (sign)</code> command calls <code><span class="subheader">ReportGenerator#generate(body, sign)</span></code>, which creates the document.</p>
+<p>The <code>genReport &lt;BODY_ID&gt; (sign)</code> command calls <code><span class="red">ReportGenerator#generate(body, sign)</span></code>, which creates the document.</p>
 </div>
 <div class="paragraph">
 <p>The following activity diagram (Figure 18) summarizes what happens when manager executes a <code>genReport &lt;BODY_ID&gt; (sign)</code> command:</p>
@@ -1265,7 +1265,7 @@ The lifeline for <code><span class="subheader">GenReportCommandParser</span></co
 <div class="title">Figure 18. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
 <div class="paragraph">
-<p>The following code snippet from <code><span class="subheader">GenReportCommand.java</span></code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
+<p>The following code snippet from <code><span class="red">GenReportCommand.java</span></code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2627,4 +2627,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:42:33 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 12:53:14 UTC</div></div></div></bodyId></html>
