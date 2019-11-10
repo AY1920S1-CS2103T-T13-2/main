@@ -37,14 +37,14 @@
 </li>
 <li><a href="#notification-feature">4.3. Notification Feature</a>
 <ul class="sectlevel3">
-<li><a href="#current-implementation">4.3.1. Current Implementation</a></li>
+<li><a href="#implementation-4">4.3.1. Implementation</a></li>
 <li><a href="#design-considerations-3">4.3.2. Design Considerations</a></li>
-<li><a href="#aspect-how-to-reflect-change-in-bodystatus-on-ui">4.3.3. Aspect: How to reflect change in BodyStatus on UI</a></li>
+<li><a href="#aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized">4.3.3. Aspect: How the behaviour of <code>NotifCommand</code> differs when the app is initialized</a></li>
 </ul>
 </li>
 <li><a href="#generate-pdf-feature">4.4. Generate PDF Feature</a>
 <ul class="sectlevel3">
-<li><a href="#implementation-4">4.4.1. Implementation</a></li>
+<li><a href="#implementation-5">4.4.1. Implementation</a></li>
 <li><a href="#design-considerations-4">4.4.2. Design Considerations</a></li>
 </ul>
 </li>
@@ -58,7 +58,7 @@
 </li>
 <li><a href="#statistics-feature">4.8. Statistics feature</a>
 <ul class="sectlevel3">
-<li><a href="#current-implementation-2">4.8.1. Current Implementation</a></li>
+<li><a href="#current-implementation">4.8.1. Current Implementation</a></li>
 <li><a href="#design-considerations-5">4.8.2. Design Considerations</a></li>
 </ul>
 </li>
@@ -938,15 +938,35 @@ program state at any time. When undoing or redoing, it was essential that data i
 <div class="sect2">
 <h3 id="notification-feature"><a class="link" href="#notification-feature">4.3. Notification Feature</a></h3>
 <div class="paragraph">
-<p>This feature in Mortago acts as a reminder to a mortuary manager to contact the police when the next-of-kin of a body
-has been uncontactable for a given period of time. He / She then needs to contact the police to proceed with a
+<p>This feature in Mortago reminds a mortuary manager to contact the police when the next-of-kin of a body
+has been not been contactable for a given period of time from the point of admission of the <code>Body</code>. He / She then needs
+to
+contact
+the police
+to
+proceed with a
 more thorough investigation. In Singapore, this period is 24 hours. For testing purposes, it has been set to
 10 seconds in Mortago.</p>
 </div>
 <div class="paragraph">
-<p>If the status of a <code>Body</code> is <code>ARRIVED</code> after the 10 second window, it is updated to <code>CONTACT_POLICE</code> and a
-pop-up alert is displayed to remind regarding the same.</p>
+<p>If the status of a <code>Body</code> is <code>ARRIVED</code> after 10 seconds, it is updated to <code>CONTACT_POLICE</code> and a
+pop-up alert is displayed to remind the user.</p>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you want to change the time period, you can do so by modifying <code>NOTIF_PERIOD</code> and <code>NOTIF_TIME_UNIT</code> variables in
+AddCommand.java.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="implementation-4"><a class="link" href="#implementation-4">4.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This command is supported by the model component <code>Notif</code> and logic component <code>NotifCommand</code>.</p>
 </div>
@@ -956,15 +976,15 @@ pop-up alert is displayed to remind regarding the same.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>body</code>: Refers to the <code>Body</code> for which the <code>Notif</code> is associated with. This is passed in as a parameter when a new
-object of the class is instantiated.</p>
+<p><code>body</code>: Refers to the <code>Body</code> for which the <code>Notif</code> is created. This is passed in as a parameter when a new
+instance of the class is instantiated.</p>
 </li>
 <li>
 <p><code>alert</code>: Refers to a <code>Runnable</code> function which checks if the current status of the body is <code>ARRIVED</code> and if so,
 changes it to <code>CONTACT_POLICE</code>.</p>
 </li>
 <li>
-<p><code>notifCreationTime</code>: Refers to a <code>Date</code> object which store the date and time at the point of addition of the body.</p>
+<p><code>notifCreationTime</code>: Refers to a <code>Date</code> object which stores the date and time at the point of addition of the body.</p>
 </li>
 </ul>
 </div>
@@ -974,98 +994,51 @@ changes it to <code>CONTACT_POLICE</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>notif</code>: Refers to the the instance of the <code>Notif</code> which needs to be handled.</p>
+<p><code>notif</code>: Refers to the instance of the <code>Notif</code> which is handled by the <code>NotifCommand</code>.</p>
 </li>
 <li>
 <p><code>period</code>: Refers to a <code>long</code> value for which the NotifCommand needs to wait before executing the <code>alert</code> function
 of the <code>notif</code>. <code>long</code> is used because <code>notifCreationTime.getTime()</code> returns a <code>long</code> which is useful in storage.
- It will be explained in futher detail later.</p>
+It will be explained in further detail later. Currently, this value is set to <code>10</code>.</p>
 </li>
 <li>
-<p><code>timeUnit</code>: Refers to a <code>TimeUnit</code> associated with the <code>period</code>.</p>
+<p><code>timeUnit</code>: Refers to a <code>TimeUnit</code> associated with the <code>period</code>. Currently, this value is set to <code>TimeUnit.SECONDS</code>.</p>
 </li>
 </ul>
 </div>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.3.1. Current Implementation</a></h4>
 <div class="paragraph">
-<p>Given below is the typical execution process of this command:</p>
+<p>The following class diagram (Figure 14) models the relationships and dependencies among classes in this feature:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>The user executes <code>add -b /name John &#8230;&#8203;</code> to add a new <code>Body</code> to Mortago.</p>
-</li>
-<li>
-<p>The <code>AddCommand</code> creates a new <code>Notif</code> using this <code>Body</code> as the parameter.</p>
-</li>
-<li>
-<p>The <code>AddCommand</code> instantiates a new <code>NotifCommand</code> with <code>Notif</code>, <code>period</code>, <code>unit</code> as parameters.
-<code>period</code> is as a <code>static final long</code> equal to 10 and <code>unit</code> is <code>static final TimeUnit</code> set to <code>TimeUnit.SECONDS</code> in <code>AddCommand</code>.</p>
-</li>
-<li>
-<p><code>NotifCommand</code> has a static instance of the <code>ScheduledExecutorService</code> which schedules updating the status of the
-bodies to <code>CONTACT_POLICE</code> if there is no change in their status for the specified <code>period</code> using the <code>UpdateCommand</code>.</p>
-</li>
-<li>
-<p>After the <code>BodyStatus</code> is updated, a <code>NotifWindow</code> will be shown to alert the user of the automatic update in
-<code>BodyStatus</code>.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Here is the code snippet of the <code>NotifCommand</code>:</p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>Body body = notif.getBody();
-String notifContent = "Body Id: " + body.getIdNum()
-+ "\nName: " + body.getName()
-+ "\nNext of Kin has been uncontactable. Please contact the police";
-
-Runnable changeUi = () -&gt; Platform.runLater(() -&gt; {
-    if (body.getBodyStatus().equals(Optional.of(CONTACT_POLICE))) {
-        UpdateCommand up = new UpdateCommand(body.getIdNum(), new UpdateBodyDescriptor(body));
-        up.setUpdateFromNotif(true);
-        try {
-            up.execute(model);
-            NotifWindow notifWindow = new NotifWindow();
-            notifWindow.setTitle("Contact Police!");
-            notifWindow.setContent(notifContent);
-            notifWindow.display();
-            storageManager.saveAddressBook(model.getAddressBook());
-        } catch (CommandException | IOException e) {
-            logger.info("Error updating the body and fridge ");
-        }
-    }
-    NotificationButton.getInstanceOfNotifButton().setIconNumber(model.getNumberOfNotifs());
-});
-ses.schedule(changeUi, period, timeUnit);</code></pre>
+<img src="images/NotifCommandClassDiagram.png" alt="NotifCommandClassDiagram">
 </div>
+<div class="title">Figure 14. Notification Class Diagram</div>
 </div>
 <div class="paragraph">
-<p>The following sequence diagrams illustrate the execution of the notification feature:</p>
+<p>The following sequence diagrams (Figure 15 and 16) illustrate the execution of the notification feature:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotifCommandSequenceDiagram.png" alt="NotifCommandSequenceDiagram">
 </div>
-<div class="title">Figure 14. Notification Command Sequence Diagram</div>
+<div class="title">Figure 15. Notification Command Sequence Diagram</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ChangeUiFnSequenceDiagram.png" alt="ChangeUiFnSequenceDiagram">
 </div>
-<div class="title">Figure 15. ChangeUI function Sequence Diagram</div>
+<div class="title">Figure 16. ChangeUI function Sequence Diagram</div>
 </div>
 <div class="paragraph">
-<p>The following activity diagram shows what happens when a user adds a new body and the <code>NotifCommand</code> is instantiated:</p>
+<p>The following activity diagram summarizes what happens when a user adds a new body and a <code>NotifCommand</code> is
+instantiated:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/NotifCommandActivityDiagram.png" alt="NotifCommandActivityDiagram">
 </div>
-<div class="title">Figure 16. Notification Command Activity Diagram</div>
+<div class="title">Figure 17. Notification Command Activity Diagram</div>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1095,12 +1068,29 @@ status of the body was updated.</p>
 </tr>
 </tbody>
 </table>
+<div class="sect4">
+<h5 id="storing-executed-and-pending-code-notifs-code"><a class="link" href="#storing-executed-and-pending-code-notifs-code">Storing executed and pending <code>Notifs</code></a></h5>
 <div class="paragraph">
-<p>This command supports storage where each <code>Notif</code> with its associated <code>Body</code> and the <code>long</code> equivalent of the
-<code>notifCreationTime</code> are stored in a JSON file along with the other <code>Entities</code>. When the <code>MainApp</code> is initialized, all
-the <code>Notif</code> stored will be added in the <code>model</code>. During this process, for each <code>Notif</code>, the difference of the current system
-time and <code>notifCreationTime</code> is calculated. If it is more than the <code>period</code>, then the status of the associated <code>Body</code> is
+<p><code>NotifCommand</code> supports storage where each <code>Notif</code> with its associated <code>Body</code> and the <code>long</code> equivalent of the
+<code>notifCreationTime</code> is stored in a JSON file along with the other <code>Entities</code>. When the <code>MainApp</code> is initialized, the
+following happens:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All the <code>Notif</code> (s) are fetched from the storage.</p>
+</li>
+<li>
+<p>For each <code>Notif</code>, the difference of the  current system time and <code>notifCreationTime</code> is calculated.</p>
+</li>
+<li>
+<p>If the difference is more than the <code>period</code>, then the status of the associated <code>Body</code> is
 changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code> is scheduled to be executed after the calculated time difference.</p>
+</li>
+<li>
+<p>The <code>Notif</code> is added to the model.</p>
+</li>
+</ol>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1130,11 +1120,65 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 <li>
 <p>If the <code>Body</code> is deleted before the time period.</p>
 </li>
+<li>
+<p>If the difference between <code>notifCreationTime</code> and system time is more than <code>period</code> when the app is initialized.</p>
+</li>
 </ul>
 </div></div></td>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect4">
+<h5 id="defensive-programming-2"><a class="link" href="#defensive-programming-2">Defensive programming</a></h5>
+<div class="paragraph">
+<p>The <code>NotifCommand</code> heavily makes use of the <code>ScheduledExecutorService</code> and <code>Platform.runLater(Runnable runnable)</code> to
+make changes to the <code>Body</code> status and <code>Notif</code>. They use threading to allow tasks to be handled concurrently. For instance,
+even after scheduling a <code>Runnable</code> function, the user is still able to carry on with other commands of Mortago such
+as updating the status of the <code>Body</code>, adding a new <code>Fridge</code> etc.</p>
+</div>
+<div class="paragraph">
+<p>As per the official Java Documentation, <code>Platform.runLater(Runnable runnable)</code> runs the specified runnable function
+on a thread dedicated to JavaFX application at some unspecified time in the future. So,
+if some updates to the model are wrapped inside it as a <code>Runnable</code> while others are not, it can result in a
+mismatch of model. For instance, you may want to delete a <code>Notif</code> which already exists in the model. The usual
+process will be to first check whether it exists and if it does, then proceed with deletion. However, due to
+threading, you may end up in a situation when the app finds the <code>Notif</code> at the point of checking but throws a
+<code>NullPointerException</code> when proceeding with the deletion.</p>
+</div>
+<div class="paragraph">
+<p>To prevent this, in Mortago, any addition or deletion of <code>Notif</code> in the model during the execution of the
+<code>NotifCommand</code> and parts of <code>UpdateCommand</code> are wrapped inside <code>Platform.runLater(Runnable runnable)</code>. This ensures
+that updates to the model happen sequentially and not concurrently and the relevant changes can be reflected on the
+UI.</p>
+</div>
+<div class="paragraph">
+<p>Moreover, all these operations are wrapped inside a try-catch block. Either the <code>NullPointerException</code> or
+<code>DuplicateNotifException</code> are directly thrown in the form of <code>CommandException</code> or they are logged in <code>Logger</code>. A
+code snippet of <code>NotifCommand</code> to illustrate this is show below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code> if (model.hasNotif(notif)) {
+    try {
+        model.deleteNotif(notif);
+    } catch (NullPointerException exp) {
+        logger.info(MESSSAGE_NOTIF_DOES_NOT_EXIST);
+    }
+}
+
+Platform.runLater(() -&gt; {
+    if (!model.hasNotif(notif)) {
+        try {
+            model.addNotif(notif);
+        } catch (DuplicateNotifException exp) {
+            logger.info(MESSAGE_DUPLICATE_NOTIF);
+        }
+    }
+});</code></pre>
+</div>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design Considerations</a></h4>
@@ -1170,39 +1214,49 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because of its simplicity and robustness as it abstracts away the need
+to manually deal with threads.</p>
+</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="aspect-how-to-reflect-change-in-bodystatus-on-ui"><a class="link" href="#aspect-how-to-reflect-change-in-bodystatus-on-ui">4.3.3. Aspect: How to reflect change in BodyStatus on UI</a></h4>
+<h4 id="aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized"><a class="link" href="#aspect-how-the-behaviour-of-code-notifcommand-code-differs-when-the-app-is-initialized">4.3.3. Aspect: How the behaviour of <code>NotifCommand</code> differs when the app is initialized</a></h4>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Use <code>UpdateCommand</code>.</p>
+<p><strong>Alternative 1 (current choice):</strong> Do not show a pop-up if the difference between system time and
+<code>notifCreationTime</code> exceeds <code>period</code> .</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Easy to implement.</p>
+<p>Pros: Prevents the situation of multiple pop-ups on app initialization.</p>
 </li>
 <li>
-<p>Cons: Increases `NotifCommand&#8217;s dependency.</p>
+<p>Cons: Does not prompt the user who may in turn forget to contact the police.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Directly make changes to the model.</p>
+<p><strong>Alternative 2:</strong> Show pop-up on app initialization for <code>Notif</code> s in storage for which the difference between system
+time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Pros: Does not increase dependency .</p>
+<p>Pros: Ensures that the user does not forget about contacting the police.</p>
 </li>
 <li>
-<p>Cons: Cause a lot of repetition of code.</p>
+<p>Cons: May slow down the computer and lag the app if there are too many pop-up notifications at the same time.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is the current choice because we want the app to be responsive and scalable in the long term. The
+notification bell is placed beside the command box to prevent instances of user forgetting to contact the police.</p>
 </div>
 </div>
 </div>
@@ -1212,7 +1266,7 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 <p>This feature allows manager to automatically generate different kinds of reports with three commands: <code>genReport</code>, <code>genReports</code> and <code>genReportSummary</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">4.4.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">4.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generate PDF feature is facilitated by <code><span class="subheader">ReportGenerator</span></code> class.
 It extends Mortago with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
@@ -1238,7 +1292,7 @@ Additionally, it implements the following operations:</p>
 <div class="content">
 <img src="images/GenReportSequenceDiagram.png" alt="GenReportSequenceDiagram">
 </div>
-<div class="title">Figure 17. Sequence diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
+<div class="title">Figure 18. Sequence diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1262,7 +1316,7 @@ The lifeline for <code><span class="red">GenReportCommandParser</span></code> an
 <div class="content">
 <img src="images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram">
 </div>
-<div class="title">Figure 18. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
+<div class="title">Figure 19. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
 <div class="paragraph">
 <p>The following code snippet from <code><span class="red">GenReportCommand.java</span></code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
@@ -1285,7 +1339,7 @@ if (!generated) {
 <div class="content">
 <img src="images/ReportGeneratorClassDiagram.png" alt="ReportGeneratorClassDiagram">
 </div>
-<div class="title">Figure 19. Class diagram for generate PDF feature.</div>
+<div class="title">Figure 20. Class diagram for generate PDF feature.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1627,7 +1681,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="sect2">
 <h3 id="statistics-feature"><a class="link" href="#statistics-feature">4.8. Statistics feature</a></h3>
 <div class="sect3">
-<h4 id="current-implementation-2"><a class="link" href="#current-implementation-2">4.8.1. Current Implementation</a></h4>
+<h4 id="current-implementation"><a class="link" href="#current-implementation">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
 </div>
@@ -2441,6 +2495,10 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <dd>
 <p>A fridge used to store a body in the mortuary</p>
 </dd>
+</dl>
+</div>
+<div id="notif" class="dlist">
+<dl>
 <dt class="hdlist1"><a id="command-line-interface"></a> Command-Line-Interface (CLI)</dt>
 <dd>
 <p>A text-based user interface (UI) used to view and manage computer files</p>
@@ -2627,4 +2685,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 13:03:16 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:52:43 UTC</div></div></div></bodyId></html>

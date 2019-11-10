@@ -137,44 +137,69 @@
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="deleting-a-person-code-delete-code"><a class="link" href="#deleting-a-person-code-delete-code">Deleting a person : <code>delete</code></a></h4>
+<h4 id="deleting-an-entry-code-delete-code-br"><a class="link" href="#deleting-an-entry-code-delete-code-br">Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
 <p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the given format below..<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-When you delete a body, its associated notifications will also be deleted. If a fridge is occupied by a body, you cannot delete it.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>You only need to enter the numeric value of the Identification Number while ignoring the prefixed 0s. For example, if
+you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to only enter <code>delete -f 1</code>.</p>
+</div>
+<div class="paragraph">
+<p>When you delete a <code>Body</code>:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Deletes the body, worker or fridge entry with the specified identification number.</p>
+<p>Mortago will automatically delete its associated <code>Notifs</code>. You can learn more
+about <code>Notifs</code> in <a href="#add">Section 3.2.1</a>.</p>
 </li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Examples:</p>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><code>delete -w 1</code><br></p>
+<p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago will automatically set the status of the <code>Fridge</code> to
+<code>UNOCCUPIED</code>.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The worker with the identification number <code>W00001</code> will be deleted.</p>
+<p>You cannot delete a <code>Fridge</code> with status <code>OCCUPIED</code>. To still proceed with deletion, you need to either delete the
+<code>Body</code> or assign it to another <code>Fridge</code>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="paragraph">
+<p>Imagine that you added someone (Jim Kerr) by mistake and you want to remove his details from Mortago. You see that his
+ID number is W00003.</p>
+</div>
+<div class="paragraph">
+<p>To delete his record:</p>
+</div>
+<div class="paragraph">
+<p>1) Type <code>delete -w 3</code> and press <code>ENTER</code> to execute it.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/delete-command/DeleteStep1.png" alt="DeleteStep1">
+</div>
+</div>
+<div class="paragraph">
+<p>2) The result box will display the message as shown below.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/delete-command/DeleteStep2.png" alt="DeleteStep2">
+</div>
+</div>
+<div class="paragraph">
+<p>3) And you can check that Jim Kerr is no longer in the list of workers.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/delete-command/DeleteStep3.png" alt="DeleteStep3">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -275,82 +300,99 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <div class="sect2">
 <h3 id="general"><a class="link" href="#general">General</a></h3>
 <div class="sect3">
-<h4 id="view-notifs-panel-code-shownotifs-code"><a class="link" href="#view-notifs-panel-code-shownotifs-code">View notifs panel: <code>showNotifs</code></a></h4>
+<h4 id="view-notifs-panel-code-shownotifs-code-br"><a class="link" href="#view-notifs-panel-code-shownotifs-code-br">View notifs panel: <code>showNotifs</code><br></a></h4>
 <div class="paragraph">
-<p>You can view all notifications by entering a showNotifs command with the given format below.</p>
+<p>This command allows you to view all <code>Notif</code>.</p>
 </div>
 <div class="paragraph">
-<p>A <code>notif</code> is automatically created when you could not contact the next of kin within 24 hours from the time
-of arrival of the body. For the purpose of testing, this period is set to 10 seconds instead of 24 hours.
-The <code>bodyStatus</code> will be automatically changed to <code>CONTACT_POLICE</code> if it is <code>ARRVIED</code> after the 10 second period.
-A pop-up window to remind you to contact the police will be shown so that they can search for the body&#8217;s next of kin.</p>
+<p>A <code>Notif</code> is a notification associated with a <code>Body</code>. In Singapore, if the next-of-kin is not contactable for more
+than 24 hours from the time of admission of a <code>Body</code>,
+police must informed. Mortago removes the hassle of manually keeping track of the status of bodies! For the purpose of
+testing, instead of 24 hours, Mortago currently
+uses 10 seconds.</p>
 </div>
 <div class="paragraph">
-<p>Once you change the <code>bodyStatus</code> to any of the possible bodyStatus instead of <code>ARRIVED</code>, the <code>notif</code> will be be deleted.
-If you change the <code>bodyStatus</code> to <code>ARRIVED</code>, the associated <code>notif</code> for the body will be added and the timer will start from the point in time it is changed.</p>
+<p>When you add a <code>Body</code> or manually set its status to <code>ARRIVED</code>, Mortago
+automatically
+changes its status to <code>CONTACT_POLICE</code> if its status is still <code>ARRIVED</code> after 10 seconds. It then shows a pop-up
+to
+remind you to
+contact the police. It creates a <code>Notif</code> for this <code>Body</code> and you can view all <code>Notif</code> by either clicking on the
+notification bell or typing the <code>showNotif</code> command.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>showNotifs</code></p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
 <div class="paragraph">
-<p>You can sort all displayed entries according to a given order by entering a sort command with the given format below.</p>
+<p>Once you change the status of the <code>Body</code> from <code>CONTACT_POLICE</code> to any other possible status (!!!add in the section!!!),
+its associated <code>Notif</code> is deleted.</p>
 </div>
 <div class="paragraph">
-<p>Only body and worker entries can be sorted.</p>
-</div>
-<div class="paragraph">
-<p>The following describes the types of ordering that can be executed:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>name</code>: entries are sorted by alphabetical order of their names</p>
-</li>
-<li>
-<p><code>id</code>: entries are sorted by their id number, in descending order (newest entry appear first)</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>id asc</code>: entries are sorted in ascending order of id number</p>
-</li>
-<li>
-<p><code>id desc</code>: entries are sorted in descending order of id number</p>
-<div class="ulist">
-<ul>
-<li>
-<p>If neither 'asc' or 'desc' qualifiers are supplied, the ordering is by default descending.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>status</code>: entries are sorted by their statuses in this order:</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Format: <code>sort /order order</code></p>
+<p>If you change the status of the <code>Body</code> before 10 seconds, no pop-up and <code>Notif</code> are created.</p>
 </div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>sort /order status</code><br>
-All entries will be sorted and grouped according to their statuses.</p>
-</li>
-<li>
-<p><code>sort /order id asc</code><br>
-All entries will be sorted according to their id number in ascending order.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Imagine that a new <code>Body</code> (John Doe) has just arrived at your mortuary.</p>
+</div>
+<div class="paragraph">
+<p>1) Type the <code>add</code> command as specified in the example in <a href="#add">Section 3.1.1</a>. Currently the status of this <code>Body</code>
+is <code>ARRIVED</code></p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/notif-command/Notif1.png" alt="Notif1">
+</div>
+</div>
+<div class="paragraph">
+<p>2) Wait for 10 seconds. Mortago automatically changes the status of the <code>Body</code> to <code>CONTACT_POLICE</code> and shows
+you a
+pop-up
+notification.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/notif-command/Notif2.png" alt="Notif2">
+</div>
+</div>
+<div class="paragraph">
+<p>3) Type <code>showNotif</code> and press <code>ENTER</code> to execute it.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/notif-command/Notif3.png" alt="Notif3">
+</div>
+</div>
+<div class="paragraph">
+<p>4) The notification bell opens up a panel and lists all the bodies for which you need to contact the police. You
+can see John Doe&#8217;s ID number B00000011 is in the list.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/notif-command/Notif4.png" alt="Notif4">
+</div>
+</div>
+<div class="paragraph">
+<p>5) Suppose you have contacted the police, change the status of John Doe using the command <code>update -b /id 11 /status
+pending police report</code>. John Doe&#8217;s ID is no longer listed in the notifs panel.</p>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/notif-command/Notif5.png" alt="Notif5">
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you delete a <code>Body</code> and add it back before the 10 second period,
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect3">
@@ -413,18 +455,15 @@ Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mo
 <div class="paragraph">
 <p>To undo:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Type <code>undo</code> or <code>u</code> into the command box.</p>
-</li>
-<li>
-<p>Press <code>Enter</code> to execute the command.</p>
-</li>
-<li>
-<p>Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now back in the list of bodies.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>1) Type <code>undo</code> or <code>u</code> into the command box.</p>
+</div>
+<div class="paragraph">
+<p>2) Press <code>Enter</code> to execute the command.</p>
+</div>
+<div class="paragraph">
+<p>3) Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now
+back in the list of bodies.</p>
 </div>
 </div>
 <div class="sect3">
@@ -459,18 +498,15 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <div class="paragraph">
 <p>To redo:</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Type <code>redo</code> or <code>r</code> into the command box.</p>
-</li>
-<li>
-<p>Press <code>Enter</code> to execute the command.</p>
-</li>
-<li>
-<p>Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent from the list of bodies.</p>
-</li>
-</ol>
+<div class="paragraph">
+<p>1) Type <code>redo</code> or <code>r</code> into the command box.</p>
+</div>
+<div class="paragraph">
+<p>2) Press <code>Enter</code> to execute the command.</p>
+</div>
+<div class="paragraph">
+<p>3) Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent
+from the list of bodies.</p>
 </div>
 </div>
 <div class="sect3">
@@ -478,6 +514,62 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <div class="paragraph">
 <p>You can exit the program by entering an exit command given below.<br>
 Format: <code>exit</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sort-all-entries-code-sort-code-code-coming-in-v2-0-code"><a class="link" href="#sort-all-entries-code-sort-code-code-coming-in-v2-0-code">Sort all entries: <code>sort</code> <code>[coming in v2.0]</code></a></h4>
+<div class="paragraph">
+<p>Sort all displayed entries according to a given order. Only body and worker entries can be sorted.
+Sort only works on the entries that are in view. For example, to sort body entries, the you need to first navigate to the bodies view.
+Types of ordering can be found below:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>name</code>: entries are sorted by alphabetical order of their names</p>
+</li>
+<li>
+<p><code>id</code>: entries are sorted by their id number, in descending order (newest entry appear first)</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>id asc</code>: entries are sorted in ascending order of id number</p>
+</li>
+<li>
+<p><code>id desc</code>: entries are sorted in descending order of id number</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If neither 'asc' or 'desc' qualifiers are supplied, the ordering is by default descending.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>status</code>: entries are sorted by their statuses in this order:</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Format: <code>sort /order order</code></p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>sort /order status</code><br>
+All entries will be sorted and grouped according to their statuses.</p>
+</li>
+<li>
+<p><code>sort /order id asc</code><br>
+All entries will be sorted according to their id number in ascending order.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -903,17 +995,6 @@ Format: <code>delete -FLAG id</code></p>
 </div>
 </li>
 <li>
-<p><strong>Sort</strong> : <code>sort</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Sort all displayed entries according to a given order.<br>
-Format: <code>sort /order order (/idOrder idOrder)</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
 <p><strong>Filter</strong> : <code>filter</code></p>
 <div class="ulist">
 <ul>
@@ -948,6 +1029,17 @@ Format: <code>redo</code></p>
 </li>
 <li>
 <p><strong>Exit</strong>: <code>exit</code></p>
+</li>
+<li>
+<p><strong>Sort</strong> : <code>sort</code> [coming in v2.0]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Sort all displayed entries according to a given order.<br>
+Format: <code>sort /order order (/idOrder idOrder)</code></p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p><strong>Generate report</strong> : <code>genReport</code></p>
@@ -1057,6 +1149,9 @@ Format: <code>help</code></p>
 </div>
 <div class="paragraph">
 <p><strong>Fridge</strong> : a refrigerator used to store a body in the mortuary<br></p>
+</div>
+<div class="paragraph">
+<p><strong>Notif</strong> : a reminder to notify the mortuary manager about the <code>Body</code> for which police needs to be contacted<br></p>
 </div>
 <div class="paragraph">
 <p><strong>Command Line Interface (CLI)</strong> : a text-based user interface (UI) used to view and manage computer files<br></p>
@@ -1626,4 +1721,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 13:03:16 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:52:43 UTC</div></div></div></bodyId></html>

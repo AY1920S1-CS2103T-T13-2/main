@@ -261,11 +261,34 @@ What are <code>ATTRIBUTES</code>?
 <p>You must enter <code>ATTRIBUTES</code> successively in a single-line command. Mortago will not prompt you to key in any mandatory <code>ATTRIBUTES</code> that you may have missed out.</p>
 </li>
 <li>
-<p>You may provide <code>ATTRIBUTES</code> specified in a command in any order.</p>
+<p><code>ATTRIBUTES</code> are provided successively in commands and Mortago will not prompt you, step by step, the <code>ATTRIBUTES</code> you need to provide.</p>
+</li>
+<li>
+<p><code>ATTRIBUTES</code> in parentheses are optional.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For example, the following 2 commands are valid for the add command, with the abridged format: <code>add -b (/religion religion /status status)</code>.</p>
+<p>e.g. The following 2 commands are valid for the add command, with the abridged format: <code>add -b /name name (/religion religion /status status)</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>add -b /religion Buddhism</code></p>
+</li>
+<li>
+<p><code>add -b /religion Buddhism /status arrived</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>ATTRIBUTES</code> specified in a command can be given in any order.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>e.g. The following 2 commands are valid for the add command, with the abridged format: <code>add -b (/religion religion /status status)</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -273,6 +296,26 @@ What are <code>ATTRIBUTES</code>?
 </li>
 <li>
 <p><code>add -b /status arrived /religion Buddhism</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>ATTRIBUTES</code> that are tagged with <code>&#8230;&#8203;</code> and in square parentheses must be supplied with at least one <code>ATTRIBUTE</code>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
+</li>
+<li>
+<p><code>filter</code> is an invalid command.</p>
 </li>
 </ul>
 </div>
@@ -386,8 +429,8 @@ This table details how you can craft your add command to add an entity in Mortag
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adding a Worker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adding a Body</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adding a Fridge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adding a Body</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div><div class="exampleblock">
@@ -403,6 +446,32 @@ This table details how you can craft your add command to add an entity in Mortag
 (/dob dateOfBirth)<br>
 (/photo pathToPhoto)</p>
 </div>
+</div>
+</div>
+<hr></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>add -f</p>
+</div>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Default status: <code>UNOCCUPIED</code>
+</td>
+</tr>
+</table>
+</div>
+<hr>
+<div class="exampleblock">
+<div class="content">
+
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="exampleblock">
@@ -424,30 +493,6 @@ This table details how you can craft your add command to add an entity in Mortag
 (/organsForDonation organsForDonation)<br>
 (/fridgeId fridgeId)</p>
 </div>
-</div>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div><div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>add -f</p>
-</div>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-Default status: <code>UNOCCUPIED</code>
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -460,6 +505,11 @@ Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> wit
 </tr>
 </table>
 </div>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p>Example:</p>
 </div>
@@ -486,13 +536,20 @@ Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> wit
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>add -f</code>
+&#160;<br></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fridge added</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p><code>add -b
 /name John Doe
 /sex male
 /dob 12/12/1984
 /dod 12/08/2019 2358
 /doa 13/08/2019 0200
-/status claimed
+/status arrived
 /nric S8456372C
 /religion Catholic
 /NOKname Jack Smith
@@ -503,13 +560,6 @@ Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> wit
 /organsForDonation NIL</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Body added</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>add -f</code>
-&#160;<br></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fridge added</p></td>
 </tr>
 </tbody>
 </table>
@@ -877,4 +927,4 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 13:03:16 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:52:43 UTC</div></div></div></bodyId></html>
