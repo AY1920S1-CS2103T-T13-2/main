@@ -1323,7 +1323,7 @@ Commands that don&#8217;t change the user-visible program state, like <code>find
 <div class="sect4">
 <h5 id="defensive-programming"><a class="link" href="#defensive-programming">Defensive programming</a></h5>
 <div class="paragraph">
-<p>When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of ModelManager` respectively.
+<p>When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of <code>ModelManager</code> respectively.
 Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.
 To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
 Additionally, <code>UndoableCommand</code> contains a small inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to any value in the enumeration.
@@ -1647,4 +1647,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 09:41:55 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 11:37:17 UTC</div></div></div></bodyId></html>
