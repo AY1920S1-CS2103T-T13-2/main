@@ -125,20 +125,37 @@ team project.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Enhancements to existing features: I wrote additional tests for existing features to increase coverage from <em>% to </em>%. (Pull request: <a href="https://github.com">#36</a>)</p>
+<p>Enhancements to existing features:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>I wrote additional tests for existing features to increase coverage from <em>% to </em>%. (Pull request: <a href="https://github.com">#36</a>)</p>
 </li>
 <li>
-<p>Documentation: I made cosmetic tweaks to existing contents of the User Guide to make it more reader-friendly.(Pull request: <a href="https://github.com">#36</a>)</p>
+<p>I fixed bugs reported by test users of the application. (Pull requests: <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/222">#222</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/223">#223</a>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Documentation:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>I contributed to the writing of the User Guide and Developer Guide.(Pull request: <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/256">#256</a>)</p>
+</li>
+<li>
+<p>I made instructional diagrams for every teammate&#8217;s sections that needed such diagrams. (Pull request: <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/263">#263</a>)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Community:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>I reviewed PRs, offering non-trivial review comments. (Exampless: <a href="https://github.com">#36</a>)</p>
-</li>
-<li>
-<p>I reported bugs and suggestions for other teams in the class (Examples:  <a href="https://github.com">1</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
+<p>I reported bugs and suggestions for other teams in the class (Examples:  <a href="https://github.com/dalisc/ped/issues/10">1</a>, <a href="https://github.com/dalisc/ped/issues/8">2</a>, <a href="https://github.com/dalisc/ped/issues/11">3</a>)</p>
 </li>
 </ul>
 </div>
@@ -155,18 +172,25 @@ team project.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We wrote a User Guide targeted at the users of Mortago. The User Guide containts instructions on how to use the various commands of the application. The following is an excerpt from our Mortago User Guide, showing additions that I have
-made for the <code>stats</code>, <code>fitler</code>, and <code>find</code> features.</p>
+made for the <code>stats</code>, <code>filter</code>, and <code>find</code> features.</p>
 </div>
 <div class="paragraph">
 <p><em>{start of extract 1: stats command}</em></p>
 </div>
 <div class="sect3">
-<h4 id="3-4-1-view-admission-statistics-code-stats-code"><a class="link" href="#3-4-1-view-admission-statistics-code-stats-code">3.4.1. View admission statistics: <code>stats</code></a></h4>
+<h4 id="view-admission-statistics-code-stats-code"><a class="link" href="#view-admission-statistics-code-stats-code">View admission statistics: <code>stats</code></a></h4>
 <div class="paragraph">
-<p>This command allows you to view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year.</p>
+<p>You can view a the statistics of the number of bodies admitted to the morgue over the past 10 days, a specific week, a specific month, or a specific year by entering a stats command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>The statistics appear in graphical form as a line-chart on the main page of the application. The line chart is initialised and updated automatically and you do not need to enter a command to see it. By default, the line-chart displayed shows the number of bodies admitted over the past 10 days. You can change the time frame with the <code>stats</code> command.</p>
+</div>
+<div class="paragraph">
+<p>The following screenshot shows where the <code>stats</code> command should be inputted and where the line chart changes:</p>
+</div>
+<div class="paragraph">
+<p>)The line chart&#8217;s position on the dashboard with respect to the command box.
+image::statsMonth.png[width="790"]</p>
 </div>
 <div class="paragraph">
 <p>The following are the correct formats for typing in stats commands, with example usage:</p>
@@ -175,132 +199,88 @@ made for the <code>stats</code>, <code>fitler</code>, and <code>find</code> feat
 <ul>
 <li>
 <p>To display the last 10 days: <code>stats</code><br>
-The line chart will display statistics over the last 10 days. The line chart will appear as below:</p>
+The line chart displays statistics over the last 10 days. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/statsTenDays.png" alt="statsTenDays" width="790">
-</div>
+<div class="paragraph">
+<p>)Line chart displaying the last ten days
+image::statsTenDays.png[width="790"]</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To display a specific week: <code>stats /week 25/10/2019</code><br>
-The line chart will display statistics for the week which contains the specified day. In this case, it is the date 12/10/2019. The line chart will appear as below:</p>
+The line chart displays statistics for the week which contains the specified day. In this case, it is the date
+12/10/2019. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/statsWeek.png" alt="statsWeek" width="790">
-</div>
+<div class="paragraph">
+<p>)Line chart displaying the week containing the day 25/10/2019
+image::statsWeek.png[width="790"]</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To display a specific month: <code>stats /month 5/2019</code><br>
-The line chart will display statistics or the month specified. In this case, it is May 2019. The line chart will appear as below:</p>
+The line chart displays statistics or the month specified. In this case, it is May 2019. The line chart appears
+as below:</p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/statsMonth.png" alt="statsMonth" width="790">
-</div>
+<div class="paragraph">
+<p>)Line chart displaying the month of October
+image::statsMonth.png[width="790"]</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To display a specific year: <code>stats /year 2019</code><br>
-The line chart will display statistics for the year specified. In this case is it 2019. The line chart will appear as below:</p>
+The line chart displays statistics for the year specified. In this case is it 2019. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/statsYear.png" alt="statsYear" width="790">
-</div>
+<div class="paragraph">
+<p>)Line chart displaying the year 2019
+image::statsYear.png[width="790"]</p>
 </div>
 <div class="paragraph">
 <p><em>{end of extract 1}</em></p>
 </div>
 <div class="paragraph">
-<p><em>{start of extract 2: filter command}</em></p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="3-2-3-filter-all-entries-code-filter-code"><a class="link" href="#3-2-3-filter-all-entries-code-filter-code">3.2.3. Filter all entries: <code>filter</code></a></h4>
-<div class="paragraph">
-<p>This command allows you to filter all entries according to the given keywords in any of an entry’s attributes. All entries with matching keywords will be displayed. Keyword is case-insensitive.</p>
-</div>
-<div class="paragraph">
-<p>All attributes of a body or worker entry can be filtered. If more than one attribute is specified, the entries displayed must fulfill all attributes. Please refer to <a href="#Section 3.1.1">[Section 3.1.1]</a> for the different fields available to be filtered.</p>
-</div>
-<div class="paragraph">
-<p>Format: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code></p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>filter -w /sex female</code><br>
-All female worker entries will be displayed.</p>
-</li>
-<li>
-<p><code>filter -b /cod Car Accident /sex male</code><br>
-All body entries with car accident as the cause of death and those that are male will be displayed.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><em>{end of extract 2}</em></p>
+<p><em>{start of extract 2: filter command}</em>
+<em>{end of extract 2}</em></p>
 </div>
 <div class="paragraph">
 <p><em>{start of extract 3: find command}</em></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="3-1-3-locating-entries-by-name-code-find-code"><a class="link" href="#3-1-3-locating-entries-by-name-code-find-code">3.1.3. Locating entries by name: <code>find</code></a></h4>
+<h4 id="locating-entries-by-name-code-find-code"><a class="link" href="#locating-entries-by-name-code-find-code">Locating entries by name: <code>find</code></a></h4>
 <div class="paragraph">
-<p>Finds bodies or workers whose names contain any of the given keywords.<br></p>
+<p>You can find bodies or workers whose names contain any of the given keywords by entering a find command with the given format below.<br></p>
 </div>
-<div class="paragraph">
-<p>Format: <code>find (flag) (keyword)&#8230;&#8203;</code></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:bulb:</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
+<div class="ulist TIP">
+<ul class="TIP">
 <li>
-<p>The search is case insensitive. e.g <code>hans</code> will match <code>Hans</code></p>
+<p>The search is case insensitive. e.g <code>hans</code> matches <code>Hans</code></p>
 </li>
 <li>
-<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> will match <code>Bo Hans</code></p>
+<p>The order of the keywords does not matter. e.g. <code>Hans Bo</code> matches <code>Bo Hans</code></p>
 </li>
 <li>
 <p>Only the name is searched.</p>
 </li>
 <li>
-<p>Only full words will be matched e.g. <code>Han</code> will not match <code>Hans</code></p>
+<p>Only full words are matched e.g. <code>Han</code> is not match <code>Hans</code></p>
 </li>
 <li>
-<p>Persons matching at least one keyword will be returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> will return <code>Hans Gruber</code>, <code>Bo Yang</code></p>
+<p>Persons matching at least one keyword is returned (i.e. <code>OR</code> search). e.g. <code>Hans Bo</code> returns <code>Hans Gruber</code>, <code>Bo
+Yang</code></p>
 </li>
 </ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
+</div>
 <div class="paragraph">
 <p>Format: <code>find -FLAG [keyword&#8230;&#8203;]</code></p>
 </div>
@@ -332,17 +312,15 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <p>In addition to a User Guide, we wrote a Developer Guide targeted at developers who are interested in contributing to the project. The Developer Guide showcases my ability to write technical documentation and the technical depth of my contributions to the project.Given below is my contribution to the Developer Guide:</p>
 </div>
 <div class="paragraph">
-<p><em>{start of extract: implementation of stats command}</em></p>
+<p><em>{start of extract: implementation of stats command}</em>
+=== Statistics feature
+==== Current Implementation</p>
 </div>
-<div class="sect2">
-<h3 id="4-8-statistics-feature"><a class="link" href="#4-8-statistics-feature">4.8. Statistics feature</a></h3>
-<div class="sect3">
-<h4 id="4-8-1-current-implementation"><a class="link" href="#4-8-1-current-implementation">4.8.1. Current Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
 </div>
 <div class="paragraph">
-<p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order:</p>
+<p>In <code>LineChartPanel</code>, four key operations that constructs the line chart and updates it dynamically are implemented, and they are executed in order as described below:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -366,22 +344,19 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <div class="paragraph">
 <p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
-</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the dynamic update of the line chart when user adds a new body.
+image::LineChartAddBodySequenceDiagram.png[]</p>
 </div>
 <div class="paragraph">
 <p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
-</div>
-</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the changing view of the line chart when user specifies a different time frame.
+image::LineChartTimeFrameSequenceDiagram.png[]</p>
 </div>
 <div class="sect3">
-<h4 id="4-8-2-design-considerations"><a class="link" href="#4-8-2-design-considerations">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-data-is-stored-and-updated"><a class="link" href="#aspect-how-data-is-stored-and-updated">Aspect: How data is stored and updated</a></h5>
 <div class="paragraph">
@@ -397,10 +372,9 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <div class="paragraph">
 <p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
-</div>
+<div class="paragraph">
+<p>)Activity diagram for how the line chart populate values over the last ten days.
+image::LineChartActivityDiagram.png[]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -467,5 +441,4 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 </div>
 </div>
 </div>
-</div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:45:02 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 19:46:03 UTC</div></div></div></bodyId></html>

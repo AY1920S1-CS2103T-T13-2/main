@@ -1705,18 +1705,16 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="paragraph">
 <p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
-</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the dynamic update of the line chart when user adds a new body.
+image::LineChartAddBodySequenceDiagram.png[]</p>
 </div>
 <div class="paragraph">
 <p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
-</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the changing view of the line chart when user specifies a different time frame.
+image::LineChartTimeFrameSequenceDiagram.png[]</p>
 </div>
 </div>
 <div class="sect3">
@@ -1736,10 +1734,9 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="paragraph">
 <p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
-</div>
+<div class="paragraph">
+<p>)Activity diagram for how the line chart populate values over the last ten days.
+image::LineChartActivityDiagram.png[]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2686,4 +2683,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:45:02 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 19:46:03 UTC</div></div></div></bodyId></html>
