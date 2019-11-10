@@ -428,8 +428,8 @@ All body entries with car accident as the cause of death and those that are male
 <div class="sect3">
 <h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
 <div class="paragraph">
-<p>This command undoes the effects of the last command you executed.
-You can undo up to 10 most recent commands.
+<p>You can undo the effects of the last command you executed with <code>undo</code>.
+This command lets you undo up to 10 most recent commands, one at a time.
 The commands are undone starting from the most recent to the least recent.</p>
 </div>
 <div class="paragraph">
@@ -440,7 +440,7 @@ The commands are undone starting from the most recent to the least recent.</p>
 Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
-<p>Commands caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
+<p>Commands caused by automated commands, such as an <code>UpdateCommand</code> caused by <code>Notif</code> can be undone and redone.
 For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
 the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
 undoing the deletion will not restore the <code>NotifCommand</code>.</p>
@@ -450,7 +450,25 @@ undoing the deletion will not restore the <code>NotifCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p>Example:<br>
-Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mortago. You can easily reverse that mistake with the <code>undo</code> command instead of adding John Doe all over again!</p>
+Imagine that you wanted to delete a <code>Body</code> with ID 10 from Mortago. However, your finger slips and you type <code>20</code> instead
+of <code>10</code>!</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Undo2.png" alt="Undo2">
+</div>
+</div>
+<div class="paragraph">
+<p>You don&#8217;t realise and execute the command. When you look at the dashboard, you realise you have deleted body 20.
+Even worse, you have no recollection of body 20&#8217;s name or information.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoBodyDeleted.png" alt="UndoBodyDeleted">
+</div>
+</div>
+<div class="paragraph">
+<p>You can easily reverse that mistake with the <code>undo</code> command instead of adding body 20 all over again!</p>
 </div>
 <div class="paragraph">
 <p>To undo:</p>
@@ -458,19 +476,28 @@ Imagine that you&#8217;ve accidentally deleted the wrong Body (John Doe) from Mo
 <div class="paragraph">
 <p>1) Type <code>undo</code> or <code>u</code> into the command box.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Undo4.png" alt="Undo4">
+</div>
+</div>
 <div class="paragraph">
 <p>2) Press <code>Enter</code> to execute the command.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/Undo5.png" alt="Undo5">
+</div>
+</div>
 <div class="paragraph">
-<p>3) Notice that the result box displays "Undid deleting this entity: &lt;long descriptor of the body&gt;" and John Doe is now
-back in the list of bodies.</p>
+<p>3) Notice that the result box shows text telling you what was undone, and body 20 is back in the list of bodies.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="redoing-a-command-code-redo-code"><a class="link" href="#redoing-a-command-code-redo-code">Redoing a command: <code>redo</code></a></h4>
 <div class="paragraph">
-<p>This command redoes the effects of the last command you undid.
-You can redo up to 10 of your most recent undone commands.
+<p>You can redo the effects of the last command you executed with <code>redo</code>.
+This command lets you redo up to 10 most recent undone commands, one at a time.
 All commands that can be undone can be redone. (See <a href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a> for how <code>undo</code> can be used.)</p>
 </div>
 <div class="paragraph">
@@ -490,10 +517,10 @@ A command can only be redone if it has been undone before.
 </div>
 <div class="paragraph">
 <p>Example:<br>
-Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting John Doe. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
+Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting body 20. You look at the data again and realise you&#8217;ve deleted the right thing after all!</p>
 </div>
 <div class="paragraph">
-<p>Instead of manually deleting John Doe again, simply <code>redo</code> the command.</p>
+<p>Instead of deleting body 20 again, simply <code>redo</code> the command.</p>
 </div>
 <div class="paragraph">
 <p>To redo:</p>
@@ -505,7 +532,7 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 <p>2) Press <code>Enter</code> to execute the command.</p>
 </div>
 <div class="paragraph">
-<p>3) Notice that the result box displays "Deleted this entity: &lt;long descriptor of the body&gt;" and John Doe is now absent
+<p>3) Notice that the result box shows text telling you what was executed when redoing, and body 20 is now absent
 from the list of bodies.</p>
 </div>
 </div>
@@ -1337,9 +1364,9 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 <div class="sect3">
 <h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
 <div class="paragraph">
-<p>You can find the core of undo/redo in the undo/redo history of <code>ModelManager</code>.
-The history stores <code>UndoableCommands</code>, and an <code>UndoCommand</code> or <code>RedoCommand</code> will <code>undo()</code> or <code>redo()</code> commands in the history.
-The design of <code>UndoableCommand</code> uses the Command pattern, a common design pattern often used in software engineering.
+<p>You can find the core of undo/redo in the undo/redo history of <code class="purple">ModelManager</code>.
+The history stores <code class="purple">UndoableCommands</code>, and an <code class="purple">UndoCommand</code> or <code class="purple">RedoCommand</code> will <code class="purple">undo()</code> or <code class="purple">redo()</code> commands in the history.
+The design of <code class="purple">UndoableCommand</code> uses the Command pattern, a common design pattern often used in software engineering.
 It allows each individual command to be undone/redone at a high-level without needing the specific command type to be known.
 Classes related to undo/redo and their relationships are shown in Figure 11.</p>
 </div>
@@ -1350,57 +1377,70 @@ Classes related to undo/redo and their relationships are shown in Figure 11.</p>
 <div class="title">Figure 1. Class Diagram Showing the Architecture of Undo/Redo</div>
 </div>
 <div class="sect4">
-<h5 id="storing-executed-and-undone-commands"><a class="link" href="#storing-executed-and-undone-commands">Storing executed and undone commands</a></h5>
+<h5 id="architecture"><a class="link" href="#architecture">Architecture</a></h5>
 <div class="paragraph">
-<p>To start off, you will find two instances of <code>CommandHistory</code> in <code>ModelManager</code>. They are  stored internally as <code>commandHistory</code> and <code>undoHistory</code>.
-<code>commandHistory</code> stores previously executed commands while <code>undoHistory</code> stores previously undone commands.
-<code>CommandHistory</code> wraps a <code>Deque&lt;UndoableCommand&gt;</code>. Its methods imposes a <code>MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
+<p>To start off, you will find two instances of <code class="purple">CommandHistory</code> in <code class="purple">ModelManager</code>. They are  stored internally as <code class="purple">commandHistory</code> and <code class="purple">undoHistory</code>.
+<code class="purple">commandHistory</code> stores previously executed commands while <code class="purple">undoHistory</code> stores previously undone commands.
+<code class="purple">CommandHistory</code> wraps a <code class="purple">Deque&lt;UndoableCommand&gt;</code>. Its methods imposes a <code class="purple">MAX_SIZE</code> which determines how many commands can be stored in the command history.</p>
 </div>
 <div class="paragraph">
-<p>In <code>ModelManager</code>, four key operations to access and modify <code>CommandHistory</code> are implemented:</p>
+<p>In <code class="purple">ModelManager</code>, four key operations to access and modify <code class="purple">CommandHistory</code> are implemented:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>ModelManager#addExecutedCommand(UndoableCommand command)</code>&#8201;&#8212;&#8201;Adds a command that was executed to the start of <code>commandHistory</code>.</p>
+<p><code class="purple">ModelManager#addExecutedCommand(UndoableCommand command)</code>&#8201;&#8212;&#8201;Adds a command that was executed to the start of <code class="purple">commandHistory</code>.</p>
 </li>
 <li>
-<p><code>ModelManager#getExecutedCommand()</code>&#8201;&#8212;&#8201;Removes the last command that was executed and added to <code>commandHistory</code> and returns it.</p>
+<p><code class="purple">ModelManager#getExecutedCommand()</code>&#8201;&#8212;&#8201;Removes the last command that was executed and added to <code class="purple">commandHistory</code> and returns it.</p>
 </li>
 <li>
-<p><code>ModelManager#addUndoneCommand(UndoableCommand command)</code>&#8201;&#8212;&#8201;Adds a command that was undone to the start of <code>undoHistory</code>.</p>
+<p><code class="purple">ModelManager#addUndoneCommand(UndoableCommand command)</code>&#8201;&#8212;&#8201;Adds a command that was undone to the start of <code class="purple">undoHistory</code>.</p>
 </li>
 <li>
-<p><code>ModelManager#getUndoneCommand()</code>&#8201;&#8212;&#8201;Removes the last command that was undone and added to <code>undoHistory</code> and returns it.</p>
+<p><code class="purple">ModelManager#getUndoneCommand()</code>&#8201;&#8212;&#8201;Removes the last command that was undone and added to <code class="purple">undoHistory</code> and returns it.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>In the <code>Model</code> interface implemented by <code>ModelManager</code>, these four operations are respectively exposed as
-<code>Model#addExecutedCommand(UndoableCommand command)</code>, <code>Model#getExecutedCommand()</code>, <code>Model#addUndoneCommand(UndoableCommand command)</code>, and <code>Model#getUndoneCommand()</code>.</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="command-pattern"><a class="link" href="#command-pattern">Command pattern</a></h5>
-<div class="paragraph">
-<p>Next, the <code>UndoableCommand</code> stored in the <code>Model</code> is actually a normal <code>Command</code> that changes program state.
-The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.
-Commands that don&#8217;t change the user-visible program state, like <code>find</code>, can still inherit directly from <code>Command</code>.</p>
+<p>In the <code class="purple">Model</code> interface implemented by <code class="purple">ModelManager</code>, these four operations are respectively exposed as
+<code class="purple">Model#addExecutedCommand(UndoableCommand command)</code>, <code class="purple">Model#getExecutedCommand()</code>, <code class="purple">Model#addUndoneCommand(UndoableCommand command)</code>, and <code class="purple">Model#getUndoneCommand()</code>.</p>
 </div>
 <div class="paragraph">
-<p>Here is where the Command pattern comes in. A class extending <code>UndoableCommand</code> must implement an additional method, <code>UndoableCommand#undo(Model model)</code>. This means that every child class of <code>UndoableCommand</code> has a custom <code>undo</code> implementation.</p>
+<p>Next, the <code class="purple">UndoableCommand</code> stored in the <code class="purple">Model</code> is actually a normal <code class="purple">Command</code> that changes program state.
+The <code class="purple">UndoableCommand</code> class is an abstract class that extends the abstract <code class="purple">Command</code> class, as shown in Figure 11. Commands like <code class="purple">AddCommand</code> or <code class="purple">UpdateCommand</code> extends <code class="purple">UndoableCommand</code> instead of <code class="purple">Command</code>.
+Commands that don&#8217;t change the user-visible program state, like <code class="purple">FindCommand</code>, can still inherit directly from <code class="purple">Command</code>.</p>
 </div>
 <div class="paragraph">
-<p><code>`UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
+<p>Here is where the Command pattern comes in. A class extending <code class="purple">UndoableCommand</code> must implement an additional method, <code class="purple">UndoableCommand#undo(Model model)</code>. This means that every child class of <code class="purple">UndoableCommand</code> has a custom <code>undo</code> implementation.</p>
+</div>
+<div class="paragraph">
+<p><code class="purple">UndoableCommand#redo(Model model)</code> is a concrete implementation of the <code>redo</code> mechanism and is inherited by all child classes.</p>
+</div>
+<div class="paragraph">
+<p>Lastly, undo/redo is initiated when user input creates an <code class="purple">UndoCommand</code> or <code class="purple">RedoCommand</code>. When either of them are executed, they respectively get the last
+executed or undone command from the <code class="purple">CommandHistory</code> in <code class="purple">ModelManager</code>. As the retrieved command is an instance of <code class="purple">UndoableCommand</code>, an attempt will be made to execute <code class="purple">UndoableCommand#undo(Model model)</code> or <code class="purple">UndoableCommand#redo(Model model)</code>.
+If it is successful, undo/redo is succesful. Otherwise, an error message is shown.</p>
+</div>
+<div class="paragraph">
+<p>This is the mechanism of undo/redo, from start to end.
+Below is an example of a usage scenario to help you visualise how undo/redo works.</p>
+</div>
+<div class="paragraph">
+<p>The sequence diagram below shows how an undo command works to undo a <code class="purple">ClearCommand</code>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/UndoClearSequenceDiagram.png" alt="UndoClearSequenceDiagram">
+</div>
+<div class="title">Figure 2. Sequence Diagram Showing a ClearCommand Being Undone</div>
 </div>
 </div>
 <div class="sect4">
 <h5 id="defensive-programming"><a class="link" href="#defensive-programming">Defensive programming</a></h5>
 <div class="paragraph">
-<p>When an <code>UndoableCommand</code> is executed or undone, it is added to the <code>commandHistory</code> or <code>undoHistory</code> of <code>ModelManager</code> respectively.
-Therefore, an <code>UndoableCommand</code> should not be undone before it was executed or redone before it was undone.
-To defend against improper undoing or redoing, an <code>UndoableCommand</code> will not be added to a CommandHistory list unless it has been executed or undone before.
-Additionally, <code>UndoableCommand</code> contains a small inner class, the enumeration <code>UndoableCommandState</code> which allows an <code>UndoableCommand</code> to have its state set to any value in the enumeration.
+<p>To defend against improper undoing or redoing, an <code class="purple">UndoableCommand</code> can only be added to the <code class="purple">commandHistory</code> or <code class="purple">undoHistory</code> of <code class="purple">ModelManager</code> through its <code class="purple">execute()</code> or <code class="purple">undo()</code> method.
+Additionally, <code class="purple">UndoableCommand</code> contains a small inner class, the enumeration <code class="purple">UndoableCommandState</code> which allows an <code class="purple">UndoableCommand</code> to have its state set to any value in the enumeration.
 The values are as shown below.</p>
 </div>
 <div class="listingblock">
@@ -1414,7 +1454,7 @@ The values are as shown below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Before a command is undone or redone, the command&#8217;s state is checked for validity. An example is shown below in the <code>redo()</code> method.</p>
+<p>Before a command is undone or redone, the command&#8217;s state is checked for validity. An example is shown below in the <code class="purple">redo()</code> method.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1430,33 +1470,15 @@ The values are as shown below.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>As shown in the code snippet, when an <code>UndoableCommand</code> is redone, the method first checks that its state was set to <code>UNDOABLE</code>.
-These states are only changed when a <code>Command#execute(Model model)</code> or <code>UndoableCommand#undo(Model model)</code> has successfully executed.
-Therefore, it is unlikely that an <code>UndoableCommand</code> will be unwittingly undone or redone in error.</p>
+<p>As shown in the code snippet, when an <code class="purple">UndoableCommand</code> is redone, the method first checks that its state was set to <code class="purple">UNDOABLE</code>.
+These states are only changed when a <code class="purple">Command#execute(Model model)</code> or <code class="purple">UndoableCommand#undo(Model model)</code> has successfully executed.
+Therefore, it is unlikely that an <code class="purple">UndoableCommand</code> will be unwittingly undone or redone in error.</p>
 </div>
 <div class="paragraph">
-<p>Lastly, undo/redo is initiated when user input creates an <code>UndoCommand</code> or <code>RedoCommand</code>. When either of them are executed, they respectively get the last
-executed or undone command from the <code>CommandHistory</code> in <code>ModelManager</code>. As the retrieved command is an instance of <code>UndoableCommand</code>, an attempt will be made to execute <code>UndoableCommand#undo(Model model)</code> or <code>UndoableComman#redo(Model model)</code>.
-If it is successful, undo/redo is succesful. Otherwise, an error message is shown.</p>
+<p>If a <code>redo</code> command was executed afterwards, the <code class="purple">ClearCommand</code> would simply be executed again.</p>
 </div>
 <div class="paragraph">
-<p>This is the mechanism of undo/redo, from start to end.
-Below is an example of a usage scenario to help you visualise how undo/redo works.</p>
-</div>
-<div class="paragraph">
-<p>The sequence diagram below shows how an undo command works to undo a <code>ClearCommand</code>:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UndoClearSequenceDiagram.png" alt="UndoClearSequenceDiagram">
-</div>
-<div class="title">Figure 2. Sequence Diagram Showing a ClearCommand Being Undone</div>
-</div>
-<div class="paragraph">
-<p>If a <code>redo</code> command was executed afterwards, the <code>ClearCommand</code> would simply be executed again.</p>
-</div>
-<div class="paragraph">
-<p>The following activity diagram shows what happens when a user executes a new <code>UndoableCommand</code>. In this case, it is the <code>ClearCommand</code> being undone. The control flow is similar for other <code>UndoableCommands</code>; they only differ in the execution of <code>undo()</code>.</p>
+<p>The following activity diagram shows what happens when a user executes a new <code class="purple">UndoableCommand</code>. In this case, it is the <code class="purple">ClearCommand</code> being undone. The control flow is similar for other <code class="purple">UndoableCommands</code>; they only differ in the execution of <code class="purple">undo()</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1638,7 +1660,7 @@ program state at any time. When undoing or redoing, it was essential that data i
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Store <code>UndoableCommand</code>(s) only.</p>
+<p><strong>Alternative 1 (current choice):</strong> Store <code class="purple">UndoableCommand</code>(s) only.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1662,7 +1684,7 @@ program state at any time. When undoing or redoing, it was essential that data i
 <div class="ulist">
 <ul>
 <li>
-<p>Loses some information about <code>Commands</code> that were previously executed.</p>
+<p>Loses some information about <code class="purple">Commands</code> that were previously executed.</p>
 </li>
 </ul>
 </div>
@@ -1671,7 +1693,7 @@ program state at any time. When undoing or redoing, it was essential that data i
 </div>
 </li>
 <li>
-<p><strong>Alternative 2:</strong> Store all <code>Commands</code>.</p>
+<p><strong>Alternative 2:</strong> Store all <code class="purple">Commands</code>.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1692,7 +1714,7 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p>Harder to implement. Requires differentiating between commands that have been undone and executed commands.</p>
 </li>
 <li>
-<p>Needs extra space to store non-<code>UndoableCommand</code>(s) even though they are useless for undo/redo.</p>
+<p>Needs extra space to store non-<code class="purple">UndoableCommand</code>(s) even though they are useless for undo/redo.</p>
 </li>
 </ul>
 </div>
@@ -1721,4 +1743,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 14:52:43 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 17:17:50 UTC</div></div></div></bodyId></html>
