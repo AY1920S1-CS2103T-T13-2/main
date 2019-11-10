@@ -22,7 +22,7 @@ for a software engineering module.</p>
 <div class="sect2">
 <h3 id="about-the-project"><a class="link" href="#about-the-project">About the Project</a></h3>
 <div class="paragraph">
-<p>Our task for CS2103T was to build upon and enhance <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3">Address Book (Level 3)</a>,
+<p>Our task for CS2103T was to build upon and enhance <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3">Address Book Level 3 (AB3)</a>,
 a sample address book application used to teach software engineering. It primarily uses a command line interface (CLI) for user interaction,
 and our enhanced application was required to have this as well.</p>
 </div>
@@ -70,57 +70,105 @@ is something the user can enter into the CLI.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="summary-of-contributions"><a class="link" href="#summary-of-contributions">Summary of Contributions</a></h2>
+<h2 id="2-summary-of-contributions"><a class="link" href="#2-summary-of-contributions">2. Summary of Contributions</a></h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The contributions I have made towards the team project are detailed in this section.</p>
+</div>
+<div class="sect2">
+<h3 id="enhancements"><a class="link" href="#enhancements">Enhancements</a></h3>
+<div class="paragraph">
+<p><strong>Major enhancement</strong>: I added the ability to undo/redo commands.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Major enhancement</strong>: added <strong>the ability to undo/redo commands</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>What it does: allows the user to undo all previous commands one at a time.
-Previously undone commands can be reversed by using the redo command.</p>
+<p>What it does: The <code>undo</code> command allows the user to undo all previous commands one at a time.
+Previously undone commands can be redone by using the redo command.</p>
 </li>
 <li>
 <p>Justification: This feature improves the product significantly because a user can
-make mistakes and needs a convenient way of undoing them. Undo and redo are utility functions that many users have come to expect.</p>
+make mistakes and needs a convenient way of undoing them. Undo and redo are utility functions that many users have come to expect in desktop applications.</p>
 </li>
 <li>
 <p>Highlights: This feature affects existing commands and has to support future commands.
-It required a careful analysis of design choices. Among the different alternatives, the chosen design is more difficult to implement but provides much better scalability.</p>
+It contains a defensive design to ensure that commands were not undone or redone in error.
+It also required a careful analysis of design choices.
+In particular, this feature posed these unique challenges:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Undo/redo implemented through saving state was given as an example of a feature deserving an 'A' grade in the module.</p>
+<p>The design I chose for this feature is challenging to implement, as it requires an individual command to have undo/redo functionality.
+Compared to designs in <a href="https://github.com/se-edu/addressbook-level4/blob/master/docs/DeveloperGuide.adoc#undoredo-feature">Address Book Level 4</a>
+or <a href="https://nus-cs2103-ay1920s1.github.io/website/admin/project-grading.html">module examples</a>, this design requires a lot more effort to implement.
+However, it is faster, requires less space, and provides much better scalability.</p>
 </li>
 <li>
-<p>The current implementation requires an individual command to have undo/redo functionality, which is more challenging to implement than the example given by the module.</p>
+<p>The application carries out automated actions when certain fields are changed, which had to be accounted for in undo/redo&#8217;s implementation.</p>
+</li>
+<li>
+<p>The application contains automated user-triggered, time-based pop-ups that trigger additional changes. It was extremely important
+that undo/redo maintained data integrity. This was especially difficult to do because these automated changes could
+happen at any time.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Credits: <em>{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}</em></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: morphed the <code>edit</code> command in AB3 to an <code>update</code> command.</p>
-</li>
-<li>
-<p><strong>Minor enhancement</strong>: added the <code>Body</code> class, a foundational class in Mortago.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Code Contributed:</strong> [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=falsegroupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=ambervoong&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">via Reposense</a>]</p>
+<p><strong>Major enhancement</strong>: I morphed the <code>edit</code> command in AB3 to an <code>update</code> command.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Other contributions</strong>:</p>
+<p>What it does: The <code>update</code> command allows users to update any field of a body or worker in Mortago.
+The command only requires the updated field itself to be specified, instead of every field.
+It can also take in multiple fields to update at once.</p>
+</li>
+<li>
+<p>Justification: The <code>edit</code> command in AB3 did not support any Mortago-specific entities. Being able
+to update the fields of an entity is essential, as the states of entities must be allowed to change.
+It was vital that the command didn&#8217;t require every field to be supplied, as it would require excessive user effort.</p>
+</li>
+<li>
+<p>Highlights: The <code>update</code> command took a lot of effort to implement because Mortago&#8217;s entities contain many fields.
+For instance, the <code>Body</code> class contains 16 fields. To make updating more efficient and easy to undo or redo, <code>update</code> makes use of special descriptors
+to store the fields' values.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Minor enhancement</strong>: I added storage functionality for Mortago&#8217;s entities.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The storage functionality allows Mortago&#8217;s <code>Body</code>, <code>Worker</code>, <code>Fridge</code>, and <code>Photo</code> objects to be stored on the user&#8217;s
+computer. Data is automatically saved after every change to Mortago.</p>
+</li>
+<li>
+<p>Justification: The storage functionality is critical to Mortago, as its core purpose is to act
+as a digital database.</p>
+</li>
+<li>
+<p>Highlights: The storage functionality took more effort to implement and write tests for, because Mortago&#8217;s
+entities contain many fields. I also had to deal with storing entities that contained other entities.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-contributed"><a class="link" href="#code-contributed">Code Contributed</a></h3>
+<div class="paragraph">
+<p>You can view my code at the link here: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=falsegroupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=ambervoong&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">via Reposense</a>]</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="other-contributions"><a class="link" href="#other-contributions">Other contributions</a></h3>
+<div class="paragraph">
+<p>Other contributions I have made to the team and the project are listed in this section, along with relevant links.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -128,18 +176,21 @@ It required a careful analysis of design choices. Among the different alternativ
 <div class="ulist">
 <ul>
 <li>
-<p>Maintained the issue tracker on GitHub</p>
+<p>Maintained the issue tracker and project discussion board on GitHub (<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/issues?q=is%3Aissue+is%3Aclosed">link to issue tracker</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/projects/1">link to discussion board</a>)</p>
 </li>
 <li>
-<p>Managed release <code>v1.2</code> on GitHub. <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/88">#88</a></p>
+<p>Managed release <code>v1.2</code> on GitHub. (<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/88">#88</a>)</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Enhancements to existing features: [to add more]</p>
+<p>Enhancements to existing features:</p>
 <div class="ulist">
 <ul>
+<li>
+<p>Added storage functionality for Mortago&#8217;s <code>Body</code>, <code>Worker</code>, <code>Fridge</code>, and <code>Photo</code> classes (Pull requests <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/128">#128</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/91">#91</a>)</p>
+</li>
 <li>
 <p>Wrote additional tests for existing features to increase coverage from []% to []% (Pull requests <a href="https://github.com">#00</a>, <a href="https://github.com">#00</a>)</p>
 </li>
@@ -151,13 +202,19 @@ It required a careful analysis of design choices. Among the different alternativ
 <div class="ulist">
 <ul>
 <li>
-<p>Wrote the UG and DG for the <code>undo</code> and <code>update</code> features.</p>
+<p>Wrote the UG and DG for the <code>undo</code>, <code>redo</code>, and <code>update</code> features (Pull requests <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/113">#113</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/119">#119</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/229/files">#229</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/70">#70</a>)</p>
 </li>
 <li>
-<p>Updated all parts of the User Guide that are not feature-specific. <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/22">#22</a></p>
+<p>Morphed the AB3 User Guide for Mortago (<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/22">#22</a>)</p>
 </li>
 <li>
-<p>Added tags to the User Guide for all features. <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/70">#70</a></p>
+<p>Updated the User Guide diagrams to fit the team&#8217;s chosen colour scheme (<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/249">#249</a>)</p>
+</li>
+<li>
+<p>Added tags to the User Guide for all features (<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/70">#70</a>)</p>
+</li>
+<li>
+<p>Added use cases and a value preposition to the Developer Guide (Pull requests <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/41/files">#41</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/43">#43</a>)</p>
 </li>
 </ul>
 </div>
@@ -167,29 +224,24 @@ It required a careful analysis of design choices. Among the different alternativ
 <div class="ulist">
 <ul>
 <li>
-<p>PRs reviewed (with non-trivial review comments): <a href="https://github.com">#00</a></p>
+<p>PRs reviewed (with non-trivial review comments): (Pull requests <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/31">#31</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/63">#63</a>, <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/49">#49</a>)</p>
 </li>
 <li>
 <p>Contributed to forum discussions (examples:  <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/88">88</a>, <a href="https://github.com/nus-cs2103-AY1920S1/forum/issues/135">135</a>)</p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams in the class (examples: <a href="https://github.com/AY1920S1-CS2103T-T11-3/main/pull/114">114 (AddMin+)</a>, <a href="https://github.com">2</a>, <a href="https://github.com">3</a>)</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Tools:</p>
+<p>Reported bugs and suggestions for other teams in the class (examples: <a href="https://github.com/AY1920S1-CS2103T-T11-3/main/pull/114">for Team AddMin+</a>, <a href="https://github.com/ambervoong/ped/issues?q=is:issue+is:open">for Team CaloFit</a>)</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-user-guide"><a class="link" href="#contributions-to-the-user-guide">Contributions to the User Guide</a></h2>
+<h2 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3. Contributions to the User Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -319,11 +371,18 @@ Make sure you key in dates in the format DD/MM/YYYY.
 </div>
 <div class="paragraph">
 <p>Example:<br>
-Imagine that someone (Jane Doe) just got promoted! You have to change her designation in Mortago.</p>
+Imagine that someone (Jane Doe) just got promoted! You have to change her designation to 'Manager' in Mortago.</p>
 </div>
 <div class="paragraph">
 <p>Instead of typing out all the irrelevant attributes a Worker has, you just have to input her ID number
-and her new designation. You see that her ID number is W00001.</p>
+and her new designation.</p>
+</div>
+<div class="paragraph">
+<p>To update Jane Doe&#8217;s designation:<br>
+1. Locate her identification number on the dashboard. You see on the dashboard that her ID number is W00001.<br>
+2. Type <code>update -w /id 1 /designation Manager</code> into the command box, and press <code>Enter</code> to execute it.<br>
+3. The result box will indicate that the <code>delete</code> command has been undone.<br>
+4. You will also see  on the dashboard that Jane Doe&#8217;s designation has been updated.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -347,7 +406,7 @@ and her new designation. You see that her ID number is W00001.</p>
 <div class="sect3">
 <h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
 <div class="paragraph">
-<p>This command undoes the effects of the last command you executed. You can undo up to 10 of your most recent commands.
+<p>This command undoes the effects of the last command you executed. You can undo up to 10 most recent commands.
 The commands are undone starting from the most recent to the least recent.</p>
 </div>
 <div class="paragraph">
@@ -358,8 +417,8 @@ The commands are undone starting from the most recent to the least recent.</p>
 Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
-<p>Changes caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
-For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone. However, note that this feature does not support
+<p>Commands caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
+For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone. However, note that this feature does not support
 the <code>NotifCommand</code> itself.</p>
 </div>
 <div class="paragraph">
@@ -439,7 +498,7 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributions-to-the-developer-guide"><a class="link" href="#contributions-to-the-developer-guide">Contributions to the Developer Guide</a></h2>
+<h2 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -451,6 +510,9 @@ Imagine that you&#8217;ve previously executed <code>undo</code> to undo deleting
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><em>{start of extract}</em></p>
+</div>
 <div class="sect2">
 <h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">Undo/Redo feature</a></h3>
 <div class="paragraph">
@@ -596,11 +658,14 @@ There was also an extra layer of difficulty as Mortago has automated commands th
 After the analysis described below, the Command pattern was thought to be the best solution.</p>
 </div>
 <div class="sect4">
-<h5 id="aspect-designing-the-mechanism"><a class="link" href="#aspect-designing-the-mechanism">Aspect: Designing the mechanism</a></h5>
+<h5 id="aspect-designing-the-undo-redo-mechanism"><a class="link" href="#aspect-designing-the-undo-redo-mechanism">Aspect: Designing the undo/redo mechanism</a></h5>
+<div class="paragraph">
+<p>Alternative 1 was chosen despite its difficult implementation because it is faster and more scalable.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong>Alternative 1:</strong> Individual command knows how to undo/redo by itself.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -608,13 +673,13 @@ After the analysis described below, the Command pattern was thought to be the be
 <div class="ulist">
 <ul>
 <li>
-<p>Better scalability. Will use less memory (e.g. for <code>add</code>, only the added entity needs to be saved).</p>
+<p>Better scalability. Will use less memory (e.g. For <code>add</code>, only the added entity needs to be saved).</p>
 </li>
 <li>
 <p>Faster for big programs.</p>
 </li>
 <li>
-<p>Elegant.</p>
+<p>Easier to implement defensive measures.</p>
 </li>
 </ul>
 </div>
@@ -669,14 +734,85 @@ After the analysis described below, the Command pattern was thought to be the be
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-handling-automated-commands"><a class="link" href="#aspect-handling-automated-commands">Aspect: Handling automated commands</a></h5>
+<h5 id="aspect-handling-automated-timed-commands"><a class="link" href="#aspect-handling-automated-timed-commands">Aspect: Handling automated timed commands</a></h5>
+<div class="paragraph">
+<p>Mortago has a Notification feature, which are user-triggered automated commands that are triggered by time.
+Though the undo/redo feature does not support it directly, the Notification can make changes to
+program state at any time. When undoing or redoing, it was essential that data integrity was preserved.</p>
+</div>
+<div class="paragraph">
+<p>Alternative 1 was chosen as it causes almost no overhead, guarantees data integrity, and causes the user the least inconvenience.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>** Alternative 1 : Allow automated commands to be undone</p>
+<p><strong> Alternative 1:</strong> Allow automated commands to be undone</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Causes minimal overhead as only one additional command needs to be stored.</p>
 </li>
 <li>
-<p>** Alterative 2 : Do not undo the automated command</p>
+<p>Maintains data integrity.</p>
+</li>
+<li>
+<p>Allows the user to undo automated changes, if it is not desired.</p>
+</li>
+<li>
+<p>Shows consistency and will not cause visual jumps between states.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Confuses the user initially.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Do not undo the automated command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easiest to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Confuses the user initially.</p>
+</li>
+<li>
+<p>Causes visible jumps between states (e.g. The user might see changes to 2 fields being undone even though his <code>update</code> command only changed one field).</p>
+</li>
+<li>
+<p>Loss of data integrity.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -750,17 +886,11 @@ After the analysis described below, the Command pattern was thought to be the be
 </li>
 </ul>
 </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="project-isextreme"><a class="link" href="#project-isextreme">PROJECT: Isextreme</a></h2>
-<div class="sectionbody">
-<hr>
 <div class="paragraph">
-<p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
+<p><em>{end of extract}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:25:55 UTC</div></div></div></bodyId></html>
+</div>
+</div>
+</div>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:40:23 UTC</div></div></div></bodyId></html>

@@ -341,7 +341,7 @@ All body entries with car accident as the cause of death and those that are male
 <div class="sect3">
 <h4 id="undoing-a-command-code-undo-code"><a class="link" href="#undoing-a-command-code-undo-code">Undoing a command: <code>undo</code></a></h4>
 <div class="paragraph">
-<p>This command undoes the effects of the last command you executed. You can undo up to 10 of your most recent commands.
+<p>This command undoes the effects of the last command you executed. You can undo up to 10 most recent commands.
 The commands are undone starting from the most recent to the least recent.</p>
 </div>
 <div class="paragraph">
@@ -352,8 +352,8 @@ The commands are undone starting from the most recent to the least recent.</p>
 Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
-<p>Changes caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
-For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> can be undone. However, note that this feature does not support
+<p>Commands caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
+For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone. However, note that this feature does not support
 the <code>NotifCommand</code> itself.</p>
 </div>
 <div class="paragraph">
@@ -1231,11 +1231,14 @@ There was also an extra layer of difficulty as Mortago has automated commands th
 After the analysis described below, the Command pattern was thought to be the best solution.</p>
 </div>
 <div class="sect4">
-<h5 id="aspect-designing-the-mechanism"><a class="link" href="#aspect-designing-the-mechanism">Aspect: Designing the mechanism</a></h5>
+<h5 id="aspect-designing-the-undo-redo-mechanism"><a class="link" href="#aspect-designing-the-undo-redo-mechanism">Aspect: Designing the undo/redo mechanism</a></h5>
+<div class="paragraph">
+<p>Alternative 1 was chosen despite its difficult implementation because it is faster and more scalable.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Alternative 1 (current choice):</strong> Individual command knows how to undo/redo by itself.</p>
+<p><strong>Alternative 1:</strong> Individual command knows how to undo/redo by itself.</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1243,13 +1246,13 @@ After the analysis described below, the Command pattern was thought to be the be
 <div class="ulist">
 <ul>
 <li>
-<p>Better scalability. Will use less memory (e.g. for <code>add</code>, only the added entity needs to be saved).</p>
+<p>Better scalability. Will use less memory (e.g. For <code>add</code>, only the added entity needs to be saved).</p>
 </li>
 <li>
 <p>Faster for big programs.</p>
 </li>
 <li>
-<p>Elegant.</p>
+<p>Easier to implement defensive measures.</p>
 </li>
 </ul>
 </div>
@@ -1304,14 +1307,85 @@ After the analysis described below, the Command pattern was thought to be the be
 </div>
 </div>
 <div class="sect4">
-<h5 id="aspect-handling-automated-commands"><a class="link" href="#aspect-handling-automated-commands">Aspect: Handling automated commands</a></h5>
+<h5 id="aspect-handling-automated-timed-commands"><a class="link" href="#aspect-handling-automated-timed-commands">Aspect: Handling automated timed commands</a></h5>
+<div class="paragraph">
+<p>Mortago has a Notification feature, which are user-triggered automated commands that are triggered by time.
+Though the undo/redo feature does not support it directly, the Notification can make changes to
+program state at any time. When undoing or redoing, it was essential that data integrity was preserved.</p>
+</div>
+<div class="paragraph">
+<p>Alternative 1 was chosen as it causes almost no overhead, guarantees data integrity, and causes the user the least inconvenience.</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>** Alternative 1 : Allow automated commands to be undone</p>
+<p><strong> Alternative 1:</strong> Allow automated commands to be undone</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Causes minimal overhead as only one additional command needs to be stored.</p>
 </li>
 <li>
-<p>** Alterative 2 : Do not undo the automated command</p>
+<p>Maintains data integrity.</p>
+</li>
+<li>
+<p>Allows the user to undo automated changes, if it is not desired.</p>
+</li>
+<li>
+<p>Shows consistency and will not cause visual jumps between states.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Confuses the user initially.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong> Alternative 2:</strong> Do not undo the automated command</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Easiest to implement.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Cons:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Confuses the user initially.</p>
+</li>
+<li>
+<p>Causes visible jumps between states (e.g. The user might see changes to 2 fields being undone even though his <code>update</code> command only changed one field).</p>
+</li>
+<li>
+<p>Loss of data integrity.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1404,4 +1478,4 @@ After the analysis described below, the Command pattern was thought to be the be
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:25:55 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 06:40:23 UTC</div></div></div></bodyId></html>
