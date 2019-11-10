@@ -224,14 +224,16 @@ Lists all bodies currently in Mortago.</p>
 <div class="sect3">
 <h4 id="selecting-a-body-code-select-code"><a class="link" href="#selecting-a-body-code-select-code">Selecting a body: <code>select</code></a></h4>
 <div class="paragraph">
-<p>You can select a body and view its full details by entering a select command.</p>
+<p>You can select a body and view its full details by entering a select command with the given format below.</p>
 </div>
 <div class="paragraph">
 <p>Format: <code>select id</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>select 1</code><br>
-View a body with the ID B00000001.</p>
+<p>Example: <code>select 1</code><br></p>
+</div>
+<div class="paragraph">
+<p>View a body with the ID B00000001.</p>
 </div>
 </div>
 <div class="sect2">
@@ -353,8 +355,9 @@ Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
 <p>Commands caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
-For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone. However, note that this feature does not support
-the <code>NotifCommand</code> itself.</p>
+For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
+the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
+undoing the deletion will not restore the <code>NotifCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
@@ -1094,6 +1097,105 @@ Format: <code>help</code></p>
 <h2 id="appendix"><a class="link" href="#appendix">Appendix</a></h2>
 <div class="sectionbody">
 <div class="sect2">
+<h3 id="valid-values-for-various-code-attributes-code"><a class="link" href="#valid-values-for-various-code-attributes-code">Valid values for various <code>ATTRIBUTES</code></a></h3>
+<div class="paragraph">
+<p><a id="Valid-Values"></a></p>
+</div>
+<div class="paragraph">
+<p>The following table specifies all valid values, or format, that you must follow when entering the values for various <code>ATTRIBUTES</code> when adding or updating a worker or body.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>ATTRIBUTE</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><strong>Valid Values or Format</strong></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sex</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Male</p>
+</li>
+<li>
+<p>Female</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Body Status</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<ul>
+<li>
+<p>Arrived</p>
+</li>
+<li>
+<p>Pending Identification</p>
+</li>
+<li>
+<p>Pending Claim</p>
+</li>
+<li>
+<p>Claimed</p>
+</li>
+<li>
+<p>Donated</p>
+</li>
+<li>
+<p>Contact Police</p>
+</li>
+<li>
+<p>Pending Police Report</p>
+</li>
+<li>
+<p>Pending Coroner Approval</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Phone Number</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>A valid phone number contains exactly 8 digits only.
+The country calling code is omitted and assumed to be +65. The first digit should be '8' or '9'.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date and Time</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Your date and time should follow the following format:<br></p>
+</div>
+<div class="paragraph">
+<p><code>dd/mm/yyyy hh:mm</code></p>
+</div>
+<div class="paragraph">
+<p>It is not necessary to include the time for certain <code>ATTRIBUTES</code> such as the date of birth.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Photo</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>If you wish to provide a photo for the worker entry, please provide the absolute path of the image file.
+You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolute path of the file.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NRIC</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>A valid NRIC number has 9 alphanumeric letters in total, with an alphabetic letter at the start and end. Singaporeans should either have the starting alphabets 'S' or 'T', while foreigners should either have the alphabets 'F' or 'G'. The ending character of each NRIC number can be any alphabet.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
 <h3 id="copy-a-file-s-absolute-path-into-the-clipboard"><a class="link" href="#copy-a-file-s-absolute-path-into-the-clipboard">Copy a file&#8217;s absolute path into the clipboard</a></h3>
 <div class="paragraph">
 <p><a id="Copy-File-Path"></a></p>
@@ -1545,4 +1647,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:39:51 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 09:26:10 UTC</div></div></div></bodyId></html>

@@ -161,7 +161,7 @@ entities contain many fields. I also had to deal with storing entities that cont
 <div class="sect2">
 <h3 id="code-contributed"><a class="link" href="#code-contributed">Code Contributed</a></h3>
 <div class="paragraph">
-<p>You can view my code at the link here: [<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=falsegroupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=ambervoong&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">via Reposense</a>]</p>
+<p>You can view my code at the link here: <a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=falsegroupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=ambervoong&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">(via Reposense)</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -418,8 +418,9 @@ Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
 <p>Commands caused by automated commands, such as a <code>NotifCommand</code> can be undone and redone.
-For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone. However, note that this feature does not support
-the <code>NotifCommand</code> itself.</p>
+For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
+the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
+undoing the deletion will not restore the <code>NotifCommand</code>.</p>
 </div>
 <div class="paragraph">
 <p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
@@ -893,4 +894,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 07:39:51 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-10 09:26:10 UTC</div></div></div></bodyId></html>
