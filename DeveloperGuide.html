@@ -81,13 +81,15 @@
 <li><a href="#instructions-for-manual-testing">Appendix F: Instructions for Manual Testing</a>
 <ul class="sectlevel2">
 <li><a href="#launch-and-shutdown">F.1. Launch and Shutdown</a></li>
-<li><a href="#updating-a-body">F.2. Updating a Body</a></li>
-<li><a href="#deleting-a-body">F.3. Deleting a Body</a></li>
-<li><a href="#generating-a-report">F.4. Generating a Report</a></li>
-<li><a href="#using-the-line-chart-and-stats-command">F.5. Using the Line Chart and Stats Command</a></li>
-<li><a href="#filter-entries-by-attributes">F.6. Filter entries by attributes</a></li>
-<li><a href="#undoing-redoing-a-command">F.7. Undoing/redoing a command</a></li>
-<li><a href="#saving-data">F.8. Saving Data</a></li>
+<li><a href="#adding-an-entity">F.2. Adding an Entity</a></li>
+<li><a href="#updating-a-body">F.3. Updating a Body</a></li>
+<li><a href="#deleting-a-body">F.4. Deleting a Body</a></li>
+<li><a href="#getting-notification-for-a-body">F.5. Getting notification for a Body</a></li>
+<li><a href="#generating-a-report">F.6. Generating a Report</a></li>
+<li><a href="#using-the-line-chart-and-stats-command">F.7. Using the Line Chart and Stats Command</a></li>
+<li><a href="#filter-entries-by-attributes">F.8. Filter entries by attributes</a></li>
+<li><a href="#undoing-redoing-a-command">F.9. Undoing/redoing a command</a></li>
+<li><a href="#saving-data">F.10. Saving Data</a></li>
 </ul>
 </li>
 </ul>
@@ -2725,7 +2727,47 @@ Expected: The most recent window size and location is retained.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="updating-a-body"><a class="link" href="#updating-a-body">F.2. Updating a Body</a></h3>
+<h3 id="adding-an-entity"><a class="link" href="#adding-an-entity">F.2. Adding an Entity</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Adding a new Body</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add -b /name John Doe /sex male /dod 11/11/2019 /doa 11/11/2019</code><br>
+Expected: The body is added and displayed on the dashboard.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding a new Fridge</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add -f</code><br>
+Expected: The fridge is added and displayed on the dashboard.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Adding a new Worker</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add -w /name Jahn Daah /sex male /dateJoined 11/11/2019</code><br>
+Expected: The worker is added and displayed on the dashboard.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-a-body"><a class="link" href="#updating-a-body">F.3. Updating a Body</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2746,7 +2788,7 @@ Expected: The name of the body with ID 1 changes to Polly.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deleting-a-body"><a class="link" href="#deleting-a-body">F.3. Deleting a Body</a></h3>
+<h3 id="deleting-a-body"><a class="link" href="#deleting-a-body">F.4. Deleting a Body</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2758,11 +2800,12 @@ Expected: The name of the body with ID 1 changes to Polly.</p>
 </li>
 <li>
 <p>Test case: <code>delete -b 1</code><br>
-Expected: Body with body ID number 1 is deleted from the list. Details of the deleted body shown in the status message. Timestamp in the status bar is updated.</p>
+   Expected: Body with body ID number 1 is deleted from the list. Details of the deleted body shown in the command
+result.</p>
 </li>
 <li>
 <p>Test case: <code>delete -b 0</code><br>
-Expected: No body is deleted. Error details shown in the status message. Status bar remains the same.</p>
+Expected: No body is deleted. Error details shown in the command result.</p>
 </li>
 <li>
 <p>Other incorrect delete commands to try: <code>delete -b</code>, <code>delete -b x</code> (where x is larger than the list size)<br>
@@ -2775,7 +2818,26 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="generating-a-report"><a class="link" href="#generating-a-report">F.4. Generating a Report</a></h3>
+<h3 id="getting-notification-for-a-body"><a class="link" href="#getting-notification-for-a-body">F.5. Getting notification for a Body</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Getting a notification when a body is added</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Test case: <code>add -b /name Jane Low /sex female /dod 11/11/2019 /doa 11/11/2019</code> and wait for 10 seconds<br>
+   Expected: A pop-up notification is displayed. The number against the notification bell increments by 1. On
+clicking the bell or typing <code>showNotifs</code> command, the pop-over lists the id of Jane Low.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generating-a-report"><a class="link" href="#generating-a-report">F.6. Generating a Report</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2808,9 +2870,9 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="using-the-line-chart-and-stats-command"><a class="link" href="#using-the-line-chart-and-stats-command">F.5. Using the Line Chart and Stats Command</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="using-the-line-chart-and-stats-command"><a class="link" href="#using-the-line-chart-and-stats-command">F.7. Using the Line Chart and Stats Command</a></h3>
+<div class="ulist">
+<ul>
 <li>
 <p>Changing the time frame of the line&#8217;s chart horizontal axis</p>
 <div class="olist loweralpha">
@@ -2867,13 +2929,13 @@ Expected: The y-value for the date 14/11/2019 automatically decreases by 1.</p>
 </ol>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="filter-entries-by-attributes"><a class="link" href="#filter-entries-by-attributes">F.6. Filter entries by attributes</a></h3>
-<div class="olist arabic">
-<ol class="arabic">
+<h3 id="filter-entries-by-attributes"><a class="link" href="#filter-entries-by-attributes">F.8. Filter entries by attributes</a></h3>
+<div class="ulist">
+<ul>
 <li>
 <p>Filter bodies by a combination of at least on attribute.</p>
 <div class="olist loweralpha">
@@ -2938,11 +3000,11 @@ Expected: An error message will appear informing you that the command format is 
 </ol>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-redoing-a-command"><a class="link" href="#undoing-redoing-a-command">F.7. Undoing/redoing a command</a></h3>
+<h3 id="undoing-redoing-a-command"><a class="link" href="#undoing-redoing-a-command">F.9. Undoing/redoing a command</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3019,7 +3081,7 @@ Expected: Mortago&#8217;s state goes back to the <code>undo</code> test case&#82
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.8. Saving Data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.10. Saving Data</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -3074,4 +3136,4 @@ Expected: Mortago&#8217;s state goes back to the <code>undo</code> test case&#82
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:19:01 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:56:02 UTC</div></div></div></bodyId></html>
