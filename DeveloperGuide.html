@@ -659,7 +659,7 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/CommandProcessActivityDiagram.png" alt="CommandProcessActivityDiagram">
+<img src="images/CommandProcessActivityDiagram.png" alt="CommandProcessActivityDiagram" width="400">
 </div>
 <div class="title">Figure 13. Activity Diagram Showing the Execution Control Flow of a Command</div>
 </div>
@@ -947,13 +947,8 @@ program state at any time. When undoing or redoing, it was essential that data i
 <h3 id="notification-feature"><a class="link" href="#notification-feature">4.3. Notification Feature</a></h3>
 <div class="paragraph">
 <p>This feature in Mortago reminds a mortuary manager to contact the police when the next-of-kin of a body
-has not been contactable for a given period of time from the point of admission of the <code>Body</code>. He / She then needs
-to
-contact
-the police
-to
-proceed with a
-more thorough investigation. In Singapore, this period is 24 hours. For testing purposes, it has been set to
+has not been contactable for a given period of time from the point of addition of the <code>Body</code>. He / She then needs
+to contact the police to proceed with a more thorough investigation. In Singapore, this period is 24 hours. For testing purposes, it has been set to
 10 seconds in Mortago.</p>
 </div>
 <div class="paragraph">
@@ -984,8 +979,7 @@ AddCommand.java.
 <div class="ulist">
 <ul>
 <li>
-<p><code>body</code>: Refers to the <code>Body</code> for which the <code>Notif</code> is created. This is passed in as a parameter when a new
-instance of the class is instantiated.</p>
+<p><code>body</code>: Refers to the <code>Body</code> for which the <code>Notif</code> is created. This is passed in as a parameter to the constructor.</p>
 </li>
 <li>
 <p><code>alert</code>: Refers to a <code>Runnable</code> function which checks if the current status of the body is <code>ARRIVED</code> and if so,
@@ -1020,7 +1014,7 @@ It will be explained in further detail later. Currently, this value is set to <c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/NotifCommandClassDiagram.png" alt="NotifCommandClassDiagram">
+<img src="images/NotifCommandClassDiagram.png" alt="NotifCommandClassDiagram" width="400">
 </div>
 <div class="title">Figure 14. Notification Class Diagram</div>
 </div>
@@ -1045,38 +1039,10 @@ instantiated:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/NotifCommandActivityDiagram.png" alt="NotifCommandActivityDiagram">
+<img src="images/NotifCommandActivityDiagram.png" alt="NotifCommandActivityDiagram" width="200">
 </div>
 <div class="title">Figure 17. Notification Command Activity Diagram</div>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<strong>Is <code>NotifCommand</code> only executed when a <code>Body</code> is added?</strong>
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>No! If the status of the <code>Body</code> is changed to <code>ARRIVED</code> using the <code>UpdateCommand</code>, <code>NotifCommand</code> is still
-executed. The <code>Notif</code> is scheduled to be executed after the specified <code>period</code> from the point in time when the
-status of the body was updated.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 <div class="sect4">
 <h5 id="storing-executed-and-pending-code-notifs-code"><a class="link" href="#storing-executed-and-pending-code-notifs-code">Storing executed and pending <code>Notifs</code></a></h5>
 <div class="paragraph">
@@ -1101,50 +1067,12 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 </li>
 </ol>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<strong>When is the <code>NotifCommand</code> not executed?</strong>
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>If the status of the <code>Body</code> is changed before the 10 second window.</p>
-</li>
-<li>
-<p>If the <code>Body</code> is deleted before the specified <code>period</code>.</p>
-</li>
-<li>
-<p>If the difference between <code>notifCreationTime</code> and system time is more than <code>period</code> when the app is initialized.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect4">
 <h5 id="defensive-programming-2"><a class="link" href="#defensive-programming-2">Defensive programming</a></h5>
 <div class="paragraph">
 <p>The <code>NotifCommand</code> heavily makes use of the <code>ScheduledExecutorService</code> and <code>Platform.runLater(Runnable runnable)</code> to
-make changes to the <code>Body</code> status and <code>Notif</code>. They use threading to allow tasks to be handled concurrently. For instance,
-even after scheduling a <code>Runnable</code> function, the user is still able to carry on with other commands of Mortago such
-as updating the status of the <code>Body</code>, adding a new <code>Fridge</code> etc.</p>
+make changes to the <code>Body</code> status and <code>Notif</code>. They use threading to allow tasks to be handled concurrently.</p>
 </div>
 <div class="paragraph">
 <p>As per the official Java Documentation, <code>Platform.runLater(Runnable runnable)</code> runs the specified runnable function
@@ -1152,14 +1080,13 @@ on a thread dedicated to JavaFX application at some unspecified time in the futu
 if some updates to the model are wrapped inside it as a <code>Runnable</code> while others are not, it can result in a
 mismatch of model. For instance, you may want to delete a <code>Notif</code> which already exists in the model. The usual
 process will be to first check whether it exists and if it does, then proceed with deletion. However, due to
-threading, you may end up in a situation when the app finds the <code>Notif</code> at the point of checking but throws a
+threading, you may end up in a situation where the app finds the <code>Notif</code> at the point of checking but throws a
 <code>NullPointerException</code> when proceeding with the deletion.</p>
 </div>
 <div class="paragraph">
-<p>To prevent this, in Mortago, any addition or deletion of <code>Notif</code> in the model during the execution of the
-<code>NotifCommand</code> and parts of <code>UpdateCommand</code> are wrapped inside <code>Platform.runLater(Runnable runnable)</code>. This ensures
-that updates to the model happen sequentially and not concurrently and the relevant changes can be reflected on the
-UI.</p>
+<p>To prevent this, addition or deletion of <code>Notif</code> in the model during the execution of the
+<code>NotifCommand</code> and <code>UpdateCommand</code> are wrapped inside <code>Platform.runLater(Runnable runnable)</code>. This ensures
+that <code>Notif</code>(s) in the model are handled sequentially.</p>
 </div>
 <div class="paragraph">
 <p>Moreover, all these operations are wrapped inside a try-catch block. Either the <code>NullPointerException</code> or
@@ -1168,15 +1095,7 @@ code snippet of <code>NotifCommand</code> to illustrate this is show below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code> if (model.hasNotif(notif)) {
-    try {
-        model.deleteNotif(notif);
-    } catch (NullPointerException exp) {
-        logger.info(MESSSAGE_NOTIF_DOES_NOT_EXIST);
-    }
-}
-
-Platform.runLater(() -&gt; {
+<pre class="CodeRay highlight"><code>Platform.runLater(() -&gt; {
     if (!model.hasNotif(notif)) {
         try {
             model.addNotif(notif);
@@ -1256,7 +1175,7 @@ time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 <p>Pros: Ensures that the user does not forget about contacting the police.</p>
 </li>
 <li>
-<p>Cons: May slow down the computer and lag the app if there are too many pop-up notifications at the same time.</p>
+<p>Cons: May slow down the computer and lag the application if there are too many pop-up notifications at the same time.</p>
 </li>
 </ul>
 </div>
@@ -1265,7 +1184,7 @@ time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 </div>
 <div class="paragraph">
 <p>Alternative 1 is the current choice because we want the app to be responsive and scalable in the long term. The
-notification bell is placed beside the command box to prevent instances of user forgetting to contact the police.</p>
+notification bell placed beside the command box aims to constantly remind the user.</p>
 </div>
 </div>
 </div>
@@ -1324,7 +1243,7 @@ The lifeline for <code>GenReportCommandParser</code> and <code>ReportGenerator</
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram">
+<img src="images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram" width="200">
 </div>
 <div class="title">Figure 19. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
@@ -2933,4 +2852,4 @@ Expected: Mortago&#8217;s state goes back to the <code>undo</code> test case&#82
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:45:14 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:54:24 UTC</div></div></div></bodyId></html>

@@ -727,8 +727,8 @@ and her new designation.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update -w /id 1 /designation Manager</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: This entity was successfully updated. ID Number: W00001<br>
-Dashboard shows: Jane Doe&#8217;s designation was changed to Manager.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: This entity was successfully updated. ID Number: W00001<br></p>
+<p class="tableblock">Dashboard shows: Jane Doe&#8217;s designation was changed to Manager.</p></td>
 </tr>
 </tbody>
 </table>
@@ -780,8 +780,8 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <div class="sect3">
 <h4 id="delete"><a class="link" href="#delete">4.1.4. Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the
-given format below.<br></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command
+using the format given below.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
@@ -796,8 +796,8 @@ you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to o
 <div class="ulist">
 <ul>
 <li>
-<p>Mortago automatically deletes its associated <code>Notifs</code>. You can learn more
-about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
+<p>Mortago automatically deletes its associated <code>Notif</code>. You can learn more
+about <code>Notif</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 </li>
 <li>
 <p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago automatically sets the status of the <code>Fridge</code> to
@@ -816,33 +816,26 @@ about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 <p>Imagine that you added someone (Jim Kerr) by mistake and you want to remove his details from Mortago. You see that his
 ID number is W00003.</p>
 </div>
-<div class="paragraph">
-<p>To delete his record:</p>
-</div>
-<div class="paragraph">
-<p>1) Type <code>delete -w 3</code> and press <code>ENTER</code> to execute it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/DeleteStep1.png" alt="DeleteStep1">
-</div>
-</div>
-<div class="paragraph">
-<p>2) The result box displays the message as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/DeleteStep2.png" alt="DeleteStep2">
-</div>
-</div>
-<div class="paragraph">
-<p>3) And you can check that Jim Kerr is no longer in the list of workers.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/DeleteStep3.png" alt="DeleteStep3" width="500">
-</div>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Expected Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete -w 3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: Deleted Entity: Jim Kerr Worker ID: W00003 Sex: MALE Phone: No input given.
+Date of Birth: No input given. Date Joined: Tue Nov 21 00:00:00 SGT 1111 Designation: No input given. Employment Status: No input given.<br></p>
+<p class="tableblock">Dashboard no longer shows Jim Kerr.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect3">
 <h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.1.5. Clearing all entries : <code>clear</code></a></h4>
@@ -890,26 +883,20 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <div class="paragraph">
 <p>1) Mortago shows filtered list of bodies.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/List1.png" alt="List1">
-</div>
+<div class="paragraph">
+<p>image::List1.png</p>
 </div>
 <div class="paragraph">
 <p>2) Type <code>list -b</code> in the Command Line Interface (CLI).</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/List2.png" alt="List2">
-</div>
+<div class="paragraph">
+<p>image::List2.png</p>
 </div>
 <div class="paragraph">
 <p>3) Mortago shows unfiltered list of bodies.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/List3.png" alt="List3">
-</div>
+<div class="paragraph">
+<p>image::List3.png</p>
 </div>
 </div>
 <div class="sect3">
@@ -937,7 +924,7 @@ After filtering specific bodies, you may now want to view the full list of bodie
 </div>
 <div class="paragraph">
 <p>A <code>Notif</code> is a notification associated with a <code>Body</code>. In Singapore, if the next-of-kin is not contactable for more
-than 24 hours from the time of addition of a <code>Body</code> in Mortago,
+than 24 hours from the time of admission of a body,
 police must informed. Mortago removes the hassle of manually keeping track of the status of bodies! For the purpose of
 testing, instead of 24 hours, Mortago currently
 uses 10 seconds.</p>
@@ -974,7 +961,7 @@ is <code>ARRIVED</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif1.png" alt="Notif1">
+<img src="images/Notif1.png" alt="Notif1" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -985,7 +972,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif2.png" alt="Notif2">
+<img src="images/Notif2.png" alt="Notif2" width="550">
 </div>
 </div>
 <div class="paragraph">
@@ -993,7 +980,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif3.png" alt="Notif3">
+<img src="images/Notif3.png" alt="Notif3" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -1002,7 +989,7 @@ can see John Doe&#8217;s ID number B00000020 is in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif4.png" alt="Notif4">
+<img src="images/Notif4.png" alt="Notif4" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -1011,7 +998,7 @@ pending police report</code>. John Doe&#8217;s ID is no longer listed in the not
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif5.png" alt="Notif5">
+<img src="images/Notif5.png" alt="Notif5" width="700">
 </div>
 </div>
 </div>
@@ -1075,19 +1062,15 @@ undoing the deletion does not restore the <code>Notif</code>.</p>
 Imagine that you wanted to delete a <code>Body</code> with ID 10 from Mortago. However, your finger slips and you type <code>20</code> instead
 of <code>10</code>!</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/Undo2.png" alt="Undo2">
-</div>
+<div class="paragraph">
+<p>image::Undo2.png</p>
 </div>
 <div class="paragraph">
 <p>You don&#8217;t realise and execute the command. When you look at the dashboard, you realise you have deleted body 20.
 Even worse, you have no recollection of body 20&#8217;s name or information.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/UndoBodyDeleted.png" alt="UndoBodyDeleted">
-</div>
+<div class="paragraph">
+<p>image::UndoBodyDeleted.png</p>
 </div>
 <div class="paragraph">
 <p>You can easily reverse that mistake with the <code>undo</code> command instead of adding body 20 all over again!</p>
@@ -1098,18 +1081,14 @@ Even worse, you have no recollection of body 20&#8217;s name or information.</p>
 <div class="paragraph">
 <p>1) Type <code>undo</code> or <code>u</code> into the command box.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/Undo4.png" alt="Undo4">
-</div>
+<div class="paragraph">
+<p>image::Undo4.png</p>
 </div>
 <div class="paragraph">
 <p>2) Press <code>Enter</code> to execute the command.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/Undo5.png" alt="Undo5">
-</div>
+<div class="paragraph">
+<p>image::Undo5.png</p>
 </div>
 <div class="paragraph">
 <p>3) Notice that the result box shows text telling you what was undone, and body 20 is back in the list of bodies.</p>
@@ -1396,14 +1375,13 @@ The line chart displays statistics over the last 10 days. The line chart appears
 <div class="content">
 <img src="images/statsTenDays.png" alt="statsTenDays" width="790">
 </div>
-<div class="title">Figure 3. Line chart displaying the last ten days</div>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To display a specific week: <code>stats /week 25/10/2019</code><br>
 The line chart displays statistics for the week which contains the specified day. In this case, it is the date
-12/10/2019. The line chart appears as below:</p>
+25/10/2019. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
@@ -1411,7 +1389,7 @@ The line chart displays statistics for the week which contains the specified day
 <div class="content">
 <img src="images/statsWeek.png" alt="statsWeek" width="790">
 </div>
-<div class="title">Figure 4. Line chart displaying the week containing the day 25/10/2019</div>
+<div class="title">Figure 3. Line chart displaying the week containing the day 25/10/2019</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1426,7 +1404,7 @@ as below:</p>
 <div class="content">
 <img src="images/statsMonth.png" alt="statsMonth" width="790">
 </div>
-<div class="title">Figure 5. Line chart displaying the month of October</div>
+<div class="title">Figure 4. Line chart displaying the month of October</div>
 </div>
 <div class="ulist">
 <ul>
@@ -1440,7 +1418,7 @@ The line chart displays statistics for the year specified. In this case is it 20
 <div class="content">
 <img src="images/statsYear.png" alt="statsYear" width="790">
 </div>
-<div class="title">Figure 6. Line chart displaying the year 2019</div>
+<div class="title">Figure 5. Line chart displaying the year 2019</div>
 </div>
 </div>
 <div class="sect3">
@@ -1980,4 +1958,4 @@ clipboard.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:45:14 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:54:24 UTC</div></div></div></bodyId></html>

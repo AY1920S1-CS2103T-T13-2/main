@@ -3,26 +3,21 @@
 <link rel="stylesheet" href="../stylesheets/coderay-asciidoctor.css"></head><bodyId class="article"><div id="site-header"><nav class="navbar navbar-light bg-light"><div class="container"><a class="navbar-brand" href="../index.html">Mortago</a><ul class="navbar-nav"><li class="nav-item"><a class="nav-link" href="../UserGuide.html">User Guide</a></li><li class="nav-item"><a class="nav-link" href="../DeveloperGuide.html">Developer Guide</a></li><li class="nav-item"><a class="nav-link active" href="../AboutUs.html">About Us</a></li><li class="nav-item"><a class="nav-link" href="../ContactUs.html">Contact Us</a></li><li class="navitem"><a class="nav-link" href="https://github.com/AY1920S1-CS2103T-T13-2/main"><span class="fa fa-github fa-lg" aria-hidden="true"></span>&nbsp;View on GitHub</a></li></ul></div></nav></div><div id="header"><h1>Bahety Arjavi - Project Portfolio</h1></div><div id="content"><div class="sect1">
 <h2 id="project-mortago"><a class="link" href="#project-mortago">PROJECT: Mortago</a></h2>
 <div class="sectionbody">
-
-</div>
-</div>
-<div class="sect1">
-<h2 id="strong-1-introduction-strong"><a class="link" href="#strong-1-introduction-strong"><strong>1. Introduction</strong></a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>This project portfolio page showcases my contributions for Mortago - A Software Engineering project developed in my
-second year of undergraduate study at the National University of Singapore. Mortago is an automated mortuary
-management system which eliminates the conventional registers and whiteboards used in mortuaries in Singapore.</p>
-</div>
 <div class="sect2">
-<h3 id="about-the-team"><a class="link" href="#about-the-team">About the Team</a></h3>
+<h3 id="strong-1-introduction-strong"><a class="link" href="#strong-1-introduction-strong"><strong>1. Introduction</strong></a></h3>
+<div class="paragraph">
+<p>This project portfolio page showcases my contributions to Mortago - A Software Engineering project developed in my
+second year of undergraduate study at the National University of Singapore.</p>
+</div>
+<div class="sect3">
+<h4 id="about-the-team"><a class="link" href="#about-the-team">About the Team</a></h4>
 <div class="paragraph">
 <p>My team consisted of 5 Year 2 Computer Science undergraduates taking the module CS2103T, a compulsory Software
 Engineering module.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="about-the-project"><a class="link" href="#about-the-project">About the Project</a></h3>
+<div class="sect3">
+<h4 id="about-the-project"><a class="link" href="#about-the-project">About the Project</a></h4>
 <div class="paragraph">
 <p>We were given the code for <a href="https://github.com/nus-cs2103-AY1920S1/addressbook-level3">Address Book Level 3 (AB3)</a>,
 a contact management software developed over the years by
@@ -32,16 +27,12 @@ code as the foundation and maintain its original Command Line Interface (CLI) na
 a mortuary management system called <strong>Mortago</strong>.</p>
 </div>
 <div class="paragraph">
-<p>Mortago is a desktop application supporting CLI and is targeted towards mortuary
-managers who prefer typing while still enjoy the benefits of Graphical User Interface (GUI). It is developed using Java
-over a short span of 6 weeks and has approximately 20,000 lines of code. It aims to make mortuary management, an area
-often lacking much technological innovations, hassle free.</p>
-</div>
-<div class="paragraph">
 <p>Mortago is a one-stop platform which automates fridge management, reminds its users of necessary updates,
-and even allows them to conveniently generate reports! It completely removes the need to use a register. It consolidates all the
-information about bodies and fridges in one beautiful dashboard. It also plots charts which are updated in
-real-time to help managers visualize data trends.</p>
+and even allows them to conveniently generate reports! It completely removes the need to use a register.
+It consolidates all the information about bodies and fridges in one beautiful dashboard. It is a desktop
+application supporting CLI and is targeted towards mortuary managers who prefer typing while still enjoy the benefits
+of Graphical User Interface (GUI).
+It is developed using Java over a short span of 6 weeks and has approximately 20,000 lines of code.</p>
 </div>
 <div class="paragraph">
 <p>I worked on the notification feature and the delete command. Moreover, I was responsible for automating fridge
@@ -49,18 +40,31 @@ management in Mortago. The sections below summarize my contributions to the code
 well as other team project tasks.</p>
 </div>
 <div class="paragraph">
-<p>The following are the frequently used symbols used in this document:</p>
+<p>The following are the frequently used symbols in this document:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>delete</code> : A grey highlight indicates that this text is either a full or partial command that can be
-entered into the CLI. It can also mean a component, class, function, or object used in the code base.</p>
+<p><code>delete</code> : A dark-red text (also known as a mark-up) indicates that this text is either a full or partial command that
+can be entered into the CLI. It can also mean a component, class, function, or object used in the code base.</p>
 </li>
 <li>
-<p>[TIP] : Light bulb indicates important additional information for a particular command.</p>
+<p>Tips : An annotation indicates important information which may be useful to a user.</p>
 </li>
 </ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This is an example of a tip.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -68,22 +72,23 @@ entered into the CLI. It can also mean a component, class, function, or object u
 <div class="paragraph">
 <p>This section summarizes my coding, documentation, and other contributions to the team project.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="enhancements"><a class="link" href="#enhancements">Enhancements</a></h3>
+<div class="sect3">
+<h4 id="enhancements"><a class="link" href="#enhancements">Enhancements</a></h4>
 <div class="paragraph">
 <p><strong>Major Enhancement:</strong> I added the notification feature.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: This enhancement reminds the mortuary manager to contact the police after 10 seconds by automatically
-changing the status of a body and showing a pop-up notification. It also maintains a list of all the notifications
-(<code>Notif</code>) and can be viewed by either using the <code>showNotif</code> command or clicking on the bell icon beside the command
+<p>What it does: This enhancement reminds the mortuary manager to contact the police, after 10 seconds from the point
+of adding a <code>Body</code> to Mortago,
+by automatically
+changing its status and showing a pop-up notification. It also maintains a list of all the notifications
+(<code>Notif</code>) that can be viewed by either using the <code>showNotif</code> command or clicking on the bell icon beside the command
 box.</p>
 </li>
 <li>
-<p>Justification: If the next-of-kin of a body has been uncontactable for more than 24 hours, police must be notified
+<p>Justification: If the next-of-kin of a body has been uncontactable for more than 24 hours, police must be informed
 to start a more thorough investigation. It can be tedious for the mortuary manager to manually keep checking which
 bodies have crosses the 24 hour period. This feature serves the dual purpose of automatically changing the status of
 the body as well as reminding the manager. For the purpose of testing, the time period is set to 10 seconds instead
@@ -100,7 +105,7 @@ was reused to create <code>NotifWindow</code>.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Major Enhancement:</strong> I morphed the <code>delete</code> command in AB3</p>
+<p><strong>Major Enhancement:</strong> I morphed the <code>delete</code> command in AB3.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -109,8 +114,8 @@ was reused to create <code>NotifWindow</code>.</p>
 flagging to differentiate them.</p>
 </li>
 <li>
-<p>Justification: If the user enters a body by mistake, the <code>delete</code> command offers a convenient way to rectify the
-mistake. Flagging is used because it is more convenient for the user instead of using 3 different commands for
+<p>Justification: If the user adds a <code>Body</code> by mistake, the <code>delete</code> command offers a convenient way to remove it.
+Flagging is used because it is more convenient for the user instead of using 3 different commands for
 deletion.</p>
 </li>
 <li>
@@ -131,18 +136,20 @@ changes as follows:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Major Enhancement:</strong> I automated fridge management</p>
+<p><strong>Minor Enhancement:</strong> I automated fridge management.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: When <code>delete</code> or <code>update</code> command for a <code>Body</code> which is assigned a <code>Fridge</code> are used, Mortago will
+<p>What it does: If a <code>Body</code> is assigned a <code>Fridge</code> and either <code>delete</code> or <code>update</code> commands are used on this <code>Body</code>,
+Mortago
+will
 automatically make relevant changes to the <code>Fridge</code>.</p>
 </li>
 <li>
 <p>Justification: Manually managing bodies and fridges in a mortuary is very tedious as any change to a body may mean
-that the status of the fridge as well. For instance, when a body is claimed, the fridges it was stored in needs to be
-updated to unoccupied. If a manager is handling several bodies and fridges simultaneously, he may be prone to making
+that the status of the fridge has changed as well. For instance, when a body is claimed, its fridge is no longer
+occupied. If a manager is handling several bodies and fridges simultaneously, he may make
 errors.</p>
 </li>
 <li>
@@ -152,7 +159,7 @@ that, the following features are automated:</p>
 <ul>
 <li>
 <p>If the status of a <code>Body</code> is updated to <code>CLAIMED</code> or <code>DONATED</code>, its associated <code>FRIDGE</code> 's status is reset to
-<code>UNOCCUPIED</code> and the <code>Body</code> is no longer assigned the <code>Fridge</code>.</p>
+<code>UNOCCUPIED</code> and the <code>Body</code> is no longer assigned to this <code>Fridge</code>.</p>
 </li>
 <li>
 <p>A user cannot assign a <code>Fridge</code> to a <code>Body</code> with status <code>CLAIMED</code> or <code>DONATED</code>.</p>
@@ -162,7 +169,7 @@ that, the following features are automated:</p>
 the <code>Body</code>.</p>
 </li>
 <li>
-<p>A <code>Fridge</code> cannot be assigned multiple <code>Body</code>(s)</p>
+<p>A <code>Fridge</code> cannot be assigned multiple <code>Body</code>(s).</p>
 </li>
 </ul>
 </div>
@@ -170,16 +177,16 @@ the <code>Body</code>.</p>
 </ul>
 </div>
 </div>
-<div class="sect2">
-<h3 id="code-contributed"><a class="link" href="#code-contributed">Code Contributed</a></h3>
+<div class="sect3">
+<h4 id="code-contributed"><a class="link" href="#code-contributed">Code Contributed</a></h4>
 <div class="paragraph">
 <p>You can view my code -[<a href="https://nus-cs2103-ay1920s1.github.io/tp-dashboard/#search=&amp;sort=groupTitle&amp;sortWithin=title&amp;since=2019-09-06&amp;timeframe=commit&amp;mergegroup=falsegroupSelect=groupByRepos&amp;breakdown=false&amp;tabOpen=true&amp;tabType=authorship&amp;tabAuthor=arjavibahety&amp;tabRepo=AY1920S1-CS2103T-T13-2%2Fmain%5Bmaster%5D">via Reposense</a>]</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h3>
+<div class="sect3">
+<h4 id="other-contributions"><a class="link" href="#other-contributions">Other Contributions</a></h4>
 <div class="paragraph">
-<p>Other contributions which I made to the team are discussed in this section</p>
+<p>Other contributions which I made to the team are discussed in this section.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -214,12 +221,12 @@ GitHub.</p>
 <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/267/files">#267</a>).</p>
 </li>
 <li>
-<p>Updated existing diagrams and color scheme in developer guide
+<p>Updated existing diagrams to fit the team&#8217;s chosen colour scheme
 (<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/123/files">#123</a>).</p>
 </li>
 <li>
-<p>Updated use cases for notification feature in developer guide
-(<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/40">#40</a>)</p>
+<p>Updated use cases for notification feature in the developer guide
+(<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/40">#40</a>).</p>
 </li>
 </ul>
 </div>
@@ -234,27 +241,28 @@ GitHub.</p>
 <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/22">#22</a>,
 <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/31">#31</a>,
 <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/47">47</a>,
-<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/49">#49</a></p>
+<a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/49">#49</a>.</p>
 </li>
 <li>
-<p>Reported bugs and suggestions for other teams:
+<p>Reported bugs and gave suggestions to other teams:
 <a href="https://github.com/arjavibahety/ped/issues/2">#2</a>,
 <a href="https://github.com/arjavibahety/ped/issues/7">#7</a>,
 <a href="https://github.com/arjavibahety/ped/issues/10">#10</a>,
 <a href="https://github.com/arjavibahety/ped/issues/13">#13</a>,
-<a href="https://github.com/arjavibahety/ped/issues/15">#15</a></p>
+<a href="https://github.com/arjavibahety/ped/issues/15">#15</a>.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3 Contributions to the User Guide</a></h3>
+<h3 id="3-contributions-to-the-user-guide"><a class="link" href="#3-contributions-to-the-user-guide">3. Contributions to the User Guide</a></h3>
 <div class="paragraph">
-<p>The following are the excerpts I wrote in the Mortago user guide to teach a user how the notification feature works and
-how  they can use the delete command.</p>
+<p>The following are the excerpts I wrote in the user guide to teach a user how the notification feature works and
+how  they can use the <code>delete</code> command.</p>
 </div>
 <div class="paragraph">
 <p><em>{start of extract 1: notification feature}</em></p>
@@ -266,7 +274,7 @@ how  they can use the delete command.</p>
 </div>
 <div class="paragraph">
 <p>A <code>Notif</code> is a notification associated with a <code>Body</code>. In Singapore, if the next-of-kin is not contactable for more
-than 24 hours from the time of addition of a <code>Body</code> in Mortago,
+than 24 hours from the time of admission of a body,
 police must informed. Mortago removes the hassle of manually keeping track of the status of bodies! For the purpose of
 testing, instead of 24 hours, Mortago currently
 uses 10 seconds.</p>
@@ -303,7 +311,7 @@ is <code>ARRIVED</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Notif1.png" alt="Notif1">
+<img src="../images/Notif1.png" alt="Notif1" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -314,7 +322,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Notif2.png" alt="Notif2">
+<img src="../images/Notif2.png" alt="Notif2" width="550">
 </div>
 </div>
 <div class="paragraph">
@@ -322,7 +330,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Notif3.png" alt="Notif3">
+<img src="../images/Notif3.png" alt="Notif3" width="500">
 </div>
 </div>
 <div class="paragraph">
@@ -331,7 +339,7 @@ can see John Doe&#8217;s ID number B00000020 is in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Notif4.png" alt="Notif4">
+<img src="../images/Notif4.png" alt="Notif4" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -340,7 +348,7 @@ pending police report</code>. John Doe&#8217;s ID is no longer listed in the not
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/Notif5.png" alt="Notif5">
+<img src="../images/Notif5.png" alt="Notif5" width="700">
 </div>
 </div>
 <div class="paragraph">
@@ -353,8 +361,8 @@ pending police report</code>. John Doe&#8217;s ID is no longer listed in the not
 <div class="sect3">
 <h4 id="delete"><a class="link" href="#delete">Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the
-given format below.<br></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command
+using the format given below.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
@@ -369,8 +377,8 @@ you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to o
 <div class="ulist">
 <ul>
 <li>
-<p>Mortago automatically deletes its associated <code>Notifs</code>. You can learn more
-about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
+<p>Mortago automatically deletes its associated <code>Notif</code>. You can learn more
+about <code>Notif</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 </li>
 <li>
 <p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago automatically sets the status of the <code>Fridge</code> to
@@ -389,42 +397,36 @@ about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 <p>Imagine that you added someone (Jim Kerr) by mistake and you want to remove his details from Mortago. You see that his
 ID number is W00003.</p>
 </div>
-<div class="paragraph">
-<p>To delete his record:</p>
-</div>
-<div class="paragraph">
-<p>1) Type <code>delete -w 3</code> and press <code>ENTER</code> to execute it.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/DeleteStep1.png" alt="DeleteStep1">
-</div>
-</div>
-<div class="paragraph">
-<p>2) The result box displays the message as shown below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/DeleteStep2.png" alt="DeleteStep2">
-</div>
-</div>
-<div class="paragraph">
-<p>3) And you can check that Jim Kerr is no longer in the list of workers.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/DeleteStep3.png" alt="DeleteStep3" width="500">
-</div>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Command</th>
+<th class="tableblock halign-left valign-top">Expected Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete -w 3</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: Deleted Entity: Jim Kerr Worker ID: W00003 Sex: MALE Phone: No input given.
+Date of Birth: No input given. Date Joined: Tue Nov 21 00:00:00 SGT 1111 Designation: No input given. Employment Status: No input given.<br></p>
+<p class="tableblock">Dashboard no longer shows Jim Kerr.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
 <p><em>{end of extract 2}</em></p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4 Contributions to the Developer Guide</a></h3>
+<h3 id="4-contributions-to-the-developer-guide"><a class="link" href="#4-contributions-to-the-developer-guide">4. Contributions to the Developer Guide</a></h3>
 <div class="paragraph">
-<p>The following is the excerpt I wrote in the Mortago developer guide and are targeted at potential future developers.</p>
+<p>The following is the excerpt I wrote in the Mortago developer guide. It is targeted at potential future
+developers who may be interested to further develop the application.</p>
 </div>
 <div class="paragraph">
 <p><em>{start of extract: notification feature}</em></p>
@@ -434,13 +436,8 @@ ID number is W00003.</p>
 <h3 id="notification-feature"><a class="link" href="#notification-feature">Notification Feature</a></h3>
 <div class="paragraph">
 <p>This feature in Mortago reminds a mortuary manager to contact the police when the next-of-kin of a body
-has not been contactable for a given period of time from the point of admission of the <code>Body</code>. He / She then needs
-to
-contact
-the police
-to
-proceed with a
-more thorough investigation. In Singapore, this period is 24 hours. For testing purposes, it has been set to
+has not been contactable for a given period of time from the point of addition of the <code>Body</code>. He / She then needs
+to contact the police to proceed with a more thorough investigation. In Singapore, this period is 24 hours. For testing purposes, it has been set to
 10 seconds in Mortago.</p>
 </div>
 <div class="paragraph">
@@ -471,8 +468,7 @@ AddCommand.java.
 <div class="ulist">
 <ul>
 <li>
-<p><code>body</code>: Refers to the <code>Body</code> for which the <code>Notif</code> is created. This is passed in as a parameter when a new
-instance of the class is instantiated.</p>
+<p><code>body</code>: Refers to the <code>Body</code> for which the <code>Notif</code> is created. This is passed in as a parameter to the constructor.</p>
 </li>
 <li>
 <p><code>alert</code>: Refers to a <code>Runnable</code> function which checks if the current status of the body is <code>ARRIVED</code> and if so,
@@ -507,7 +503,7 @@ It will be explained in further detail later. Currently, this value is set to <c
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/NotifCommandClassDiagram.png" alt="NotifCommandClassDiagram">
+<img src="../images/NotifCommandClassDiagram.png" alt="NotifCommandClassDiagram" width="400">
 </div>
 <div class="title">Figure 1. Notification Class Diagram</div>
 </div>
@@ -532,38 +528,10 @@ instantiated:</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="../images/NotifCommandActivityDiagram.png" alt="NotifCommandActivityDiagram">
+<img src="../images/NotifCommandActivityDiagram.png" alt="NotifCommandActivityDiagram" width="200">
 </div>
 <div class="title">Figure 4. Notification Command Activity Diagram</div>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<strong>Is <code>NotifCommand</code> only executed when a <code>Body</code> is added?</strong>
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>No! If the status of the <code>Body</code> is changed to <code>ARRIVED</code> using the <code>UpdateCommand</code>, <code>NotifCommand</code> is still
-executed. The <code>Notif</code> is scheduled to be executed after the specified <code>period</code> from the point in time when the
-status of the body was updated.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 <div class="sect4">
 <h5 id="storing-executed-and-pending-code-notifs-code"><a class="link" href="#storing-executed-and-pending-code-notifs-code">Storing executed and pending <code>Notifs</code></a></h5>
 <div class="paragraph">
@@ -588,50 +556,12 @@ changed to <code>CONTACT_POLICE</code>. Otherwise, the <code>NotifCommand</code>
 </li>
 </ol>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<strong>When is the <code>NotifCommand</code> not executed?</strong>
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
-<ul>
-<li>
-<p>If the status of the <code>Body</code> is changed before the 10 second window.</p>
-</li>
-<li>
-<p>If the <code>Body</code> is deleted before the specified <code>period</code>.</p>
-</li>
-<li>
-<p>If the difference between <code>notifCreationTime</code> and system time is more than <code>period</code> when the app is initialized.</p>
-</li>
-</ul>
-</div></div></td>
-</tr>
-</tbody>
-</table>
 </div>
 <div class="sect4">
 <h5 id="defensive-programming"><a class="link" href="#defensive-programming">Defensive programming</a></h5>
 <div class="paragraph">
 <p>The <code>NotifCommand</code> heavily makes use of the <code>ScheduledExecutorService</code> and <code>Platform.runLater(Runnable runnable)</code> to
-make changes to the <code>Body</code> status and <code>Notif</code>. They use threading to allow tasks to be handled concurrently. For instance,
-even after scheduling a <code>Runnable</code> function, the user is still able to carry on with other commands of Mortago such
-as updating the status of the <code>Body</code>, adding a new <code>Fridge</code> etc.</p>
+make changes to the <code>Body</code> status and <code>Notif</code>. They use threading to allow tasks to be handled concurrently.</p>
 </div>
 <div class="paragraph">
 <p>As per the official Java Documentation, <code>Platform.runLater(Runnable runnable)</code> runs the specified runnable function
@@ -639,14 +569,13 @@ on a thread dedicated to JavaFX application at some unspecified time in the futu
 if some updates to the model are wrapped inside it as a <code>Runnable</code> while others are not, it can result in a
 mismatch of model. For instance, you may want to delete a <code>Notif</code> which already exists in the model. The usual
 process will be to first check whether it exists and if it does, then proceed with deletion. However, due to
-threading, you may end up in a situation when the app finds the <code>Notif</code> at the point of checking but throws a
+threading, you may end up in a situation where the app finds the <code>Notif</code> at the point of checking but throws a
 <code>NullPointerException</code> when proceeding with the deletion.</p>
 </div>
 <div class="paragraph">
-<p>To prevent this, in Mortago, any addition or deletion of <code>Notif</code> in the model during the execution of the
-<code>NotifCommand</code> and parts of <code>UpdateCommand</code> are wrapped inside <code>Platform.runLater(Runnable runnable)</code>. This ensures
-that updates to the model happen sequentially and not concurrently and the relevant changes can be reflected on the
-UI.</p>
+<p>To prevent this, addition or deletion of <code>Notif</code> in the model during the execution of the
+<code>NotifCommand</code> and <code>UpdateCommand</code> are wrapped inside <code>Platform.runLater(Runnable runnable)</code>. This ensures
+that <code>Notif</code>(s) in the model are handled sequentially.</p>
 </div>
 <div class="paragraph">
 <p>Moreover, all these operations are wrapped inside a try-catch block. Either the <code>NullPointerException</code> or
@@ -655,15 +584,7 @@ code snippet of <code>NotifCommand</code> to illustrate this is show below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code> if (model.hasNotif(notif)) {
-    try {
-        model.deleteNotif(notif);
-    } catch (NullPointerException exp) {
-        logger.info(MESSSAGE_NOTIF_DOES_NOT_EXIST);
-    }
-}
-
-Platform.runLater(() -&gt; {
+<pre class="CodeRay highlight"><code>Platform.runLater(() -&gt; {
     if (!model.hasNotif(notif)) {
         try {
             model.addNotif(notif);
@@ -743,7 +664,7 @@ time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 <p>Pros: Ensures that the user does not forget about contacting the police.</p>
 </li>
 <li>
-<p>Cons: May slow down the computer and lag the app if there are too many pop-up notifications at the same time.</p>
+<p>Cons: May slow down the computer and lag the application if there are too many pop-up notifications at the same time.</p>
 </li>
 </ul>
 </div>
@@ -752,7 +673,7 @@ time and <code>notifCreationTime</code> exceeds <code>period</code>.</p>
 </div>
 <div class="paragraph">
 <p>Alternative 1 is the current choice because we want the app to be responsive and scalable in the long term. The
-notification bell is placed beside the command box to prevent instances of user forgetting to contact the police.</p>
+notification bell placed beside the command box aims to constantly remind the user.</p>
 </div>
 <div class="paragraph">
 <p><em>{end of extract}</em></p>
@@ -761,4 +682,4 @@ notification bell is placed beside the command box to prevent instances of user 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:45:14 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:54:24 UTC</div></div></div></bodyId></html>
