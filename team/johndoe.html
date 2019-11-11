@@ -230,7 +230,7 @@ ID number is W00003.</p>
 The history stores <code>UndoableCommands</code>, and an <code>UndoCommand</code> or <code>RedoCommand</code> will <code>undo()</code> or <code>redo()</code> commands in the history.
 The design of <code>UndoableCommand</code> uses the Command pattern, a common design pattern often used in software engineering.
 It allows each individual command to be undone/redone at a high-level without needing the specific command type to be known.
-Classes related to undo/redo and their relationships are shown in Figure 11.</p>
+Classes related to undo/redo and their relationships are shown in Figure 12.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -270,7 +270,7 @@ Classes related to undo/redo and their relationships are shown in Figure 11.</p>
 </div>
 <div class="paragraph">
 <p>Next, the <code>UndoableCommand</code> stored in the <code>Model</code> is actually a normal <code>Command</code> that changes program state.
-The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 11. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.
+The <code>UndoableCommand</code> class is an abstract class that extends the abstract <code>Command</code> class, as shown in Figure 12. Commands like <code>AddCommand</code> or <code>UpdateCommand</code> extends <code>UndoableCommand</code> instead of <code>Command</code>.
 Commands that don&#8217;t change the user-visible program state, like <code>FindCommand</code>, can still inherit directly from <code>Command</code>.</p>
 </div>
 <div class="paragraph">
@@ -616,4 +616,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:21:32 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:43:44 UTC</div></div></div></bodyId></html>
