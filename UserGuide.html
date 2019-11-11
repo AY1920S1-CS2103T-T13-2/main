@@ -104,7 +104,7 @@ to be more accurate in managing tasks, calculating the availability of space, vi
 <h2 id="Quick-Start"><a class="link" href="#Quick-Start">2. Quick Start</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This section summarizes how you can quickly set up Mortago on your computer</p>
+<p>This section summarizes how you can quickly set up Mortago on your computer.</p>
 </div>
 <div class="sect2">
 <h3 id="setting-up"><a class="link" href="#setting-up">2.1. Setting Up</a></h3>
@@ -130,7 +130,7 @@ to be more accurate in managing tasks, calculating the availability of space, vi
 <div class="paragraph">
 <p>Upon launching Mortago, you should see the following user interface.</p>
 </div>
-<div class="imageblock text-center">
+<div class="imageblock">
 <div class="content">
 <img src="images/Ui.png" alt="Ui" width="790">
 </div>
@@ -143,17 +143,17 @@ The following are examples of some commands you can try:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong><code>list -b</code></strong> : lists all bodies</p>
+<p><strong><code>list -b</code></strong> : lists all bodies.</p>
 </li>
 <li>
 <p><strong><code>add -w/name John Doe /sex male /dateJoined 12/12/2019</code></strong> :
 adds a worker named John Doe to the management system.</p>
 </li>
 <li>
-<p><strong><code>delete -w 1</code></strong> : deletes the worker with worker ID W000001</p>
+<p><strong><code>delete -w 1</code></strong> : deletes the worker with worker ID W000001.</p>
 </li>
 <li>
-<p><strong><code>exit</code></strong> : exits the app</p>
+<p><strong><code>exit</code></strong> : exits the app.</p>
 </li>
 </ul>
 </div>
@@ -254,7 +254,7 @@ What are <code>ATTRIBUTES</code>?
 <div class="ulist">
 <ul>
 <li>
-<p>You can find that <code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
+<p>You will find that <code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -267,7 +267,7 @@ What are <code>ATTRIBUTES</code>?
 </div>
 </li>
 <li>
-<p>You may find that some <code>ATTRIBUTES</code> can only accept specific values, or that these values must follow certain format. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for these <code>ATTRIBUTES</code>.</p>
+<p>You may find that some <code>ATTRIBUTES</code> can only accept specific values, or that these values must follow a certain format. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for these <code>ATTRIBUTES</code>.</p>
 </li>
 <li>
 <p>You must enter <code>ATTRIBUTES</code> successively in a single-line command. Mortago does not prompt you to key in any mandatory
@@ -322,14 +322,14 @@ need to provide.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For the filter command: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
+<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter -w /sex male</code> and <code>filter -b /sex female /cod car accident</code> are valid commands.</p>
+<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
 </li>
 <li>
-<p><code>filter -b</code> is an invalid command.</p>
+<p><code>filter</code> is an invalid command.</p>
 </li>
 </ul>
 </div>
@@ -365,14 +365,14 @@ need to provide.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For the filter command: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
+<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter -w /sex male</code> and <code>filter -b /sex female /cod car accident</code> are valid commands.</p>
+<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
 </li>
 <li>
-<p><code>filter -b</code> is an invalid command.</p>
+<p><code>filter</code> is an invalid command.</p>
 </li>
 </ul>
 </div>
@@ -543,36 +543,34 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Expected Output</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p><code>add -w
- /name Mary
- /phone 87654321
- /sex female
- /dateJoined 18/08/2019
- /designation Autopsy Technician</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Worker added</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>add -f</code>
-&#160;<br></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fridge added</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+/name Mary
+/phone 87654321
+/sex female
+/dateJoined 18/08/2019
+/designation Autopsy Technician</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a worker</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>add -f</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a fridge</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><code>add -b
 /name John Doe
 /sex male
@@ -588,11 +586,16 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 /cod Car Accident
 /details Heavy bleeding and head injury
 /organsForDonation NIL</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Body added</p></td>
-</tr>
-</tbody>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a body</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect3">
 <h4 id="update"><a class="link" href="#update">4.1.2. Updating an entity: <code>update</code></a></h4>
@@ -739,8 +742,8 @@ and her new designation.</p>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>update -w /id 1 /designation Manager</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: This entity was successfully updated. ID Number: W00001<br></p>
-<p class="tableblock">Dashboard shows: Jane Doe&#8217;s designation was changed to Manager.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: This entity was successfully updated. ID Number: W00001<br>
+Dashboard shows: Jane Doe&#8217;s designation was changed to Manager.</p></td>
 </tr>
 </tbody>
 </table>
@@ -792,8 +795,8 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 <div class="sect3">
 <h4 id="delete"><a class="link" href="#delete">4.1.4. Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command
-using the format given below.<br></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the
+given format below.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
@@ -808,8 +811,8 @@ you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to o
 <div class="ulist">
 <ul>
 <li>
-<p>Mortago automatically deletes its associated <code>Notif</code>. You can learn more
-about <code>Notif</code> in <a href="#notifs">Section 3.2.1</a>.</p>
+<p>Mortago automatically deletes its associated <code>Notifs</code>. You can learn more
+about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 </li>
 <li>
 <p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago automatically sets the status of the <code>Fridge</code> to
@@ -828,26 +831,33 @@ about <code>Notif</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 <p>Imagine that you added someone (Jim Kerr) by mistake and you want to remove his details from Mortago. You see that his
 ID number is W00003.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Command</th>
-<th class="tableblock halign-left valign-top">Expected Output</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete -w 3</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: Deleted Entity: Jim Kerr Worker ID: W00003 Sex: MALE Phone: No input given.
-Date of Birth: No input given. Date Joined: Tue Nov 21 00:00:00 SGT 1111 Designation: No input given. Employment Status: No input given.<br></p>
-<p class="tableblock">Dashboard no longer shows Jim Kerr.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>To delete his record:</p>
+</div>
+<div class="paragraph">
+<p>1) Type <code>delete -w 3</code> and press <code>ENTER</code> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteStep1.png" alt="DeleteStep1">
+</div>
+</div>
+<div class="paragraph">
+<p>2) The result box displays the message as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteStep2.png" alt="DeleteStep2">
+</div>
+</div>
+<div class="paragraph">
+<p>3) And you can check that Jim Kerr is no longer in the list of workers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/DeleteStep3.png" alt="DeleteStep3" width="500">
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="clearing-all-entries-code-clear-code"><a class="link" href="#clearing-all-entries-code-clear-code">4.1.5. Clearing all entries : <code>clear</code></a></h4>
@@ -895,20 +905,26 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <div class="paragraph">
 <p>1) Mortago shows filtered list of bodies.</p>
 </div>
-<div class="paragraph">
-<p>image::List1.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/List1.png" alt="List1">
+</div>
 </div>
 <div class="paragraph">
 <p>2) Type <code>list -b</code> in the Command Line Interface (CLI).</p>
 </div>
-<div class="paragraph">
-<p>image::List2.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/List2.png" alt="List2">
+</div>
 </div>
 <div class="paragraph">
 <p>3) Mortago shows unfiltered list of bodies.</p>
 </div>
-<div class="paragraph">
-<p>image::List3.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/List3.png" alt="List3">
+</div>
 </div>
 </div>
 <div class="sect3">
@@ -923,7 +939,7 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <p>Example: <code>select 1</code></p>
 </div>
 <div class="paragraph">
-<p>The following illustrates how you can use the select command.</p>
+<p>The following illustrates how you can use the <code>select</code> command.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -972,7 +988,7 @@ After filtering specific bodies, you may now want to view the full list of bodie
 </div>
 <div class="paragraph">
 <p>A <code>Notif</code> is a notification associated with a <code>Body</code>. In Singapore, if the next-of-kin is not contactable for more
-than 24 hours from the time of admission of a body,
+than 24 hours from the time of addition of a <code>Body</code> in Mortago,
 police must informed. Mortago removes the hassle of manually keeping track of the status of bodies! For the purpose of
 testing, instead of 24 hours, Mortago currently
 uses 10 seconds.</p>
@@ -1009,7 +1025,7 @@ is <code>ARRIVED</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif1.png" alt="Notif1" width="500">
+<img src="images/Notif1.png" alt="Notif1">
 </div>
 </div>
 <div class="paragraph">
@@ -1020,7 +1036,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif2.png" alt="Notif2" width="550">
+<img src="images/Notif2.png" alt="Notif2">
 </div>
 </div>
 <div class="paragraph">
@@ -1028,7 +1044,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif3.png" alt="Notif3" width="500">
+<img src="images/Notif3.png" alt="Notif3">
 </div>
 </div>
 <div class="paragraph">
@@ -1037,7 +1053,7 @@ can see John Doe&#8217;s ID number B00000020 is in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif4.png" alt="Notif4" width="700">
+<img src="images/Notif4.png" alt="Notif4">
 </div>
 </div>
 <div class="paragraph">
@@ -1046,7 +1062,7 @@ pending police report</code>. John Doe&#8217;s ID is no longer listed in the not
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/Notif5.png" alt="Notif5" width="700">
+<img src="images/Notif5.png" alt="Notif5">
 </div>
 </div>
 </div>
@@ -1110,15 +1126,19 @@ undoing the deletion does not restore the <code>Notif</code>.</p>
 Imagine that you wanted to delete a <code>Body</code> with ID 10 from Mortago. However, your finger slips and you type <code>20</code> instead
 of <code>10</code>!</p>
 </div>
-<div class="paragraph">
-<p>image::Undo2.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Undo2.png" alt="Undo2">
+</div>
 </div>
 <div class="paragraph">
 <p>You don&#8217;t realise and execute the command. When you look at the dashboard, you realise you have deleted body 20.
 Even worse, you have no recollection of body 20&#8217;s name or information.</p>
 </div>
-<div class="paragraph">
-<p>image::UndoBodyDeleted.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/UndoBodyDeleted.png" alt="UndoBodyDeleted">
+</div>
 </div>
 <div class="paragraph">
 <p>You can easily reverse that mistake with the <code>undo</code> command instead of adding body 20 all over again!</p>
@@ -1129,14 +1149,18 @@ Even worse, you have no recollection of body 20&#8217;s name or information.</p>
 <div class="paragraph">
 <p>1) Type <code>undo</code> or <code>u</code> into the command box.</p>
 </div>
-<div class="paragraph">
-<p>image::Undo4.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Undo4.png" alt="Undo4">
+</div>
 </div>
 <div class="paragraph">
 <p>2) Press <code>Enter</code> to execute the command.</p>
 </div>
-<div class="paragraph">
-<p>image::Undo5.png</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/Undo5.png" alt="Undo5">
+</div>
 </div>
 <div class="paragraph">
 <p>3) Notice that the result box shows text telling you what was undone, and body 20 is back in the list of bodies.</p>
@@ -1402,11 +1426,9 @@ Outputs the PDF report summary for all bodies in the folder containing the jar f
 <div class="paragraph">
 <p>The following screenshot shows where the <code>stats</code> command should be inputted and where the line chart changes:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/statsOverview.png" alt="statsOverview" width="790">
-</div>
-<div class="title">Figure 2. The line chart&#8217;s position on the dashboard with respect to the command box.</div>
+<div class="paragraph">
+<p>)The line chart&#8217;s position on the dashboard with respect to the command box.
+image::statsMonth.png[width="790"]</p>
 </div>
 <div class="paragraph">
 <p>The following are the correct formats for typing in stats commands, with example usage:</p>
@@ -1419,26 +1441,22 @@ The line chart displays statistics over the last 10 days. The line chart appears
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/statsTenDays.png" alt="statsTenDays" width="790">
-</div>
-<div class="title">Figure 3. Line chart displaying the last 10 days from the current date</div>
+<div class="paragraph">
+<p>)Line chart displaying the last ten days
+image::statsTenDays.png[width="790"]</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p>To display a specific week: <code>stats /week 25/10/2019</code><br>
 The line chart displays statistics for the week which contains the specified day. In this case, it is the date
-25/10/2019. The line chart appears as below:</p>
+12/10/2019. The line chart appears as below:</p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/statsWeek.png" alt="statsWeek" width="790">
-</div>
-<div class="title">Figure 4. Line chart displaying the week containing the day 25/10/2019</div>
+<div class="paragraph">
+<p>)Line chart displaying the week containing the day 25/10/2019
+image::statsWeek.png[width="790"]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1449,11 +1467,9 @@ as below:</p>
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/statsMonth.png" alt="statsMonth" width="790">
-</div>
-<div class="title">Figure 5. Line chart displaying the month of October</div>
+<div class="paragraph">
+<p>)Line chart displaying the month of October
+image::statsMonth.png[width="790"]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1463,11 +1479,9 @@ The line chart displays statistics for the year specified. In this case is it 20
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/statsYear.png" alt="statsYear" width="790">
-</div>
-<div class="title">Figure 6. Line chart displaying the year 2019</div>
+<div class="paragraph">
+<p>)Line chart displaying the year 2019
+image::statsYear.png[width="790"]</p>
 </div>
 </div>
 <div class="sect3">
@@ -2041,4 +2055,4 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:56:02 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:21:32 UTC</div></div></div></bodyId></html>

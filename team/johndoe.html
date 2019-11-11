@@ -139,8 +139,8 @@
 <div class="sect3">
 <h4 id="delete"><a class="link" href="#delete">Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
-<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command
-using the format given below.<br></p>
+<p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the
+given format below.<br></p>
 </div>
 <div class="paragraph">
 <p>Format: <code>delete -FLAG  id</code></p>
@@ -155,8 +155,8 @@ you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to o
 <div class="ulist">
 <ul>
 <li>
-<p>Mortago automatically deletes its associated <code>Notif</code>. You can learn more
-about <code>Notif</code> in <a href="#notifs">Section 3.2.1</a>.</p>
+<p>Mortago automatically deletes its associated <code>Notifs</code>. You can learn more
+about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 </li>
 <li>
 <p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago automatically sets the status of the <code>Fridge</code> to
@@ -175,26 +175,33 @@ about <code>Notif</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 <p>Imagine that you added someone (Jim Kerr) by mistake and you want to remove his details from Mortago. You see that his
 ID number is W00003.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Command</th>
-<th class="tableblock halign-left valign-top">Expected Output</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>delete -w 3</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: Deleted Entity: Jim Kerr Worker ID: W00003 Sex: MALE Phone: No input given.
-Date of Birth: No input given. Date Joined: Tue Nov 21 00:00:00 SGT 1111 Designation: No input given. Employment Status: No input given.<br></p>
-<p class="tableblock">Dashboard no longer shows Jim Kerr.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>To delete his record:</p>
+</div>
+<div class="paragraph">
+<p>1) Type <code>delete -w 3</code> and press <code>ENTER</code> to execute it.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteStep1.png" alt="DeleteStep1">
+</div>
+</div>
+<div class="paragraph">
+<p>2) The result box displays the message as shown below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteStep2.png" alt="DeleteStep2">
+</div>
+</div>
+<div class="paragraph">
+<p>3) And you can check that Jim Kerr is no longer in the list of workers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../images/DeleteStep3.png" alt="DeleteStep3" width="500">
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -609,4 +616,4 @@ program state at any time. When undoing or redoing, it was essential that data i
 <p><em>{Optionally, you may include other projects in your portfolio.}</em></p>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:56:03 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:21:32 UTC</div></div></div></bodyId></html>

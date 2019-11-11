@@ -27,35 +27,7 @@
 <p>Mortago provides a user-friendly dashboard that allows managers to manage various types of entries in a mortuary. It replaces and improves upon the traditional whiteboard to enhance productivity.</p>
 </div>
 <div class="paragraph">
-<p>The list below provides some of the main features in Mortago and is not exhaustive:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p><strong>Add</strong> a <code>Body</code>, <code>Worker</code>, or <code>Fridge</code> into the system</p>
-</li>
-<li>
-<p><strong>Edit</strong> various information of an entry</p>
-</li>
-<li>
-<p><strong>Delete</strong> unwanted or wrong entries</p>
-</li>
-<li>
-<p><strong>Find</strong> entries according to certain keywords</p>
-</li>
-<li>
-<p><strong>Undo</strong> wrong commands and <strong>redo</strong> when needed</p>
-</li>
-<li>
-<p>Track important <strong>statistics</strong></p>
-</li>
-<li>
-<p>Generate <strong>notifications</strong> to alert users to complete urgent actions</p>
-</li>
-<li>
-<p><strong>Generate reports</strong> on a body or for all bodies</p>
-</li>
-</ol>
+<p>There are many main features that Mortago is capable of. Users can <strong>add</strong> a <code>Body</code>, <code>Worker</code>, or <code>Fridge</code>, as well as <strong>edit</strong>, <strong>delete</strong> and <strong>find</strong> these entities. Users can also <strong>undo</strong> and <strong>redo</strong> when needed, track important <strong>statistics</strong> and <strong>generate reports</strong>. Mortago also generates important <strong>notifications</strong> to alert users.</p>
 </div>
 <div class="paragraph">
 <p>My role encompassed the complete design of the GUI and auxiliary features. The following sections illustrate these enhancements in greater detail. Excerpts - relevant to these enhancements - from the User Guide and Developer Guide are included to document my work.</p>
@@ -75,7 +47,7 @@
 <p>I have contributed 2 major enhancements for Mortago, which will be detailed here.</p>
 </div>
 <div class="sect3">
-<h4 id="2-1-1-major-enhancement-1-i-did-a-major-redesign-of-the-graphical-user-interface-gui-from-ab3"><a class="link" href="#2-1-1-major-enhancement-1-i-did-a-major-redesign-of-the-graphical-user-interface-gui-from-ab3">2.1.1 Major Enhancement 1: I did a major redesign of the Graphical User Interface (GUI) from AB3.</a></h4>
+<h4 id="major-enhancement-1-i-did-a-major-redesign-of-the-gui-from-ab3"><a class="link" href="#major-enhancement-1-i-did-a-major-redesign-of-the-gui-from-ab3">Major Enhancement 1: I did a major redesign of the GUI from AB3.</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -85,7 +57,23 @@
 <p>Justification: This feature is important for users as a visually appealing GUI will attract and retain users. Users will find it easy to locate minute details in a large amount of information through the dashboard.</p>
 </li>
 <li>
-<p>Highlights</p>
+<p>Highlights: This feature draws on more complex visual design techniques and guidelines to create visual elevation and impact. The dark theme utilised aims to improve visual ergonomics by reducing eye strain on the user. It was implemented through a meticulous and creative design process as perfecting minute details, such as positioning, counts towards the visual appeal of the interface. This feature posed unique challenges in terms of integrating Testfx GUI tests.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="major-enhancement-2-i-morphed-the-code-add-code-command-to-add-the-3-different-entities-in-mortago"><a class="link" href="#major-enhancement-2-i-morphed-the-code-add-code-command-to-add-the-3-different-entities-in-mortago">Major Enhancement 2: I morphed the <code>add</code> command to add the 3 different entities in Mortago.</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The <code>add</code> command allows the user to add <code>Body</code>, <code>Worker</code> and <code>Fridge</code> entities in Mortago.</p>
+</li>
+<li>
+<p>Justification: The <code>add</code> command is polymorphic as it utilizes a <code>-FLAG</code> to tell Mortago what type of entity is being added in. This is vastly different compared to AB3, where only one type of entity can be added in. Users are also not required to input all attributes of an entity, hence saving time by only keying in the necessary information.</p>
+</li>
+<li>
+<p>Highlight: This enhancement was particularly challenging due to the amount of refactoring required. Much of the refactoring for the <code>Model</code> and <code>Logic</code> components was done through this enhancement, which thus laid the groundwork for further enhancements. The large amount of attributes inherent to Mortago&#8217;s entities also further deepens the complexity when parsing the <code>add</code> command.</p>
 </li>
 </ul>
 </div>
@@ -93,7 +81,22 @@
 </div>
 <div class="sect2">
 <h3 id="2-2-minor-enhancement"><a class="link" href="#2-2-minor-enhancement">2.2. Minor Enhancement</a></h3>
-
+<div class="paragraph">
+<p>This section details a minor enhancement that I have contributed in this project.</p>
+</div>
+<div class="sect3">
+<h4 id="minor-enhancement-i-adopted-and-morphed-the-code-select-code-command-from-ab4"><a class="link" href="#minor-enhancement-i-adopted-and-morphed-the-code-select-code-command-from-ab4">Minor Enhancement: I adopted and morphed the <code>select</code> command from AB4.</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: The <code>select</code> command allows users to select a body via its unique <code>IdentificationNumber</code>, which allows them to view the full details of the body.</p>
+</li>
+<li>
+<p>Highlights: The <code>select</code> command is different from that of AB4 as users now identify the body they want to select through its <code>IdentificationNumber</code> instead of its list index on the dashboard. This makes it more intuitive for the user as most interactions in Mortago are made through the <code>IdentificationNumber</code>.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="2-3-code-contributed"><a class="link" href="#2-3-code-contributed">2.3. Code contributed</a></h3>
@@ -125,6 +128,12 @@
 <li>
 <p>Added the ability to add photos for Worker</p>
 </li>
+<li>
+<p>Added the <code>showNotifs</code> command</p>
+</li>
+<li>
+<p>Wrote additional tests for existing features to increase coverage by 5.8% in PR <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/125">#125</a></p>
+</li>
 </ul>
 </div>
 </li>
@@ -133,10 +142,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Wrote the User Guide and Developer Guide for the <code>add</code> command and use interface</p>
-</li>
-<li>
-<p>Morphed the AB3 User Guide for Mortago in PR <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/22">#22</a></p>
+<p>Wrote the User Guide and Developer Guide for the <code>add</code> command and user interface</p>
 </li>
 <li>
 <p>Added use cases for dashboard and add command to the Developer Guide in PR <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/45">#45</a></p>
@@ -296,7 +302,7 @@ What are <code>ATTRIBUTES</code>?
 <div class="ulist">
 <ul>
 <li>
-<p>You can find that <code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
+<p>You will find that <code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
 <div class="ulist">
 <ul>
 <li>
@@ -309,7 +315,7 @@ What are <code>ATTRIBUTES</code>?
 </div>
 </li>
 <li>
-<p>You may find that some <code>ATTRIBUTES</code> can only accept specific values, or that these values must follow certain format. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for these <code>ATTRIBUTES</code>.</p>
+<p>You may find that some <code>ATTRIBUTES</code> can only accept specific values, or that these values must follow a certain format. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for these <code>ATTRIBUTES</code>.</p>
 </li>
 <li>
 <p>You must enter <code>ATTRIBUTES</code> successively in a single-line command. Mortago does not prompt you to key in any mandatory
@@ -364,14 +370,14 @@ need to provide.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For the filter command: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
+<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter -w /sex male</code> and <code>filter -b /sex female /cod car accident</code> are valid commands.</p>
+<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
 </li>
 <li>
-<p><code>filter -b</code> is an invalid command.</p>
+<p><code>filter</code> is an invalid command.</p>
 </li>
 </ul>
 </div>
@@ -407,14 +413,14 @@ need to provide.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>For the filter command: <code>filter -FLAG [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
+<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><code>filter -w /sex male</code> and <code>filter -b /sex female /cod car accident</code> are valid commands.</p>
+<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
 </li>
 <li>
-<p><code>filter -b</code> is an invalid command.</p>
+<p><code>filter</code> is an invalid command.</p>
 </li>
 </ul>
 </div>
@@ -578,36 +584,34 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 <div class="paragraph">
 <p>Example:</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Command</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Expected Output</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<div class="ulist">
+<ul>
+<li>
 <p><code>add -w
- /name Mary
- /phone 87654321
- /sex female
- /dateJoined 18/08/2019
- /designation Autopsy Technician</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Worker added</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p><code>add -f</code>
-&#160;<br></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fridge added</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+/name Mary
+/phone 87654321
+/sex female
+/dateJoined 18/08/2019
+/designation Autopsy Technician</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a worker</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>add -f</code></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a fridge</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
 <p><code>add -b
 /name John Doe
 /sex male
@@ -623,16 +627,21 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 /cod Car Accident
 /details Heavy bleeding and head injury
 /organsForDonation NIL</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Body added</p></td>
-</tr>
-</tbody>
-</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Adds a body</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p><em>{end of extract 2}</em></p>
 </div>
 <div class="paragraph">
-<p><em>{start of extract 3}</em>: Appendix</p>
+<p><em>{start of extract 3}</em>: Copy a file’s absolute path into the clipboard</p>
 </div>
 </div>
 </div>
@@ -757,21 +766,8 @@ as <code>name</code> which may have similar duplications within the system.</p>
 <div class="sect3">
 <h4 id="implementation"><a class="link" href="#implementation">Implementation</a></h4>
 <div class="paragraph">
-<p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>.
-You can refer to the class diagram below that illustrates the relation between <code>IdentificationNumber</code> and <code>UniqueIdentificationNumberMaps</code>.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/UniqueIdentificationNumberClassDiagram.png" alt="UniqueIdentificationNumberClassDiagram">
-</div>
-<div class="title">Figure 1. Unique <code>IdentificationNumber</code> Class Diagram</div>
-</div>
-<div class="sect4">
-<h5 id="an-important-consideration-to-examine-is-determining-the-next-free-number"><a class="link" href="#an-important-consideration-to-examine-is-determining-the-next-free-number">An important consideration to examine is determining the next free number.</a></h5>
-<div class="paragraph">
-<p>Note that in the diagram above, <code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.
-In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the entity it is assigned to.
-This keeps track of the numbers currently assigned to all entities and allows the next free <code>Integer</code> to be assigned to a newly added entity.<br></p>
+<p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>. <code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.
+In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the entity it is assigned to. This keeps track of the numbers currently assigned to all entities and allows the next free <code>Integer</code> to be assigned to a newly added entity.<br></p>
 </div>
 <div class="paragraph">
 <p>The code snippet below demonstrates how the next free number is determined.</p>
@@ -799,9 +795,9 @@ This sequential iteration checks for any number that is not assigned to any work
 If there is an existing gap in the sequential iteration of numbers, this number is assigned to the newly added worker.
 If there is no gap available, the next highest number is assigned to the worker.</p>
 </div>
+<div class="paragraph">
+<p>This leads us to forumulate the execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</p>
 </div>
-<div class="sect4">
-<h5 id="this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker"><a class="link" href="#this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker">This leads us to forumulate the execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</a></h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -828,11 +824,10 @@ If there is no gap available, the next highest number is assigned to the worker.
 <div class="content">
 <img src="../images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
 </div>
-<div class="title">Figure 2. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
+<div class="title">Figure 1. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>You will find that the execution sequence will be similar for the generation of unique <code>IdentificationNumber</code> for fridges and bodies.</p>
-</div>
 </div>
 </div>
 <div class="sect3">
@@ -931,7 +926,7 @@ before each unit test. This resets the <code>HashMaps</code> and allows the newl
 <p><em>{end of extract 1}</em></p>
 </div>
 <div class="paragraph">
-<p><em>{start of extract 2}</em>: Photo</p>
+<p><em>{start of extract 2}</em>: Photo Feature</p>
 </div>
 <hr>
 </div>
@@ -951,7 +946,7 @@ before each unit test. This resets the <code>HashMaps</code> and allows the newl
 <div class="content">
 <img src="../images/PhotoClassDiagram.png" alt="PhotoClassDiagram">
 </div>
-<div class="title">Figure 3. Class Diagram of Photo Feature</div>
+<div class="title">Figure 2. Class Diagram of Photo Feature</div>
 </div>
 <div class="paragraph">
 <p>Here, notice that a <code>WorkerCard</code> contains an <code>ImageView</code> which serves to display the <code>Photo</code>. The <code>ImageView</code> displays the <code>Photo</code> by first retrieving the file path of the photo through the <code>Worker</code> in <code>WorkerCard</code>. This is demonstrated in the following code snippet:</p>
@@ -968,7 +963,7 @@ before each unit test. This resets the <code>HashMaps</code> and allows the newl
 <div class="content">
 <img src="../images/PhotoActivityDiagram.png" alt="PhotoActivityDiagram">
 </div>
-<div class="title">Figure 4. Activity Diagram of Adding a Photo</div>
+<div class="title">Figure 3. Activity Diagram of Adding a Photo</div>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -1090,7 +1085,7 @@ Thus, designing an aesthetic and functional dashboard is a crucial aspect for Mo
 <p>This section illustrates the motivations made behind Mortago&#8217;s color scheme.</p>
 </div>
 <div class="sect4">
-<h5 id="4-7-1-1-implementation"><a class="link" href="#4-7-1-1-implementation">4.7.1.1. Implementation</a></h5>
+<h5 id="4-6-1-1-implementation"><a class="link" href="#4-6-1-1-implementation">4.6.1.1. Implementation</a></h5>
 <div class="paragraph">
 <p>Mortago draws upon the guidelines specified in <a href="https://material.io/design/color/dark-theme.html#">Material.io</a> to design a dark theme
 that enhances visual ergonomics and minimises eye strain due to the bright luminance emitted by screens.</p>
@@ -1154,7 +1149,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect4">
-<h5 id="4-7-1-2-design-considerations"><a class="link" href="#4-7-1-2-design-considerations">4.7.1.2. Design Considerations</a></h5>
+<h5 id="4-6-1-2-design-considerations"><a class="link" href="#4-6-1-2-design-considerations">4.6.1.2. Design Considerations</a></h5>
 <div class="paragraph">
 <p>This section details an aspect considered when designing Mortago&#8217;s color scheme.</p>
 </div>
@@ -1202,7 +1197,7 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <p>This section details how the default window&#8217;s title bar is replaced with a custom title bar.</p>
 </div>
 <div class="sect4">
-<h5 id="4-7-2-1-implementation"><a class="link" href="#4-7-2-1-implementation">4.7.2.1. Implementation</a></h5>
+<h5 id="4-6-2-1-implementation"><a class="link" href="#4-6-2-1-implementation">4.6.2.1. Implementation</a></h5>
 <div class="paragraph">
 <p>In spirit with designing a sleek and functional dashboard, the standard Windows platform title bar was removed. This exposes the user interface to become one that is self-contained, while providing extra space at the top that allows more details to be shown to the user.</p>
 </div>
@@ -1300,7 +1295,7 @@ The implementation of this feature is adapted from this hyperlinked <a href="htt
 </div>
 </div>
 <div class="sect4">
-<h5 id="4-7-2-2-design-consideration"><a class="link" href="#4-7-2-2-design-consideration">4.7.2.2. Design Consideration</a></h5>
+<h5 id="4-6-2-2-design-consideration"><a class="link" href="#4-6-2-2-design-consideration">4.6.2.2. Design Consideration</a></h5>
 <div class="paragraph">
 <p>The following section details an aspect to consider when designing the title bar.</p>
 </div>
@@ -1347,4 +1342,4 @@ The implementation of this feature is adapted from this hyperlinked <a href="htt
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:56:03 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:21:32 UTC</div></div></div></bodyId></html>
