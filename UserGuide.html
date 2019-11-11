@@ -30,7 +30,7 @@
 <li><a href="#add">4.1.1. Add an entity: <code>add</code></a></li>
 <li><a href="#update">4.1.2. Updating an entity: <code>update</code></a></li>
 <li><a href="#locating-entries-by-name-code-find-code">4.1.3. Locating entries by name: <code>find</code></a></li>
-<li><a href="#deleting-an-entry-code-delete-code-br">4.1.4. Deleting an entry : <code>delete</code><br></a></li>
+<li><a href="#delete">4.1.4. Deleting an entry : <code>delete</code><br></a></li>
 <li><a href="#clearing-all-entries-code-clear-code">4.1.5. Clearing all entries : <code>clear</code></a></li>
 <li><a href="#list-all-entries-code-list-code">4.1.6. List all entries : <code>list</code></a></li>
 <li><a href="#selecting-a-body-code-select-code">4.1.7. Selecting a body: <code>select</code></a></li>
@@ -38,7 +38,7 @@
 </li>
 <li><a href="#general">4.2. General</a>
 <ul class="sectlevel3">
-<li><a href="#showNotifs">4.2.1. View notifs panel: <code>showNotifs</code><br></a></li>
+<li><a href="#notifs">4.2.1. View notifs panel: <code>showNotifs</code><br></a></li>
 <li><a href="#filter-all-entries-code-filter-code">4.2.2. Filter all entries: <code>filter</code></a></li>
 <li><a href="#undoing-a-command-code-undo-code">4.2.3. Undoing a command: <code>undo</code></a></li>
 <li><a href="#redoing-a-command-code-redo-code">4.2.4. Redoing a command: <code>redo</code></a></li>
@@ -778,7 +778,7 @@ Returns any workers having names <code>Betsy</code>, <code>Tim</code>, or <code>
 </div>
 </div>
 <div class="sect3">
-<h4 id="deleting-an-entry-code-delete-code-br"><a class="link" href="#deleting-an-entry-code-delete-code-br">4.1.4. Deleting an entry : <code>delete</code><br></a></h4>
+<h4 id="delete"><a class="link" href="#delete">4.1.4. Deleting an entry : <code>delete</code><br></a></h4>
 <div class="paragraph">
 <p>You can delete a body, worker or fridge entry, using its Identification Number by entering a delete command with the
 given format below.<br></p>
@@ -797,7 +797,7 @@ you want to delete a <code>Fridge</code> with id <code>F01</code>, you need to o
 <ul>
 <li>
 <p>Mortago automatically deletes its associated <code>Notifs</code>. You can learn more
-about <code>Notifs</code> in <a href="#showNotifs">Section 3.2.1</a>.</p>
+about <code>Notifs</code> in <a href="#notifs">Section 3.2.1</a>.</p>
 </li>
 <li>
 <p>If you had assigned a <code>Fridge</code> to this <code>Body</code>, Mortago automatically sets the status of the <code>Fridge</code> to
@@ -824,7 +824,7 @@ ID number is W00003.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/delete-command/DeleteStep1.png" alt="DeleteStep1">
+<img src="images/DeleteStep1.png" alt="DeleteStep1">
 </div>
 </div>
 <div class="paragraph">
@@ -832,7 +832,7 @@ ID number is W00003.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/delete-command/DeleteStep2.png" alt="DeleteStep2">
+<img src="images/DeleteStep2.png" alt="DeleteStep2">
 </div>
 </div>
 <div class="paragraph">
@@ -840,7 +840,7 @@ ID number is W00003.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/delete-command/DeleteStep3.png" alt="DeleteStep3" width="500">
+<img src="images/DeleteStep3.png" alt="DeleteStep3" width="500">
 </div>
 </div>
 </div>
@@ -931,13 +931,13 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <div class="sect2">
 <h3 id="general"><a class="link" href="#general">4.2. General</a></h3>
 <div class="sect3">
-<h4 id="showNotifs"><a class="link" href="#showNotifs">4.2.1. View notifs panel: <code>showNotifs</code><br></a></h4>
+<h4 id="notifs"><a class="link" href="#notifs">4.2.1. View notifs panel: <code>showNotifs</code><br></a></h4>
 <div class="paragraph">
 <p>This command allows you to view all <code>Notif</code>(s).</p>
 </div>
 <div class="paragraph">
 <p>A <code>Notif</code> is a notification associated with a <code>Body</code>. In Singapore, if the next-of-kin is not contactable for more
-than 24 hours from the time of admission of a <code>Body</code>,
+than 24 hours from the time of addition of a <code>Body</code> in Mortago,
 police must informed. Mortago removes the hassle of manually keeping track of the status of bodies! For the purpose of
 testing, instead of 24 hours, Mortago currently
 uses 10 seconds.</p>
@@ -974,7 +974,7 @@ is <code>ARRIVED</code></p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/notif-command/Notif1.png" alt="Notif1">
+<img src="images/Notif1.png" alt="Notif1">
 </div>
 </div>
 <div class="paragraph">
@@ -985,7 +985,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/notif-command/Notif2.png" alt="Notif2">
+<img src="images/Notif2.png" alt="Notif2">
 </div>
 </div>
 <div class="paragraph">
@@ -993,7 +993,7 @@ notification.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/notif-command/Notif3.png" alt="Notif3">
+<img src="images/Notif3.png" alt="Notif3">
 </div>
 </div>
 <div class="paragraph">
@@ -1002,7 +1002,7 @@ can see John Doe&#8217;s ID number B00000020 is in the list.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/notif-command/Notif4.png" alt="Notif4">
+<img src="images/Notif4.png" alt="Notif4">
 </div>
 </div>
 <div class="paragraph">
@@ -1011,7 +1011,7 @@ pending police report</code>. John Doe&#8217;s ID is no longer listed in the not
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/notif-command/Notif5.png" alt="Notif5">
+<img src="images/Notif5.png" alt="Notif5">
 </div>
 </div>
 </div>
@@ -1970,4 +1970,4 @@ clipboard.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:11:23 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:20:28 UTC</div></div></div></bodyId></html>
