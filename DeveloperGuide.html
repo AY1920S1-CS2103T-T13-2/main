@@ -1263,20 +1263,20 @@ notification bell is placed beside the command box to prevent instances of user 
 <div class="sect3">
 <h4 id="implementation-5"><a class="link" href="#implementation-5">4.4.1. Implementation</a></h4>
 <div class="paragraph">
-<p>The generate PDF feature is facilitated by <code><span class="purple">ReportGenerator</span></code> class.
+<p>The generate PDF feature is facilitated by <code>ReportGenerator</code> class.
 It extends Mortago with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
 Additionally, it implements the following operations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code><span class="purple">ReportGenerator#generate(body, sign)</span></code>&#8201;&#8212;&#8201;Creates report containing sign name of manager in a PDF file for the specific body.</p>
+<p><code>ReportGenerator#generate(body, sign)</code>&#8201;&#8212;&#8201;Creates report containing sign name of manager in a PDF file for the specific body.</p>
 </li>
 <li>
-<p><code><span class="purple">ReportGenerator#generateAll(sign)</span></code>&#8201;&#8212;&#8201;Creates reports containing sign name of manager in a PDF file for all bodies registered in Mortago.</p>
+<p><code>ReportGenerator#generateAll(sign)</code>&#8201;&#8212;&#8201;Creates reports containing sign name of manager in a PDF file for all bodies registered in Mortago.</p>
 </li>
 <li>
-<p><code><span class="purple">ReportGenerator#generateSummary(sign)</span></code>&#8201;&#8212;&#8201;Creates a tabular summary report containing sign name of manager  in a PDF file for all bodies registered in Mortago.</p>
+<p><code>ReportGenerator#generateSummary(sign)</code>&#8201;&#8212;&#8201;Creates a tabular summary report containing sign name of manager  in a PDF file for all bodies registered in Mortago.</p>
 </li>
 </ul>
 </div>
@@ -1296,13 +1296,13 @@ Additionally, it implements the following operations:</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The lifeline for <code><span class="purple">GenReportCommandParser</span></code> and <code><span class="purple">ReportGenerator</span></code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+The lifeline for <code>GenReportCommandParser</code> and <code>ReportGenerator</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>genReport &lt;BODY_ID&gt; (sign)</code> command calls <code><span class="purple">ReportGenerator#generate(body, sign)</span></code>, which creates the document.</p>
+<p>The <code>genReport &lt;BODY_ID&gt; (sign)</code> command calls <code>ReportGenerator#generate(body, sign)</code>, which creates the document.</p>
 </div>
 <div class="paragraph">
 <p>The following activity diagram (Figure 18) summarizes what happens when manager executes a <code>genReport &lt;BODY_ID&gt; (sign)</code> command:</p>
@@ -1314,7 +1314,7 @@ The lifeline for <code><span class="purple">GenReportCommandParser</span></code>
 <div class="title">Figure 19. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
 <div class="paragraph">
-<p>The following code snippet from <code><span class="purple">GenReportCommand.java</span></code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
+<p>The following code snippet from <code>GenReportCommand.java</code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
 </div>
 <div class="literalblock">
 <div class="content">
@@ -2683,4 +2683,4 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 01:46:29 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 04:44:54 UTC</div></div></div></bodyId></html>
