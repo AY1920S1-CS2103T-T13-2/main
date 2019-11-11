@@ -78,8 +78,10 @@
 <li><a href="#updating-a-body">F.2. Updating a Body</a></li>
 <li><a href="#deleting-a-body">F.3. Deleting a Body</a></li>
 <li><a href="#generating-a-report">F.4. Generating a Report</a></li>
-<li><a href="#undoing-redoing-a-command">F.5. Undoing/redoing a command</a></li>
-<li><a href="#saving-data">F.6. Saving Data</a></li>
+<li><a href="#using-the-line-chart-and-stats-command">F.5. Using the Line Chart and Stats Command</a></li>
+<li><a href="#filter-entries-by-attributes">F.6. Filter entries by attributes</a></li>
+<li><a href="#undoing-redoing-a-command">F.7. Undoing/redoing a command</a></li>
+<li><a href="#saving-data">F.8. Saving Data</a></li>
 </ul>
 </li>
 </ul>
@@ -1718,16 +1720,20 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="paragraph">
 <p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
-<div class="paragraph">
-<p>)Sequence diagram showing the dynamic update of the line chart when user adds a new body.
-image::LineChartAddBodySequenceDiagram.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
+</div>
+<div class="title">Figure 21. Sequence diagram showing the dynamic update of the line chart when user adds a new body.</div>
 </div>
 <div class="paragraph">
 <p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
 </div>
-<div class="paragraph">
-<p>)Sequence diagram showing the changing view of the line chart when user specifies a different time frame.
-image::LineChartTimeFrameSequenceDiagram.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
+</div>
+<div class="title">Figure 22. Sequence diagram showing the changing view of the line chart when user specifies a different time frame.</div>
 </div>
 </div>
 <div class="sect3">
@@ -1747,9 +1753,11 @@ image::LineChartTimeFrameSequenceDiagram.png[]</p>
 <div class="paragraph">
 <p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
 </div>
-<div class="paragraph">
-<p>)Activity diagram for how the line chart populate values over the last ten days.
-image::LineChartActivityDiagram.png[]</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
+</div>
+<div class="title">Figure 23. Activity diagram for how the line chart populate values over the last ten days.</div>
 </div>
 <div class="ulist">
 <ul>
@@ -2659,7 +2667,141 @@ Expected: Similar to previous.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undoing-redoing-a-command"><a class="link" href="#undoing-redoing-a-command">F.5. Undoing/redoing a command</a></h3>
+<h3 id="using-the-line-chart-and-stats-command"><a class="link" href="#using-the-line-chart-and-stats-command">F.5. Using the Line Chart and Stats Command</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Changing the time frame of the line&#8217;s chart horizontal axis</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: None. The line chart is automatically displayed, with the last ten days as the default time frame.</p>
+</li>
+<li>
+<p>Test case 1: <code>stats /week 25/10/2019</code><br>
+Expected: The line chart will show the seven days of the week that contains the day 25/10/2019. 25/20/2019 is a Friday but the line chart will show from Monday to Sunday. The label of the horizontal axis will change to "Day".</p>
+</li>
+<li>
+<p>Test case 2: <code>stats /month 10/2019</code><br>
+Expected: The line chart will show the 31 days of month of October, 2019. All dates will be shown on the horizontal axis but will be in a shortened format. The label of the horizontal axis will change to "October 2019".</p>
+</li>
+<li>
+<p>Test case 3: <code>stats /month 2/2019</code><br>
+Expected: The line chart will show the 28 days of month of February, 2019. All dates will be shown on the horizontal axis but will be in a shortened format. The label of the horizontal axis will change to "February 2019".</p>
+</li>
+<li>
+<p>Test case 4: <code>stats /year 2019</code><br>
+Expected: The line chart will show the 365 days of year 2019. Dates are in a shortened format but not all dates will be shown on the horizontal axis due to space constraint. The label of the horizontal axis will change to be "Year 2019".</p>
+</li>
+<li>
+<p>Test case 5: <code>stats /year 2016</code><br>
+Expected: The line chart will show the 366 days of leap year 2016. Not all dates will be shown on the horizontal axis due to space constraint. The label of the horizontal axis will change to be "Year 2016".</p>
+</li>
+<li>
+<p>Test case 6: <code>stats</code><br>
+Expected: The line chart will show the last ten days from the current date. The label of the horizontal axis will change to be "Day".</p>
+</li>
+<li>
+<p>Incorrect stats commands to try: <code>stats 9/2019</code>, <code>stats 2019</code>, <code>stats /week 40/23/2019</code>, <code>stats /month 40/2009</code>
+Expected: An error message will appear informing you that the command format is invalid or the date entered is invalid.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Testing the dynamism of the line chart by adding and deleting bodies</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: The time frame of the line chart should be changed to include the date of admission of the body that is going to be added.</p>
+</li>
+<li>
+<p>Test case 1: <code>add -b /name Jonathan Bergeson /sex male /dod 14/11/2019 /doa 14/11/2019</code><br>
+Expected: The y-value for the date 14/11/2019 automatically decreases by 1.</p>
+</li>
+<li>
+<p>Test case 2: <code>delete -b &lt;ID number of the previously added body&gt;</code><br>
+Expected: The y-value for the date 14/11/2019 automatically decreases by 1.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filter-entries-by-attributes"><a class="link" href="#filter-entries-by-attributes">F.6. Filter entries by attributes</a></h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Filter bodies by a combination of at least on attribute.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all bodies for better viewing of the entries.</p>
+</li>
+<li>
+<p>Test case 1: <code>filter -b /sex female</code><br>
+Expected: Mortago will list only bodies that are female. The command result will specify how many bodies fit the criteria (0 if none).</p>
+</li>
+<li>
+<p>Test case 2: <code>filter -b /sex male /status pending police report</code><br>
+Expected: Mortago will list only bodies that are female and needs a police report written for it. The command result will specify how many bodies fit the criteria (0 if none).</p>
+</li>
+<li>
+<p>Test case 3: <code>filter -b /sex male /organsForDonation kidney liver /status arrived</code><br>
+Expected: Mortago will list only bodies that are male, donating kidney and liver, and has the status arrived. The command result will specify how many bodies fit the criteria (0 if none).</p>
+</li>
+<li>
+<p>Test case 4: <code>filter -b /status hello world</code><br>
+Expected: Mortago will not list any body and the command result will read "0 bodies listed!" as that status does not exist.</p>
+</li>
+<li>
+<p>Test case 5: <code>filter /sex male /cod car accident</code><br>
+Expected: An invalid command error will be thrown and the command result will display it as no flag was given.</p>
+</li>
+<li>
+<p>Incorrect filter commands to try: <code>filter</code>, <code>filter -b</code>, <code>filter -a</code>
+Expected: An error message will appear informing you that the command format is invalid.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Filter workers by a combination of at least on attribute.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Prerequisites: List all workers for better viewing of the entries.</p>
+</li>
+<li>
+<p>Test case 1: <code>filter -b /sex female</code><br>
+Expected: Mortago will list only female workers. The command result will specify how many bodies fit the criteria (0 if none).</p>
+</li>
+<li>
+<p>Test case 2: <code>filter -w /sex male /designation coroner</code><br>
+Expected: Mortago will list only male coroners. The command result will specify how many bodies fit the criteria (0 if none).</p>
+</li>
+<li>
+<p>Test case 3: <code>filter -w /employmentStatus hello world</code><br>
+Expected: Mortago will not list any body and the command result will read "0 bodies listed!" as that status does not exist.</p>
+</li>
+<li>
+<p>Test case 4: <code>filter /sex male /employmentStatus full-time</code><br>
+Expected: An invalid command error will be thrown and the command result will display it as no flag was given.</p>
+</li>
+<li>
+<p>Incorrect filter commands to try: <code>filter</code>, <code>filter -b</code>, <code>filter -a</code>
+Expected: An error message will appear informing you that the command format is invalid.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undoing-redoing-a-command"><a class="link" href="#undoing-redoing-a-command">F.7. Undoing/redoing a command</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2736,7 +2878,7 @@ Expected: Mortago&#8217;s state goes back to the <code>undo</code> test case&#82
 </div>
 </div>
 <div class="sect2">
-<h3 id="saving-data"><a class="link" href="#saving-data">F.6. Saving Data</a></h3>
+<h3 id="saving-data"><a class="link" href="#saving-data">F.8. Saving Data</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2791,4 +2933,4 @@ Expected: Mortago&#8217;s state goes back to the <code>undo</code> test case&#82
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 11:46:14 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 12:45:14 UTC</div></div></div></bodyId></html>
