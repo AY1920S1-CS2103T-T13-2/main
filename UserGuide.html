@@ -585,10 +585,7 @@ Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> wit
 <div class="sect3">
 <h4 id="update"><a class="link" href="#update">4.1.2. Updating an entity: <code>update</code></a></h4>
 <div class="paragraph">
-<p>You can update the attributes of a body or worker by entering an update command with the given format below..<br></p>
-</div>
-<div class="paragraph">
-<p>You have to indicate the entity type you want to update with a flag, as described in <a href="#command-format">Section 3.1, &#8220;Command Format&#8221;</a>.</p>
+<p>You can update the attributes of a body or worker by entering an update command. You have to indicate the entity type you want to update with a flag, as described in section 3.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -729,8 +726,9 @@ and her new designation.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update -w /id 1 /designation Senior Autopsy Technician</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Designation of Jane Doe changed to Senior Autopsy Technician.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update -w /id 1 /designation Manager</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output box shows: This entity was successfully updated. ID Number: W00001<br>
+Dashboard shows: Jane Doe&#8217;s designation was changed to Manager.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1064,10 +1062,10 @@ The commands are undone starting from the most recent to the least recent.</p>
 Commands like <code>list</code> or <code>find</code> cannot be undone.</p>
 </div>
 <div class="paragraph">
-<p>Commands caused by automated commands, such as an <code>UpdateCommand</code> caused by <code>Notif</code> can be undone and redone.
-For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code>  is caused by an <code>UpdateCommand</code> and can be undone and redone. However, note that this feature does not support
-the <code>NotifCommand</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>NotifCommand</code> associated with it has executed,
-undoing the deletion does not restore the <code>NotifCommand</code>.</p>
+<p>Commands caused by automated commands, such as an <code>update</code> command caused by a <code>Notif</code> can be undone and redone.
+For example, the automatic status change of a <code>Body</code> from <code>ARRIVED</code> to <code>CONTACT_POLICE</code> is caused by an <code>update</code> and can be undone and redone. However, note that this feature does not support
+the <code>Notif</code> itself. For example, if a <code>Body</code> was added and deleted before the <code>Notif</code> associated with it has executed,
+undoing the deletion does not restore the <code>Notif</code>.</p>
 </div>
 <div class="paragraph">
 <p>Though you can <code>undo</code> a <code>clear</code> command, note that you cannot redo any past undone commands after that.</p>
@@ -1972,4 +1970,4 @@ clipboard.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 08:02:29 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 10:11:23 UTC</div></div></div></bodyId></html>
