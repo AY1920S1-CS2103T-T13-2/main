@@ -4,7 +4,7 @@
 <h2 id="1-introduction"><a class="link" href="#1-introduction">1. Introduction</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This portfolio serves to document my contributions to my team&#8217;s project for CS2103T - Mortago.</p>
+<p>This portfolio serves to document my contributions to my team&#8217;s project - Mortago - for the CS2103T Software Engineering module.</p>
 </div>
 <div class="sect2">
 <h3 id="1-1-project-motivation"><a class="link" href="#1-1-project-motivation">1.1 Project Motivation</a></h3>
@@ -27,7 +27,7 @@
 <p>Mortago provides a user-friendly dashboard that allows managers to manage various types of entries in a mortuary. It replaces and improves upon the traditional whiteboard to enhance productivity.</p>
 </div>
 <div class="paragraph">
-<p>There are many main features that Mortago is capable of. Users can <strong>add</strong> a <code>Body</code>, <code>Worker</code>, or <code>Fridge</code>, as well as <strong>edit</strong>, <strong>delete</strong> and <strong>find</strong> these entities. Users can also <strong>undo</strong> and <strong>redo</strong> when needed, track important <strong>statistics</strong> and <strong>generate reports</strong>. Mortago also generates important <strong>notifications</strong> to alert users.</p>
+<p>There are many main features that Mortago is capable of. Users can <strong>add</strong> a <code>Body</code>, <code>Worker</code>, or <code>Fridge</code>, as well as <strong>edit</strong>, <strong>delete</strong> and <strong>find</strong> these entities. Users can also <strong>undo</strong> and <strong>redo</strong> when needed, track important <strong>statistics</strong> and <strong>generate reports</strong>. Mortago also generates <strong>notifications</strong> to alert users of important events.</p>
 </div>
 <div class="paragraph">
 <p>My role encompassed the complete design of the GUI and auxiliary features. The following sections illustrate these enhancements in greater detail. Excerpts - relevant to these enhancements - from the User Guide and Developer Guide are included to document my work.</p>
@@ -51,7 +51,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>What it does: The GUI allows users to view all the entries in Mortago and serves as a visual representation of the data in the system</p>
+<p>What it does: The GUI allows users to view all the entries in Mortago and serves as a visual representation of the data in the system.</p>
 </li>
 <li>
 <p>Justification: This feature is important for users as a visually appealing GUI will attract and retain users. Users will find it easy to locate minute details in a large amount of information through the dashboard.</p>
@@ -85,7 +85,7 @@
 <p>This section details a minor enhancement that I have contributed in this project.</p>
 </div>
 <div class="sect3">
-<h4 id="minor-enhancement-i-adopted-and-morphed-the-code-select-code-command-from-ab4"><a class="link" href="#minor-enhancement-i-adopted-and-morphed-the-code-select-code-command-from-ab4">Minor Enhancement: I adopted and morphed the <code>select</code> command from AB4.</a></h4>
+<h4 id="minor-enhancement-1-i-adopted-and-morphed-the-code-select-code-command-from-ab4"><a class="link" href="#minor-enhancement-1-i-adopted-and-morphed-the-code-select-code-command-from-ab4">Minor Enhancement 1: I adopted and morphed the <code>select</code> command from AB4.</a></h4>
 <div class="ulist">
 <ul>
 <li>
@@ -93,6 +93,22 @@
 </li>
 <li>
 <p>Highlights: The <code>select</code> command is different from that of AB4 as users now identify the body they want to select through its <code>IdentificationNumber</code> instead of its list index on the dashboard. This makes it more intuitive for the user as most interactions in Mortago are made through the <code>IdentificationNumber</code>.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="minor-enhancement-2-i-created-the-mechanism-for-creating-unqiue-code-identificationnumbers-code-in-mortago"><a class="link" href="#minor-enhancement-2-i-created-the-mechanism-for-creating-unqiue-code-identificationnumbers-code-in-mortago">Minor Enhancement 2: I created the mechanism for creating unqiue <code>IdentificationNumbers</code> in Mortago.</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>What it does: <code>IdentificationNumbers</code> in Mortago consist of two parts: a leading letter that tells users whether it is a worker, body or fridge, and a number at the back that refers to its unique ID number.</p>
+</li>
+<li>
+<p>Justification: In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>. The <code>IdentificationNumber</code> for each entity is a central aspect of Mortago as most interactions with and references of entities in the application are made through their <code>IdentificationNumbers</code>.</p>
+</li>
+<li>
+<p>Highlights: This mechanism is designed such that the <code>IdentificationNumber</code> of any deleted entity will be reassigned to the next added entity. This prevents gaps in the numbering of entities in the system, which otherwise will never be filled, leading to an exponential increase in the running ID number.</p>
 </li>
 </ul>
 </div>
@@ -174,13 +190,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Integrated a third party library (ControlsFX) to the project in PR <a href="https://github.com/AYu1920S1-CS2103T-T13-2/main/pull/79">#79</a></p>
+<p>Integrated a third party library (ControlsFX) to the project in PR <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/pull/79">#79</a></p>
 </li>
 <li>
 <p>Integrated TestFx and adapted Graphical User Interface tests from AB4 in <a href="https://github.com/AY1920S1-CS2103T-T13-2/main/commit/34dec528d451b84dea466daeacb24d82dd643258#diff-7319d9e22324ed2aaaac3f06ade9f486">this commit</a></p>
 </li>
 <li>
-<p>Integrated a Continuous Integration platform for Github (AppVeyor) to the team repo</p>
+<p>Integrated a Continuous Integration platform for Github (AppVeyor) to the team repository (but was eventually taken down due to relaxation of workflow rigour)</p>
 </li>
 </ul>
 </div>
@@ -204,272 +220,7 @@
 </tbody>
 </table>
 <div class="paragraph">
-<p><em>{start of extract 1}</em>: Command Specifications</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="Command-Specifications"><a class="link" href="#Command-Specifications">Command Specifications</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Before diving into the features that Mortago has for you, you need to know several key information on how to use Mortago.
-The following sections elaborate on these key information, such as the general format for commands in Mortago.</p>
-</div>
-<div class="sect2">
-<h3 id="command-format"><a class="link" href="#command-format">Command Format</a></h3>
-<div class="paragraph">
-<p>Most commands in Mortago follow the general format: <code>COMMAND_WORD -FLAG ATTRIBUTES</code></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>COMMAND_WORD</code> specifies what you want Mortago to do.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>eg. <code>add</code> tells Mortago to create an entry according to the details that you supply in the later half of the command.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>-FLAG</code> specifies what type of entity in Mortago you are referring to.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>There are 3 types of entities in Mortago: worker, body and fridge. Each of them has its respective <code>-FLAG</code>, given below:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>-w</code> indicates a worker</p>
-</li>
-<li>
-<p><code>-b</code> indicates a body</p>
-</li>
-<li>
-<p><code>-f</code> indicates a fridge</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>ATTRIBUTES</code> specifies the information about an entity that you need to supply for the command to be executed
-successfully. The following section elaborates more on what <code>ATTRIBUTES</code> are in Mortago.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="attributes"><a class="link" href="#attributes">Attributes</a></h3>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-What are <code>ATTRIBUTES</code>?
-</td>
-</tr>
-</table>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div><div class="paragraph">
-<p>Attributes are properties of a worker, body or fridge that are supplied by you when executing a command.</p>
-</div>
-<div class="paragraph">
-<p>For example, <code>name</code> is an attribute for both body and worker entities.</p>
-</div>
-<div class="paragraph">
-<p>The full list of attributes for each entity can be found in <a href="#add">Section 3.1.1</a>.</p>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>Here are some information you need in order to interpret the various command formats in this User Guide.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>You will find that <code>ATTRIBUTES</code> in this User Guide are represented with the format: <code>/attributeName attributeValue</code></p>
-<div class="ulist">
-<ul>
-<li>
-<p>You should always provide the <code>/attributeName</code>, exactly as it is stated in the User Guide, before specifying the details of the <code>attributeValue</code> that the entity has.</p>
-</li>
-<li>
-<p>For example, date of births in Mortago are represented using <code>/dob dateOfBirth</code>. Therefore, the <code>/attributeName</code> is <code>/dob</code> and <code>attributeValue</code> is <code>dateOfBirth</code>. If you wish to specify an entity born on 12 December 2000, you should key it as <code>/dob 12/12/2000</code>.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>You may find that some <code>ATTRIBUTES</code> can only accept specific values, or that these values must follow a certain format. You can refer to <a href="#Valid-Values">Appendix 7.1</a> for the full list of valid values or format for these <code>ATTRIBUTES</code>.</p>
-</li>
-<li>
-<p>You must enter <code>ATTRIBUTES</code> successively in a single-line command. Mortago does not prompt you to key in any mandatory
-<code>ATTRIBUTES</code> that you may have missed out.</p>
-</li>
-<li>
-<p><code>ATTRIBUTES</code> are provided successively in commands and Mortago does not prompt you, step by step, the <code>ATTRIBUTES</code> you
-need to provide.</p>
-</li>
-<li>
-<p><code>ATTRIBUTES</code> in parentheses are optional.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>e.g. The following 2 commands are valid for the add command, with the abridged format: <code>add -b /name name (/religion religion /status status)</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add -b /religion Buddhism</code></p>
-</li>
-<li>
-<p><code>add -b /religion Buddhism /status arrived</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>ATTRIBUTES</code> specified in a command can be given in any order.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>e.g. The following 2 commands are valid for the add command, with the abridged format: <code>add -b (/religion religion /status status)</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add -b /religion Buddhism /status arrived</code></p>
-</li>
-<li>
-<p><code>add -b /status arrived /religion Buddhism</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>ATTRIBUTES</code> that are tagged with <code>&#8230;&#8203;</code> and in square parentheses must be supplied with at least one <code>ATTRIBUTE</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>::</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
-</li>
-<li>
-<p><code>filter</code> is an invalid command.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>You are not required to provide <code>ATTRIBUTES</code> contained in parentheses.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>For example, the following 3 commands are valid for the add command, with the abridged format: <code>add -b /name name /sex sex /doa dateOfAdmission (/religion religion) (/status status)</code>.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>add -b /name John /sex Male /doa 12/12/2011</code></p>
-</li>
-<li>
-<p><code>add -b /name John /sex Male /doa 12/12/2011 /religion Buddhism</code></p>
-</li>
-<li>
-<p><code>add -b /name John /sex Male /doa 12/12/2011 /religion Buddhism /status arrived</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>You must provide <strong>at least one</strong> <code>ATTRIBUTE</code> when <code>ATTRIBUTES</code> are tagged with <code>&#8230;&#8203;</code> and contained in square parentheses (<code>[]</code>).</p>
-<div class="ulist">
-<ul>
-<li>
-<p>For the filter command: <code>filter [/attributeName attributeValue &#8230;&#8203;]</code>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>filter /name John</code> and <code>filter /sex female</code> are valid commands.</p>
-</li>
-<li>
-<p><code>filter</code> is an invalid command.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="identification-number"><a class="link" href="#identification-number">Identification Number</a></h3>
-<div class="paragraph">
-<p>This section describes what Identification Numbers are in Mortago. This information is key in order for you to use Mortago effectively.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>All entries in Mortago have a unique Identification Number tagged to it.</p>
-</li>
-<li>
-<p>The identification number is automatically generated by Mortago for your convenience.</p>
-</li>
-<li>
-<p>Identification numbers in Mortago follow the format as shown below, where <code>#</code> is a number from 0-9:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>body</code> entries: <code>B########</code></p>
-</li>
-<li>
-<p><code>worker</code> entries: <code>W#####</code></p>
-</li>
-<li>
-<p><code>fridge</code> entries: <code>F##</code></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>If you need to enter the identification number of an entity for a command, providing the number (e.g. <code>20</code> instead of <code>W00020</code>) is sufficient.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><em>{end of extract 1}</em></p>
-</div>
-<div class="paragraph">
-<p><em>{start of extract 2}</em>: Add Command</p>
+<p><em>{start of extract 1}</em>: Add Command</p>
 </div>
 <hr>
 <div class="sect3">
@@ -514,8 +265,6 @@ This table details how you can craft your add command to add an entity in Mortag
 <div class="paragraph">
 <p>add -f</p>
 </div>
-</div>
-</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
@@ -528,9 +277,6 @@ Default status: <code>UNOCCUPIED</code>
 </tr>
 </table>
 </div>
-<div class="exampleblock">
-<div class="content">
-
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="exampleblock">
@@ -596,7 +342,7 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 <div class="ulist">
 <ul>
 <li>
-<p>Adds a worker</p>
+<p>You will see in the worker panel that a worker with the name "Mary", along with its associated details, will be added.</p>
 </li>
 </ul>
 </div>
@@ -606,7 +352,7 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 <div class="ulist">
 <ul>
 <li>
-<p>Adds a fridge</p>
+<p>You will see in the fridge panel that an empty fridge will be added.</p>
 </li>
 </ul>
 </div>
@@ -630,96 +376,72 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 <div class="ulist">
 <ul>
 <li>
-<p>Adds a body</p>
+<p>You will see in the body panel that a body with the name "John Doe", along with its associated details, will be added.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p><em>{end of extract 1}</em></p>
+</div>
+<div class="paragraph">
+<p><em>{start of extract 2}</em>: Select Command</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="selecting-a-body-code-select-code"><a class="link" href="#selecting-a-body-code-select-code">Selecting a body: <code>select</code></a></h4>
+<div class="paragraph">
+<p>You can select a body and view its full details by entering a select command with the given format below.</p>
+</div>
+<div class="paragraph">
+<p>Format: <code>select id</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>select 1</code></p>
+</div>
+<div class="paragraph">
+<p>The following illustrates how you can use the <code>select</code> command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Suppose you wish to select a body with ID B00000001.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/Select1.png" alt="Select1" width="80%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Enter in <code>select 1</code> in the command box.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/Select2.png" alt="Select2" width="80%">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>The body with ID B00000001 will be selected and you can view all its details on the side panel.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="../images/Select3.png" alt="Select3" width="80%">
+</div>
 </div>
 <div class="paragraph">
 <p><em>{end of extract 2}</em></p>
-</div>
-<div class="paragraph">
-<p><em>{start of extract 3}</em>: Copy a file’s absolute path into the clipboard</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="copy-a-file-s-absolute-path-into-the-clipboard"><a class="link" href="#copy-a-file-s-absolute-path-into-the-clipboard">Copy a file&#8217;s absolute path into the clipboard</a></h3>
-<div class="paragraph">
-<p><a id="Copy-File-Path"></a></p>
-</div>
-<div class="paragraph">
-<p>The following steps will guide you on how to copy the absolute path of a file into the clipboard.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>For <strong>Windows</strong> Users:</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to the image file you wish to upload.</p>
-</li>
-<li>
-<p><strong>While</strong> holding down <kbd>Shift</kbd>, right-click on the image file.</p>
-</li>
-<li>
-<p>In the menu that appears, as seen in the figure below, click on <code>Copy as path</code> to copy the absolute path into your clipboard.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>image::Appendix1.png[align="center", width=60%]</p>
-</div>
-</li>
-<li>
-<p>For <strong>Mac</strong> Users:</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to the image file you wish to upload.</p>
-</li>
-<li>
-<p>Right-click on the image file, <strong>then</strong> hold down the <kbd>Option</kbd> button.</p>
-</li>
-<li>
-<p>In the menu that appears, click on <code>Copy &lt;your file name&gt; as Pathname</code>, as seen in red box in the figure below, to copy the absolute path into your clipboard.</p>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/Appendix2.png" alt="Appendix2" width="70%">
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Alternatively,</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Navigate to the image file you wish to upload and click on it.</p>
-</li>
-<li>
-<p>Press <code>Command</code> and <code>i</code> simultaneously to bring up <code>Get Info</code>, as seen in the figure below.</p>
-<div class="imageblock" style="text-align: center">
-<div class="content">
-<img src="../images/Appendix3.png" alt="Appendix3" width="60%">
-</div>
-</div>
-</li>
-<li>
-<p>Highlight the text next to <code>Where</code>, as seen in the red box in the figure above, then press <code>Command</code> and <code>c</code> simultaneously to copy the full path to the clipboard.</p>
-</li>
-</ol>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><em>{end of extract 3}</em></p>
 </div>
 </div>
 </div>
@@ -749,7 +471,7 @@ Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive lis
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>IdentificationNumber</code> for each entity is a central aspect of Mortago as most interactions with and identification of entities in the application are made through their <code>IdentificationNumbers</code>.</p>
+<p>The <code>IdentificationNumber</code> for each entity is a central aspect of Mortago as most interactions with and references of entities in the application are made through their <code>IdentificationNumbers</code>.</p>
 </li>
 <li>
 <p>You can identify different entities solely based on their <code>IdentificationNumber</code> due to its uniqueness, without relying on attributes such
@@ -820,9 +542,9 @@ If there is no gap available, the next highest number is assigned to the worker.
 <div class="paragraph">
 <p>The figure below illustrates the sequence diagram of the aforementioned steps.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram">
+<img src="../images/UniqueIdentificationNumberSequenceDiagram.png" alt="UniqueIdentificationNumberSequenceDiagram" width="70%">
 </div>
 <div class="title">Figure 1. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
 </div>
@@ -942,9 +664,9 @@ before each unit test. This resets the <code>HashMaps</code> and allows the newl
 <div class="paragraph">
 <p>This section covers how the <code>Photo</code> feature is implemented. To gain a better overview of its implementation, you can refer to the following class diagram that illustrates how <code>Photo</code> and <code>Worker</code> are associated with the <code>Ui</code> component.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/PhotoClassDiagram.png" alt="PhotoClassDiagram">
+<img src="../images/PhotoClassDiagram.png" alt="PhotoClassDiagram" width="70%">
 </div>
 <div class="title">Figure 2. Class Diagram of Photo Feature</div>
 </div>
@@ -959,9 +681,9 @@ before each unit test. This resets the <code>HashMaps</code> and allows the newl
 <div class="paragraph">
 <p>This brings us to explain how <code>Photo</code> is constructed, as demonstrated in the following diagram and the sequence of steps further below.</p>
 </div>
-<div class="imageblock">
+<div class="imageblock" style="text-align: center">
 <div class="content">
-<img src="../images/PhotoActivityDiagram.png" alt="PhotoActivityDiagram">
+<img src="../images/PhotoActivityDiagram.png" alt="PhotoActivityDiagram" width="40%">
 </div>
 <div class="title">Figure 3. Activity Diagram of Adding a Photo</div>
 </div>
@@ -979,7 +701,7 @@ before each unit test. This resets the <code>HashMaps</code> and allows the newl
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-This method checks whether the image file exists, using <code>FileUtil::isFileExists(Path)</code> as seen in Figure 11, and whether it ends with the common image file extensions: <code>.jpeg</code>, <code>.jpg</code> and <code>.png</code>.
+This method checks whether the image file exists, using <code>FileUtil::isFileExists(Path)</code> as seen in the class diagram above, and whether it ends with the common image file extensions: <code>.jpeg</code>, <code>.jpg</code> and <code>.png</code>.
 </td>
 </tr>
 </table>
@@ -1342,4 +1064,4 @@ The implementation of this feature is adapted from this hyperlinked <a href="htt
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 14:43:44 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 15:56:32 UTC</div></div></div></bodyId></html>
