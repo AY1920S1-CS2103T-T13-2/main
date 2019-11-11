@@ -284,12 +284,10 @@ All body entries with car accident as the cause of death and those that are male
 <p>In addition to a User Guide, we wrote a Developer Guide targeted at developers who are interested in contributing to the project. The Developer Guide showcases my ability to write technical documentation and the technical depth of my contributions to the project. Given below is my contribution to the Developer Guide:</p>
 </div>
 <div class="paragraph">
-<p><em>{start of extract 1: implementation of stats command}</em></p>
+<p><em>{start of extract 1: implementation of stats command}</em>
+=== Statistics Feature
+==== Implementation</p>
 </div>
-<div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">Statistics feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">Current Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
 </div>
@@ -318,21 +316,16 @@ All body entries with car accident as the cause of death and those that are male
 <div class="paragraph">
 <p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
-</div>
-<div class="title">Figure 7. Sequence diagram showing the dynamic update of the line chart when user adds a new body.</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the dynamic update of the line chart when user adds a new body.
+image::LineChartAddBodySequenceDiagram.png[]</p>
 </div>
 <div class="paragraph">
 <p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
-</div>
-<div class="title">Figure 8. Sequence diagram showing the changing view of the line chart when user specifies a different time frame.</div>
-</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the changing view of the line chart when user specifies a different time frame.
+image::LineChartTimeFrameSequenceDiagram.png[]</p>
 </div>
 <div class="sect3">
 <h4 id="design-considerations"><a class="link" href="#design-considerations">Design Considerations</a></h4>
@@ -351,11 +344,9 @@ All body entries with car accident as the cause of death and those that are male
 <div class="paragraph">
 <p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
-</div>
-<div class="title">Figure 9. Activity diagram for how the line chart populate values over the last ten days.</div>
+<div class="paragraph">
+<p>)Activity diagram for how the line chart populate values over the last ten days.
+image::LineChartActivityDiagram.png[]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -421,7 +412,6 @@ All body entries with car accident as the cause of death and those that are male
 </div>
 <div class="paragraph">
 <p><em>{start of extract 2: manual testing of stats command}</em></p>
-</div>
 </div>
 </div>
 </div>
@@ -567,4 +557,4 @@ Expected: An error message will appear informing you that the command format is 
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:00:07 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:08:18 UTC</div></div></div></bodyId></html>

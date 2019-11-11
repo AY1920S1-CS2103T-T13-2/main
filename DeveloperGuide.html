@@ -29,39 +29,45 @@
 <li><a href="#design-considerations">4.1.2. Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#undo-redo-feature">4.2. Undo/Redo feature</a>
+<li><a href="#photo-feature">4.2. Photo Feature</a>
 <ul class="sectlevel3">
 <li><a href="#implementation-3">4.2.1. Implementation</a></li>
-<li><a href="#design-considerations-2">4.2.2. Design considerations</a></li>
+<li><a href="#design-considerations-2">4.2.2. Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#notification-feature">4.3. Notification Feature</a>
+<li><a href="#undo-redo-feature">4.3. Undo/Redo Feature</a>
 <ul class="sectlevel3">
 <li><a href="#implementation-4">4.3.1. Implementation</a></li>
-<li><a href="#design-considerations-3">4.3.2. Design Considerations</a></li>
+<li><a href="#design-considerations-3">4.3.2. Design considerations</a></li>
 </ul>
 </li>
-<li><a href="#generate-pdf-feature">4.4. Generate PDF Feature</a>
+<li><a href="#notification-feature">4.4. Notification Feature</a>
 <ul class="sectlevel3">
 <li><a href="#implementation-5">4.4.1. Implementation</a></li>
 <li><a href="#design-considerations-4">4.4.2. Design Considerations</a></li>
 </ul>
 </li>
-<li><a href="#logging">4.5. Logging</a></li>
-<li><a href="#Implementation-Configuration">4.6. Configuration</a></li>
+<li><a href="#generate-pdf-feature">4.5. Generate PDF Feature</a>
+<ul class="sectlevel3">
+<li><a href="#implementation-6">4.5.1. Implementation</a></li>
+<li><a href="#design-considerations-5">4.5.2. Design Considerations</a></li>
+</ul>
+</li>
+<li><a href="#statistics-feature">4.6. Statistics Feature</a>
+<ul class="sectlevel3">
+<li><a href="#implementation-7">4.6.1. Implementation</a></li>
+<li><a href="#design-considerations-6">4.6.2. Design Considerations</a></li>
+</ul>
+</li>
 <li><a href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a>
 <ul class="sectlevel3">
 <li><a href="#surface-design-and-coloring">4.7.1. Surface Design and Coloring</a></li>
 <li><a href="#replacing-window-s-title-bar">4.7.2. Replacing Window&#8217;s Title Bar</a></li>
 </ul>
 </li>
-<li><a href="#statistics-feature">4.8. Statistics feature</a>
-<ul class="sectlevel3">
-<li><a href="#current-implementation">4.8.1. Current Implementation</a></li>
-<li><a href="#design-considerations-5">4.8.2. Design Considerations</a></li>
-</ul>
-</li>
-<li><a href="#proposed-data-encryption">4.9. [Proposed] Data Encryption</a></li>
+<li><a href="#logging">4.8. Logging</a></li>
+<li><a href="#Implementation-Configuration">4.9. Configuration</a></li>
+<li><a href="#proposed-data-encryption">4.10. [Proposed] Data Encryption</a></li>
 </ul>
 </li>
 <li><a href="#documentation">5. Documentation</a></li>
@@ -369,19 +375,22 @@ The lifeline for <code>DeleteCommandParser</code> should end at the destroy mark
 <div class="sect2">
 <h3 id="unique-identification-number"><a class="link" href="#unique-identification-number">4.1. Unique Identification Number</a></h3>
 <div class="paragraph">
-<p>In Mortago, each entity is assigned a unique <code>IdentificationNumber</code>.</p>
+<p>In Mortago, you will find that each entity is assigned a unique <code>IdentificationNumber</code>.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><code>IdentificationNumbers</code> in Mortago consist of two parts: the <code>String typeOfEntity</code> referring to whether it is a worker, body or fridge, and <code>Integer idNum</code> referring to its unique ID number.</p>
+<p>The <code>IdentificationNumber</code> for each entity is a central aspect of Mortago as most interactions with and identification of entities in the application are made through their <code>IdentificationNumbers</code>.</p>
+</li>
+<li>
+<p>You can identify different entities solely based on their <code>IdentificationNumber</code> due to its uniqueness, without relying on attributes such
+as <code>name</code> which may have similar duplications within the system.</p>
+</li>
+<li>
+<p><code>IdentificationNumbers</code> in Mortago consist of two parts: <code>String typeOfEntity</code> that tells you whether it is a worker, body or fridge, and <code>Integer idNum</code> that refers to its unique ID number.</p>
 </li>
 <li>
 <p>Each <code>IdentificationNumber</code> is automatically generated within the application, based on the next sequential ID number available.</p>
-</li>
-<li>
-<p>The generation of unique <code>IdentificationNumbers</code> allows the user to identify different entities solely based on their <code>IdentificationNumber</code>, without relying on attributes such
-as <code>name</code> which may have similar duplications within the system.</p>
 </li>
 </ul>
 </div>
@@ -389,7 +398,7 @@ as <code>name</code> which may have similar duplications within the system.</p>
 <h4 id="implementation-2"><a class="link" href="#implementation-2">4.1.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generation of unique <code>IdentificationNumbers</code> is facilitated by <code>UniqueIdentificationNumberMaps</code>.
-The class diagram below illustrates the relation between <code>IdentificationNumber</code> and <code>UniqueIdentificationNumberMaps</code>.</p>
+You can refer to the class diagram below that illustrates the relation between <code>IdentificationNumber</code> and <code>UniqueIdentificationNumberMaps</code>.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -398,7 +407,7 @@ The class diagram below illustrates the relation between <code>IdentificationNum
 <div class="title">Figure 9. Unique <code>IdentificationNumber</code> Class Diagram</div>
 </div>
 <div class="sect4">
-<h5 id="the-first-consideration-to-examine-is-determining-the-next-free-number"><a class="link" href="#the-first-consideration-to-examine-is-determining-the-next-free-number">The first consideration to examine is determining the next free number.</a></h5>
+<h5 id="an-important-consideration-to-examine-is-determining-the-next-free-number"><a class="link" href="#an-important-consideration-to-examine-is-determining-the-next-free-number">An important consideration to examine is determining the next free number.</a></h5>
 <div class="paragraph">
 <p>Note that in the diagram above, <code>UniqueIdentificationNumberMaps</code> keeps three <code>HashMap</code>, one for each entity.
 In each <code>HashMap</code>, the <code>Integer</code> ID number serves as the key, which maps to the entity it is assigned to.
@@ -432,7 +441,7 @@ If there is no gap available, the next highest number is assigned to the worker.
 </div>
 </div>
 <div class="sect4">
-<h5 id="hence-this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker"><a class="link" href="#hence-this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker">Hence, this leads us to forumulate the execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</a></h5>
+<h5 id="this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker"><a class="link" href="#this-leads-us-to-forumulate-the-execution-sequence-of-generating-a-unique-code-identificationnumber-code-for-a-worker">This leads us to forumulate the execution sequence of generating a unique <code>IdentificationNumber</code> for a worker:</a></h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -462,7 +471,7 @@ If there is no gap available, the next highest number is assigned to the worker.
 <div class="title">Figure 10. Generation of unique <code>IdentificationNumber</code> Sequence Diagram</div>
 </div>
 <div class="paragraph">
-<p>Note that the execution sequence is similar for the generation of unique <code>IdentificationNumber</code> for fridges and bodies.</p>
+<p>You will find that the execution sequence will be similar for the generation of unique <code>IdentificationNumber</code> for fridges and bodies.</p>
 </div>
 </div>
 </div>
@@ -470,11 +479,10 @@ If there is no gap available, the next highest number is assigned to the worker.
 <h4 id="design-considerations"><a class="link" href="#design-considerations">4.1.2. Design Considerations</a></h4>
 <div class="paragraph">
 <p>When designing this feature, it is important to keep in mind the scalability of the application.
-When the data set becomes large, the ID number can become arbitrarily large if gaps in the middle are not filled.</p>
+When the number of entities grows exponentially, the ID number can become arbitrarily large if gaps in the middle are not (re)assigned.</p>
 </div>
-<div class="paragraph">
-<p><strong>Aspect: Tracking of numbers and determination of next free number</strong></p>
-</div>
+<div class="sect4">
+<h5 id="aspect-tracking-of-numbers-and-determination-of-next-free-number"><a class="link" href="#aspect-tracking-of-numbers-and-determination-of-next-free-number">Aspect: Tracking of numbers and determination of next free number*</a></h5>
 <div class="ulist">
 <ul>
 <li>
@@ -540,7 +548,7 @@ When the data set becomes large, the ID number can become arbitrarily large if g
 </ul>
 </div>
 <div class="paragraph">
-<p>Alternative 2 is chosen due to the comprehensive benefits of utilizing <code>HashMap</code> in terms of:</p>
+<p>Alternative 2 is chosen due to the comprehensive benefits of utilizing <code>HashMap</code> given below:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -557,17 +565,152 @@ When the data set becomes large, the ID number can become arbitrarily large if g
 </div>
 <div class="paragraph">
 <p>The difficulty in testing can be circumvented by executing <code>UniqueIdentificationNumberMaps::clearAllEntries()</code>
-before each unit test to reset the <code>HashMaps</code>. This resets the <code>HashMaps</code> and allows the newly added entities to start with the first ID number, simulating a fresh launch of the application.</p>
+before each unit test. This resets the <code>HashMaps</code> and allows the newly added entities to start with the first ID number, simulating a fresh launch of the application.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.2. Undo/Redo feature</a></h3>
+<h3 id="photo-feature"><a class="link" href="#photo-feature">4.2. Photo Feature</a></h3>
+<div class="paragraph">
+<p>When adding a worker in Mortago, you can assign a photo to the worker so as to identify your workers. This is especially useful when you are more visual oriented as this allows you to identify your workers more easily when sieving through a long list of workers.</p>
+</div>
+<div class="sect3">
+<h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
+<div class="paragraph">
+<p>This section covers how the <code>Photo</code> feature is implemented. To gain a better overview of its implementation, you can refer to the following class diagram that illustrates how <code>Photo</code> and <code>Worker</code> are associated with the <code>Ui</code> component.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PhotoClassDiagram.png" alt="PhotoClassDiagram">
+</div>
+<div class="title">Figure 11. Class Diagram of Photo Feature</div>
+</div>
+<div class="paragraph">
+<p>Here, notice that a <code>WorkerCard</code> contains an <code>ImageView</code> which serves to display the <code>Photo</code>. The <code>ImageView</code> displays the <code>Photo</code> by first retrieving the file path of the photo through the <code>Worker</code> in <code>WorkerCard</code>. This is demonstrated in the following code snippet:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>displayPhoto.setImage(new Image(worker.getPhoto().get().getPathToDataDirectory()));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This brings us to explain how <code>Photo</code> is constructed, as demonstrated in the following diagram and the sequence of steps further below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/PhotoActivityDiagram.png" alt="PhotoActivityDiagram">
+</div>
+<div class="title">Figure 12. Activity Diagram of Adding a Photo</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>When the user wishes to add a photo, the user can do this through the add or update command.</p>
+</li>
+<li>
+<p>Before constructing a <code>Photo</code> object, the validity of the absolute file path of the image is checked first through the <code>Photo::isValidPhoto(pathToPhoto)</code> method, as part of a defensive programming measure.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This method checks whether the image file exists, using <code>FileUtil::isFileExists(Path)</code> as seen in Figure 11, and whether it ends with the common image file extensions: <code>.jpeg</code>, <code>.jpg</code> and <code>.png</code>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If the file is valid, the <code>Photo</code> object is constructed.</p>
+</li>
+<li>
+<p>In its construction, the image file is copied into the <code>data/images/</code> directory (where all images are stored) and this path is saved as an instance variable, <code>dataDirectory</code>. The <code>Photo</code> is then assigned to an instance variable in <code>Worker</code>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Copying the image file allows the application to retrieve it even when the user has deleted the original file.
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>After construction of the <code>Photo</code>, when the image needs to be retrieved, <code>Photo#getPathToDataDirectory</code> needs to be called to obtain the modified file path to the image, which can then be used for display via the <code>ImageView</code> node. The following code snippet shows how the file path is modified so that it can be used directly for image retrieval and display.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>    /**
+     * Returns the file path of the copied photo in the data directory.
+     * Intended for {@code ImageView} to reference to the photo.
+     */
+    public String getPathToDataDirectory() {
+        return "file://" + Paths.get(dataDirectory).toAbsolutePath().toUri().getPath();
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that appending <code>file://</code> to the front is necessary for file retrieval.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design Considerations</a></h4>
+<div class="paragraph">
+<p>When designing <code>Photo</code>, it is important to consider the user profile. Given that our users are generally fast at typing and prefers a Command Line Interface, some thoughts had to be made to design how the user can upload the photo.</p>
+</div>
+<div class="sect4">
+<h5 id="aspect-how-the-user-uploads-the-photo"><a class="link" href="#aspect-how-the-user-uploads-the-photo">Aspect: How the user uploads the photo</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Users must specify the absolute file path of the image file</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: This ensures accurate retrieval of the file.</p>
+</li>
+<li>
+<p>Cons: Users require additional steps to obtain the absolute file path of the file.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2 (current choice)</strong>: Users can upload their image file through a popup dialog</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Graphical dialog allows visual navigation towards where the file is.</p>
+</li>
+<li>
+<p>Cons: Users might find it slow to navigate through a graphical interface.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 is chosen due to the user profile of our application. As they prefer typing over using the mouse, it will be much faster for them to provide the absolute file path as compared to navigating through a graphical dialog.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="undo-redo-feature"><a class="link" href="#undo-redo-feature">4.3. Undo/Redo Feature</a></h3>
 <div class="paragraph">
 <p>The undo/redo feature allows you to undo a command that you have made or redo a command you have undone.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-3"><a class="link" href="#implementation-3">4.2.1. Implementation</a></h4>
+<h4 id="implementation-4"><a class="link" href="#implementation-4">4.3.1. Implementation</a></h4>
 <div class="paragraph">
 <p>You can find the core of undo/redo in the undo/redo history of <code>ModelManager</code>.
 The history stores <code>UndoableCommands</code>, and an <code>UndoCommand</code> or <code>RedoCommand</code> will <code>undo()</code> or <code>redo()</code> commands in the history.
@@ -579,7 +722,7 @@ Classes related to undo/redo and their relationships are shown in Figure 11.</p>
 <div class="content">
 <img src="images/UndoClassDiagram.png" alt="UndoClassDiagram">
 </div>
-<div class="title">Figure 11. Class Diagram Showing the Architecture of Undo/Redo</div>
+<div class="title">Figure 13. Class Diagram Showing the Architecture of Undo/Redo</div>
 </div>
 <div class="sect4">
 <h5 id="architecture"><a class="link" href="#architecture">Architecture</a></h5>
@@ -637,7 +780,7 @@ If it is successful, undo/redo is succesful. Otherwise, an error message is show
 <div class="content">
 <img src="images/UndoClearSequenceDiagram.png" alt="UndoClearSequenceDiagram">
 </div>
-<div class="title">Figure 12. Sequence Diagram Showing a ClearCommand Being Undone</div>
+<div class="title">Figure 14. Sequence Diagram Showing a ClearCommand Being Undone</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -661,7 +804,7 @@ The lifeline for <code>UndoCommand</code> should end at the destroy marker (X) b
 <div class="content">
 <img src="images/CommandProcessActivityDiagram.png" alt="CommandProcessActivityDiagram" width="400">
 </div>
-<div class="title">Figure 13. Activity Diagram Showing the Execution Control Flow of a Command</div>
+<div class="title">Figure 15. Activity Diagram Showing the Execution Control Flow of a Command</div>
 </div>
 </div>
 <div class="sect4">
@@ -705,7 +848,7 @@ Therefore, it is unlikely that an <code>UndoableCommand</code> will be unwitting
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-2"><a class="link" href="#design-considerations-2">4.2.2. Design considerations</a></h4>
+<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design considerations</a></h4>
 <div class="paragraph">
 <p>When designing the undo/redo feature, scalability and speed were the key considerations.
 There was also an extra layer of difficulty as Mortago has automated commands that are both time-based and user-triggered.
@@ -944,7 +1087,7 @@ program state at any time. When undoing or redoing, it was essential that data i
 </div>
 </div>
 <div class="sect2">
-<h3 id="notification-feature"><a class="link" href="#notification-feature">4.3. Notification Feature</a></h3>
+<h3 id="notification-feature"><a class="link" href="#notification-feature">4.4. Notification Feature</a></h3>
 <div class="paragraph">
 <p>This feature in Mortago reminds a mortuary manager to contact the police when the next-of-kin of a body
 has not been contactable for a given period of time from the point of addition of the <code>Body</code>. He / She then needs
@@ -969,7 +1112,7 @@ AddCommand.java.
 </table>
 </div>
 <div class="sect3">
-<h4 id="implementation-4"><a class="link" href="#implementation-4">4.3.1. Implementation</a></h4>
+<h4 id="implementation-5"><a class="link" href="#implementation-5">4.4.1. Implementation</a></h4>
 <div class="paragraph">
 <p>This command is supported by the model component <code>Notif</code> and the logic component <code>NotifCommand</code>.</p>
 </div>
@@ -1016,7 +1159,7 @@ It will be explained in further detail later. Currently, this value is set to <c
 <div class="content">
 <img src="images/NotifCommandClassDiagram.png" alt="NotifCommandClassDiagram" width="400">
 </div>
-<div class="title">Figure 14. Notification Class Diagram</div>
+<div class="title">Figure 16. Notification Class Diagram</div>
 </div>
 <div class="paragraph">
 <p>The following sequence diagrams (Figure 15 and 16) illustrate the execution of the notification feature:</p>
@@ -1025,13 +1168,13 @@ It will be explained in further detail later. Currently, this value is set to <c
 <div class="content">
 <img src="images/NotifCommandSequenceDiagram.png" alt="NotifCommandSequenceDiagram">
 </div>
-<div class="title">Figure 15. Notification Command Sequence Diagram</div>
+<div class="title">Figure 17. Notification Command Sequence Diagram</div>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="images/ChangeUiFnSequenceDiagram.png" alt="ChangeUiFnSequenceDiagram">
 </div>
-<div class="title">Figure 16. ChangeUI function Sequence Diagram</div>
+<div class="title">Figure 18. ChangeUI function Sequence Diagram</div>
 </div>
 <div class="paragraph">
 <p>The following activity diagram summarizes what happens when a user adds a new body and a <code>NotifCommand</code> is
@@ -1041,7 +1184,7 @@ instantiated:</p>
 <div class="content">
 <img src="images/NotifCommandActivityDiagram.png" alt="NotifCommandActivityDiagram" width="200">
 </div>
-<div class="title">Figure 17. Notification Command Activity Diagram</div>
+<div class="title">Figure 19. Notification Command Activity Diagram</div>
 </div>
 <div class="sect4">
 <h5 id="storing-executed-and-pending-code-notifs-code"><a class="link" href="#storing-executed-and-pending-code-notifs-code">Storing executed and pending <code>Notifs</code></a></h5>
@@ -1109,7 +1252,7 @@ code snippet of <code>NotifCommand</code> to illustrate this is show below.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-3"><a class="link" href="#design-considerations-3">4.3.2. Design Considerations</a></h4>
+<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-to-delay-change-in-status-of-the-code-body-code"><a class="link" href="#aspect-how-to-delay-change-in-status-of-the-code-body-code">Aspect: How to delay change in status of the <code>Body</code></a></h5>
 <div class="ulist">
@@ -1190,12 +1333,12 @@ notification bell placed beside the command box aims to constantly remind the us
 </div>
 </div>
 <div class="sect2">
-<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">4.4. Generate PDF Feature</a></h3>
+<h3 id="generate-pdf-feature"><a class="link" href="#generate-pdf-feature">4.5. Generate PDF Feature</a></h3>
 <div class="paragraph">
 <p>This feature allows manager to automatically generate different kinds of reports with three commands: <code>genReport</code>, <code>genReports</code> and <code>genReportSummary</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="implementation-5"><a class="link" href="#implementation-5">4.4.1. Implementation</a></h4>
+<h4 id="implementation-6"><a class="link" href="#implementation-6">4.5.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The generate PDF feature is facilitated by <code>ReportGenerator</code> class.
 It extends Mortago with the ability to create a report, supported by <a href="https://github.com/itext/itext7">iText external library</a>.
@@ -1221,7 +1364,7 @@ Additionally, it implements the following operations:</p>
 <div class="content">
 <img src="images/GenReportSequenceDiagram.png" alt="GenReportSequenceDiagram">
 </div>
-<div class="title">Figure 18. Sequence diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
+<div class="title">Figure 20. Sequence diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1245,7 +1388,7 @@ The lifeline for <code>GenReportCommandParser</code> and <code>ReportGenerator</
 <div class="content">
 <img src="images/GenReportActivityDiagram.png" alt="GenReportActivityDiagram" width="200">
 </div>
-<div class="title">Figure 19. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
+<div class="title">Figure 21. Activity diagram when <code>genReport 1 John Doe</code> is executed by manager.</div>
 </div>
 <div class="paragraph">
 <p>The following code snippet from <code>GenReportCommand.java</code> demonstrates how an error message is displayed when manager inputs an invalid command and when report is not successfully generated:</p>
@@ -1268,11 +1411,11 @@ if (!generated) {
 <div class="content">
 <img src="images/ReportGeneratorClassDiagram.png" alt="ReportGeneratorClassDiagram">
 </div>
-<div class="title">Figure 20. Class diagram for generate PDF feature.</div>
+<div class="title">Figure 22. Class diagram for generate PDF feature.</div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-4"><a class="link" href="#design-considerations-4">4.4.2. Design Considerations</a></h4>
+<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.5.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-generate-report-executes"><a class="link" href="#aspect-how-generate-report-executes">Aspect: How generate report executes</a></h5>
 <div class="ulist">
@@ -1384,233 +1527,9 @@ if (!generated) {
 </div>
 </div>
 <div class="sect2">
-<h3 id="logging"><a class="link" href="#logging">4.5. Logging</a></h3>
-<div class="paragraph">
-<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.6, &#8220;Configuration&#8221;</a>)</p>
-</li>
-<li>
-<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
-</li>
-<li>
-<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Logging Levels</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
-</li>
-<li>
-<p><code>WARNING</code> : Can continue, but with caution</p>
-</li>
-<li>
-<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
-</li>
-<li>
-<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.6. Configuration</a></h3>
-<div class="paragraph">
-<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="user-interface-and-dashboard-enhancement"><a class="link" href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a></h3>
-<div class="paragraph">
-<p>The dashboard of Mortago plays a key part in presenting a sleek, organised, and concise overview to the entities in the system.
-Thus, designing an aesthetic and functional dashboard is a crucial aspect for Mortago.</p>
-</div>
+<h3 id="statistics-feature"><a class="link" href="#statistics-feature">4.6. Statistics Feature</a></h3>
 <div class="sect3">
-<h4 id="surface-design-and-coloring"><a class="link" href="#surface-design-and-coloring">4.7.1. Surface Design and Coloring</a></h4>
-<div class="paragraph">
-<p>Mortago draws upon the guidelines specified in <a href="https://material.io/design/color/dark-theme.html#">Material.io</a> to design a dark theme
-that enhances visual ergonomics and minimises eye strain due to the bright luminance emitted by screens.</p>
-</div>
-<div class="paragraph">
-<p><strong>Visual Contrast Between Surfaces and Text</strong></p>
-</div>
-<div class="paragraph">
-<p>With reference to  Web Content Accessibility Guidelines’ (WCAG), the guidelines recommend that the contrast level
-between dark surfaces and white text to be at least 15:8:1 to ensure visual accessibility.
-Thus, the following color values are set within Mortago:</p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Aspect of Mortago</th>
-<th class="tableblock halign-left valign-top">Color</th>
-<th class="tableblock halign-left valign-top">Preview</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Background</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">derive(#121212, 25%)</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
-<div class="content">
-<img src="images/Background%20Color.png" alt="Background Color">
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Surface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">#121212</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
-<div class="content">
-<img src="images/Surface%20Color.png" alt="Surface Color">
-</div>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Primary</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">#FF7597</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="imageblock">
-<div class="content">
-<img src="images/Primary%20Color.png" alt="Primary Color">
-</div>
-</div></div></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>The background color uses the <code>derive</code> function in <code>JavaFX</code>, which computes a color that is brighter or darker than the original,
-based on the brightness offset supplied. Here, notice that the background color is brighter than the surface color, as opposed to what Material.io dictates.
-This is because bulk of the screen space in the Mortago is taken up by surfaces to optimize the amount of information available to the user,
-hence by giving surfaces a darker brightness, this improves <strong>overall</strong> accessibility and visual ergonomics.
-In addition, this achieves elevation between surfaces and the background, which is aided by drop shadows by surfaces as well.</p>
-</div>
-<div class="paragraph">
-<p>The primary color is desaturated to reach a WCAG&#8217;s AA standard of minimally 4:5:1.
-This facilitates a mild yet impressionable visual aspect to Mortago while minimizing eye strain, as saturated colors can cause optical vibrations against the dark surface and exacerbate eye strain.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="replacing-window-s-title-bar"><a class="link" href="#replacing-window-s-title-bar">4.7.2. Replacing Window&#8217;s Title Bar</a></h4>
-<div class="paragraph">
-<p>In spirit with producing a sleek design, the standard Windows platform title bar was removed. This exposes the user interface to become one that is self-contained, while providing extra space at the top.</p>
-</div>
-<div class="paragraph">
-<p><strong>Removing Window&#8217;s Title Bar</strong></p>
-</div>
-<div class="paragraph">
-<p>The following code snippet was placed in <code>MainApp#start()</code> to achieve this.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>primaryStage.initStyle(StageStyle.TRANSPARENT);</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note that this has to be done before the stage is shown. Otherwise, the application will close automatically upon running.</p>
-</div>
-<div class="paragraph">
-<p>However, with this removal, the default windows functions such as the default OS close button will be inevitably removed as well. Hence, these buttons will have to be rebuilt into the application.</p>
-</div>
-<div class="paragraph">
-<p><strong>Rebuilding Window Functions</strong></p>
-</div>
-<div class="paragraph">
-<p>The following image illustrates the minimise, maximise and exit buttons rebuilt into the menu bar.</p>
-</div>
-<div class="paragraph">
-<p>(insert photo)</p>
-</div>
-<div class="paragraph">
-<p>Each button was assigned its respective handler method, based on different events.</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Exit Button</p>
-<div class="ulist">
-<ul>
-<li>
-<p>The method for exiting the application has already been implemented in <code>handleExit()</code>. Thus, setting the handler for the exit button to this method within the <code>MainWindow.fxml</code> file is sufficient.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Minimise Button</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Minimisation of the application is implemented such that when the user clicks on the  minimise button, it triggers an <code>onMouseClicked</code> event that calls the following code.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>primaryStage.setIconified(true)</code></pre>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic" start="3">
-<li>
-<p>Maximise Button</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Maximisation is implemented similarly to minimization. When the maximise button is clicked <strong>initially</strong>, it triggers a mouse click event, which is handled by the following code snippet.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>maximiseButton.setOnMouseClicked(click -&gt; {
-            primaryStage.setMaximized(true);
-            maximiseButton.setId("restoreButton");
-        });</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>However, when the button is clicked for the second time, the window is restored to its pre-maximised size. In order to implement this, a handler for the <code>onMousePressed</code> event has to be set, as seen in the following code snippet.</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code>maximiseButton.setOnMousePressed(click -&gt; {
-            primaryStage.setMaximized(false);
-            maximiseButton.setId("maximisevButton");
-        });</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Finally, the last functionality to rebuilt is the resizability of the Window. This implementation is adapted from a <a href="https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage">post</a> in StackOverFlow. Briefly,  <code>ResizableWindow::enableResizableWindow()</code> allows the Windows to be resizable by implementing a helper class <code>ResizeListener</code>. The helper class listens to mouse events and tracks the mouse&#8217;s movements to pinpoint the coordinates of the mouse. This determines the change in size of the Window, which will then be resized accordingly.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="statistics-feature"><a class="link" href="#statistics-feature">4.8. Statistics feature</a></h3>
-<div class="sect3">
-<h4 id="current-implementation"><a class="link" href="#current-implementation">4.8.1. Current Implementation</a></h4>
+<h4 id="implementation-7"><a class="link" href="#implementation-7">4.6.1. Implementation</a></h4>
 <div class="paragraph">
 <p>The statistics feature appears as a line chart of the number of bodies admitted over the past 10 days (default view) and is facilitated by <code>LineChartPanel</code>. It extends <code>UiPart</code> with an internal storage of the number of bodies admitted per day over the past 10 days. The line chart is part of the user interface and is initialised automatically when Mortago is launched. Users can switch the view to a specified week, month, or view.</p>
 </div>
@@ -1639,24 +1558,20 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="paragraph">
 <p>The line chart is updated automatically because it takes in an ObservableList&lt;Body&gt; from the <code>AddressBook</code>, so it re-intialises once a change has been detected. The following sequence diagram shows hows adding a body changes the <code>AddressBook</code>, and then how`LineChartPanel` interacts <code>AddressBook</code> to obtain an observable list of bodies, creates a line chart from it, and then passes the line chart to be displayed in <code>MainWindow</code> with dynamic update:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartAddBodySequenceDiagram.png" alt="LineChartAddBodySequenceDiagram">
-</div>
-<div class="title">Figure 21. Sequence diagram showing the dynamic update of the line chart when user adds a new body.</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the dynamic update of the line chart when user adds a new body.
+image::LineChartAddBodySequenceDiagram.png[]</p>
 </div>
 <div class="paragraph">
 <p>The user is able to switch the time frame of the line chart between the last ten days or a particular week, month, or year with the <code>stats</code> command (See User Guide). The following sequence diagram shows how the stats command affect the appearance of the line chart:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartTimeFrameSequenceDiagram.png" alt="LineChartTimeFrameSequenceDiagram">
-</div>
-<div class="title">Figure 22. Sequence diagram showing the changing view of the line chart when user specifies a different time frame.</div>
+<div class="paragraph">
+<p>)Sequence diagram showing the changing view of the line chart when user specifies a different time frame.
+image::LineChartTimeFrameSequenceDiagram.png[]</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="design-considerations-5"><a class="link" href="#design-considerations-5">4.8.2. Design Considerations</a></h4>
+<h4 id="design-considerations-6"><a class="link" href="#design-considerations-6">4.6.2. Design Considerations</a></h4>
 <div class="sect4">
 <h5 id="aspect-how-data-is-stored-and-updated"><a class="link" href="#aspect-how-data-is-stored-and-updated">Aspect: How data is stored and updated</a></h5>
 <div class="paragraph">
@@ -1672,11 +1587,9 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 <div class="paragraph">
 <p>The following activity diagram illustrates the current choice for accessing and updating data:</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/LineChartActivityDiagram.png" alt="LineChartActivityDiagram">
-</div>
-<div class="title">Figure 23. Activity diagram for how the line chart populate values over the last ten days.</div>
+<div class="paragraph">
+<p>)Activity diagram for how the line chart populate values over the last ten days.
+image::LineChartActivityDiagram.png[]</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1741,7 +1654,316 @@ This facilitates a mild yet impressionable visual aspect to Mortago while minimi
 </div>
 </div>
 <div class="sect2">
-<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.9. [Proposed] Data Encryption</a></h3>
+<h3 id="user-interface-and-dashboard-enhancement"><a class="link" href="#user-interface-and-dashboard-enhancement">4.7. User Interface and Dashboard Enhancement</a></h3>
+<div class="paragraph">
+<p>The dashboard of Mortago plays a key part in presenting a sleek, organised, and concise overview to the entities in the system.
+Thus, designing an aesthetic and functional dashboard is a crucial aspect for Mortago.</p>
+</div>
+<div class="sect3">
+<h4 id="surface-design-and-coloring"><a class="link" href="#surface-design-and-coloring">4.7.1. Surface Design and Coloring</a></h4>
+<div class="paragraph">
+<p>This section illustrates the motivations made behind Mortago&#8217;s color scheme.</p>
+</div>
+<div class="sect4">
+<h5 id="4-6-1-1-implementation"><a class="link" href="#4-6-1-1-implementation">4.6.1.1. Implementation</a></h5>
+<div class="paragraph">
+<p>Mortago draws upon the guidelines specified in <a href="https://material.io/design/color/dark-theme.html#">Material.io</a> to design a dark theme
+that enhances visual ergonomics and minimises eye strain due to the bright luminance emitted by screens.</p>
+</div>
+<div class="paragraph">
+<p><strong>Designing the Visual Contrast Between Surfaces and Text</strong></p>
+</div>
+<div class="paragraph">
+<p>With reference to  Web Content Accessibility Guidelines’ (WCAG), the guidelines recommend that the contrast level
+between dark surfaces and white text to be at least 15:8:1 to ensure visual accessibility.
+Thus, the following color values that complies with the above standards are chosen:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Aspect of Mortago</th>
+<th class="tableblock halign-left valign-top">Color</th>
+<th class="tableblock halign-left valign-top">Color Preview</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Background</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">derive(#121212, 25%)</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/Background%20Color.png" alt="Background Color">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Surface</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">#121212</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/Surface%20Color.png" alt="Surface Color">
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">#FF7597</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="imageblock">
+<div class="content">
+<img src="images/Primary%20Color.png" alt="Primary Color">
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The background color uses the <code>derive</code> function in <code>JavaFX</code>, which computes a color that is brighter or darker than the original,
+based on the brightness offset supplied.
+The primary color is also desaturated to reach a WCAG&#8217;s AA standard of minimally 4:5:1.
+This facilitates a mild yet impressionable visual aspect to Mortago while minimizing eye strain, as saturated colors can cause optical vibrations against the dark surface and exacerbate eye strain.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="4-6-1-2-design-considerations"><a class="link" href="#4-6-1-2-design-considerations">4.6.1.2. Design Considerations</a></h5>
+<div class="paragraph">
+<p>This section details an aspect considered when designing Mortago&#8217;s color scheme.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-the-contrast-in-brightness-between-the-background-and-surfaces"><a class="link" href="#aspect-the-contrast-in-brightness-between-the-background-and-surfaces">Aspect: The contrast in brightness between the background and surfaces</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Background is brighter than the surface.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Drop shadows designed to simulate elevation are more realistic</p>
+</li>
+<li>
+<p>Cons: A deviation from what Material.io dictates</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Background is darker than the surface.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: A different representation of elevation can be achieved</p>
+</li>
+<li>
+<p>Cons: Overall visual brightness will be brighter compared to Alternative 1</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 was chosen because, aside from the pros that it has to offer, bulk of the screen space in the Mortago is taken up by surfaces to optimize the amount of information available to the user, hence by giving surfaces a darker brightness, this improves <strong>overall</strong> visual ergonomics.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="replacing-window-s-title-bar"><a class="link" href="#replacing-window-s-title-bar">4.7.2. Replacing Window&#8217;s Title Bar</a></h4>
+<div class="paragraph">
+<p>This section details how the default window&#8217;s title bar is replaced with a custom title bar.</p>
+</div>
+<div class="sect4">
+<h5 id="4-6-2-1-implementation"><a class="link" href="#4-6-2-1-implementation">4.6.2.1. Implementation</a></h5>
+<div class="paragraph">
+<p>In spirit with designing a sleek and functional dashboard, the standard Windows platform title bar was removed. This exposes the user interface to become one that is self-contained, while providing extra space at the top that allows more details to be shown to the user.</p>
+</div>
+<div class="paragraph">
+<p><strong>How the window&#8217;s title bar was removed</strong></p>
+</div>
+<div class="paragraph">
+<p>The following code snippet demonstrates how the title bar was removed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>primaryStage.initStyle(StageStyle.TRANSPARENT);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this code was placed in <code>MainApp#start()</code> and has to be done before the stage is shown. Otherwise, the application will close automatically upon running.</p>
+</div>
+<div class="paragraph">
+<p>However, with this removal, the default windows functions such as the default OS close button will inevitably be removed as well. Hence, these buttons will have to be rebuilt into the application.</p>
+</div>
+<div class="paragraph">
+<p><strong>How the default window functions were rebuilt</strong></p>
+</div>
+<div class="paragraph">
+<p>This section demonstrates how the default window function were rebuilt into the application.</p>
+</div>
+<div class="paragraph">
+<p>Three buttons were manually created and customised to simulate the original window buttons. Each button was assigned to its respective handler method, based on different events. The following details the function of each button is recreated:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Exit Button</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The method for exiting the application has already been implemented in <code>handleExit()</code> in Address Book 3. Thus, setting the handler for the exit button to this method within the <code>MainWindow.fxml</code> file is sufficient.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Minimise Button</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Minimisation of the application is implemented such that when the user clicks on the  minimise button, it triggers an <code>onMouseClicked</code> event that calls <code>primaryStage.setIconified(true)</code> which minimises the window. Hence, setting the <code>onMouseClicked</code> handler to call this function is sufficient to implement minimisation through this button..</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Maximise Button</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Maximisation is implemented slightly different compared to minimisation. When the maximise button is clicked <strong>initially</strong>, the window should be maximised. When the button is clicked for the second time, the window should be restored to its pre-maximised size. Hence, notice that this button has two functions: maximisation and restoration. This switch in function is achieved via the following code snipped shown below.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>    /**
+     * Enables the maximization and restoration of the window.
+     */
+    private void maximiseRestore() {
+        if (primaryStage.isMaximized()) {
+            primaryStage.setMaximized(false);
+            if (primaryStage.getScene().getWindow().getY() &lt; 0) {
+                primaryStage.getScene().getWindow().setY(0);
+            }
+            maximiseButton.setId("maximiseButton");
+        } else {
+            Rectangle windowBounds = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+            primaryStage.setMaximized(true);
+            primaryStage.setHeight(windowBounds.height);
+            primaryStage.setWidth(windowBounds.width);
+            maximiseButton.setId("restoreButton");
+        }
+    }</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The <code>onMouseClicked</code> handler is set to call the above function such that when the button is clicked, if the window is maximised, the window will be restored to its original size, and if the window is not maximised, the window will be maximised.</p>
+</li>
+<li>
+<p>Notice also that the button is assigned to different <code>FXML</code> ids for the <code>if</code> and <code>else</code> blocks. This allows the button image to change accordingly, which is defined in the <code>DarkTheme.css</code> stylesheet.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Finally, the last thing is to rebuild the resizability of the window.
+The implementation of this feature is adapted from this hyperlinked <a href="https://stackoverflow.com/questions/19455059/allow-user-to-resize-an-undecorated-stage">post</a> in StackOverFlow. Briefly,  <code>ResizableWindow::enableResizableWindow()</code> allows the Windows to be resizable by implementing a helper class <code>ResizeListener</code>. The helper class listens to mouse events and tracks the mouse&#8217;s movements to pinpoint the coordinates of the mouse. This determines the change in size of the Window, which will then be resized accordingly.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="4-6-2-2-design-consideration"><a class="link" href="#4-6-2-2-design-consideration">4.6.2.2. Design Consideration</a></h5>
+<div class="paragraph">
+<p>The following section details an aspect to consider when designing the title bar.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="aspect-designing-the-default-window-s-title-bar"><a class="link" href="#aspect-designing-the-default-window-s-title-bar">Aspect: Designing the default window&#8217;s title bar</a></h5>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Alternative 1 (current choice)</strong>: Replace the default title bar with a custom title bar</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Sleek interface that is pleasing to the eye and showcases a comprehensive product design</p>
+</li>
+<li>
+<p>Cons: Default window functions have to be rebuilt into the application</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alternative 2</strong>: Retain the default title bar</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Pros: Window functions will be perfectly working</p>
+</li>
+<li>
+<p>Cons: The default title bar does not fit into the theme of the user interface</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Alternative 1 was chosen despite the need to rebuild the default window functions as it is imperative to produce a complete product design. The visual appearance of the dashboard is a significant feature of the application as it details all the necessary information to the user. Hence, a product design that is visually appealing is necessary to attract more users and gain traction into opting our application.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="logging"><a class="link" href="#logging">4.8. Logging</a></h3>
+<div class="paragraph">
+<p>We are using <code>java.util.logging</code> package for logging. The <code>LogsCenter</code> class is used to manage the logging levels and logging destinations.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The logging level can be controlled using the <code>logLevel</code> setting in the configuration file (See <a href="#Implementation-Configuration">Section 4.9, &#8220;Configuration&#8221;</a>)</p>
+</li>
+<li>
+<p>The <code>Logger</code> for a class can be obtained using <code>LogsCenter.getLogger(Class)</code> which will log messages according to the specified logging level</p>
+</li>
+<li>
+<p>Currently log messages are output through: <code>Console</code> and to a <code>.log</code> file.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Logging Levels</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SEVERE</code> : Critical problem detected which may possibly cause the termination of the application</p>
+</li>
+<li>
+<p><code>WARNING</code> : Can continue, but with caution</p>
+</li>
+<li>
+<p><code>INFO</code> : Information showing the noteworthy actions by the App</p>
+</li>
+<li>
+<p><code>FINE</code> : Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="Implementation-Configuration"><a class="link" href="#Implementation-Configuration">4.9. Configuration</a></h3>
+<div class="paragraph">
+<p>Certain properties of the application can be controlled (e.g user prefs file location, logging level) through the configuration file (default: <code>config.json</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proposed-data-encryption"><a class="link" href="#proposed-data-encryption">4.10. [Proposed] Data Encryption</a></h3>
 <div class="paragraph">
 <p><em>{Explain here how the data encryption feature will be implemented}</em></p>
 </div>
@@ -2852,4 +3074,4 @@ Expected: Mortago&#8217;s state goes back to the <code>undo</code> test case&#82
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:00:07 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:08:18 UTC</div></div></div></bodyId></html>

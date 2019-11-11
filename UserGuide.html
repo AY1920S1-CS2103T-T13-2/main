@@ -528,6 +528,18 @@ Before specifying a <code>fridgeId</code>, ensure that a <code>fridge</code> wit
 </tr>
 </tbody>
 </table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Please refer to <a href="#Valid-Values">Appendix 7.1</a> for a comprehensive list of valid values and formats for various attributes like sex, phone and dates.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Example:</p>
 </div>
@@ -908,10 +920,46 @@ After filtering specific bodies, you may now want to view the full list of bodie
 <p>Format: <code>select id</code></p>
 </div>
 <div class="paragraph">
-<p>Example: <code>select 1</code><br></p>
+<p>Example: <code>select 1</code></p>
 </div>
 <div class="paragraph">
-<p>View a body with the ID B00000001.</p>
+<p>The following illustrates how you can use the select command.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Suppose you wish to select a body with ID B00000001.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Select1.png" alt="Select1">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Enter in <code>select 1</code> in the command box.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Select2.png" alt="Select2">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>The body with ID B00000001 will be selected and you can view all its details on the side panel.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/Select3.png" alt="Select3">
+</div>
 </div>
 </div>
 </div>
@@ -1835,7 +1883,10 @@ and controlling peripherals<br></p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Sex</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The following values are valid for sex:</p>
+</div>
+<div class="ulist">
 <ul>
 <li>
 <p>Male</p>
@@ -1848,7 +1899,10 @@ and controlling peripherals<br></p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Body Status</p></td>
-<td class="tableblock halign-left valign-top"><div><div class="ulist">
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>The following values are valid for body status:</p>
+</div>
+<div class="ulist">
 <ul>
 <li>
 <p>Arrived</p>
@@ -1900,7 +1954,7 @@ The country calling code is omitted and assumed to be +65. The first digit shoul
 <td class="tableblock halign-left valign-top"><p class="tableblock">Path to Photo</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="paragraph">
 <p>If you wish to provide a photo for the worker entry, please provide the absolute path of the image file.
-You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolute path of the file.</p>
+You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolute path of the file. Only <code>.jpeg</code>, <code>.jpg</code> and <code>.png</code> files are valid for the application.</p>
 </div></div></td>
 </tr>
 <tr>
@@ -1918,39 +1972,67 @@ You can follow the steps <a href="#Copy-File-Path">here</a> to obtain the absolu
 <p><a id="Copy-File-Path"></a></p>
 </div>
 <div class="paragraph">
-<p>The following steps guide you to copy the absolute path of a file into the clipboard.</p>
+<p>The following steps will guide you on how to copy the absolute path of a file into the clipboard.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>For <strong>Windows</strong> User:</p>
+<p>For <strong>Windows</strong> Users:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Navigate to the image file you wish to upload.</p>
 </li>
 <li>
-<p>While holding down <kbd>Shift</kbd>, right-click on the image file.</p>
+<p><strong>While</strong> holding down <kbd>Shift</kbd>, right-click on the image file.</p>
 </li>
 <li>
-<p>In the menu that appears, click <code>Copy as path</code>. The absolute path of the file is copied into your clipboard.</p>
+<p>In the menu that appears, as seen in the figure below, click on <code>Copy as path</code> to copy the absolute path into your clipboard.</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>image::Appendix1.png[align="center", width=60%]</p>
+</div>
 </li>
 <li>
-<p>For <strong>Mac</strong> User:</p>
+<p>For <strong>Mac</strong> Users:</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
 <p>Navigate to the image file you wish to upload.</p>
 </li>
 <li>
-<p>Right-click on the image file, then hold down the <kbd>Option</kbd> button.</p>
+<p>Right-click on the image file, <strong>then</strong> hold down the <kbd>Option</kbd> button.</p>
 </li>
 <li>
-<p>In the menu that appears, click <code>Copy &lt;file name&gt; as Pathname</code>. The absolute path of the file is copied into your
-clipboard.</p>
+<p>In the menu that appears, click on <code>Copy &lt;your file name&gt; as Pathname</code>, as seen in red box in the figure below, to copy the absolute path into your clipboard.</p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/Appendix2.png" alt="Appendix2" width="70%">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Alternatively,</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the image file you wish to upload and click on it.</p>
+</li>
+<li>
+<p>Press <code>Command</code> and <code>i</code> simultaneously to bring up <code>Get Info</code>, as seen in the figure below.</p>
+<div class="imageblock" style="text-align: center">
+<div class="content">
+<img src="images/Appendix3.png" alt="Appendix3" width="60%">
+</div>
+</div>
+</li>
+<li>
+<p>Highlight the text next to <code>Where</code>, as seen in the red box in the figure above, then press <code>Command</code> and <code>c</code> simultaneously to copy the full path to the clipboard.</p>
 </li>
 </ol>
 </div>
@@ -1959,4 +2041,4 @@ clipboard.</p>
 </div>
 </div>
 </div>
-</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:00:07 UTC</div></div></div></bodyId></html>
+</div></div><div id="footer"><div class="container"><div id="footer-text">Last updated 2019-11-11 13:08:18 UTC</div></div></div></bodyId></html>
